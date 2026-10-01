@@ -941,49 +941,7 @@ LSE, other uniform shapes, and other windows retain the established path.
 
 ---
 
-## 9. What the project taught us
-
-### Measure the right roof
-
-Raw WMMA peak overstated the available headroom. Matrix and softmax/vector
-instructions share issue capacity, and the QK-softmax-PV dependency chain
-lowered the actionable roof to about 2.46 PFLOP/s.
-
-### Work distribution can dominate local code
-
-Longest-first query-block order added no useful math and barely changed ISA,
-yet delivered the largest single mid-project gain by shortening the dispatch
-tail.
-
-### Register pressure bounded the tested designs
-
-BM256/four waves improved throughput, but BM256/eight waves delivered the full
-gain. Under the tested compiler, BM512/16 deep generated 919 spills and only
-89.2 TFLOP/s. Several warp-specialized designs also crossed the spill cliff.
-Transformations therefore had to be designed around the register budget, not
-checked for spills only after implementation.
-
-### Static metrics are filters, not performance proofs
-
-Fewer instructions, barriers, or waits often failed to improve runtime.
-Hardware timing remained the acceptance gate.
-
-### Specialization needs a proof and a fallback
-
-Every retained path states why masks, bounds, or alternate scheduling are safe.
-Ragged, tail, windowed, short, underfilled, FP8, sink, and LSE cases are not
-silently assumed equivalent.
-
-### Compiler and kernel work must be separated experimentally
-
-Compiler and kernel changes need separate controls. Public
-[#1883](https://github.com/lightseekorg/tokenspeed/pull/1883) was independently
-measured with `tokenspeed-triton==3.8.10.post20260920`; only that
-published-toolchain campaign is used here as PR performance evidence.
-
----
-
-## 10. Evidence map
+## 9. Evidence map
 
 Optimization-workstream PRs:
 
