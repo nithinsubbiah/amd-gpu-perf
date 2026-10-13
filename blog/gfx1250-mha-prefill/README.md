@@ -2,16 +2,22 @@
 
 *Draft for technical review.*
 
-## An evidence-driven journey through eight optimization-workstream PRs
+## An evidence-driven journey through ten optimization-workstream PRs
 
-This optimization workstream produced eight public pull requests for
-TokenSpeed's gfx1250 Gluon MHA prefill kernel. Six changed performance; two
+Updated through [TokenSpeed #1941](https://github.com/lightseekorg/tokenspeed/pull/1941)
+and the October 13, 2026 post-merge baseline.
+
+This optimization workstream produced ten public pull requests for
+TokenSpeed's gfx1250 Gluon MHA prefill kernel. Eight changed performance; two
 hardened the selector and test coverage. The work progressed from tile
 geometry, through compiler and launch scheduling, to a deeper
 K-ahead/V-behind pipeline and packed-GQA specializations for short, ragged, and
-sliding-window attention.
+sliding-window attention. The latest work extended packed ownership to long
+BF16 routes, decoupled transport width from compute width, compacted ragged
+launches, fused selected K/V transfers, and deliberately interleaved useful
+VALU/LDS work between WMMAs.
 
-These eight PRs are the optimization series, not the kernel's complete upstream
+These ten PRs are the optimization series, not the kernel's complete upstream
 lineage. The implementation originally landed through
 [#718](https://github.com/lightseekorg/tokenspeed/pull/718) and
 [#719](https://github.com/lightseekorg/tokenspeed/pull/719), then received
@@ -45,7 +51,15 @@ Across the separately reported campaigns:
   the published compiler;
 * candidate `986b7271` measured 2.69-69.15% above recorded main `a4178a9d`
   baselines on selected routes; these were separate, non-interleaved
-  campaigns.
+  campaigns;
+* [#1939](https://github.com/lightseekorg/tokenspeed/pull/1939) improved the
+  long packed BF16 H8/KV1 routes by 4.99% at B4/S4096 and 2.58% at B2/S8192;
+* [#1941](https://github.com/lightseekorg/tokenspeed/pull/1941) then improved
+  every changed BF16 route by 1.94-20.74% and the three changed FP16 routes by
+  8.45-19.20% on the released `3.9.10.post20261008` compiler; and
+* the post-merge TokenSpeed `676acaa5` baseline reached 1,122.7 TFLOP/s at
+  B8/S1024, 4.31% above the matched AITER ASM path, while exposing the next
+  deficits at S2048, S16384, and ragged attention.
 
 Those results came from specialization, not a universal fast path. Each
 retained path has explicit eligibility guards. One important caveat is that
@@ -199,11 +213,14 @@ sweep was discarded.
 | [#1505](https://github.com/lightseekorg/tokenspeed/pull/1505) | Start expensive causal workgroups first to shorten the dispatch tail | +23.08% acceptance case |
 | [#1883](https://github.com/lightseekorg/tokenspeed/pull/1883) | Overlap K and V at different depths, then specialize provably full rows | +5.0-6.6% on B4/S4096 |
 | [#1924](https://github.com/lightseekorg/tokenspeed/pull/1924) | Pack GQA rows and specialize ragged/sliding boundaries | +2.7-69.2% on selected routes |
+| [#1939](https://github.com/lightseekorg/tokenspeed/pull/1939) | Extend packed ownership to measured long BF16 H8/KV1 routes | +4.99% S4096; +2.58% S8192 |
+| [#1941](https://github.com/lightseekorg/tokenspeed/pull/1941) | Decouple transport/compute width, compact ragged work, fuse selected TDM loads, and fill WMMA issue gaps | +1.94-20.74% on changed BF16 routes |
 
-The first seven optimization-workstream PRs merged. The
+All ten optimization-workstream PRs merged. The
 [#1924](https://github.com/lightseekorg/tokenspeed/pull/1924) tables in this
-article are anchored to candidate commit `986b7271`, independent of later PR
-status.
+article remain anchored to candidate commit `986b7271`; the later sections use
+the independently measured #1939 and #1941 campaigns rather than combining
+percentages across toolchains.
 
 ### The kernel before this optimization series
 
@@ -941,7 +958,274 @@ LSE, other uniform shapes, and other windows retain the established path.
 
 ---
 
-## 9. Evidence map
+## 9. [#1939](https://github.com/lightseekorg/tokenspeed/pull/1939): carry packed ownership into long BF16 attention
+
+[#1924](https://github.com/lightseekorg/tokenspeed/pull/1924) deliberately
+limited uniform packed H8/KV1 dispatch to S1024 and S2048. The next direct
+screen showed that packing was also useful for the two measured long BF16
+routes when paired with the established BM256/BN64 deep pipeline.
+
+[#1939](https://github.com/lightseekorg/tokenspeed/pull/1939) enabled packed
+ownership for:
+
+* B4/S4096/H8/KV1/D128 BF16; and
+* B2/S8192/H8/KV1/D128 BF16.
+
+The accepted configuration used BM256, BN64, eight waves,
+`waves_per_eu=1`, the four-wave TDM producer hint, longest-first query-block
+order, and coexec scheduling. It changed the grid from one axis per query head
+to one axis per KV head while keeping the deep K-ahead/V-behind schedule.
+
+Fresh direct A/B on rebased commit `d4296da2` used three order-balanced pairs
+per workload:
+
+| Workload | Existing route | Packed long route | Gain |
+|---|---:|---:|---:|
+| B4/S4096/H8/KV1/D128 BF16 | 1,817.521 | 1,908.198 TFLOP/s | +4.99% |
+| B2/S8192/H8/KV1/D128 BF16 | 1,954.280 | 2,004.708 TFLOP/s | +2.58% |
+
+All 12 endpoints passed correctness and clock gates. Pairwise gains were
+4.94-5.03% at S4096 and 2.38-2.72% at S8192, with maximum grouped-event CV of
+0.113%.
+
+The selector stayed narrow. FP16, ragged, sliding, D64, FP8, other head
+layouts, sinks/LSE, and unmeasured sequence lengths retained their existing
+paths. That last restriction matters: B1/S16384 was not measured and therefore
+was not added to the packed selector.
+
+---
+
+## 10. [#1941](https://github.com/lightseekorg/tokenspeed/pull/1941): transport/compute decoupling and instruction-level overlap
+
+The final optimization PR broadened the idea from "pack this shape" to
+"specialize each stage of the pipeline independently." It was developed
+against changing compiler branches, then rebased and accepted on the released
+`tokenspeed-triton==3.9.10.post20261008` package. The merged result is
+[TokenSpeed #1941](https://github.com/lightseekorg/tokenspeed/pull/1941),
+merge commit `259a410b`.
+
+The retained mechanisms were:
+
+1. BN128 transport followed by two sequential BN64 online-softmax updates;
+2. packed four-wave ownership for measured MHA/GQA/MQA tuples;
+3. fused K/V TDM issue only on the BF16 H32/KV8 GQA route;
+4. QK WMMA scheduling groups containing independent prior-tile VALU work and
+   V LDS reads;
+5. coexec scheduling for the measured window-512 route; and
+6. a compact task list for the measured four-sequence ragged batch.
+
+### 10.1 Wider transport without wider live compute state
+
+A direct BN128 QK tile keeps too much score and softmax state live. It crosses
+an allocation cliff even though moving 128 K/V rows at once is attractive.
+The retained wide-transport route separates those decisions:
+
+```mermaid
+flowchart LR
+    H["HBM K and V<br/>128 rows each"] --> T["One BN128 K transfer<br/>+ one BN128 V transfer"]
+    T --> L["BN128 K/V in LDS"]
+    L --> A["First BN64<br/>QK → softmax → PV"]
+    A --> B["Second BN64<br/>QK → softmax → PV"]
+    B --> O["One online-softmax<br/>state and output accumulator"]
+
+    classDef memory fill:#dbeafe,stroke:#2563eb,color:#172554
+    classDef mover fill:#e0f2fe,stroke:#0284c7,color:#0c4a6e
+    classDef compute fill:#ede9fe,stroke:#7c3aed,color:#2e1065
+    classDef state fill:#dcfce7,stroke:#16a34a,color:#14532d
+
+    class H,L memory
+    class T mover
+    class A,B compute
+    class O state
+```
+
+The transport issues half as often, but each compute step still has BN64 live
+state and preserves the established online-softmax update order. This route is
+used only for measured uniform packed shapes whose launch and addressing
+contracts are rechecked at the host.
+
+The same PR moved the selected long packed BF16 routes from the earlier
+eight-wave ownership to a measured four-wave configuration. This is another
+example of why one dimension cannot stand in for the whole resource shape:
+BM, BN, wave count, transport width, and ownership all affect allocation.
+
+### 10.2 Fill WMMA issue shadows with independent work
+
+Matched ATT showed a structural difference from AITER ASM:
+
+* AITER commonly placed four useful instructions between WMMAs;
+* TokenSpeed commonly placed zero or one; and
+* TokenSpeed's WMMA stall cost was therefore much higher even when total
+  shader-busy time looked healthy.
+
+The retained schedule interleaves groups of four independent VALU
+instructions from the previous softmax stage and one V LDS read per eight QK
+WMMAs. It does not add a runtime barrier or change attention math. It tells the
+machine scheduler which already-independent operations should fill otherwise
+empty issue slots.
+
+An earlier matched ATT A/B held the back-to-back-WMMA hardware control enabled
+on both sides, isolating the scheduling-group change. Under that controlled
+setup, the measured WMMA stall cost fell from 3.92 to 2.47 cycles/hit at
+S4096 and from 4.09 to 2.50 at S8192. These are mechanism-attribution numbers,
+not absolute stall metrics for the final control-free kernel. The same
+scheduling pattern was retained for measured MHA.
+
+An explicit back-to-back-WMMA hardware control was measured separately and was
+useful, but it was intentionally removed before merge so this PR would depend
+only on the released compiler contract. It is not part of the performance
+figures below.
+
+### 10.3 Compact the ragged launch instead of scheduling empty rectangles
+
+The measured ragged batch is:
+
+```text
+[4096, 3584, 2305, 1024]
+```
+
+With H8/KV1 packed into BM128, one workgroup covers 16 query positions. A
+rectangular launch based on S4096 creates:
+
+```text
+256 blocks/sequence × 4 sequences = 1024 workgroups
+```
+
+The compact mapping launches only the live blocks:
+
+```text
+ceil(4096/16) + ceil(3584/16) + ceil(2305/16) + ceil(1024/16)
+= 256 + 224 + 145 + 64
+= 689 workgroups
+```
+
+Each flat task is mapped back to `(sequence, local query block)` inside the
+kernel. Query blocks are reversed within each sequence; this is not a global
+sort across sequences. A compile-time four-iteration loop loads the start/end
+`cu_seqlens` pair for each sequence, so the implementation is restricted to
+exactly four sequences. Every otherwise eligible nonuniform B4/max-S4096
+batch uses the compact mapping; other batch sizes keep the generic mapping.
+
+### 10.4 Fuse transfers only where producer separation wins
+
+The BF16 H32/KV8 wide GQA route issues K and V through one fused TDM operation
+with disjoint producer-wave subsets:
+
+```text
+waves 0-1 -> K
+waves 2-3 -> V
+cache policy -> .cg
+```
+
+Direct GQA A/B pairs were positive and the generated kernel remained
+zero-scratch. The same mechanism regressed MQA, so it is not generalized.
+Full-loop fusion on the H8/KV1 path also regressed because it coupled K
+readiness to V completion; it was rejected.
+
+For B4/S4096/window-512, coexec replaced max-memory-clause only on the exact
+measured route. Sliding attention remains a separate specialization because
+its mask and issue pattern differ from full causal attention.
+
+### 10.5 Fast-path contracts are part of the optimization
+
+The final host launcher explicitly checks:
+
+* compact ragged requires exactly four sequences;
+* wide transport also requires packed selection, uniform rows, no
+  sinks/LSE/window, ordinary 32-bit local addressing, and the expected grid;
+* D64, FP8, sinks/LSE, wide addresses, unsupported head tuples, and unmeasured
+  shapes use established fallbacks; and
+* S2048 keeps its existing packed route because the new variant was neutral.
+
+Simulator-sized runtime tests cover compact and non-compact ragged launches,
+wide and fused-wide transport, QK interleaving, FP8, sinks/LSE, and launch
+guards. The wide-address path rebases sequence/head pointers with 64-bit
+arithmetic while preserving 32-bit local buffer offsets.
+
+### 10.6 Final #1941 gain on the released compiler
+
+The final acceptance summary is composite. Routes affected by removing the
+back-to-back-WMMA control were freshly rerun at candidate `8111c787`; routes
+whose selectors never enabled that control reuse the matching release campaign
+at candidate `ec24b15c`. Both campaigns used TokenSpeed main `c50a2f09`, AITER
+`b68b0e5c7`, and `tokenspeed-triton==3.9.10.post20261008`. Each used three
+cyclic orders, seeded inputs, FP32 correctness gates, grouped device-event
+timing, exclusive GPU locking, and retained clock telemetry.
+
+Changed BF16 routes:
+
+| Workload | Main | #1941 candidate | Gain |
+|---|---:|---:|---:|
+| B8/S1024 H8/KV1 | 1,009.420 | 1,081.001 | +7.09% |
+| B4/S4096 H8/KV1 | 1,775.209 | 1,825.571 | +2.84% |
+| B2/S8192 H8/KV1 | 1,852.726 | 1,989.113 | +7.36% |
+| MHA B4/S4096 H8/KV8 | 1,716.488 | 1,749.812 | +1.94% |
+| GQA B4/S4096 H32/KV8 | 1,685.644 | 1,781.200 | +5.67% |
+| MQA B4/S4096 H32/KV1 | 1,724.719 | 1,818.613 | +5.44% |
+| Ragged `[4096,3584,2305,1024]` | 1,032.361 | 1,246.486 | +20.74% |
+| Sliding B4/S4096/window-512 | 1,154.712 | 1,231.263 | +6.63% |
+
+All 24 BF16 candidate-versus-main pairs were positive.
+
+Changed FP16 routes:
+
+| Workload | Main | #1941 candidate | Gain |
+|---|---:|---:|---:|
+| B8/S1024 H8/KV1 | 984.686 | 1,088.932 | +10.59% |
+| Ragged `[4096,3584,2305,1024]` | 1,053.109 | 1,255.265 | +19.20% |
+| Sliding B4/S4096/window-512 | 1,124.550 | 1,219.566 | +8.45% |
+
+Other FP16 routes were intentionally unchanged. Maximum grouped-event CV
+across the final reruns was 0.908%.
+
+---
+
+## 11. The post-merge baseline: where the compiler-generated kernel now stands
+
+After [#1941](https://github.com/lightseekorg/tokenspeed/pull/1941) merged, we
+rebuilt the comparison from TokenSpeed `676acaa5`, the released
+`3.9.10.post20261008` compiler, and AITER `b68b0e5c`. This is a new campaign,
+so its absolute values should not be compared with the #1941 main/candidate
+table above.
+
+Four order-balanced pairs per row passed FP32 correctness, grouped-event CV,
+and clock gates:
+
+| Workload | TokenSpeed | AITER ASM | TokenSpeed delta |
+|---|---:|---:|---:|
+| B8/S1024 H8/KV1 | 1,122.741 | 1,076.356 | **+4.309%** |
+| B4/S2048 H8/KV1 | 1,396.029 | 1,561.445 | -10.594% |
+| B4/S4096 H8/KV1 | 1,984.203 | 1,974.260 | **+0.504%** |
+| B2/S8192 H8/KV1 | 2,120.680 | 2,215.748 | -4.291% |
+| B1/S16384 H8/KV1 | 2,046.347 | 2,362.868 | -13.396% |
+| MHA B4/S4096 H8/KV8 | 1,914.618 | 1,979.250 | -3.265% |
+| GQA B4/S4096 H32/KV8 | 1,909.226 | 1,927.814 | -0.964% |
+| MQA B4/S4096 H32/KV1 | 1,950.156 | 1,982.261 | -1.620% |
+| Ragged `[4096,3584,2305,1024]` | 1,249.077 | 1,480.615 | -15.638% |
+
+S1024 is a clear result: every pair favors TokenSpeed, with pairwise deltas
+from +2.425% to +6.785%. S4096 is statistical parity rather than a robust win:
+its pair range is -0.873% to +1.644%. GQA and MQA are within 2% of hand-written
+ASM.
+
+S16384 was added after the first post-merge roundup. It currently uses the
+generic eight-wave grid rather than the packed specialization, and all four
+pairs consistently trail ASM by 13.22-13.54%. It is now tracked as a
+long-context coverage and optimization target.
+
+Finite-window sliding attention is absent from this table because AITER ASM is
+ineligible; TokenSpeed's measured sliding route instead competes with AITER
+FlyDSL.
+
+The final result is narrower—and more useful—than saying that one
+compiler-generated kernel "beats ASM." TokenSpeed now beats ASM on the short
+H8/KV1 route, is statistically mixed at S4096 and within 2% on both H32 head
+layouts, supports features outside the ASM contract, and has clearly measured
+remaining work at S2048, S16384, and ragged attention.
+
+---
+
+## 12. Evidence map
 
 Optimization-workstream PRs:
 
@@ -953,6 +1237,8 @@ Optimization-workstream PRs:
 * [#1505 — longest-first causal order](https://github.com/lightseekorg/tokenspeed/pull/1505)
 * [#1883 — deep pipeline and full-tile specialization](https://github.com/lightseekorg/tokenspeed/pull/1883)
 * [#1924 — packed GQA and window/ragged paths](https://github.com/lightseekorg/tokenspeed/pull/1924)
+* [#1939 — long BF16 packed GQA](https://github.com/lightseekorg/tokenspeed/pull/1939)
+* [#1941 — packed MHA prefill tuning](https://github.com/lightseekorg/tokenspeed/pull/1941)
 
 Other direct kernel-lineage PRs:
 
@@ -979,6 +1265,14 @@ Toolchain provenance:
   base.
 * Public [#1883](https://github.com/lightseekorg/tokenspeed/pull/1883) and the
   packed-GQA campaign used `tokenspeed-triton==3.8.10.post20260920`.
+* [#1939](https://github.com/lightseekorg/tokenspeed/pull/1939) used
+  `tokenspeed-triton==3.8.10.post20260920` and merged as `e88f5558`.
+* Final [#1941](https://github.com/lightseekorg/tokenspeed/pull/1941)
+  acceptance used main `c50a2f09`, fresh control-free candidate `8111c787`,
+  unaffected release rows from candidate `ec24b15c`, and
+  `tokenspeed-triton==3.9.10.post20261008`; it merged as `259a410b`.
+* The post-merge TokenSpeed/AITER baseline used TokenSpeed `676acaa5`, the
+  same released compiler, and AITER `b68b0e5c`.
 * [#1410](https://github.com/lightseekorg/tokenspeed/pull/1410) moved
   TokenSpeed to `post20260906`, and
   [#1656](https://github.com/lightseekorg/tokenspeed/pull/1656) moved it to
