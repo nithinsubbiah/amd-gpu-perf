@@ -39,8 +39,7 @@ between them.
 ## Making Every Wavefront Count
 
 The fp16 defaults used `num_warps=8` at head dimensions 64 and 128, while bf16 used
-four for the same shapes. Changing the fp16 default to four
-([pytorch#180720](https://github.com/pytorch/pytorch/pull/180720)) improved forward
+four for the same shapes. Changing the fp16 default to four[^1] improved forward
 throughput by **1.86x to 2.61x**, holding `num_stages=2` fixed:
 
 | Sequence length | Head dim | Mask | 8 wavefronts | 4 wavefronts | Speedup |
@@ -93,7 +92,7 @@ of four wavefronts is specific to these configurations.
 Triton's software pipeliner can schedule loads for upcoming key/value blocks
 alongside computation on the current block. The ROCm defaults used
 `num_stages=1`, limiting that software-pipelining opportunity. Increasing the
-default to two stages ([pytorch#176676](https://github.com/pytorch/pytorch/pull/176676))
+default to two stages[^2]
 provides a consistent gain on the measured bf16 cases:
 
 ![Changing from one to two software-pipeline stages improves bf16 FlexAttention forward throughput by 1.11x to 1.18x on MI350X.](images/02-bf16-pipelining.png)
@@ -119,27 +118,6 @@ combinations so each effect can be checked in the same execution context.
 When tuning a new target, benchmark combinations of tile size, wavefront count,
 and pipeline depth.
 
-## One default table per architecture
-
-MI300X (gfx942) and MI350X (gfx950) have different tuning needs.
-[pytorch#181283](https://github.com/pytorch/pytorch/pull/181283) gives each
-architecture its own configuration table, allowing either to be tuned without
-changing the other's defaults. The half-precision forward entries are shown as
-`(BLOCK_M, BLOCK_N, num_stages, num_warps)`:
-
-| Data type | Head dim | MI300X (gfx942) | MI350X (gfx950) |
-|---|---|---|---|
-| bf16 | 64, 128 | 64, 64, 2, 8 | 128, 64, 2, 4 |
-| bf16 | 256 | 32, 64, 2, 8 | 32, 64, 2, 4 |
-| fp16 | 64, 128 | 64, 32, 1, 8 | 128, 64, 2, 4 |
-| fp16 | 256 | 32, 32, 1, 8 | 32, 64, 2, 4 |
-
-These are the entries introduced by the split; our measurements cover MI350X
-head dimensions 64 and 128. The split itself leaves the gfx950 values unchanged,
-so it contributes no additional MI350X speedup to the figures here. The smaller
-MI300X tiles and head-dimension-256 entries also illustrate why the wavefront
-count needs to be evaluated with the rest of the configuration.
-
 ## Streamlining Memory Addressing
 
 Memory access has an instruction cost beyond transferring the tensor values.
@@ -152,15 +130,15 @@ tensor offsets fit in 32 bits, it can represent those accesses as a shared
 *The accessed addresses remain 64-bit. The optimization narrows the offsets
 where the compiler can prove that doing so preserves the addresses.*
 
-[pytorch#176675](https://github.com/pytorch/pytorch/pull/176675) supplies that
-information from Inductor: on HIP, tensor arguments whose storage is provably
+Inductor supplies that information through a pointer-range annotation[^3]: on
+HIP, tensor arguments whose storage is provably
 smaller than 2 GiB receive `tt.pointer_range=32`. Triton's pointer canonicalization and
 buffer-operation lowering can then use the bounded-offset representation.
-[pytorch#178541](https://github.com/pytorch/pytorch/pull/178541) suppresses the
-annotation for user-defined Triton kernels, where Inductor cannot establish
+The compiler suppresses the annotation for user-defined Triton kernels[^4],
+where Inductor cannot establish
 the necessary pointer bounds.
 
-Triton's [64-bit offset support](https://github.com/triton-lang/triton/pull/9619)
+Triton's 64-bit offset support[^5]
 also allows eligible offset expressions to reach buffer operations when it can
 prove they are safe to narrow. The useful condition is the proof of the offset
 range; the expression's initial integer width alone does not decide eligibility.
@@ -170,7 +148,7 @@ range; the expression's initial integer width alone does not decide eligibility.
 The annotation needs consistent controls across Inductor's code-generation
 paths. FlexAttention uses a template path that bypassed both
 `TORCHINDUCTOR_EMIT_POINTER_RANGE_32=0` and the existing suppression for kernels
-containing atomics. [pytorch#194136](https://github.com/pytorch/pytorch/pull/194136)
+containing atomics. The template guard[^6]
 moves the decision into a shared helper and records atomics emitted by
 FlexAttention's captured-buffer gradient lowering.
 This later template guard is absent from PyTorch 2.14.1; the backward results
@@ -187,8 +165,8 @@ below are measurements reported in the PR.
 
 ### Supporting compiler changes
 
-The buffer path also needed an [SSA dominance fix](https://github.com/triton-lang/triton/pull/9912).
-A separate [packed fp32-to-bf16 conversion](https://github.com/triton-lang/triton/pull/10592)
+The buffer path also needed an SSA dominance fix.[^7]
+A separate packed fp32-to-bf16 conversion[^8]
 uses `v_perm_b32` for round-toward-zero packing; its reported reduction in register
 pressure and spills was measured on gfx1250. These changes support efficient
 AMD kernels beyond the MI350X comparisons here.
@@ -311,6 +289,28 @@ campaign; the published summary data stays separate. To tune other shapes, use
 `torch.compile(flex_attention, mode="max-autotune", fullgraph=True)` and validate
 the selected configuration on your workload.
 
+## One default table per architecture
+
+MI300X (gfx942) and MI350X (gfx950) have different LDS capacities and matrix
+throughput, so they can favor different tile sizes and wavefront counts. These
+settings balance data reuse and latency hiding against the resources needed by
+each workgroup. A separate default table for each architecture[^9] allows either
+to be tuned without changing the other's defaults. The half-precision forward
+entries are shown as `(BLOCK_M, BLOCK_N, num_stages, num_warps)`:
+
+| Data type | Head dim | MI300X (gfx942) | MI350X (gfx950) |
+|---|---|---|---|
+| bf16 | 64, 128 | 64, 64, 2, 8 | 128, 64, 2, 4 |
+| bf16 | 256 | 32, 64, 2, 8 | 32, 64, 2, 4 |
+| fp16 | 64, 128 | 64, 32, 1, 8 | 128, 64, 2, 4 |
+| fp16 | 256 | 32, 32, 1, 8 | 32, 64, 2, 4 |
+
+These are the entries introduced by the split; our measurements cover MI350X
+head dimensions 64 and 128. The split itself leaves the gfx950 values unchanged,
+so it contributes no additional MI350X speedup to the figures here. The smaller
+MI300X tiles and head-dimension-256 entries also illustrate why the wavefront
+count needs to be evaluated with the rest of the configuration.
+
 ## Summary
 
 Revisiting two defaults recovered substantial MI350X performance: four
@@ -365,9 +365,24 @@ and gfx950: `(128, 32, 1, 4)` at head dimensions 64 and 128, and
 `(64, 16, 1, 4)` at head dimension 256. The measurements here cover half
 precision; they do not establish whether fp32 benefits from additional stages.
 
-Two further Triton maintenance changes accompany this work:
-[triton#8935](https://github.com/triton-lang/triton/pull/8935) checks driver support
-for cooperative groups, and [triton#8847](https://github.com/triton-lang/triton/pull/8847)
-corrects architecture selection in a `num_ctas` test. They improve the surrounding
+Two further Triton maintenance changes accompany this work: a driver support
+check for cooperative groups[^10] and corrected architecture selection in a
+`num_ctas` test.[^11] They improve the surrounding
 compiler support and testing without contributing a separately measured speedup
 in this article.
+
+## Pull request references
+
+All changes referenced below have landed in their respective upstream repositories.
+
+[^1]: [PyTorch #180720: Change the fp16 default from eight to four wavefronts](https://github.com/pytorch/pytorch/pull/180720).
+[^2]: [PyTorch #176676: Enable software pipelining for FlexAttention](https://github.com/pytorch/pytorch/pull/176676).
+[^3]: [PyTorch #176675: Emit pointer-range annotations for small tensor arguments](https://github.com/pytorch/pytorch/pull/176675).
+[^4]: [PyTorch #178541: Suppress pointer-range annotations for user-defined Triton kernels](https://github.com/pytorch/pytorch/pull/178541).
+[^5]: [Triton #9619: Enable buffer operations for eligible 64-bit offsets](https://github.com/triton-lang/triton/pull/9619).
+[^6]: [PyTorch #194136: Apply pointer-range guards to template kernels](https://github.com/pytorch/pytorch/pull/194136).
+[^7]: [Triton #9912: Fix SSA dominance in buffer-operation lowering](https://github.com/triton-lang/triton/pull/9912).
+[^8]: [Triton #10592: Pack fp32-to-bf16 RTZ conversions with v_perm_b32](https://github.com/triton-lang/triton/pull/10592).
+[^9]: [PyTorch #181283: Add architecture-specific FlexAttention defaults](https://github.com/pytorch/pytorch/pull/181283).
+[^10]: [Triton #8935: Check driver support for cooperative groups](https://github.com/triton-lang/triton/pull/8935).
+[^11]: [Triton #8847: Correct architecture selection in the num_ctas test](https://github.com/triton-lang/triton/pull/8847).
