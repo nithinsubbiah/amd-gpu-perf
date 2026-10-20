@@ -1,0 +1,44 @@
+--- grad enabled
+
++++ no_grad
+
+@@ -11,7 +11,7 @@
+
+ num_stages=1,
+ num_warps=8,
+ triton_meta={'signature': {'arg_Q': '*fp16', 'arg_K': '*fp16', 'arg_V': '*fp16', 'arg_LSE': '*fp32', 'arg_MAX': '*fp32', 'arg_KV_NUM_BLKS': '*i32', 'arg_KV_IDX': '*i32', 'arg_FULL_KV_NUM_BLKS': '*fp32', 'arg_FULL_KV_IDX': '*fp32', 'out_ptr0': '*fp16'}, 'device': DeviceProperties(type='hip', index=0, multi_processor_count=256, cc='gfx950', major=9, regs_per_multiprocessor=131072, max_threads_per_multi_processor=2048, max_threads_per_block=1024, warp_size=64), 'constants': {}, 'configs': [{(0,): [['tt.divisibility', 16], ['tt.pointer_range', 32]], (1,): [['tt.divisibility', 16], ['tt.pointer_range', 32]], (2,): [['tt.divisibility', 16], ['tt.pointer_range', 32]], (3,): [['tt.divisibility', 16], ['tt.pointer_range', 32]], (4,): [['tt.divisibility', 16], ['tt.pointer_range', 32]], (5,): [['tt.divisibility', 16], ['tt.pointer_range', 32]], (6,): [['tt.divisibility', 16], ['tt.pointer_range', 32]], (7,): [['tt.divisibility', 16], ['tt.pointer_range', 32]], (8,): [['tt.divisibility', 16], ['tt.pointer_range', 32]], (9,): [['tt.divisibility', 16], ['tt.pointer_range', 32]]}], 'kpack': 2},
+-inductor_meta={'kernel_name': 'triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2', 'backend_hash': '9BCE8867D408ADF04A29018D00F5A19C306316A75F2A85FCA90D0E5EFFC7E934', 'assert_indirect_indexing': True, 'autotune_local_cache': True, 'autotune_pointwise': True, 'autotune_remote_cache': None, 'force_disable_caches': False, 'dynamic_scale_rblock': True, 'incremental_autotune': False, 'max_autotune': False, 'max_autotune_pointwise': False, 'min_split_scan_rblock': 256, 'spill_threshold': 32, 'store_cubin': False, 'deterministic': False, 'batch_invariant': False, 'force_filter_reduction_configs': False, 'mix_order_reduction_allow_multi_stages': True, 'dynamic_disable_pipelining': True, 'are_deterministic_algorithms_enabled': False, 'is_hip': True, 'grid_type': 'FixedGrid', 'fixed_grid': ['_grid_0', '_grid_1', '_grid_2'], 'extra_launcher_args': ['_grid_0', '_grid_1', '_grid_2'], 'config_args': {'BLOCK_M': 128, 'BLOCK_N': 64, 'PRESCALE_QK': False, 'ROWS_GUARANTEED_SAFE': False, 'BLOCKS_ARE_CONTIGUOUS': False, 'WRITE_DQ': True, 'OUTPUT_LOGSUMEXP': True, 'OUTPUT_MAX': False, 'FLOAT32_PRECISION': "'ieee'", 'IS_DIVISIBLE': True, 'SM_SCALE': 0.125, 'GQA_SHARED_HEADS': 1, 'HAS_FULL_BLOCKS': False, 'QK_HEAD_DIM': 64, 'QK_HEAD_DIM_ROUNDED': 64, 'V_HEAD_DIM': 64, 'V_HEAD_DIM_ROUNDED': 64, 'SAFE_HEAD_DIM': True, 'USE_TMA': False, 'SPARSE_Q_BLOCK_SIZE': 1073741824, 'SPARSE_KV_BLOCK_SIZE': 1073741824, 'kpack': 2, 'matrix_instr_nonkdim': 0, 'waves_per_eu': 0}},
++inductor_meta={'kernel_name': 'triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2', 'backend_hash': '9BCE8867D408ADF04A29018D00F5A19C306316A75F2A85FCA90D0E5EFFC7E934', 'assert_indirect_indexing': True, 'autotune_local_cache': True, 'autotune_pointwise': True, 'autotune_remote_cache': None, 'force_disable_caches': False, 'dynamic_scale_rblock': True, 'incremental_autotune': False, 'max_autotune': False, 'max_autotune_pointwise': False, 'min_split_scan_rblock': 256, 'spill_threshold': 32, 'store_cubin': False, 'deterministic': False, 'batch_invariant': False, 'force_filter_reduction_configs': False, 'mix_order_reduction_allow_multi_stages': True, 'dynamic_disable_pipelining': True, 'are_deterministic_algorithms_enabled': False, 'is_hip': True, 'grid_type': 'FixedGrid', 'fixed_grid': ['_grid_0', '_grid_1', '_grid_2'], 'extra_launcher_args': ['_grid_0', '_grid_1', '_grid_2'], 'config_args': {'BLOCK_M': 128, 'BLOCK_N': 64, 'PRESCALE_QK': False, 'ROWS_GUARANTEED_SAFE': False, 'BLOCKS_ARE_CONTIGUOUS': False, 'WRITE_DQ': True, 'OUTPUT_LOGSUMEXP': False, 'OUTPUT_MAX': False, 'FLOAT32_PRECISION': "'ieee'", 'IS_DIVISIBLE': True, 'SM_SCALE': 0.125, 'GQA_SHARED_HEADS': 1, 'HAS_FULL_BLOCKS': False, 'QK_HEAD_DIM': 64, 'QK_HEAD_DIM_ROUNDED': 64, 'V_HEAD_DIM': 64, 'V_HEAD_DIM_ROUNDED': 64, 'SAFE_HEAD_DIM': True, 'USE_TMA': False, 'SPARSE_Q_BLOCK_SIZE': 1073741824, 'SPARSE_KV_BLOCK_SIZE': 1073741824, 'kpack': 2, 'matrix_instr_nonkdim': 0, 'waves_per_eu': 0}},
+ 
+ )
+ @triton.jit
+@@ -22,7 +22,7 @@
+
+     ROWS_GUARANTEED_SAFE : tl.constexpr = False
+     BLOCKS_ARE_CONTIGUOUS : tl.constexpr = False
+     WRITE_DQ : tl.constexpr = True
+-    OUTPUT_LOGSUMEXP : tl.constexpr = True
++    OUTPUT_LOGSUMEXP : tl.constexpr = False
+     OUTPUT_MAX : tl.constexpr = False
+     FLOAT32_PRECISION : tl.constexpr = 'ieee'
+     IS_DIVISIBLE : tl.constexpr = True
+@@ -323,7 +323,7 @@
+
+     ROWS_GUARANTEED_SAFE : tl.constexpr = False
+     BLOCKS_ARE_CONTIGUOUS : tl.constexpr = False
+     WRITE_DQ : tl.constexpr = True
+-    OUTPUT_LOGSUMEXP : tl.constexpr = True
++    OUTPUT_LOGSUMEXP : tl.constexpr = False
+     OUTPUT_MAX : tl.constexpr = False
+     FLOAT32_PRECISION : tl.constexpr = 'ieee'
+     IS_DIVISIBLE : tl.constexpr = True
+@@ -446,7 +446,7 @@
+
+     ROWS_GUARANTEED_SAFE : tl.constexpr = False
+     BLOCKS_ARE_CONTIGUOUS : tl.constexpr = False
+     WRITE_DQ : tl.constexpr = True
+-    OUTPUT_LOGSUMEXP : tl.constexpr = True
++    OUTPUT_LOGSUMEXP : tl.constexpr = False
+     OUTPUT_MAX : tl.constexpr = False
+     FLOAT32_PRECISION : tl.constexpr = 'ieee'
+     IS_DIVISIBLE : tl.constexpr = True

@@ -1,0 +1,7 @@
+# Retained evidence must preserve the bytes covered by artifact checksums.
+data/** -text
+*.csv whitespace=cr-at-eol
+*.svg -text -whitespace
+*.patch -whitespace
+*.diff -whitespace
+data/**/comparisons.md whitespace=-blank-at-eof

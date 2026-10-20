@@ -1,0 +1,5 @@
+{
+  "campaign": "publication-2.14.1-2026-10-19",
+  "failure_analysis": "../publication-2.14.1-2026-10-19/failure-analysis.json",
+  "protocol_change": "Six trials per point instead of three; all correctness, isolation, clock, and timing thresholds remain unchanged. No failed-attempt samples enter the replacement aggregate."
+}

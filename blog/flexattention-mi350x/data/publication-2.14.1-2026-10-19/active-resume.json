@@ -1,0 +1,8 @@
+{
+  "started_utc": "2026-10-20T00:18:09.942398+00:00",
+  "history": "history/20261020T001809Z",
+  "device": 6,
+  "status": "rejected",
+  "replacement_campaign": "publication-2.14.1-2026-10-20",
+  "failure_analysis": "failure-analysis.json"
+}

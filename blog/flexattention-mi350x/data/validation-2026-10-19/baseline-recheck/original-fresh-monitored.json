@@ -1,0 +1,801 @@
+{
+  "args": {
+    "device": 6,
+    "label": "original-fresh-monitored",
+    "cache": "fresh",
+    "no_monitor": false,
+    "no_grad": false
+  },
+  "torch": "2.14.0a0+gitb5460ee",
+  "triton": "3.8.0",
+  "idle": [
+    {
+      "time_ns": 1792450866621438385,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 1586,
+      "gpu_use_pct": 1,
+      "phase": "idle_check"
+    },
+    {
+      "time_ns": 1792450867110707900,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 2197,
+      "gpu_use_pct": 0,
+      "phase": "idle_check"
+    },
+    {
+      "time_ns": 1792450867593136432,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 2200,
+      "gpu_use_pct": 0,
+      "phase": "idle_check"
+    },
+    {
+      "time_ns": 1792450868073694487,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 2200,
+      "gpu_use_pct": 0,
+      "phase": "idle_check"
+    }
+  ],
+  "monitor_samples": [
+    {
+      "time_ns": 1792450868308985225,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 2200,
+      "gpu_use_pct": 0,
+      "phase": "before"
+    },
+    {
+      "time_ns": 1792450869047348141,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 448,
+      "gpu_use_pct": 0,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450869782480361,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 471,
+      "gpu_use_pct": 32,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450870509520911,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 1271,
+      "gpu_use_pct": 100,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450871253369002,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 1271,
+      "gpu_use_pct": 100,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450871983268093,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 1272,
+      "gpu_use_pct": 100,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450872712494364,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 1273,
+      "gpu_use_pct": 100,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450873438994673,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 1271,
+      "gpu_use_pct": 100,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450874168193895,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 1272,
+      "gpu_use_pct": 100,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450874896028681,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 1269,
+      "gpu_use_pct": 100,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450875624967577,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 1270,
+      "gpu_use_pct": 100,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450876354444514,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 1268,
+      "gpu_use_pct": 100,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450877168309811,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 2160,
+      "gpu_use_pct": 4,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450878265665718,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 1801,
+      "gpu_use_pct": 4,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450879008076152,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 2200,
+      "gpu_use_pct": 0,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450879805182987,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 2200,
+      "gpu_use_pct": 0,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450880535240853,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 1896,
+      "gpu_use_pct": 92,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450881264140299,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 2021,
+      "gpu_use_pct": 100,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450881992491785,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 2024,
+      "gpu_use_pct": 100,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450882721164305,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 2030,
+      "gpu_use_pct": 100,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450883449977402,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 2031,
+      "gpu_use_pct": 100,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450884192972386,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 964,
+      "gpu_use_pct": 2,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450884920787990,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 2061,
+      "gpu_use_pct": 100,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450885650634359,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 2068,
+      "gpu_use_pct": 100,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450886382522724,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 2068,
+      "gpu_use_pct": 94,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450887112034758,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 2051,
+      "gpu_use_pct": 97,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450887845701612,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 2166,
+      "gpu_use_pct": 28,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450888574814813,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 1561,
+      "gpu_use_pct": 89,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450889305950390,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 1797,
+      "gpu_use_pct": 99,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450890034297214,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 1819,
+      "gpu_use_pct": 100,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450890764713963,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 1825,
+      "gpu_use_pct": 100,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450891492463648,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 1852,
+      "gpu_use_pct": 100,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450892251425526,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 839,
+      "gpu_use_pct": 1,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450892994019595,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 1998,
+      "gpu_use_pct": 91,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450893846930469,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 2075,
+      "gpu_use_pct": 57,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450894585138023,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 1953,
+      "gpu_use_pct": 92,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450895313766112,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 1917,
+      "gpu_use_pct": 95,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450896041808591,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 2117,
+      "gpu_use_pct": 38,
+      "phase": "timing"
+    },
+    {
+      "time_ns": 1792450896270680438,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2209222
+      ],
+      "sclk_mhz": 2195,
+      "gpu_use_pct": 4,
+      "phase": "after"
+    }
+  ],
+  "results": [
+    {
+      "stages": 1,
+      "warps": 8,
+      "trials_ms": [
+        0.28536950051784515,
+        0.28536999225616455,
+        0.2852489948272705,
+        0.28540900349617004,
+        0.285290002822876
+      ],
+      "tflops": 240.8087641156408
+    },
+    {
+      "stages": 2,
+      "warps": 8,
+      "trials_ms": [
+        0.2934100031852722,
+        0.29384899139404297,
+        0.2936899960041046,
+        0.2938089966773987,
+        0.2939690053462982
+      ],
+      "tflops": 233.89166946257185
+    },
+    {
+      "stages": 2,
+      "warps": 4,
+      "trials_ms": [
+        0.13488399982452393,
+        0.13472400605678558,
+        0.1346839964389801,
+        0.13484500348567963,
+        0.1346445009112358
+      ],
+      "tflops": 510.0759600856513
+    },
+    {
+      "stages": 1,
+      "warps": 4,
+      "trials_ms": [
+        0.1580449938774109,
+        0.15792499482631683,
+        0.15792499482631683,
+        0.15812499821186066,
+        0.15792499482631683
+      ],
+      "tflops": 435.1399650927739
+    }
+  ],
+  "assembly": [
+    {
+      "path": "original-fresh-monitored/3CE5NM76IYILPWYIN6EP7W6PWYECDFRS5HOIRXWCTSXR4V3BJQOA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "sha256": "86c5e85e5a822f27f4f71fd86464a1c384b997664a26de8ad72bd098acd3f484",
+      "metadata": {
+        "hash": "d889d6b3fe4610b7db086f88ffdbcfb608219632e9dc88dec29caf1e57614c1c",
+        "target": {
+          "backend": "hip",
+          "arch": "gfx950",
+          "warp_size": 64
+        },
+        "num_warps": 4,
+        "waves_per_eu": 0,
+        "num_stages": 1,
+        "num_ctas": 1,
+        "extern_libs": [
+          [
+            "ocml",
+            "/home/nmeganat/flex/.venv-src/lib/python3.12/site-packages/triton/backends/amd/lib/ocml.bc"
+          ],
+          [
+            "ockl",
+            "/home/nmeganat/flex/.venv-src/lib/python3.12/site-packages/triton/backends/amd/lib/ockl.bc"
+          ]
+        ],
+        "debug": true,
+        "sanitize_overflow": false,
+        "arch": "gfx950",
+        "supported_fp8_dtypes": [
+          "fp8e4b8",
+          "fp8e4nv",
+          "fp8e5",
+          "fp8e5b16"
+        ],
+        "deprecated_fp8_dot_operand_dtypes": [
+          "fp8e4b8",
+          "fp8e5b16"
+        ],
+        "default_dot_input_precision": "ieee",
+        "allowed_dot_input_precisions": [
+          "ieee",
+          "bf16x3",
+          "bf16x6"
+        ],
+        "enable_fp_fusion": true,
+        "launch_cooperative_grid": false,
+        "matrix_instr_nonkdim": 0,
+        "kpack": 1,
+        "allow_flush_denorm": false,
+        "max_num_imprecise_acc_default": 0,
+        "backend_name": "hip",
+        "instrumentation_mode": "",
+        "fpsan_homomorphic_casts": false,
+        "schedule_hint": "",
+        "llvm_fn_attrs": [],
+        "warp_size": 64,
+        "triton_version": "3.8.0",
+        "tensordesc_meta": [],
+        "shared": 16384,
+        "global_scratch_size": 0,
+        "global_scratch_align": 1,
+        "profile_scratch_size": 0,
+        "profile_scratch_align": 1,
+        "name": "triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2"
+      }
+    },
+    {
+      "path": "original-fresh-monitored/4MVB5FJNEGLDNCJOEU3L2VIUXDLRZ74QASNXCLZOZBGLEL2EQ2UA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "sha256": "ad2a4466923ece206b7bf4b4420cc5ea15f46cc5d8b9360d9927f586f2815b77",
+      "metadata": {
+        "hash": "e32a1e952d219636892e2536bd5514b8d71cff90049b712f2ec84cb22f4486a8",
+        "target": {
+          "backend": "hip",
+          "arch": "gfx950",
+          "warp_size": 64
+        },
+        "num_warps": 8,
+        "waves_per_eu": 0,
+        "num_stages": 2,
+        "num_ctas": 1,
+        "extern_libs": [
+          [
+            "ocml",
+            "/home/nmeganat/flex/.venv-src/lib/python3.12/site-packages/triton/backends/amd/lib/ocml.bc"
+          ],
+          [
+            "ockl",
+            "/home/nmeganat/flex/.venv-src/lib/python3.12/site-packages/triton/backends/amd/lib/ockl.bc"
+          ]
+        ],
+        "debug": true,
+        "sanitize_overflow": false,
+        "arch": "gfx950",
+        "supported_fp8_dtypes": [
+          "fp8e4b8",
+          "fp8e4nv",
+          "fp8e5",
+          "fp8e5b16"
+        ],
+        "deprecated_fp8_dot_operand_dtypes": [
+          "fp8e4b8",
+          "fp8e5b16"
+        ],
+        "default_dot_input_precision": "ieee",
+        "allowed_dot_input_precisions": [
+          "ieee",
+          "bf16x3",
+          "bf16x6"
+        ],
+        "enable_fp_fusion": true,
+        "launch_cooperative_grid": false,
+        "matrix_instr_nonkdim": 0,
+        "kpack": 1,
+        "allow_flush_denorm": false,
+        "max_num_imprecise_acc_default": 0,
+        "backend_name": "hip",
+        "instrumentation_mode": "",
+        "fpsan_homomorphic_casts": false,
+        "schedule_hint": "",
+        "llvm_fn_attrs": [],
+        "warp_size": 64,
+        "triton_version": "3.8.0",
+        "tensordesc_meta": [],
+        "shared": 50112,
+        "global_scratch_size": 0,
+        "global_scratch_align": 1,
+        "profile_scratch_size": 0,
+        "profile_scratch_align": 1,
+        "name": "triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2"
+      }
+    },
+    {
+      "path": "original-fresh-monitored/M4S23RVVAC6ZKPF5V7KBGQESXMGFUBJ574SZUS6T3NG2CHHO3CEA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "sha256": "cc522d3831d4ac5226277cb7655543afc568ecaf9b4333e3fa2d42336dd84f52",
+      "metadata": {
+        "hash": "6725adc6b500bd953cbdafd4134092bb0c5a053dff259a4bd3db4da11ceed888",
+        "target": {
+          "backend": "hip",
+          "arch": "gfx950",
+          "warp_size": 64
+        },
+        "num_warps": 8,
+        "waves_per_eu": 0,
+        "num_stages": 1,
+        "num_ctas": 1,
+        "extern_libs": [
+          [
+            "ocml",
+            "/home/nmeganat/flex/.venv-src/lib/python3.12/site-packages/triton/backends/amd/lib/ocml.bc"
+          ],
+          [
+            "ockl",
+            "/home/nmeganat/flex/.venv-src/lib/python3.12/site-packages/triton/backends/amd/lib/ockl.bc"
+          ]
+        ],
+        "debug": true,
+        "sanitize_overflow": false,
+        "arch": "gfx950",
+        "supported_fp8_dtypes": [
+          "fp8e4b8",
+          "fp8e4nv",
+          "fp8e5",
+          "fp8e5b16"
+        ],
+        "deprecated_fp8_dot_operand_dtypes": [
+          "fp8e4b8",
+          "fp8e5b16"
+        ],
+        "default_dot_input_precision": "ieee",
+        "allowed_dot_input_precisions": [
+          "ieee",
+          "bf16x3",
+          "bf16x6"
+        ],
+        "enable_fp_fusion": true,
+        "launch_cooperative_grid": false,
+        "matrix_instr_nonkdim": 0,
+        "kpack": 1,
+        "allow_flush_denorm": false,
+        "max_num_imprecise_acc_default": 0,
+        "backend_name": "hip",
+        "instrumentation_mode": "",
+        "fpsan_homomorphic_casts": false,
+        "schedule_hint": "",
+        "llvm_fn_attrs": [],
+        "warp_size": 64,
+        "triton_version": "3.8.0",
+        "tensordesc_meta": [],
+        "shared": 16384,
+        "global_scratch_size": 0,
+        "global_scratch_align": 1,
+        "profile_scratch_size": 0,
+        "profile_scratch_align": 1,
+        "name": "triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2"
+      }
+    },
+    {
+      "path": "original-fresh-monitored/RWSOZA4YWKFOWK4CKZFUYRXWNIF22B3RXPQ5VNW22NPWFO5AJ7QQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "sha256": "d346abc2bc6de8a73b7853cd22b9a11e7005461c304dfaf2741b5b8b7c91acd7",
+      "metadata": {
+        "hash": "8da4ec8398b28aeb2b82564b4c46f66a0bad0771bbe1dab6dad35f62bba04fe1",
+        "target": {
+          "backend": "hip",
+          "arch": "gfx950",
+          "warp_size": 64
+        },
+        "num_warps": 4,
+        "waves_per_eu": 0,
+        "num_stages": 2,
+        "num_ctas": 1,
+        "extern_libs": [
+          [
+            "ocml",
+            "/home/nmeganat/flex/.venv-src/lib/python3.12/site-packages/triton/backends/amd/lib/ocml.bc"
+          ],
+          [
+            "ockl",
+            "/home/nmeganat/flex/.venv-src/lib/python3.12/site-packages/triton/backends/amd/lib/ockl.bc"
+          ]
+        ],
+        "debug": true,
+        "sanitize_overflow": false,
+        "arch": "gfx950",
+        "supported_fp8_dtypes": [
+          "fp8e4b8",
+          "fp8e4nv",
+          "fp8e5",
+          "fp8e5b16"
+        ],
+        "deprecated_fp8_dot_operand_dtypes": [
+          "fp8e4b8",
+          "fp8e5b16"
+        ],
+        "default_dot_input_precision": "ieee",
+        "allowed_dot_input_precisions": [
+          "ieee",
+          "bf16x3",
+          "bf16x6"
+        ],
+        "enable_fp_fusion": true,
+        "launch_cooperative_grid": false,
+        "matrix_instr_nonkdim": 0,
+        "kpack": 1,
+        "allow_flush_denorm": false,
+        "max_num_imprecise_acc_default": 0,
+        "backend_name": "hip",
+        "instrumentation_mode": "",
+        "fpsan_homomorphic_casts": false,
+        "schedule_hint": "",
+        "llvm_fn_attrs": [],
+        "warp_size": 64,
+        "triton_version": "3.8.0",
+        "tensordesc_meta": [],
+        "shared": 33728,
+        "global_scratch_size": 0,
+        "global_scratch_align": 1,
+        "profile_scratch_size": 0,
+        "profile_scratch_align": 1,
+        "name": "triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2"
+      }
+    }
+  ],
+  "original_script_sha256": "6053950410e9c81ce7e2b0d6e50c2c711bb43454e4e13406430a771d23f394a2"
+}

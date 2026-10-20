@@ -1,0 +1,543 @@
+diff --git a/torch/_inductor/codegen/triton.py b/torch/_inductor/codegen/triton.py
+index a47ae23d2f5..79325cec0f6 100644
+--- a/torch/_inductor/codegen/triton.py
++++ b/torch/_inductor/codegen/triton.py
+@@ -7080,6 +7080,18 @@ class TritonKernel(SIMDKernel[TritonCSEVariable]):
+                 return True
+         return False
+ 
++    def pointer_range_override(self) -> tuple[int, ...] | None:
++        """Suppress ``tt.pointer_range=32`` when this kernel uses atomics.
++
++        On HIP the annotation lets the backend use buffer ops, and buffer atomics are
++        far slower than global ones under contention. ``()`` suppresses; ``None`` lets
++        ``config_of`` decide, which is also where the config flag is applied. Only
++        valid once the kernel body exists, since it reads ``atomic_add_found``.
++        """
++        if torch.version.hip is not None and self.atomic_add_found:
++            return ()
++        return None
++
+     def codegen_kernel(self, name=None) -> str:
+         """
+         Convert the TritonKernel from Inductor SIMD IR to triton code, including inductor triton heuristics, imports,
+@@ -7255,24 +7267,14 @@ class TritonKernel(SIMDKernel[TritonCSEVariable]):
+ 
+         self._filter_pdl(self.body)
+ 
+-        # Compute configs after codegen_body() so we know if the kernel
+-        # uses atomic ops. On HIP, buffer ops don't support atomics, so
+-        # we must not tag any args with pointer_range_32 in that case.
+-        # Also disable pointer_range_32 when the config flag is off.
+-        if torch.version.hip is not None and (
+-            self.atomic_add_found or not config.triton.emit_pointer_range_32
+-        ):
+-            triton_meta["configs"] = [
+-                config_of(
+-                    signature,
+-                    pointer_range_override=(),
+-                    skip_cpp_wrapper_input_tensor_alignment=True,
+-                )
+-            ]
+-        else:
+-            triton_meta["configs"] = [
+-                config_of(signature, skip_cpp_wrapper_input_tensor_alignment=True)
+-            ]
++        # Computed after codegen_body() so self.atomic_add_found is accurate.
++        triton_meta["configs"] = [
++            config_of(
++                signature,
++                pointer_range_override=self.pointer_range_override(),
++                skip_cpp_wrapper_input_tensor_alignment=True,
++            )
++        ]
+ 
+         for helper in self.helper_functions:
+             code.writeline("")
+diff --git a/torch/_inductor/kernel/flex/flex_attention.py b/torch/_inductor/kernel/flex/flex_attention.py
+index 0a397c05f56..b7d2e520c15 100644
+--- a/torch/_inductor/kernel/flex/flex_attention.py
++++ b/torch/_inductor/kernel/flex/flex_attention.py
+@@ -509,7 +509,7 @@ def flex_attention(
+         # ROCm specific kernargs
+         for attrib in ["kpack", "matrix_instr_nonkdim", "waves_per_eu"]:
+             if hasattr(conf, attrib):
+-                cur_kernel_options[attrib] = getattr(conf, attrib)
++                cur_kernel_options.setdefault(attrib, getattr(conf, attrib))
+ 
+         error = flex_attention_template.maybe_append_choice(
+             choices=choices,
+@@ -1099,7 +1099,7 @@ def flex_attention_backward(*args, **kwargs):
+         # ROCm specific kernargs
+         for attrib in ["kpack", "matrix_instr_nonkdim", "waves_per_eu"]:
+             if hasattr(conf, attrib):
+-                cur_kernel_options[attrib] = getattr(conf, attrib)
++                cur_kernel_options.setdefault(attrib, getattr(conf, attrib))
+ 
+         flex_attention_backward_template.maybe_append_choice(
+             choices=choices,
+diff --git a/torch/_inductor/kernel/flex/flex_decoding.py b/torch/_inductor/kernel/flex/flex_decoding.py
+index c2a076ae0e9..b7bbcad9a93 100644
+--- a/torch/_inductor/kernel/flex/flex_decoding.py
++++ b/torch/_inductor/kernel/flex/flex_decoding.py
+@@ -406,7 +406,7 @@ def create_flex_decoding_kernel(*args, **kwargs):
+         # Add ROCm-specific parameters if they exist in the config
+         for attrib in ["kpack", "matrix_instr_nonkdim", "waves_per_eu"]:
+             if hasattr(conf, attrib):
+-                cur_kernel_options[attrib] = getattr(conf, attrib)
++                cur_kernel_options.setdefault(attrib, getattr(conf, attrib))
+ 
+         flex_decoding_template.maybe_append_choice(
+             choices=choices,
+diff --git a/torch/_inductor/kernel/flex/gluon_flex.py b/torch/_inductor/kernel/flex/gluon_flex.py
+index 8661a671ec3..65304d93590 100644
+--- a/torch/_inductor/kernel/flex/gluon_flex.py
++++ b/torch/_inductor/kernel/flex/gluon_flex.py
+@@ -19,8 +19,8 @@ descriptor plus its template files.
+ 
+ import dataclasses
+ import functools
++import hashlib
+ import logging
+-import os
+ from typing import Any, NamedTuple
+ from typing_extensions import override
+ 
+@@ -48,6 +48,9 @@ class GluonFlexTarget:
+     """
+ 
+     name: str
++    # gfx target this descriptor's bodies were written and measured against,
++    # matched exactly rather than as a family prefix
++    arch_prefix: str
+     template_cls: type[GluonTemplate]
+     sync_template: str
+     # None when the target has no async body yet; only the sync one is offered.
+@@ -56,6 +59,10 @@ class GluonFlexTarget:
+     mma_m: int
+     mma_n: int
+     max_warps: int
++    # Wavefront width the template's layouts are declared against. GluonASTSource
++    # stamps ttg.threads-per-warp from this, so a wave32 target that inherited 64
++    # would fail layout verification rather than run slowly.
++    threads_per_warp: int
+     # (head_dim, block_n, num_warps) -> staging layouts for the async body.
+     dma_ladder: dict[tuple[int, int, int], DmaLayouts]
+ 
+@@ -70,28 +77,49 @@ class GluonFlexTarget:
+ 
+ CDNA4_TARGET = GluonFlexTarget(
+     name="cdna4",
++    arch_prefix="gfx950",
+     template_cls=Cdna4GluonTemplate,
+     sync_template="gluon_flex_attention",
+     async_template="gluon_flex_attention_async",
+     mma_m=32,
+     mma_n=32,
+     max_warps=8,
++    threads_per_warp=64,
+     dma_ladder=CDNA4_DMA_LADDER,
+ )
+ 
++# Every target the module knows about. Both the arch lookup and the template
++# digest iterate this, so adding one cannot leave either behind.
++TARGETS: tuple[GluonFlexTarget, ...] = (CDNA4_TARGET,)
++
+ 
+ @functools.cache
+-def _active_target() -> GluonFlexTarget | None:
++def _target_for_arch(arch: str) -> GluonFlexTarget | None:
++    """The descriptor for a bare gfx target name, or None.
++
++    Matched exactly rather than as a gfx95 family prefix: the bodies below are
++    written against CDNA4's matmul geometry and wavefront width, so a later gfx95*
++    part should fall back to Triton until someone measures it, not inherit layouts
++    silently.
++    """
++    for target in TARGETS:
++        if arch.startswith(target.arch_prefix):
++            return target
++    return None
++
++
++def _active_target(device: Any = None) -> GluonFlexTarget | None:
+     """The descriptor for this device, or None if no Gluon body targets it."""
+     if not torch.version.hip:
+         return None
+     try:
+-        arch = torch.cuda.get_device_properties(0).gcnArchName
++        # The compiling device, not device 0: a host can mix architectures, and
++        # Inductor compiles for wherever the inputs live.
++        index = device.index if getattr(device, "index", None) is not None else None
++        arch = torch.cuda.get_device_properties(index).gcnArchName
+     except Exception:
+         return None
+-    if "gfx95" in arch:
+-        return CDNA4_TARGET
+-    return None
++    return _target_for_arch(arch.split(":", 1)[0])
+ 
+ 
+ @functools.cache
+@@ -107,13 +135,15 @@ def _get_gluon_flex_template(target: GluonFlexTarget, name: str) -> GluonTemplat
+ 
+ 
+ def _async_body(
+-    target: GluonFlexTarget, conf: Any, kernel_options: dict[str, Any]
++    target: GluonFlexTarget, conf: Any, kernel_options: dict[str, Any], kv_len: Any
+ ) -> tuple[str, DmaLayouts] | None:
+     """This config's async body and its staging layouts, or None if unsupported.
+ 
+     This *is* the gate: the async body renders its layout declarations from these
+     values, so a config is offered exactly when the ladder has an entry for it.
+     """
++    from torch._inductor.virtualized import V
++
+     name = target.async_template
+     if name is None:
+         return None
+@@ -122,11 +152,34 @@ def _async_body(
+     # The ladder is keyed on one head dim; K^T and V are staged with the same one.
+     if qk_rounded is None or qk_rounded != v_rounded:
+         return None
++    # The DMA spans the rounded head dim with no mask, so a head dim that had to be
++    # rounded up would stage past the end of K/V. The sync body masks and handles it.
++    if not kernel_options.get("SAFE_HEAD_DIM"):
++        return None
++    # The async body stages K/V by unmasked DMA, so it clamps a prefetch that would
++    # run past the end of the tensor to KV_LEN - BLOCK_N. That is a block start only
++    # when BLOCK_N divides KV_LEN; otherwise the final block stages rows other than
++    # the ones mask_mod/score_mod are told it staged, and the results are wrong
++    # rather than imprecise. A dynamic KV_LEN cannot prove the property, so it also
++    # takes the sync body.
++    if not V.graph.sizevars.statically_known_multiple_of(kv_len, conf.block_n):
++        return None
+     key = (qk_rounded, conf.block_n, kernel_options["num_warps"])
+     layouts = target.dma_ladder.get(key)
+     return None if layouts is None else (name, layouts)
+ 
+ 
++@functools.cache
++def _template_digest() -> str:
++    """Short digest of every Gluon template body, for cache keying."""
++    h = hashlib.sha256()
++    for target in TARGETS:
++        for name in (target.sync_template, target.async_template):
++            if name is not None:
++                h.update(load_flex_template(name).encode())
++    return h.hexdigest()[:16]
++
++
+ class _ExtraConfig(NamedTuple):
+     """A block shape offered on top of the ones flex proposes."""
+ 
+@@ -141,17 +194,28 @@ class _ExtraConfig(NamedTuple):
+ EXTRA_CONFIGS = (_ExtraConfig(256, 64), _ExtraConfig(256, 32))
+ 
+ 
+-def _score_mod_is_identity(subgraphs) -> bool:
++def _score_mod_is_identity(subgraphs, sm_scale: Any) -> bool:
+     """True when score_mod passes the score through unchanged.
+ 
+     Inductor lowers an identity score_mod to a buffer that just reads the
+     ``score`` input, so the template can then fold sm_scale into the same FMA
+     that does the exp2 change of base instead of scaling the tile separately.
++
++    Two invariants this depends on. The detection reads Inductor's lowering of an
++    identity subgraph, so a *false* answer only costs the fold while a *true* one
++    makes the template skip score_mod entirely -- if that lowering ever stops
++    producing an InputBuffer for the identity, this has to fail closed. And the
++    fold scales the row max instead of the tile, which reorders max and multiply,
++    so it holds only for a positive scale; a negative one would turn the row max
++    into a row min and overflow the exp2. The Triton template scales the tile
++    first and so does not care about the sign.
+     """
+     from torch._inductor import ir
+ 
+     if not subgraphs:
+         return False
++    if not isinstance(sm_scale, (int, float)) or sm_scale <= 0:
++        return False
+     return isinstance(getattr(subgraphs[0], "data", None), ir.InputBuffer)
+ 
+ 
+@@ -159,7 +223,9 @@ class GluonInductorChoices(InductorChoices):
+     """InductorChoices that offers the Gluon flash-attention templates."""
+ 
+     def uuid(self) -> str:
+-        return "gluon-flex-attention-v3"
++        # Derived from the template sources so editing a body invalidates cached
++        # choices without anyone remembering to bump a version string.
++        return f"gluon-flex-attention-{_template_digest()}"
+ 
+     @override
+     def append_flex_attention_choices(
+@@ -173,14 +239,23 @@ class GluonInductorChoices(InductorChoices):
+         sparse_q_block_size: int,
+         sparse_kv_block_size: int,
+     ) -> list[Any]:
+-        target = _active_target()
++        query, _key, _value, logsumexp, max_scores = input_nodes[:5]
++        target = _active_target(query.get_device())
+         if not config.gluon_flex_attention or target is None:
+             return choices
+ 
+-        query, _key, _value, logsumexp, max_scores = input_nodes[:5]
+         if query.get_dtype() not in (torch.float16, torch.bfloat16):
+             return choices
+ 
++        # These bodies pick their own block shape and schedule, so offering one
++        # would quietly hand back a kernel built with something other than what
++        # the caller pinned. Leave the Triton candidates to honour it instead.
++        if any(
++            k in kernel_options
++            for k in ("num_warps", "num_stages", "fwd_num_warps", "fwd_num_stages")
++        ):
++            return choices
++
+         # None of this depends on the block shape, so build it once rather than
+         # per config.
+         base_opts = kernel_options.copy()
+@@ -190,11 +265,10 @@ class GluonInductorChoices(InductorChoices):
+             elif k.startswith("bwd_"):
+                 base_opts.pop(k)
+         base_opts["USE_TMA"] = False
+-        # LDS ring depth: measured 2 > 3 > 4 on gfx950 (deeper rings cost more
+-        # occupancy at D=128 than the extra overlap buys: 608 -> 559 TFLOPS
+-        # non-causal).
+-        base_opts["GLUON_NUM_BUF"] = 2
+-        base_opts["SCORE_MOD_IS_IDENTITY"] = _score_mod_is_identity(subgraphs)
++        base_opts["GLUON_THREADS_PER_WARP"] = target.threads_per_warp
++        score_mod_is_identity = _score_mod_is_identity(
++            subgraphs, base_opts.get("SM_SCALE")
++        )
+         # The Gluon body schedules its own loop; keep Triton's software pipeliner
+         # out of it.
+         base_opts["num_stages"] = 1
+@@ -206,6 +280,7 @@ class GluonInductorChoices(InductorChoices):
+         sparse_q = base_opts["SPARSE_Q_BLOCK_SIZE"]
+         sparse_kv = base_opts["SPARSE_KV_BLOCK_SIZE"]
+ 
++        kv_len = _key.get_size()[2]
+         for conf in tuple(configs) + EXTRA_CONFIGS:
+             if not target.tiles_evenly(conf.block_m, conf.block_n):
+                 continue
+@@ -216,29 +291,30 @@ class GluonInductorChoices(InductorChoices):
+             opts["BLOCK_M"] = conf.block_m
+             opts["BLOCK_N"] = conf.block_n
+             opts["num_warps"] = target.warps_for(conf.block_m)
+-            # num_warps is consumed by the kernel constructor and never reaches
+-            # the template environment, so surface it under its own name too.
+-            opts["GLUON_NUM_WARPS"] = opts["num_warps"]
+ 
+             # Offer the synchronous body always, and the async one wherever the
+             # ladder has staging layouts, so autotuning picks between them.
+             bodies: list[tuple[str, DmaLayouts | None]] = [(target.sync_template, None)]
+-            async_body = _async_body(target, conf, opts)
++            async_body = _async_body(target, conf, opts, kv_len)
+             if async_body is not None:
+                 bodies.append(async_body)
+ 
+             for template_name, dma_layouts in bodies:
+                 body_opts = dict(opts)
+-                if dma_layouts is not None:
++                is_async = template_name == target.async_template
++                if is_async:
+                     body_opts.update(as_template_options(dma_layouts))
++                    # LDS ring depth: measured 2 > 3 > 4 on gfx950 (deeper rings
++                    # cost more occupancy at D=128 than the extra overlap buys:
++                    # 608 -> 559 TFLOPS non-causal).
++                    body_opts["GLUON_NUM_BUF"] = 2
++                    body_opts["SCORE_MOD_IS_IDENTITY"] = score_mod_is_identity
+                 # Unrolling the KV loop pays off on some shapes and costs on
+                 # others (it helps D=64 causal, hurts D=128), so offer both and
+-                # let autotuning decide per shape.
+-                unroll_factors = (
+-                    (1, 2) if template_name == target.async_template else (1,)
+-                )
+-                for unroll in unroll_factors:
+-                    body_opts["GLUON_UNROLL"] = unroll
++                # let autotuning decide per shape. Only the async body reads it.
++                for unroll in (1, 2) if is_async else (None,):
++                    if unroll is not None:
++                        body_opts["GLUON_UNROLL"] = unroll
+                     error = _get_gluon_flex_template(
+                         target, template_name
+                     ).maybe_append_choice(
+@@ -266,22 +342,10 @@ class GluonInductorChoices(InductorChoices):
+ 
+ 
+ def enable_gluon_flex_attention() -> None:
+-    """Turn on the Gluon flex-attention choices (currently AMD gfx95x only).
+-
+-    Also serializes Triton compilation, because compiling a Gluon kernel while
+-    anything else compiles is unsafe in Triton's AMD backend: it segfaults the
+-    process from the autotune thread pool, and fails a compile worker with
+-    StopIteration. Serializing avoids both -- 8/8 clean against a ~50% crash rate,
+-    and 480/480 clean against failing within 18 to 293 compiles -- at roughly 2x
+-    compile time. Remove this once the underlying issue is fixed.
+-
+-    TORCHINDUCTOR_COMPILE_THREADS is the lever rather than config.compile_threads
+-    because the autotune thread pool reads only the environment
+-    (select_algorithm.get_num_workers), while the subprocess pool goes through
+-    config. An explicit caller setting is left alone.
++    """Turn on the Gluon flex-attention choices (currently AMD gfx950 only).
++
++    Equivalent to setting both config values, and provided so callers do not have
++    to know which choices class implements the hook.
+     """
+     config.gluon_flex_attention = True
+     config.inductor_choices_class = GluonInductorChoices
+-    if "TORCHINDUCTOR_COMPILE_THREADS" not in os.environ:
+-        os.environ["TORCHINDUCTOR_COMPILE_THREADS"] = "1"
+-        config.compile_threads = 1
+diff --git a/torch/_inductor/kernel/flex/templates/common.py.jinja b/torch/_inductor/kernel/flex/templates/common.py.jinja
+index cd0538c40a8..163ef865b66 100644
+--- a/torch/_inductor/kernel/flex/templates/common.py.jinja
++++ b/torch/_inductor/kernel/flex/templates/common.py.jinja
+@@ -108,12 +108,15 @@ def forward_block_mn(
+     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 
+     # -- compute scaling constant ---
++    # m_i starts at -inf, so the running max has to be sanitised after every KV
++    # block, not just for rows that are empty overall: a row whose unmasked keys
++    # all fall in later blocks is -inf here, and exp2 below would overflow.
++    # ROWS_GUARANTEED_SAFE used to skip this, but its documented condition ("at
++    # least one value in each row is not masked out") does not imply the condition
++    # the arithmetic needs, so masks that satisfied it could still produce NaN.
+     m_ij = tl.maximum(m_i, tl.max(post_mod_scores, 1))
+-    if not ROWS_GUARANTEED_SAFE:
+-        masked_out_rows = (m_ij == float("-inf"))
+-        m_ij_masked = tl.where(masked_out_rows, 0, m_ij)
+-    else:
+-        m_ij_masked = m_ij
++    masked_out_rows = (m_ij == float("-inf"))
++    m_ij_masked = tl.where(masked_out_rows, 0, m_ij)
+ 
+     alpha = tl.math.exp2(m_i - m_ij_masked)
+     p = tl.math.exp2(post_mod_scores - m_ij_masked[:, None])
+diff --git a/torch/_inductor/kernel/flex/templates/gluon_flex_attention.py.jinja b/torch/_inductor/kernel/flex/templates/gluon_flex_attention.py.jinja
+index 0b0ed2b9d5e..3709b80fddc 100644
+--- a/torch/_inductor/kernel/flex/templates/gluon_flex_attention.py.jinja
++++ b/torch/_inductor/kernel/flex/templates/gluon_flex_attention.py.jinja
+@@ -1,4 +1,4 @@
+-{#- One KV loop over the block-sparse column list, staged by async DMA.
++{#- One KV loop over the block-sparse column list, staged through gl.load.
+     full=false walks the partially-masked blocks and applies mask_mod;
+     full=true walks the fully-unmasked ones and skips it. Emitted twice by
+     the two call sites below -- a macro rather than a @gluon.jit helper so
+@@ -15,7 +15,7 @@
+     offs_n_base = kv_start
+     # Build the K/V pointer tiles once and advance them by the block stride each
+     # iteration: rebuilding them from offs_n_base costs a multiply-add per
+-    # element per block, which dominates the VALU count in this loop.
++    # element per block, which dominates the vector-ALU count in this loop.
+     kt_ptrs = (k_base + kt_offs_d[:, None].to(INDEX_DTYPE) * stride_kk
+                + (offs_n_base + kt_offs_n)[None, :].to(INDEX_DTYPE) * stride_kn)
+     v_ptrs = (v_base + (offs_n_base + v_offs_n)[:, None].to(INDEX_DTYPE) * stride_vn
+@@ -149,7 +149,7 @@
+ 
+     # ---------------- Gluon layouts ----------------
+     num_warps: gl.constexpr = gl.num_warps()
+-    threads_per_warp: gl.constexpr = 64
++    threads_per_warp: gl.constexpr = GLUON_THREADS_PER_WARP
+     k_width: gl.constexpr = 8
+     pv_k_width: gl.constexpr = 4
+ 
+diff --git a/torch/_inductor/kernel/flex/templates/gluon_flex_attention_async.py.jinja b/torch/_inductor/kernel/flex/templates/gluon_flex_attention_async.py.jinja
+index 85a3fb96f5d..ddd4999985d 100644
+--- a/torch/_inductor/kernel/flex/templates/gluon_flex_attention_async.py.jinja
++++ b/torch/_inductor/kernel/flex/templates/gluon_flex_attention_async.py.jinja
+@@ -8,7 +8,13 @@
+ {%- set kv_idx_name = "FULL_KV_IDX" if full else "KV_IDX" %}
+ {%- set kv_nblk_name = "FULL_KV_NUM_BLKS" if full else "KV_NUM_BLKS" %}
+     kv_indices = {{ kv_idx_name }} + sparse_kv_idx_offset
+-    kv_start = tl.load(kv_indices) * SPARSE_KV_BLOCK_SIZE
++    # Clamped because this index is read whatever kv_num_blocks says, and a
++    # BlockMask that has been _adjust()ed keeps cropped-out indices in place -- so
++    # for a row left with no blocks it can still name one past KV_LEN. The
++    # prologue below issues its DMAs before block_n_end is consulted. Buffer loads
++    # bounds-check on CDNA, so an unclamped address reads zeros rather than
++    # faulting, but nothing here should rest on that.
++    kv_start = tl.minimum(tl.load(kv_indices) * SPARSE_KV_BLOCK_SIZE, last_start)
+     kv_num_blocks = tl.load({{ kv_nblk_name }} + sparse_kv_num_blks_offset)
+     block_n_end = tl.minimum(kv_num_blocks * SPARSE_KV_MULTIPLE, tl.maximum(tl.cdiv(KV_LEN, BLOCK_N), 1))
+ 
+@@ -118,13 +124,24 @@
+             SPARSE_KV_BLOCK_SIZE, SPARSE_KV_MULTIPLE, BLOCK_N, BLOCKS_ARE_CONTIGUOUS
+         )
+         offs_n_base = offs_n_base + block_off
++        # The slot refilled below is next read NUM_BUF iterations from here, so the
++        # prefetch has to advance by *that* iteration's delta, not this one's. They
++        # differ whenever the scheduled block starts are unevenly spaced, which is
++        # any mask whose kv_indices has irregular gaps -- dense and causal both give
++        # evenly spaced starts, which is why the difference is invisible on them.
++        # The index is clamped because a prefetch past the last block is never
++        # consumed, and get_offset_for_next_block would read past kv_indices.
++        produce_off = get_offset_for_next_block(
++            tl.minimum(start_n + NUM_BUF, block_n_end - 1), kv_indices, kv_num_blocks,
++            SPARSE_KV_BLOCK_SIZE, SPARSE_KV_MULTIPLE, BLOCK_N, BLOCKS_ARE_CONTIGUOUS
++        )
+         gl.barrier()
+         cdna4_async.buffer_load_to_shared(kt_smem.index(cur), k_base,
+                                           kt_dma_off + n_ahead.to(INDEX_DTYPE) * stride_kn)
+         cdna4_async.buffer_load_to_shared(v_smem.index(cur), v_base,
+                                           v_dma_off + n_ahead.to(INDEX_DTYPE) * stride_vn)
+         cdna4_async.commit_group()
+-        n_ahead = tl.minimum(n_ahead + block_off, last_start)
++        n_ahead = tl.maximum(tl.minimum(n_ahead + produce_off, last_start), 0)
+ 
+     # Drain the transfers still in flight from the loop's lookahead.
+     cdna4_async.wait_group(0)
+@@ -169,7 +186,7 @@
+ 
+     # ---------------- Gluon layouts ----------------
+     num_warps: gl.constexpr = gl.num_warps()
+-    threads_per_warp: gl.constexpr = 64
++    threads_per_warp: gl.constexpr = GLUON_THREADS_PER_WARP
+     k_width: gl.constexpr = 8
+     pv_k_width: gl.constexpr = 4
+ 
+@@ -284,6 +301,14 @@
+ 
+     # Largest in-range block start, so a prefetch past the end re-reads the last
+     # block instead of running off the tensor (cheaper than a per-element mask).
++    #
++    # This is only a block start when BLOCK_N divides KV_LEN, and this body is
++    # offered on exactly that condition -- gluon_flex.py::_async_body gates on it.
++    # Without the gate the clamp fires on a block that is actually read, and the
++    # rows staged here are not the rows offs_n_base tells mask_mod/score_mod they
++    # are, so the output is wrong rather than imprecise. Same reason the DMA
++    # staging ladder lives in the hook: a precondition of the body belongs
++    # wherever the body is chosen.
+     last_start = tl.maximum(KV_LEN - BLOCK_N, 0)
+ 
+     # ==================== partial blocks: score_mod AND mask_mod ====================
+diff --git a/torch/_inductor/select_algorithm.py b/torch/_inductor/select_algorithm.py
+index a136c2d6aa4..da76cfedbe3 100644
+--- a/torch/_inductor/select_algorithm.py
++++ b/torch/_inductor/select_algorithm.py
+@@ -493,6 +493,10 @@ class ModificationWrapper(V.WrapperHandler):  # type: ignore[name-defined]
+         if mode != "atomic_add":
+             raise AssertionError("Only atomic_add is supported for inner stores")
+ 
++        # Record it on the kernel: these atomics never pass through
++        # TritonKernel.store, so nothing else would mark the kernel as using them.
++        self.kernel.atomic_add_found = True
++
+         buf_name = self._add_kernel_input(name)
+         index_str = self._broadcast_index(index, f"{value}.shape")
+         return f"tl.atomic_add({buf_name} + {index_str}, {value}, {self.mask}, sem='relaxed')"
+@@ -910,7 +914,11 @@ class TritonTemplateKernel(TritonKernel):
+             "device": DeviceProperties.create(self.output_node.get_device()),
+             "constants": {},
+         }
+-        triton_meta["configs"] = [config_of(signature)]
++        # Rendered from a deferred hook, so the body -- including any subgraph
++        # modifications that emit atomics -- already exists at this point.
++        triton_meta["configs"] = [
++            config_of(signature, pointer_range_override=self.pointer_range_override())
++        ]
+         for arg_num in equal_1_arg_indices(signature):  # type: ignore[index]
+             triton_meta["constants"][signature[arg_num].name] = 1  # type: ignore[index,union-attr]
+         matrix_instr_nonkdim = self.meta.get("matrix_instr_nonkdim", None)

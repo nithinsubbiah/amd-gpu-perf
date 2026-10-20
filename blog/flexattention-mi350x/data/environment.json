@@ -1,0 +1,31 @@
+{
+  "historical_campaign": {
+    "gpu": "AMD Instinct MI350X",
+    "arch": "gfx950",
+    "rocm": "7.2.1",
+    "pytorch_version": "2.14.0a0+gitb5460ee",
+    "pytorch_repository": "https://github.com/nithinsubbiah/pytorch.git",
+    "pytorch_commit": "b5460ee3cad1ea1a9a175a3f95db31930d301eca",
+    "triton_version": "3.8.0",
+    "triton_commit": null,
+    "autotuning": false,
+    "gluon_flex_attention": false,
+    "process_runs": 3,
+    "timed_repeats_per_configuration_per_run": 3,
+    "do_bench_warmup_ms": 200,
+    "do_bench_rep_ms": 500,
+    "data_kind": "reported median throughputs; individual process timing logs unavailable"
+  },
+  "recovered_local_compiler_metadata": {
+    "distribution": "triton-3.8.0+gitc8305ccc",
+    "source_repository": "https://github.com/triton-lang/triton.git",
+    "matching_source_commit": "c8305cccdeb7c2eb07441a5e696e7f9b17cd8e24",
+    "scope": "Installed distribution metadata recovered during revision; the historical timing logs did not record this full compiler SHA"
+  },
+  "summary_provenance": {
+    "repository": "https://github.com/nithinsubbiah/amd-gpu-perf.git",
+    "commit": "e2f2049b24fd891b756c78cde4cb5b7298f54065",
+    "path": "blog/flexattention-mi350x/README.md",
+    "description": "30 distinct aggregate throughputs transcribed from the original draft's three comparison tables"
+  }
+}

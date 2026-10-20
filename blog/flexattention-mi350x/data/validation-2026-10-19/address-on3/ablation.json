@@ -1,0 +1,24 @@
+{
+  "pointer_range": "on",
+  "scope": "B=1 H=16 S=4096 D=128 fp16, unmasked and causal, stages=2 warps=4",
+  "driver_sha256": "eab93fed48d635b8ae137daac22a6e4f5a2cebb1f7bfa7aa8e7faa862379f479",
+  "assembly": [
+    {
+      "path": "assembly/KNPWNDTZGY26BU74CFIRQ3NZRIQU5HUYJYZ2W4COD55ZPOGFWL4A-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "sha256": "9e95ab22cc58cd90600a5b4f9ac7f4ae3d056b91c70e20c757bc57965f139530",
+      "buffer_load": 24,
+      "buffer_store": 8,
+      "global_load": 0,
+      "global_store": 0
+    },
+    {
+      "path": "assembly/RP6C2BG2UM3H4CMMFMR3JTGPRWBRFM2I7WETMM2UH73SBSQJU5YQ-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "sha256": "d0e6db6324257c047245664b1cd8999a338ceda64077a9349ada41363c53a7c2",
+      "buffer_load": 40,
+      "buffer_store": 8,
+      "global_load": 6,
+      "global_store": 0
+    }
+  ],
+  "memory_path_verified": true
+}

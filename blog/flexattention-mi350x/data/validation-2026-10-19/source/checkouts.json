@@ -1,0 +1,16 @@
+{
+  "pytorch": {
+    "head": "37200109b999958ae0042b21b2da3eea48ffec4a",
+    "relevant_diff": "source/pytorch-local.patch",
+    "difference_from_historical": "source/pytorch-vs-historical.patch",
+    "reported_build_version": "2.14.0a0+gitb5460ee",
+    "scope": "Editable Python source at the checkout HEAD plus local changes; the build version alone does not identify the active Python sources"
+  },
+  "triton": {
+    "head": "d525cf27e254af7631ad60c5a5a2cfd7c608d7a4",
+    "relevant_diff": null,
+    "installed_distribution": "3.8.0+gitc8305ccc",
+    "matching_installed_source_commit": "c8305cccdeb7c2eb07441a5e696e7f9b17cd8e24",
+    "scope": "The installed compiler is a noneditable build; the available checkout HEAD is not its runtime source identity"
+  }
+}

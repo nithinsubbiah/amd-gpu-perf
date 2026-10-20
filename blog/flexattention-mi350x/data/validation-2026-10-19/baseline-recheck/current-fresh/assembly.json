@@ -1,0 +1,262 @@
+[
+  {
+    "path": "current-fresh/H5XOF4LLBTUVNK4QHELZKOSMABJ737WE37QKTPELP3LWWLZPDU7Q-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+    "sha256": "c2964590bb179afbaa6f8732cacf8b3f7b33e2ad049b0744bbd4bc8b578dc20b",
+    "metadata": {
+      "hash": "3f6ee2f16b0ce956ab903917953a4c0053fdfec4dfe0a9bc8b7ed76b2f2f1d3f",
+      "target": {
+        "backend": "hip",
+        "arch": "gfx950",
+        "warp_size": 64
+      },
+      "num_warps": 4,
+      "waves_per_eu": 0,
+      "num_stages": 2,
+      "num_ctas": 1,
+      "extern_libs": [
+        [
+          "ocml",
+          "/home/nmeganat/flex/.venv-src/lib/python3.12/site-packages/triton/backends/amd/lib/ocml.bc"
+        ],
+        [
+          "ockl",
+          "/home/nmeganat/flex/.venv-src/lib/python3.12/site-packages/triton/backends/amd/lib/ockl.bc"
+        ]
+      ],
+      "debug": true,
+      "sanitize_overflow": false,
+      "arch": "gfx950",
+      "supported_fp8_dtypes": [
+        "fp8e4b8",
+        "fp8e4nv",
+        "fp8e5",
+        "fp8e5b16"
+      ],
+      "deprecated_fp8_dot_operand_dtypes": [
+        "fp8e4b8",
+        "fp8e5b16"
+      ],
+      "default_dot_input_precision": "ieee",
+      "allowed_dot_input_precisions": [
+        "ieee",
+        "bf16x3",
+        "bf16x6"
+      ],
+      "enable_fp_fusion": true,
+      "launch_cooperative_grid": false,
+      "matrix_instr_nonkdim": 0,
+      "kpack": 1,
+      "allow_flush_denorm": false,
+      "max_num_imprecise_acc_default": 0,
+      "backend_name": "hip",
+      "instrumentation_mode": "",
+      "fpsan_homomorphic_casts": false,
+      "schedule_hint": "",
+      "llvm_fn_attrs": [],
+      "warp_size": 64,
+      "triton_version": "3.8.0",
+      "tensordesc_meta": [],
+      "shared": 33728,
+      "global_scratch_size": 0,
+      "global_scratch_align": 1,
+      "profile_scratch_size": 0,
+      "profile_scratch_align": 1,
+      "name": "triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2"
+    }
+  },
+  {
+    "path": "current-fresh/IROKZ4XSSPFYNR7YISPDHHVA64RS7H6HZETRZ7P5CAHAXYC6RHDQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+    "sha256": "70a1bd5930e2de2044b35e5e90a15f9c3bfb9be04aa86264acdbe6e80025a7bb",
+    "metadata": {
+      "hash": "445cacf2f293cb86c7f8449e339ea0f7232f9fc7c9271cfdfd100e0be05e89c7",
+      "target": {
+        "backend": "hip",
+        "arch": "gfx950",
+        "warp_size": 64
+      },
+      "num_warps": 8,
+      "waves_per_eu": 0,
+      "num_stages": 2,
+      "num_ctas": 1,
+      "extern_libs": [
+        [
+          "ocml",
+          "/home/nmeganat/flex/.venv-src/lib/python3.12/site-packages/triton/backends/amd/lib/ocml.bc"
+        ],
+        [
+          "ockl",
+          "/home/nmeganat/flex/.venv-src/lib/python3.12/site-packages/triton/backends/amd/lib/ockl.bc"
+        ]
+      ],
+      "debug": true,
+      "sanitize_overflow": false,
+      "arch": "gfx950",
+      "supported_fp8_dtypes": [
+        "fp8e4b8",
+        "fp8e4nv",
+        "fp8e5",
+        "fp8e5b16"
+      ],
+      "deprecated_fp8_dot_operand_dtypes": [
+        "fp8e4b8",
+        "fp8e5b16"
+      ],
+      "default_dot_input_precision": "ieee",
+      "allowed_dot_input_precisions": [
+        "ieee",
+        "bf16x3",
+        "bf16x6"
+      ],
+      "enable_fp_fusion": true,
+      "launch_cooperative_grid": false,
+      "matrix_instr_nonkdim": 0,
+      "kpack": 1,
+      "allow_flush_denorm": false,
+      "max_num_imprecise_acc_default": 0,
+      "backend_name": "hip",
+      "instrumentation_mode": "",
+      "fpsan_homomorphic_casts": false,
+      "schedule_hint": "",
+      "llvm_fn_attrs": [],
+      "warp_size": 64,
+      "triton_version": "3.8.0",
+      "tensordesc_meta": [],
+      "shared": 50112,
+      "global_scratch_size": 0,
+      "global_scratch_align": 1,
+      "profile_scratch_size": 0,
+      "profile_scratch_align": 1,
+      "name": "triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2"
+    }
+  },
+  {
+    "path": "current-fresh/JIQZDMBRUKW2SDE72N6DKSQE4BIWRQBMQUM6FE7PMNGU2YQBA2QA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+    "sha256": "6615f57c7d4e1f1f920d787775e29b293f0d9b23da1f78ee99261cb64f9ff2fd",
+    "metadata": {
+      "hash": "4a2191b031a2ada90c9fd37c354a04e05168c02c8519e293ef634d4d620106a0",
+      "target": {
+        "backend": "hip",
+        "arch": "gfx950",
+        "warp_size": 64
+      },
+      "num_warps": 4,
+      "waves_per_eu": 0,
+      "num_stages": 1,
+      "num_ctas": 1,
+      "extern_libs": [
+        [
+          "ocml",
+          "/home/nmeganat/flex/.venv-src/lib/python3.12/site-packages/triton/backends/amd/lib/ocml.bc"
+        ],
+        [
+          "ockl",
+          "/home/nmeganat/flex/.venv-src/lib/python3.12/site-packages/triton/backends/amd/lib/ockl.bc"
+        ]
+      ],
+      "debug": true,
+      "sanitize_overflow": false,
+      "arch": "gfx950",
+      "supported_fp8_dtypes": [
+        "fp8e4b8",
+        "fp8e4nv",
+        "fp8e5",
+        "fp8e5b16"
+      ],
+      "deprecated_fp8_dot_operand_dtypes": [
+        "fp8e4b8",
+        "fp8e5b16"
+      ],
+      "default_dot_input_precision": "ieee",
+      "allowed_dot_input_precisions": [
+        "ieee",
+        "bf16x3",
+        "bf16x6"
+      ],
+      "enable_fp_fusion": true,
+      "launch_cooperative_grid": false,
+      "matrix_instr_nonkdim": 0,
+      "kpack": 1,
+      "allow_flush_denorm": false,
+      "max_num_imprecise_acc_default": 0,
+      "backend_name": "hip",
+      "instrumentation_mode": "",
+      "fpsan_homomorphic_casts": false,
+      "schedule_hint": "",
+      "llvm_fn_attrs": [],
+      "warp_size": 64,
+      "triton_version": "3.8.0",
+      "tensordesc_meta": [],
+      "shared": 16384,
+      "global_scratch_size": 0,
+      "global_scratch_align": 1,
+      "profile_scratch_size": 0,
+      "profile_scratch_align": 1,
+      "name": "triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2"
+    }
+  },
+  {
+    "path": "current-fresh/N5WDMYSZ3OJC4I44IIBJZN3LBJFSGY5YYBYHRT6V4TYI53LDG2PA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+    "sha256": "d1a673f81e3e7a3856fb61ba024bfaa64c1b3785140d2e1ccaeec2a13c32c3f0",
+    "metadata": {
+      "hash": "6f6c366259db922e239c42029cb76b0a4b2363b8c07078cfd5e4f08eed63369e",
+      "target": {
+        "backend": "hip",
+        "arch": "gfx950",
+        "warp_size": 64
+      },
+      "num_warps": 8,
+      "waves_per_eu": 0,
+      "num_stages": 1,
+      "num_ctas": 1,
+      "extern_libs": [
+        [
+          "ocml",
+          "/home/nmeganat/flex/.venv-src/lib/python3.12/site-packages/triton/backends/amd/lib/ocml.bc"
+        ],
+        [
+          "ockl",
+          "/home/nmeganat/flex/.venv-src/lib/python3.12/site-packages/triton/backends/amd/lib/ockl.bc"
+        ]
+      ],
+      "debug": true,
+      "sanitize_overflow": false,
+      "arch": "gfx950",
+      "supported_fp8_dtypes": [
+        "fp8e4b8",
+        "fp8e4nv",
+        "fp8e5",
+        "fp8e5b16"
+      ],
+      "deprecated_fp8_dot_operand_dtypes": [
+        "fp8e4b8",
+        "fp8e5b16"
+      ],
+      "default_dot_input_precision": "ieee",
+      "allowed_dot_input_precisions": [
+        "ieee",
+        "bf16x3",
+        "bf16x6"
+      ],
+      "enable_fp_fusion": true,
+      "launch_cooperative_grid": false,
+      "matrix_instr_nonkdim": 0,
+      "kpack": 1,
+      "allow_flush_denorm": false,
+      "max_num_imprecise_acc_default": 0,
+      "backend_name": "hip",
+      "instrumentation_mode": "",
+      "fpsan_homomorphic_casts": false,
+      "schedule_hint": "",
+      "llvm_fn_attrs": [],
+      "warp_size": 64,
+      "triton_version": "3.8.0",
+      "tensordesc_meta": [],
+      "shared": 16384,
+      "global_scratch_size": 0,
+      "global_scratch_align": 1,
+      "profile_scratch_size": 0,
+      "profile_scratch_align": 1,
+      "name": "triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2"
+    }
+  }
+]

@@ -1,77 +1,46 @@
-"""Aggregate repeated bench_landed.py runs into medians + observed spread.
+"""Print article tables from the aggregate CSV or complete JSONL process runs.
 
-Publication-grade reporting: a single run is not enough to distinguish a real
-effect from run-to-run variation, so every figure quoted in the write-up comes
-from the median of N independent runs, with the spread reported alongside.
+Default: the preserved historical summary. For a new campaign, pass a quoted
+JSONL glob. Ratio ranges describe the retained runs; they are not confidence intervals.
 """
 
-import glob
-import re
+import argparse
 import statistics
-import sys
-from collections import defaultdict
 
-LINE = re.compile(
-    r"LANDED\s+(?P<dtype>\w+)\s+N=(?P<n>\d+)\s+D=(?P<d>\d+)\s+(?P<mask>\w+)\s+"
-    r"stages=(?P<stages>\d+)\s+warps=(?P<warps>\d+)\s+(?P<tflops>[\d.]+)\s+TFLOPS"
-)
-
-samples: dict[tuple, list[float]] = defaultdict(list)
-
-logs = sorted(glob.glob(sys.argv[1] if len(sys.argv) > 1 else "/tmp/bl_r*.log"))
-for path in logs:
-    with open(path) as fh:
-        for line in fh:
-            m = LINE.search(line)
-            if m:
-                key = (
-                    m["dtype"],
-                    int(m["n"]),
-                    int(m["d"]),
-                    m["mask"],
-                    int(m["stages"]),
-                    int(m["warps"]),
-                )
-                samples[key].append(float(m["tflops"]))
-
-print(f"aggregated {len(logs)} runs: {', '.join(logs)}\n")
-
-med = {k: statistics.median(v) for k, v in samples.items()}
-spread = {k: (max(v) - min(v)) / statistics.median(v) * 100 for k, v in samples.items()}
-
-print(f"{'config':<44} {'median':>8} {'min':>8} {'max':>8} {'spread%':>8} {'n':>3}")
-for k in sorted(samples):
-    v = samples[k]
-    label = f"{k[0]:<9} N={k[1]:<5} D={k[2]:<4} {k[3]:<7} s={k[4]} w={k[5]}"
-    print(
-        f"{label:<44} {med[k]:>8.1f} {min(v):>8.1f} {max(v):>8.1f} "
-        f"{spread[k]:>8.1f} {len(v):>3}"
-    )
-
-print(f"\nworst-case run-to-run spread: {max(spread.values()):.1f}%")
-print(f"median run-to-run spread    : {statistics.median(spread.values()):.1f}%")
-
-SHAPES = [(4096, 64, "nomask"), (4096, 64, "causal"), (4096, 128, "nomask"),
-          (4096, 128, "causal"), (8192, 128, "nomask"), (8192, 128, "causal")]
+from landed_data import SUMMARY, SHAPES, load_data, medians
 
 
-def table(title, dtype, before, after):
-    print(f"\n### {title}\n")
-    print("| Sequence length | Head dim | Mask | before | after | Speedup |")
-    print("|---|---|---|---|---|---|")
-    ratios = []
-    for n, d, mask in SHAPES:
-        b = med.get((dtype, n, d, mask) + before)
-        a = med.get((dtype, n, d, mask) + after)
-        if b is None or a is None:
-            continue
-        ratios.append(a / b)
-        label = mask.replace("nomask", "none")
-        print(f"| {n} | {d} | {label} | {b:.1f} | {a:.1f} | {a / b:.2f}x |")
-    if ratios:
-        print(f"\nrange: {min(ratios):.2f}x - {max(ratios):.2f}x")
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("input", nargs="?", default=str(SUMMARY))
+    args = parser.parse_args()
+    runs, description = load_data(args.input)
+    med = medians(runs)
+    print(f"Input: {description}\n")
+
+    comparisons = [
+        ("bf16 pipelining (1 -> 2 stages, 4 wavefronts)", "bfloat16", (1, 4), (2, 4)),
+        ("fp16 wavefronts (8 -> 4, 2 stages)", "float16", (2, 8), (2, 4)),
+        ("fp16 combined (1 stage / 8 waves -> 2 stages / 4 waves)", "float16", (1, 8), (2, 4)),
+    ]
+    for title, dtype, before, after in comparisons:
+        print(f"### {title}\n")
+        extra = " Median paired ratio [min, max] |" if len(runs) > 1 else ""
+        print("| Sequence length | Head dim | Mask | Before | After | Speedup |" + extra)
+        print("|---|---|---|---|---|---|" + ("---|" if len(runs) > 1 else ""))
+        for n, d, mask in SHAPES:
+            bkey = (dtype, n, d, mask) + before
+            akey = (dtype, n, d, mask) + after
+            before_tf, after_tf = med[bkey], med[akey]
+            label = "none" if mask == "nomask" else mask
+            row = (f"| {n} | {d} | {label} | {before_tf:.1f} | {after_tf:.1f} "
+                   f"| {after_tf / before_tf:.2f}x |")
+            if len(runs) > 1:
+                paired = [run[akey] / run[bkey] for run in runs]
+                row += f" {statistics.median(paired):.3f}x [{min(paired):.3f}, {max(paired):.3f}] |"
+            print(row)
+        print()
 
 
-table("bf16 pipelining (stages 1 -> 2, warps=4)", "bfloat16", (1, 4), (2, 4))
-table("fp16 warps (8 -> 4, stages=2)", "float16", (2, 8), (2, 4))
-table("fp16 combined (pre: s1/w8 -> now: s2/w4)", "float16", (1, 8), (2, 4))
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,26 @@
+{
+  "selected_gpu_idle": true,
+  "samples": [
+    {
+      "recorded_utc": "2026-10-20T00:59:39.541906+00:00",
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "gpu_use_pct": 0,
+      "pids": []
+    },
+    {
+      "recorded_utc": "2026-10-20T00:59:40.265351+00:00",
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "gpu_use_pct": 0,
+      "pids": []
+    },
+    {
+      "recorded_utc": "2026-10-20T00:59:41.000236+00:00",
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "gpu_use_pct": 0,
+      "pids": []
+    }
+  ]
+}

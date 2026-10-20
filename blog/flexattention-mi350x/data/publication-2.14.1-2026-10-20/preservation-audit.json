@@ -1,0 +1,28 @@
+{
+  "recorded_utc": "2026-10-20T01:02:06.597482+00:00",
+  "preexisting_files": 1350,
+  "unchanged_files": 1342,
+  "missing_files": [],
+  "unexpected_changes": [],
+  "changed_files": [
+    "README.md",
+    "bench/README.md",
+    "bench/__pycache__/bench_landed.cpython-312.pyc",
+    "data/README.md",
+    "data/publication-2.14.1-2026-10-19/README.md",
+    "data/publication-2.14.1-2026-10-19/environment/preflight.json",
+    "data/publication-2.14.1-2026-10-19/environment/rocm-smi-hardware.json",
+    "data/publication-2.14.1-2026-10-19/environment/software.json"
+  ],
+  "historical_data_files_unchanged": 1293,
+  "article_figure_files_unchanged": 8,
+  "previous_campaign_archive": "../publication-2.14.1-2026-10-19/history/20261020T001809Z/previous-campaign.tar.gz",
+  "previous_campaign_archive_sha256": "60ba83eab7e4c809d1813461a8981e991cf405cc29ebc3e9ade9394519713371",
+  "archived_original_files_verified": 34,
+  "notes": [
+    "Documentation adds completion links and updates campaign status.",
+    "Refreshed predecessor environment status records have their original bytes preserved in the verified archive.",
+    "Python regenerated one ignored benchmark bytecode cache; benchmark source files are unchanged.",
+    "The rejected GPU attempt remains in the predecessor directory and is excluded from the accepted aggregate."
+  ]
+}

@@ -1,0 +1,166 @@
+{
+  "torch": "2.14.1+rocm7.2",
+  "torch_git": "5c4886908584029761b579af026dcfb627c84070",
+  "source_audit_only": true,
+  "gpu_compilation_verified": false,
+  "tables": {
+    "gfx950_default_flex_config": [
+      {
+        "dtype": "float32",
+        "head_dim": 64,
+        "BLOCK_M": 128,
+        "BLOCK_N": 32,
+        "num_stages": 1,
+        "num_warps": 4
+      },
+      {
+        "dtype": "float32",
+        "head_dim": 128,
+        "BLOCK_M": 128,
+        "BLOCK_N": 32,
+        "num_stages": 1,
+        "num_warps": 4
+      },
+      {
+        "dtype": "float32",
+        "head_dim": 256,
+        "BLOCK_M": 64,
+        "BLOCK_N": 16,
+        "num_stages": 1,
+        "num_warps": 4
+      },
+      {
+        "dtype": "bfloat16",
+        "head_dim": 64,
+        "BLOCK_M": 128,
+        "BLOCK_N": 64,
+        "num_stages": 2,
+        "num_warps": 4
+      },
+      {
+        "dtype": "bfloat16",
+        "head_dim": 128,
+        "BLOCK_M": 128,
+        "BLOCK_N": 64,
+        "num_stages": 2,
+        "num_warps": 4
+      },
+      {
+        "dtype": "bfloat16",
+        "head_dim": 256,
+        "BLOCK_M": 32,
+        "BLOCK_N": 64,
+        "num_stages": 2,
+        "num_warps": 4
+      },
+      {
+        "dtype": "float16",
+        "head_dim": 64,
+        "BLOCK_M": 128,
+        "BLOCK_N": 64,
+        "num_stages": 2,
+        "num_warps": 4
+      },
+      {
+        "dtype": "float16",
+        "head_dim": 128,
+        "BLOCK_M": 128,
+        "BLOCK_N": 64,
+        "num_stages": 2,
+        "num_warps": 4
+      },
+      {
+        "dtype": "float16",
+        "head_dim": 256,
+        "BLOCK_M": 32,
+        "BLOCK_N": 64,
+        "num_stages": 2,
+        "num_warps": 4
+      }
+    ],
+    "gfx942_default_flex_config": [
+      {
+        "dtype": "float32",
+        "head_dim": 64,
+        "BLOCK_M": 128,
+        "BLOCK_N": 32,
+        "num_stages": 1,
+        "num_warps": 4
+      },
+      {
+        "dtype": "float32",
+        "head_dim": 128,
+        "BLOCK_M": 128,
+        "BLOCK_N": 32,
+        "num_stages": 1,
+        "num_warps": 4
+      },
+      {
+        "dtype": "float32",
+        "head_dim": 256,
+        "BLOCK_M": 64,
+        "BLOCK_N": 16,
+        "num_stages": 1,
+        "num_warps": 4
+      },
+      {
+        "dtype": "bfloat16",
+        "head_dim": 64,
+        "BLOCK_M": 64,
+        "BLOCK_N": 64,
+        "num_stages": 2,
+        "num_warps": 8
+      },
+      {
+        "dtype": "bfloat16",
+        "head_dim": 128,
+        "BLOCK_M": 64,
+        "BLOCK_N": 64,
+        "num_stages": 2,
+        "num_warps": 8
+      },
+      {
+        "dtype": "bfloat16",
+        "head_dim": 256,
+        "BLOCK_M": 32,
+        "BLOCK_N": 64,
+        "num_stages": 2,
+        "num_warps": 8
+      },
+      {
+        "dtype": "float16",
+        "head_dim": 64,
+        "BLOCK_M": 64,
+        "BLOCK_N": 32,
+        "num_stages": 1,
+        "num_warps": 8
+      },
+      {
+        "dtype": "float16",
+        "head_dim": 128,
+        "BLOCK_M": 64,
+        "BLOCK_N": 32,
+        "num_stages": 1,
+        "num_warps": 8
+      },
+      {
+        "dtype": "float16",
+        "head_dim": 256,
+        "BLOCK_M": 32,
+        "BLOCK_N": 32,
+        "num_stages": 1,
+        "num_warps": 8
+      }
+    ]
+  },
+  "template_config_call": true,
+  "template_shared_pointer_helper": false,
+  "template_pointer_override": false,
+  "frontend_grad_controls_lse": true,
+  "source_sha256": {
+    "heuristics": "83e2167a485f8d539b03e822ebc2c1a9531d8c497429042e564f3bd7c75b9408",
+    "template_metadata": "8742c4959dc49e82df53d8aa3668e7ba876008b4afb8dd711fbf09a478c9aa24",
+    "pointer_metadata": "ec01d23ca2e76bf477a40d9b4511b4538c9e83fc6ed1f5eb74662aced400b21f",
+    "frontend": "213ccc122b0961ae354dcbe4befe92f94e55d45fa06b1df8757c327d2afaa155"
+  }
+}

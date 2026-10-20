@@ -1,0 +1,426 @@
+{
+  "full_processes": 3,
+  "configuration_measurements": 108,
+  "timing_trial_medians": 324,
+  "max_trial_range_pct": 1.520608369466499,
+  "max_process_throughput_range_pct": 4.512609389338831,
+  "loaded_sclk_min_mhz": 1337,
+  "loaded_sclk_max_mhz": 2200,
+  "max_sampled_sclk_range_pct": 9.523809523809524,
+  "max_abs_diff_by_dtype": {
+    "float16": 0.001953125,
+    "bfloat16": 0.015625
+  },
+  "ratio_of_medians_ranges": {
+    "fp16_combined": {
+      "min": 2.1952951164952434,
+      "max": 3.0130336439748207
+    },
+    "fp16_wavefronts": {
+      "min": 1.8694495189035005,
+      "max": 2.6057221037176572
+    },
+    "bf16_pipelining": {
+      "min": 1.1016999645263643,
+      "max": 1.1787404969079434
+    }
+  },
+  "median_process_throughput_range_pct": 0.3825824106161843,
+  "historical_deviations": [
+    {
+      "config": [
+        "bfloat16",
+        4096,
+        64,
+        "causal",
+        1,
+        4
+      ],
+      "historical_tflops": 274.6,
+      "fresh_tflops": 274.4970434477705,
+      "change_pct": -0.03749328194810886
+    },
+    {
+      "config": [
+        "bfloat16",
+        4096,
+        64,
+        "causal",
+        2,
+        4
+      ],
+      "historical_tflops": 313.9,
+      "fresh_tflops": 314.36945896699496,
+      "change_pct": 0.14955685472921587
+    },
+    {
+      "config": [
+        "bfloat16",
+        4096,
+        64,
+        "nomask",
+        1,
+        4
+      ],
+      "historical_tflops": 445.4,
+      "fresh_tflops": 443.9099169631133,
+      "change_pct": -0.33454940208502704
+    },
+    {
+      "config": [
+        "bfloat16",
+        4096,
+        64,
+        "nomask",
+        2,
+        4
+      ],
+      "historical_tflops": 523.6,
+      "fresh_tflops": 518.5436407938338,
+      "change_pct": -0.9656912158453435
+    },
+    {
+      "config": [
+        "bfloat16",
+        4096,
+        128,
+        "causal",
+        1,
+        4
+      ],
+      "historical_tflops": 373.0,
+      "fresh_tflops": 374.1257540676363,
+      "change_pct": 0.30181074199364666
+    },
+    {
+      "config": [
+        "bfloat16",
+        4096,
+        128,
+        "causal",
+        2,
+        4
+      ],
+      "historical_tflops": 412.7,
+      "fresh_tflops": 412.17432998471423,
+      "change_pct": -0.1273733984215597
+    },
+    {
+      "config": [
+        "bfloat16",
+        4096,
+        128,
+        "nomask",
+        1,
+        4
+      ],
+      "historical_tflops": 548.2,
+      "fresh_tflops": 541.5939811362126,
+      "change_pct": -1.2050380999247379
+    },
+    {
+      "config": [
+        "bfloat16",
+        4096,
+        128,
+        "nomask",
+        2,
+        4
+      ],
+      "historical_tflops": 647.6,
+      "fresh_tflops": 638.3987584468506,
+      "change_pct": -1.4208217345814456
+    },
+    {
+      "config": [
+        "bfloat16",
+        8192,
+        128,
+        "causal",
+        1,
+        4
+      ],
+      "historical_tflops": 431.0,
+      "fresh_tflops": 427.8514563957195,
+      "change_pct": -0.7305205578377105
+    },
+    {
+      "config": [
+        "bfloat16",
+        8192,
+        128,
+        "causal",
+        2,
+        4
+      ],
+      "historical_tflops": 484.1,
+      "fresh_tflops": 480.8090424729232,
+      "change_pct": -0.6798094457915349
+    },
+    {
+      "config": [
+        "bfloat16",
+        8192,
+        128,
+        "nomask",
+        1,
+        4
+      ],
+      "historical_tflops": 579.1,
+      "fresh_tflops": 574.223469997413,
+      "change_pct": -0.8420877227744872
+    },
+    {
+      "config": [
+        "bfloat16",
+        8192,
+        128,
+        "nomask",
+        2,
+        4
+      ],
+      "historical_tflops": 667.1,
+      "fresh_tflops": 657.1742346259477,
+      "change_pct": -1.4878976726206417
+    },
+    {
+      "config": [
+        "float16",
+        4096,
+        64,
+        "causal",
+        1,
+        8
+      ],
+      "historical_tflops": 102.7,
+      "fresh_tflops": 103.24200542006216,
+      "change_pct": 0.5277560078501997
+    },
+    {
+      "config": [
+        "float16",
+        4096,
+        64,
+        "causal",
+        2,
+        4
+      ],
+      "historical_tflops": 311.4,
+      "fresh_tflops": 311.07163580207805,
+      "change_pct": -0.1054477193069725
+    },
+    {
+      "config": [
+        "float16",
+        4096,
+        64,
+        "causal",
+        2,
+        8
+      ],
+      "historical_tflops": 119.1,
+      "fresh_tflops": 119.38020380541094,
+      "change_pct": 0.23526767876653754
+    },
+    {
+      "config": [
+        "float16",
+        4096,
+        64,
+        "nomask",
+        1,
+        8
+      ],
+      "historical_tflops": 239.1,
+      "fresh_tflops": 201.28137579807208,
+      "change_pct": -15.81707411205685
+    },
+    {
+      "config": [
+        "float16",
+        4096,
+        64,
+        "nomask",
+        2,
+        4
+      ],
+      "historical_tflops": 508.0,
+      "fresh_tflops": 504.0893390227661,
+      "change_pct": -0.7698151529987984
+    },
+    {
+      "config": [
+        "float16",
+        4096,
+        64,
+        "nomask",
+        2,
+        8
+      ],
+      "historical_tflops": 233.9,
+      "fresh_tflops": 232.2796637310093,
+      "change_pct": -0.6927474429203606
+    },
+    {
+      "config": [
+        "float16",
+        4096,
+        128,
+        "causal",
+        1,
+        8
+      ],
+      "historical_tflops": 153.5,
+      "fresh_tflops": 154.62576552878173,
+      "change_pct": 0.733397738620023
+    },
+    {
+      "config": [
+        "float16",
+        4096,
+        128,
+        "causal",
+        2,
+        4
+      ],
+      "historical_tflops": 402.7,
+      "fresh_tflops": 402.9892061526486,
+      "change_pct": 0.07181677493135474
+    },
+    {
+      "config": [
+        "float16",
+        4096,
+        128,
+        "causal",
+        2,
+        8
+      ],
+      "historical_tflops": 187.0,
+      "fresh_tflops": 186.73712843076083,
+      "change_pct": -0.1405730316787035
+    },
+    {
+      "config": [
+        "float16",
+        4096,
+        128,
+        "nomask",
+        1,
+        8
+      ],
+      "historical_tflops": 278.7,
+      "fresh_tflops": 276.86273819965663,
+      "change_pct": -0.6592256190683043
+    },
+    {
+      "config": [
+        "float16",
+        4096,
+        128,
+        "nomask",
+        2,
+        4
+      ],
+      "historical_tflops": 616.2,
+      "fresh_tflops": 607.7954171092073,
+      "change_pct": -1.3639375025629286
+    },
+    {
+      "config": [
+        "float16",
+        4096,
+        128,
+        "nomask",
+        2,
+        8
+      ],
+      "historical_tflops": 331.2,
+      "fresh_tflops": 325.1199943958375,
+      "change_pct": -1.835750484348575
+    },
+    {
+      "config": [
+        "float16",
+        8192,
+        128,
+        "causal",
+        1,
+        8
+      ],
+      "historical_tflops": 193.5,
+      "fresh_tflops": 193.6838522991245,
+      "change_pct": 0.09501410807468691
+    },
+    {
+      "config": [
+        "float16",
+        8192,
+        128,
+        "causal",
+        2,
+        4
+      ],
+      "historical_tflops": 467.4,
+      "fresh_tflops": 464.1438511032844,
+      "change_pct": -0.6966514541539515
+    },
+    {
+      "config": [
+        "float16",
+        8192,
+        128,
+        "causal",
+        2,
+        8
+      ],
+      "historical_tflops": 225.5,
+      "fresh_tflops": 224.16193106638454,
+      "change_pct": -0.5933786845301325
+    },
+    {
+      "config": [
+        "float16",
+        8192,
+        128,
+        "nomask",
+        1,
+        8
+      ],
+      "historical_tflops": 289.1,
+      "fresh_tflops": 284.9348992449847,
+      "change_pct": -1.4407128173695272
+    },
+    {
+      "config": [
+        "float16",
+        8192,
+        128,
+        "nomask",
+        2,
+        4
+      ],
+      "historical_tflops": 637.2,
+      "fresh_tflops": 627.7279405528102,
+      "change_pct": -1.4865127820448576
+    },
+    {
+      "config": [
+        "float16",
+        8192,
+        128,
+        "nomask",
+        2,
+        8
+      ],
+      "historical_tflops": 337.7,
+      "fresh_tflops": 331.54924295672396,
+      "change_pct": -1.8213672026283767
+    }
+  ],
+  "execution_context": {
+    "grad_enabled": false,
+    "output_logsumexp": false,
+    "note": "The initial full campaign used no_grad. Historical blog execution was grad-enabled; see baseline-recheck/README.md for the controlled correction."
+  }
+}

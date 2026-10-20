@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1152pt" height="590.4pt" viewBox="0 0 1152 590.4" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.1, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 590.4 
+L 1152 590.4 
+L 1152 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 37.44 86.4 
+L 351.36 86.4 
+Q 360 86.4 360 95.04 
+L 360 128.16 
+Q 360 136.8 351.36 136.8 
+L 37.44 136.8 
+Q 28.8 136.8 28.8 128.16 
+L 28.8 95.04 
+Q 28.8 86.4 37.44 86.4 
+z
+" clip-path="url(#p0c2076edcb)" style="fill: #eaf3f8; stroke: #cdd5dd; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 419.04 86.4 
+L 732.96 86.4 
+Q 741.6 86.4 741.6 95.04 
+L 741.6 128.16 
+Q 741.6 136.8 732.96 136.8 
+L 419.04 136.8 
+Q 410.4 136.8 410.4 128.16 
+L 410.4 95.04 
+Q 410.4 86.4 419.04 86.4 
+z
+" clip-path="url(#p0c2076edcb)" style="fill: #eaf3f8; stroke: #cdd5dd; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 800.64 86.4 
+L 1114.56 86.4 
+Q 1123.2 86.4 1123.2 95.04 
+L 1123.2 128.16 
+Q 1123.2 136.8 1114.56 136.8 
+L 800.64 136.8 
+Q 792 136.8 792 128.16 
+L 792 95.04 
+Q 792 86.4 800.64 86.4 
+z
+" clip-path="url(#p0c2076edcb)" style="fill: #eaf3f8; stroke: #cdd5dd; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 366.316436 111.6 
+Q 384.119832 111.6 400.134374 111.6 
+" clip-path="url(#p0c2076edcb)" style="fill: none; stroke: #526173; stroke-width: 1.6; stroke-linecap: round"/>
+    <path d="M 393.334374 108.2 
+L 400.134374 111.6 
+L 393.334374 115 
+z
+" clip-path="url(#p0c2076edcb)" style="fill: #526173; stroke: #526173; stroke-width: 1.6; stroke-linecap: round"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 747.916436 111.6 
+Q 765.719832 111.6 781.734374 111.6 
+" clip-path="url(#p0c2076edcb)" style="fill: none; stroke: #526173; stroke-width: 1.6; stroke-linecap: round"/>
+    <path d="M 774.934374 108.2 
+L 781.734374 111.6 
+L 774.934374 115 
+z
+" clip-path="url(#p0c2076edcb)" style="fill: #526173; stroke: #526173; stroke-width: 1.6; stroke-linecap: round"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 37.44 165.6 
+L 552.96 165.6 
+Q 561.6 165.6 561.6 174.24 
+L 561.6 509.76 
+Q 561.6 518.4 552.96 518.4 
+L 37.44 518.4 
+Q 28.8 518.4 28.8 509.76 
+L 28.8 174.24 
+Q 28.8 165.6 37.44 165.6 
+z
+" clip-path="url(#p0c2076edcb)" style="fill: #ffffff; stroke: #cdd5dd; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 599.04 165.6 
+L 1114.56 165.6 
+Q 1123.2 165.6 1123.2 174.24 
+L 1123.2 509.76 
+Q 1123.2 518.4 1114.56 518.4 
+L 599.04 518.4 
+Q 590.4 518.4 590.4 509.76 
+L 590.4 174.24 
+Q 590.4 165.6 599.04 165.6 
+z
+" clip-path="url(#p0c2076edcb)" style="fill: #ffffff; stroke: #cdd5dd; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 123.84 239.04 
+L 502.56 239.04 
+Q 511.2 239.04 511.2 247.68 
+L 511.2 263.52 
+Q 511.2 272.16 502.56 272.16 
+L 123.84 272.16 
+Q 115.2 272.16 115.2 263.52 
+L 115.2 247.68 
+Q 115.2 239.04 123.84 239.04 
+z
+" clip-path="url(#p0c2076edcb)" style="fill: #f0f2f5; stroke: #cdd5dd; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 123.84 285.84 
+L 502.56 285.84 
+Q 511.2 285.84 511.2 294.48 
+L 511.2 310.32 
+Q 511.2 318.96 502.56 318.96 
+L 123.84 318.96 
+Q 115.2 318.96 115.2 310.32 
+L 115.2 294.48 
+Q 115.2 285.84 123.84 285.84 
+z
+" clip-path="url(#p0c2076edcb)" style="fill: #f0f2f5; stroke: #cdd5dd; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 123.84 332.64 
+L 502.56 332.64 
+Q 511.2 332.64 511.2 341.28 
+L 511.2 357.12 
+Q 511.2 365.76 502.56 365.76 
+L 123.84 365.76 
+Q 115.2 365.76 115.2 357.12 
+L 115.2 341.28 
+Q 115.2 332.64 123.84 332.64 
+z
+" clip-path="url(#p0c2076edcb)" style="fill: #f0f2f5; stroke: #cdd5dd; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 123.84 379.44 
+L 502.56 379.44 
+Q 511.2 379.44 511.2 388.08 
+L 511.2 403.92 
+Q 511.2 412.56 502.56 412.56 
+L 123.84 412.56 
+Q 115.2 412.56 115.2 403.92 
+L 115.2 388.08 
+Q 115.2 379.44 123.84 379.44 
+z
+" clip-path="url(#p0c2076edcb)" style="fill: #f0f2f5; stroke: #cdd5dd; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_13">
+    <path d="M 678.24 223.2 
+L 1064.16 223.2 
+Q 1072.8 223.2 1072.8 231.84 
+L 1072.8 252 
+Q 1072.8 260.64 1064.16 260.64 
+L 678.24 260.64 
+Q 669.6 260.64 669.6 252 
+L 669.6 231.84 
+Q 669.6 223.2 678.24 223.2 
+z
+" clip-path="url(#p0c2076edcb)" style="fill: #eaf3f8; stroke: #17608a; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_14">
+    <path d="M 649.998743 297.36 
+Q 689.400699 297.36 727.0138 297.36 
+" clip-path="url(#p0c2076edcb)" style="fill: none; stroke: #17608a; stroke-width: 1.6; stroke-linecap: round"/>
+    <path d="M 720.2138 293.96 
+L 727.0138 297.36 
+L 720.2138 300.76 
+z
+" clip-path="url(#p0c2076edcb)" style="fill: #17608a; stroke: #17608a; stroke-width: 1.6; stroke-linecap: round"/>
+   </g>
+   <g id="patch_15">
+    <path d="M 743.04 282.96 
+L 1064.16 282.96 
+Q 1072.8 282.96 1072.8 291.6 
+L 1072.8 303.12 
+Q 1072.8 311.76 1064.16 311.76 
+L 743.04 311.76 
+Q 734.4 311.76 734.4 303.12 
+L 734.4 291.6 
+Q 734.4 282.96 743.04 282.96 
+z
+" clip-path="url(#p0c2076edcb)" style="fill: #eaf3f8; stroke: #cdd5dd; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_16">
+    <path d="M 649.998743 336.96 
+Q 689.400699 336.96 727.0138 336.96 
+" clip-path="url(#p0c2076edcb)" style="fill: none; stroke: #17608a; stroke-width: 1.6; stroke-linecap: round"/>
+    <path d="M 720.2138 333.56 
+L 727.0138 336.96 
+L 720.2138 340.36 
+z
+" clip-path="url(#p0c2076edcb)" style="fill: #17608a; stroke: #17608a; stroke-width: 1.6; stroke-linecap: round"/>
+   </g>
+   <g id="patch_17">
+    <path d="M 743.04 322.56 
+L 1064.16 322.56 
+Q 1072.8 322.56 1072.8 331.2 
+L 1072.8 342.72 
+Q 1072.8 351.36 1064.16 351.36 
+L 743.04 351.36 
+Q 734.4 351.36 734.4 342.72 
+L 734.4 331.2 
+Q 734.4 322.56 743.04 322.56 
+z
+" clip-path="url(#p0c2076edcb)" style="fill: #eaf3f8; stroke: #cdd5dd; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_18">
+    <path d="M 649.998743 376.56 
+Q 689.400699 376.56 727.0138 376.56 
+" clip-path="url(#p0c2076edcb)" style="fill: none; stroke: #17608a; stroke-width: 1.6; stroke-linecap: round"/>
+    <path d="M 720.2138 373.16 
+L 727.0138 376.56 
+L 720.2138 379.96 
+z
+" clip-path="url(#p0c2076edcb)" style="fill: #17608a; stroke: #17608a; stroke-width: 1.6; stroke-linecap: round"/>
+   </g>
+   <g id="patch_19">
+    <path d="M 743.04 362.16 
+L 1064.16 362.16 
+Q 1072.8 362.16 1072.8 370.8 
+L 1072.8 382.32 
+Q 1072.8 390.96 1064.16 390.96 
+L 743.04 390.96 
+Q 734.4 390.96 734.4 382.32 
+L 734.4 370.8 
+Q 734.4 362.16 743.04 362.16 
+z
+" clip-path="url(#p0c2076edcb)" style="fill: #eaf3f8; stroke: #cdd5dd; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_20">
+    <path d="M 649.998743 416.16 
+Q 689.400699 416.16 727.0138 416.16 
+" clip-path="url(#p0c2076edcb)" style="fill: none; stroke: #17608a; stroke-width: 1.6; stroke-linecap: round"/>
+    <path d="M 720.2138 412.76 
+L 727.0138 416.16 
+L 720.2138 419.56 
+z
+" clip-path="url(#p0c2076edcb)" style="fill: #17608a; stroke: #17608a; stroke-width: 1.6; stroke-linecap: round"/>
+   </g>
+   <g id="patch_21">
+    <path d="M 743.04 401.76 
+L 1064.16 401.76 
+Q 1072.8 401.76 1072.8 410.4 
+L 1072.8 421.92 
+Q 1072.8 430.56 1064.16 430.56 
+L 743.04 430.56 
+Q 734.4 430.56 734.4 421.92 
+L 734.4 410.4 
+Q 734.4 401.76 743.04 401.76 
+z
+" clip-path="url(#p0c2076edcb)" style="fill: #eaf3f8; stroke: #cdd5dd; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 662.4 241.92 
+L 648 241.92 
+L 648 434.16 
+L 648 434.16 
+" clip-path="url(#p0c2076edcb)" style="fill: none; stroke: #17608a; stroke-width: 1.6; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 669.6 241.92 
+L 662.4 241.92 
+" clip-path="url(#p0c2076edcb)" style="fill: none; stroke: #17608a; stroke-width: 1.6; stroke-linecap: square"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 27px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #172333" x="28.8" y="37.584844" transform="rotate(-0 28.8 37.584844)">Streamlining memory addressing</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 17px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526173" x="28.8" y="63.730937" transform="rotate(-0 28.8 63.730937)">Known bounds let the compiler retain one base address and use smaller offsets.</text>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 700; font-size: 17px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #17608a" x="194.4" y="116.224531" transform="rotate(-0 194.4 116.224531)">Storage provably &lt; 2 GiB</text>
+   </g>
+   <g id="text_4">
+    <text style="font-weight: 700; font-size: 17px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #17608a" x="576" y="116.054531" transform="rotate(-0 576 116.054531)">tt.pointer_range = 32</text>
+   </g>
+   <g id="text_5">
+    <text style="font-weight: 700; font-size: 17px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #17608a" x="957.6" y="116.290938" transform="rotate(-0 957.6 116.290938)">Separate base and offsets</text>
+   </g>
+   <g id="text_6">
+    <text style="font-weight: 700; font-size: 21px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #172333" x="50.4" y="198.754687" transform="rotate(-0 50.4 198.754687)">General address representation</text>
+   </g>
+   <g id="text_7">
+    <text style="font-weight: 700; font-size: 21px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #17608a" x="612" y="198.754687" transform="rotate(-0 612 198.754687)">Base plus bounded offsets</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 15px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526173" x="51.84" y="261.192188" transform="rotate(-0 51.84 261.192188)">lane 0</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 17px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #172333" x="313.2" y="261.937813" transform="rotate(-0 313.2 261.937813)">64-bit address = base + offset0</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 15px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526173" x="51.84" y="307.992188" transform="rotate(-0 51.84 307.992188)">lane 1</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 17px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #172333" x="313.2" y="308.737812" transform="rotate(-0 313.2 308.737812)">64-bit address = base + offset1</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 15px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526173" x="51.84" y="354.792187" transform="rotate(-0 51.84 354.792187)">lane 2</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 17px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #172333" x="313.2" y="355.537812" transform="rotate(-0 313.2 355.537812)">64-bit address = base + offset2</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 15px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526173" x="51.84" y="401.592188" transform="rotate(-0 51.84 401.592188)">lane 3</text>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 17px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #172333" x="313.2" y="402.337812" transform="rotate(-0 313.2 402.337812)">64-bit address = base + offset3</text>
+   </g>
+   <g id="text_16">
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #17608a" x="871.2" y="248.630625" transform="rotate(-0 871.2 248.630625)">Shared 64-bit base</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #172333" x="903.6" y="303.325" transform="rotate(-0 903.6 303.325)">lane 0: bounded 32-bit offset0</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #172333" x="903.6" y="342.925" transform="rotate(-0 903.6 342.925)">lane 1: bounded 32-bit offset1</text>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #172333" x="903.6" y="382.525" transform="rotate(-0 903.6 382.525)">lane 2: bounded 32-bit offset2</text>
+   </g>
+   <g id="text_20">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #172333" x="903.6" y="422.125" transform="rotate(-0 903.6 422.125)">lane 3: bounded 32-bit offset3</text>
+   </g>
+   <g id="text_21">
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #526173" x="295.2" y="487.296562" transform="rotate(-0 295.2 487.296562)">General global loads and stores</text>
+   </g>
+   <g id="text_22">
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #17608a" x="856.8" y="487.296562" transform="rotate(-0 856.8 487.296562)">Eligible buffer loads and stores</text>
+   </g>
+   <g id="text_23">
+    <text style="font-size: 16px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526173" x="28.8" y="549.455" transform="rotate(-0 28.8 549.455)">Addresses remain 64-bit. The compiler narrows offsets only when it can prove the transformation safe.</text>
+   </g>
+   <g id="text_24">
+    <text style="font-size: 15px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526173" x="28.8" y="572.939062" transform="rotate(-0 28.8 572.939062)">This diagram covers loads and stores; atomic-containing kernels need the separate annotation guard.</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p0c2076edcb">
+   <rect x="0" y="0" width="1152" height="590.4"/>
+  </clipPath>
+ </defs>
+</svg>

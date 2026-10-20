@@ -1,0 +1,3924 @@
+{
+  "measurements_audited": 108,
+  "historical_comparison": [
+    {
+      "num_warps": 4,
+      "historical": {
+        "ttgir_sha256": "bc4d2071b230ad5bd09cf99b6c9b111d0fc60736f8f11a7e89be3fc8bdecc65a",
+        "amdgcn_sha256": "01216ae73564f4cdfd24582c9efe34c6b8f29f164ca6dbca75306ebdc98922ed",
+        "mfma_sites": 128,
+        "wave_weighted_mfma_sites": 512,
+        "ds_write_sites": 9,
+        "mfma_layouts": [
+          "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+        ],
+        "scf_for_sites": 2
+      },
+      "publication": {
+        "instructions": {
+          "v_mfma": 64,
+          "ds_write": 9,
+          "buffer_load": 24,
+          "buffer_store": 9,
+          "global_load": 0,
+          "global_store": 0
+        },
+        "wave_weighted_mfma_sites": 256,
+        "mfma_opcodes": [
+          "v_mfma_f32_32x32x16_f16"
+        ],
+        "mfma_layouts": [
+          "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+        ],
+        "scf_for_sites": 1
+      },
+      "artifacts": [
+        {
+          "run": "run1",
+          "ttgir": "run1/codegen/BXHM6QD5JDNKH3R5P5JFTP3A75EG5KKR5A2YLV43ZTIWFKHPWT2A-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+          "amdgcn": "run1/codegen/BXHM6QD5JDNKH3R5P5JFTP3A75EG5KKR5A2YLV43ZTIWFKHPWT2A-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz"
+        },
+        {
+          "run": "run2",
+          "ttgir": "run2/codegen/BXHM6QD5JDNKH3R5P5JFTP3A75EG5KKR5A2YLV43ZTIWFKHPWT2A-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+          "amdgcn": "run2/codegen/BXHM6QD5JDNKH3R5P5JFTP3A75EG5KKR5A2YLV43ZTIWFKHPWT2A-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz"
+        },
+        {
+          "run": "run3",
+          "ttgir": "run3/codegen/BXHM6QD5JDNKH3R5P5JFTP3A75EG5KKR5A2YLV43ZTIWFKHPWT2A-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+          "amdgcn": "run3/codegen/BXHM6QD5JDNKH3R5P5JFTP3A75EG5KKR5A2YLV43ZTIWFKHPWT2A-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz"
+        }
+      ]
+    },
+    {
+      "num_warps": 8,
+      "historical": {
+        "ttgir_sha256": "810226aeeb20200de586a286f67b77d31520103cacfbb7b224ceca23e5fd17b3",
+        "amdgcn_sha256": "230a4e6a1f777fabce6e2b3a5a0fec2d82f140cdf2357833e7afda5ee9e2c38b",
+        "mfma_sites": 96,
+        "wave_weighted_mfma_sites": 768,
+        "ds_write_sites": 138,
+        "mfma_layouts": [
+          "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+          "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+        ],
+        "scf_for_sites": 2
+      },
+      "publication": {
+        "instructions": {
+          "v_mfma": 48,
+          "ds_write": 72,
+          "buffer_load": 12,
+          "buffer_store": 5,
+          "global_load": 0,
+          "global_store": 0
+        },
+        "wave_weighted_mfma_sites": 384,
+        "mfma_opcodes": [
+          "v_mfma_f32_32x32x16_f16"
+        ],
+        "mfma_layouts": [
+          "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+          "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+        ],
+        "scf_for_sites": 1
+      },
+      "artifacts": [
+        {
+          "run": "run1",
+          "ttgir": "run1/codegen/YDIJXRA5LN5XHH5NZUCAY74FIRG535S2UAR3YJGZGK7B5RBSODJA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+          "amdgcn": "run1/codegen/YDIJXRA5LN5XHH5NZUCAY74FIRG535S2UAR3YJGZGK7B5RBSODJA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz"
+        },
+        {
+          "run": "run2",
+          "ttgir": "run2/codegen/YDIJXRA5LN5XHH5NZUCAY74FIRG535S2UAR3YJGZGK7B5RBSODJA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+          "amdgcn": "run2/codegen/YDIJXRA5LN5XHH5NZUCAY74FIRG535S2UAR3YJGZGK7B5RBSODJA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz"
+        },
+        {
+          "run": "run3",
+          "ttgir": "run3/codegen/YDIJXRA5LN5XHH5NZUCAY74FIRG535S2UAR3YJGZGK7B5RBSODJA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+          "amdgcn": "run3/codegen/YDIJXRA5LN5XHH5NZUCAY74FIRG535S2UAR3YJGZGK7B5RBSODJA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz"
+        }
+      ]
+    }
+  ],
+  "scope": "Static instruction sites; dynamic counts depend on loops and masks.",
+  "measurements": [
+    {
+      "run": "run1",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "nomask",
+      "num_stages": 1,
+      "num_warps": 8,
+      "generated_source": "run1/code/float16-4096-64-nomask-s1-w8.py.gz",
+      "cache_key": "YS6DEMVFCQLA4L73CQ5JCL36CS6YBTPNK3MPBTQGEF2ISGFQ6SUQ",
+      "ttgir": "run1/codegen/YS6DEMVFCQLA4L73CQ5JCL36CS6YBTPNK3MPBTQGEF2ISGFQ6SUQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "fced2e9f1b9dc68304227f48b5da6a89899b229c6ae221a82b0c7bd411b6290e",
+      "amdgcn": "run1/codegen/YS6DEMVFCQLA4L73CQ5JCL36CS6YBTPNK3MPBTQGEF2ISGFQ6SUQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "f08c7b5a8259e997aefc9d09cf51871d8e62955b20f17e507e8d2d8c67ea8c32",
+      "instructions": {
+        "v_mfma": 12,
+        "ds_write": 40,
+        "buffer_load": 4,
+        "buffer_store": 3,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 96,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "128"
+      ],
+      "shared_bytes": 16384
+    },
+    {
+      "run": "run1",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "nomask",
+      "num_stages": 2,
+      "num_warps": 8,
+      "generated_source": "run1/code/float16-4096-64-nomask-s2-w8.py.gz",
+      "cache_key": "KVFOW54XJTH4JJMAYM7NNY2264ZFRH4KVDX2LXYM4AP5RKCPEQUQ",
+      "ttgir": "run1/codegen/KVFOW54XJTH4JJMAYM7NNY2264ZFRH4KVDX2LXYM4AP5RKCPEQUQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "ce741ccd99cbc0c94d6ebe5d873dff3566492fcfed21da1f85a27c78e4ab1f57",
+      "amdgcn": "run1/codegen/KVFOW54XJTH4JJMAYM7NNY2264ZFRH4KVDX2LXYM4AP5RKCPEQUQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "30e2606572a4d70cbad5e5bb68a2561580f8e8688078d6d32ca5d611789dab19",
+      "instructions": {
+        "v_mfma": 24,
+        "ds_write": 70,
+        "buffer_load": 6,
+        "buffer_store": 3,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 192,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "140"
+      ],
+      "shared_bytes": 50112
+    },
+    {
+      "run": "run1",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "nomask",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run1/code/float16-4096-64-nomask-s2-w4.py.gz",
+      "cache_key": "DKVEVEUSAIXFJGFKAV7GLSTBVXVKE2XVKYT34O7ZGTWVJUTSVW5Q",
+      "ttgir": "run1/codegen/DKVEVEUSAIXFJGFKAV7GLSTBVXVKE2XVKYT34O7ZGTWVJUTSVW5Q-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "52aaf2019cf5f6553094f1a0dbd5acc479efd6729e915c9c31d2b1bff1764c11",
+      "amdgcn": "run1/codegen/DKVEVEUSAIXFJGFKAV7GLSTBVXVKE2XVKYT34O7ZGTWVJUTSVW5Q-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "4efba6fc2ad0446a83579a4d2d759bf0e25ed67783ea374c03116b6a6e69ff7a",
+      "instructions": {
+        "v_mfma": 32,
+        "ds_write": 5,
+        "buffer_load": 12,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 128,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "158"
+      ],
+      "shared_bytes": 33728
+    },
+    {
+      "run": "run1",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "nomask",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run1/code/float16-4096-64-nomask-s1-w4.py.gz",
+      "cache_key": "TAUTNHIOUJO4UQPHL6B4JHOBND4P7ZYFHC3YUHRZ4XLE6ZEC7KYQ",
+      "ttgir": "run1/codegen/TAUTNHIOUJO4UQPHL6B4JHOBND4P7ZYFHC3YUHRZ4XLE6ZEC7KYQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "8bf41671fb1c822a25359ab7170a129d2c96dea5c8a31f05ddf4daed6d10b706",
+      "amdgcn": "run1/codegen/TAUTNHIOUJO4UQPHL6B4JHOBND4P7ZYFHC3YUHRZ4XLE6ZEC7KYQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "e32c6d6969a051a49ec7eb31a0009c025c49b92e81bc88158385a0d0edeaaf6c",
+      "instructions": {
+        "v_mfma": 16,
+        "ds_write": 9,
+        "buffer_load": 8,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 64,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "116"
+      ],
+      "shared_bytes": 16384
+    },
+    {
+      "run": "run1",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "causal",
+      "num_stages": 1,
+      "num_warps": 8,
+      "generated_source": "run1/code/float16-4096-64-causal-s1-w8.py.gz",
+      "cache_key": "EATNTXAKXWCV4IULSAVXWIX7KA3SYOGVFPJ6M5KFZ4CRTN7ND45Q",
+      "ttgir": "run1/codegen/EATNTXAKXWCV4IULSAVXWIX7KA3SYOGVFPJ6M5KFZ4CRTN7ND45Q-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "84372925c15cd22b390baf338f833d7b09bc6a23bfd922bc6edfaf88859f0caa",
+      "amdgcn": "run1/codegen/EATNTXAKXWCV4IULSAVXWIX7KA3SYOGVFPJ6M5KFZ4CRTN7ND45Q-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "0cfb6bfa3108f376aa407aafcda8bd7674ad28837caa4a4918bc6fc6b12c90fe",
+      "instructions": {
+        "v_mfma": 24,
+        "ds_write": 76,
+        "buffer_load": 6,
+        "buffer_store": 3,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 192,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "164"
+      ],
+      "shared_bytes": 16384
+    },
+    {
+      "run": "run1",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "causal",
+      "num_stages": 2,
+      "num_warps": 8,
+      "generated_source": "run1/code/float16-4096-64-causal-s2-w8.py.gz",
+      "cache_key": "L42DESMZECHMHAEJLMNCSFRNNPS3TRUAEMKUZ7MGKHEG6KPYJV4Q",
+      "ttgir": "run1/codegen/L42DESMZECHMHAEJLMNCSFRNNPS3TRUAEMKUZ7MGKHEG6KPYJV4Q-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "87d78c0e3be04d17aa7ca65553a6d20c5fe35d9498dc3c897f6d9e08d9469350",
+      "amdgcn": "run1/codegen/L42DESMZECHMHAEJLMNCSFRNNPS3TRUAEMKUZ7MGKHEG6KPYJV4Q-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "ede8a6b543e490b5c8b9be292a69db09bfbed3ba4e7f86f7a34797980ac5f62a",
+      "instructions": {
+        "v_mfma": 48,
+        "ds_write": 136,
+        "buffer_load": 10,
+        "buffer_store": 3,
+        "global_load": 6,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 384,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "175"
+      ],
+      "shared_bytes": 50112
+    },
+    {
+      "run": "run1",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "causal",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run1/code/float16-4096-64-causal-s2-w4.py.gz",
+      "cache_key": "G42PED7NHRVTP4PUW67YUVGC7S2NF6IK6C4BPIREVONAQPASO4BA",
+      "ttgir": "run1/codegen/G42PED7NHRVTP4PUW67YUVGC7S2NF6IK6C4BPIREVONAQPASO4BA-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "fab35870969c4f3ff428bd7b42a20d869709197bf5a3b668aa0b57c2bf86ccc8",
+      "amdgcn": "run1/codegen/G42PED7NHRVTP4PUW67YUVGC7S2NF6IK6C4BPIREVONAQPASO4BA-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "a4228e1dfe9609456b96c2175de1e153d517486738b51b36e79a7d763d6118ce",
+      "instructions": {
+        "v_mfma": 64,
+        "ds_write": 5,
+        "buffer_load": 20,
+        "buffer_store": 5,
+        "global_load": 6,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 256,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "170"
+      ],
+      "shared_bytes": 33728
+    },
+    {
+      "run": "run1",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "causal",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run1/code/float16-4096-64-causal-s1-w4.py.gz",
+      "cache_key": "6NILHT3WJXV67C3FU63AVD7MSABHNUFJEI476HNJXOYNPNBFCBPQ",
+      "ttgir": "run1/codegen/6NILHT3WJXV67C3FU63AVD7MSABHNUFJEI476HNJXOYNPNBFCBPQ-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "4eb60587af0974182906fbbea2b5f85a2f7589a1a039c7465dcc0a9487b70bce",
+      "amdgcn": "run1/codegen/6NILHT3WJXV67C3FU63AVD7MSABHNUFJEI476HNJXOYNPNBFCBPQ-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "c11e316d21c59a50e6ec6c487dc3a7a5670248556fba37f4fdd1333dabfe6d04",
+      "instructions": {
+        "v_mfma": 32,
+        "ds_write": 13,
+        "buffer_load": 12,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 128,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "182"
+      ],
+      "shared_bytes": 16384
+    },
+    {
+      "run": "run1",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 1,
+      "num_warps": 8,
+      "generated_source": "run1/code/float16-4096-128-nomask-s1-w8.py.gz",
+      "cache_key": "C4V4POQDNRRM7FRR2U5W2JLNVAJTQI7OPWGCUFQWVR7CZTBRKOVQ",
+      "ttgir": "run1/codegen/C4V4POQDNRRM7FRR2U5W2JLNVAJTQI7OPWGCUFQWVR7CZTBRKOVQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "2a89543e8a7a71aa8b8b5457b598ce0779b28f1cf027a8733eca76d414091331",
+      "amdgcn": "run1/codegen/C4V4POQDNRRM7FRR2U5W2JLNVAJTQI7OPWGCUFQWVR7CZTBRKOVQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "965ffcbb49bfacfd39f0404a3cd34ce8e6403787f06cb960513322db6e735c38",
+      "instructions": {
+        "v_mfma": 24,
+        "ds_write": 43,
+        "buffer_load": 8,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 192,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "166"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run1",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 2,
+      "num_warps": 8,
+      "generated_source": "run1/code/float16-4096-128-nomask-s2-w8.py.gz",
+      "cache_key": "YDIJXRA5LN5XHH5NZUCAY74FIRG535S2UAR3YJGZGK7B5RBSODJA",
+      "ttgir": "run1/codegen/YDIJXRA5LN5XHH5NZUCAY74FIRG535S2UAR3YJGZGK7B5RBSODJA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "3fd47a85fda35791a21fb29a9b02788a39d719748aa60620bd10a4fa7c9e615b",
+      "amdgcn": "run1/codegen/YDIJXRA5LN5XHH5NZUCAY74FIRG535S2UAR3YJGZGK7B5RBSODJA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "fdd8d91736d3ab7ecc5e4c649bdbfd77d2a847f30ebf0c6046c225f9cfd4991f",
+      "instructions": {
+        "v_mfma": 48,
+        "ds_write": 72,
+        "buffer_load": 12,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 384,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "196"
+      ],
+      "shared_bytes": 83904
+    },
+    {
+      "run": "run1",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run1/code/float16-4096-128-nomask-s2-w4.py.gz",
+      "cache_key": "BXHM6QD5JDNKH3R5P5JFTP3A75EG5KKR5A2YLV43ZTIWFKHPWT2A",
+      "ttgir": "run1/codegen/BXHM6QD5JDNKH3R5P5JFTP3A75EG5KKR5A2YLV43ZTIWFKHPWT2A-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "2173ae9f073dca85971b3f1400440e8242e82f7efea50d27a2161126928c57a0",
+      "amdgcn": "run1/codegen/BXHM6QD5JDNKH3R5P5JFTP3A75EG5KKR5A2YLV43ZTIWFKHPWT2A-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "80c7e44f7bb036d34ee1a0e1af0da89e409d65b5600b534e96b6848d0dcb1e12",
+      "instructions": {
+        "v_mfma": 64,
+        "ds_write": 9,
+        "buffer_load": 24,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 256,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "226"
+      ],
+      "shared_bytes": 67520
+    },
+    {
+      "run": "run1",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run1/code/float16-4096-128-nomask-s1-w4.py.gz",
+      "cache_key": "DDFOLAQNUFTDZ4LTUQOYRZZATVI5RLEGS7BK34TTXCOKW5KVQDYA",
+      "ttgir": "run1/codegen/DDFOLAQNUFTDZ4LTUQOYRZZATVI5RLEGS7BK34TTXCOKW5KVQDYA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "3007527fb495eff09b2e6d82efeceaed27396152db7c65e52eb818aad62d9a20",
+      "amdgcn": "run1/codegen/DDFOLAQNUFTDZ4LTUQOYRZZATVI5RLEGS7BK34TTXCOKW5KVQDYA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "2d4f3a9805adbef70927d9dc4af695be5b0984d501cd8447e12cea90562d1616",
+      "instructions": {
+        "v_mfma": 32,
+        "ds_write": 17,
+        "buffer_load": 16,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 128,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "192"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run1",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 1,
+      "num_warps": 8,
+      "generated_source": "run1/code/float16-4096-128-causal-s1-w8.py.gz",
+      "cache_key": "UR6HSF7KSAJSSPA366J3ZLP5UOERA7ZZG3B7BX2KTCEW2KTJOYEA",
+      "ttgir": "run1/codegen/UR6HSF7KSAJSSPA366J3ZLP5UOERA7ZZG3B7BX2KTCEW2KTJOYEA-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "008afcaa402a7696ada5da94645ff2477fb650f9ad4e6c0553b0806002f7df32",
+      "amdgcn": "run1/codegen/UR6HSF7KSAJSSPA366J3ZLP5UOERA7ZZG3B7BX2KTCEW2KTJOYEA-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "5a0e175d80be4e4e3f07c7fee9ef63a708811e95557b1ddc1450fa786e7e2107",
+      "instructions": {
+        "v_mfma": 48,
+        "ds_write": 80,
+        "buffer_load": 12,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 384,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "218"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run1",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 2,
+      "num_warps": 8,
+      "generated_source": "run1/code/float16-4096-128-causal-s2-w8.py.gz",
+      "cache_key": "R2FE7SQKJYNOMYHY4KFQPW737MT2WCQDXDY3IUHYO6QF6ZK5MCCA",
+      "ttgir": "run1/codegen/R2FE7SQKJYNOMYHY4KFQPW737MT2WCQDXDY3IUHYO6QF6ZK5MCCA-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "d9b2ce6a7001f4b0801813358ea86280b993dd20b692c55ec1fa3cdeac50bd13",
+      "amdgcn": "run1/codegen/R2FE7SQKJYNOMYHY4KFQPW737MT2WCQDXDY3IUHYO6QF6ZK5MCCA-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "0de7a3eb5d29371e97adc3927c52c1def21f4435158bb41a0341df0c773c4b23",
+      "instructions": {
+        "v_mfma": 96,
+        "ds_write": 138,
+        "buffer_load": 20,
+        "buffer_store": 5,
+        "global_load": 6,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 768,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "235"
+      ],
+      "shared_bytes": 83904
+    },
+    {
+      "run": "run1",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run1/code/float16-4096-128-causal-s2-w4.py.gz",
+      "cache_key": "GG7HFZAPCJQ3UKKNJWGMN5QKFJZBHUYYRU3FWI3RRCXD4HQGYJCA",
+      "ttgir": "run1/codegen/GG7HFZAPCJQ3UKKNJWGMN5QKFJZBHUYYRU3FWI3RRCXD4HQGYJCA-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "f259a895d43dec4f4276a681bb66d4b37498ba5c247f6106c4a827d3ae022017",
+      "amdgcn": "run1/codegen/GG7HFZAPCJQ3UKKNJWGMN5QKFJZBHUYYRU3FWI3RRCXD4HQGYJCA-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "3f00695067e21ba02865c06bbcede8f4bcc5b2f90c670eb55caf13475382f676",
+      "instructions": {
+        "v_mfma": 128,
+        "ds_write": 9,
+        "buffer_load": 40,
+        "buffer_store": 9,
+        "global_load": 6,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 512,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "254"
+      ],
+      "shared_bytes": 67520
+    },
+    {
+      "run": "run1",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run1/code/float16-4096-128-causal-s1-w4.py.gz",
+      "cache_key": "OSIEMOLCZCA6JD6Y47PMFW5GRN3OQLKLF7GM76QQJFLE5624MLOQ",
+      "ttgir": "run1/codegen/OSIEMOLCZCA6JD6Y47PMFW5GRN3OQLKLF7GM76QQJFLE5624MLOQ-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "764a9d155c47f8ffade4fbc48a21a5bd4c915dbca71a7fe36834facd64ad4c8f",
+      "amdgcn": "run1/codegen/OSIEMOLCZCA6JD6Y47PMFW5GRN3OQLKLF7GM76QQJFLE5624MLOQ-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "9755b69dca74f058fce40fc0ab3af4ee0e2602ee25ccca7616cb8d2c3e74c1be",
+      "instructions": {
+        "v_mfma": 64,
+        "ds_write": 25,
+        "buffer_load": 24,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 256,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "248"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run1",
+      "dtype": "float16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 1,
+      "num_warps": 8,
+      "generated_source": "run1/code/float16-8192-128-nomask-s1-w8.py.gz",
+      "cache_key": "WV343QRYL6TSY3VKJUVWBCOC2NOLII6SSQXUSFJKLU765GGRVZ7Q",
+      "ttgir": "run1/codegen/WV343QRYL6TSY3VKJUVWBCOC2NOLII6SSQXUSFJKLU765GGRVZ7Q-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "6de86714dd29464db4888d1ad6e844d70b5a0f92b496c25a8e2addf0a48ea9a3",
+      "amdgcn": "run1/codegen/WV343QRYL6TSY3VKJUVWBCOC2NOLII6SSQXUSFJKLU765GGRVZ7Q-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "6107179a78a66465b9d421bbbb538b7f5ad0f0d1734596da51ac00b0d6612a13",
+      "instructions": {
+        "v_mfma": 24,
+        "ds_write": 43,
+        "buffer_load": 8,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 192,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "166"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run1",
+      "dtype": "float16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 2,
+      "num_warps": 8,
+      "generated_source": "run1/code/float16-8192-128-nomask-s2-w8.py.gz",
+      "cache_key": "IIWCI4D3AY5X4CB5ZNIZGIBEQOQESYBTDLMI73WJNNYBNU7LKPCA",
+      "ttgir": "run1/codegen/IIWCI4D3AY5X4CB5ZNIZGIBEQOQESYBTDLMI73WJNNYBNU7LKPCA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "408602cce3d4f78741001abaf2df564b08bcd288c4f69b9c98ec11e40661b379",
+      "amdgcn": "run1/codegen/IIWCI4D3AY5X4CB5ZNIZGIBEQOQESYBTDLMI73WJNNYBNU7LKPCA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "f8b9089feac5c9636b37567b95f269d2b3eab3c0fb2829c6fae310f4608a7464",
+      "instructions": {
+        "v_mfma": 48,
+        "ds_write": 72,
+        "buffer_load": 12,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 384,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "196"
+      ],
+      "shared_bytes": 83904
+    },
+    {
+      "run": "run1",
+      "dtype": "float16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run1/code/float16-8192-128-nomask-s2-w4.py.gz",
+      "cache_key": "4AYSAL5KO5M7T5J5PUVYLB4LB5VG4RCNVIUOARMJTMBN4SEXRTAA",
+      "ttgir": "run1/codegen/4AYSAL5KO5M7T5J5PUVYLB4LB5VG4RCNVIUOARMJTMBN4SEXRTAA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "4116b1a23ad628e4a16545b0dae1411465b7c9eda72ec8c77a322e5d10c1ca29",
+      "amdgcn": "run1/codegen/4AYSAL5KO5M7T5J5PUVYLB4LB5VG4RCNVIUOARMJTMBN4SEXRTAA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "a6bc446dc5373ab3e477033e10fd82e3eaa64c56026215393a2442228adc1189",
+      "instructions": {
+        "v_mfma": 64,
+        "ds_write": 9,
+        "buffer_load": 24,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 256,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "226"
+      ],
+      "shared_bytes": 67520
+    },
+    {
+      "run": "run1",
+      "dtype": "float16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run1/code/float16-8192-128-nomask-s1-w4.py.gz",
+      "cache_key": "45UALJ5TGCQKXUCGNSLRAJPRNQXMB5XBL4WXGI5ENJ6ERBGTPV2Q",
+      "ttgir": "run1/codegen/45UALJ5TGCQKXUCGNSLRAJPRNQXMB5XBL4WXGI5ENJ6ERBGTPV2Q-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "f608a7369db65f065639b363341714b821720f9c98e4a1d75f5d397401b96b73",
+      "amdgcn": "run1/codegen/45UALJ5TGCQKXUCGNSLRAJPRNQXMB5XBL4WXGI5ENJ6ERBGTPV2Q-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "3128ea4667c87fb580ef1a5d7587e55f08077bceb5bb5355e68e05d349883436",
+      "instructions": {
+        "v_mfma": 32,
+        "ds_write": 17,
+        "buffer_load": 16,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 128,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "192"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run1",
+      "dtype": "float16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 1,
+      "num_warps": 8,
+      "generated_source": "run1/code/float16-8192-128-causal-s1-w8.py.gz",
+      "cache_key": "3GKVEA2W6CPGFRF6RXB37PRVXR6Q3IMTPTB27PLTAQS75V2PIULQ",
+      "ttgir": "run1/codegen/3GKVEA2W6CPGFRF6RXB37PRVXR6Q3IMTPTB27PLTAQS75V2PIULQ-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "8c028664ed3228154aa188cfbf4436acc679409bda4bd50bf83c472208867b51",
+      "amdgcn": "run1/codegen/3GKVEA2W6CPGFRF6RXB37PRVXR6Q3IMTPTB27PLTAQS75V2PIULQ-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "5e35c9d733afc66ae669d057d0f1328d748989cfeba9da94f0cea0c0bc75be52",
+      "instructions": {
+        "v_mfma": 48,
+        "ds_write": 80,
+        "buffer_load": 12,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 384,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "218"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run1",
+      "dtype": "float16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 2,
+      "num_warps": 8,
+      "generated_source": "run1/code/float16-8192-128-causal-s2-w8.py.gz",
+      "cache_key": "YJGAASSGRG63J2FZH6I2BTZNYXPT6C4ITZN64F3LBSL6T5KC4AYQ",
+      "ttgir": "run1/codegen/YJGAASSGRG63J2FZH6I2BTZNYXPT6C4ITZN64F3LBSL6T5KC4AYQ-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "a717b29d5379a93031d3d5441a9619893df27eac4277c7d394f4b766dc9ae3df",
+      "amdgcn": "run1/codegen/YJGAASSGRG63J2FZH6I2BTZNYXPT6C4ITZN64F3LBSL6T5KC4AYQ-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "8a4b94c5f5761e8ac00d1bcb2d01704d9b12f1038a8db7459fa46fc9d3ed7744",
+      "instructions": {
+        "v_mfma": 96,
+        "ds_write": 138,
+        "buffer_load": 20,
+        "buffer_store": 5,
+        "global_load": 6,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 768,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "235"
+      ],
+      "shared_bytes": 83904
+    },
+    {
+      "run": "run1",
+      "dtype": "float16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run1/code/float16-8192-128-causal-s2-w4.py.gz",
+      "cache_key": "YUQYR4RZRTFBQ74FIFJIBDL36TRK64KXECLIAB34NHBSUXTKXLDQ",
+      "ttgir": "run1/codegen/YUQYR4RZRTFBQ74FIFJIBDL36TRK64KXECLIAB34NHBSUXTKXLDQ-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "1183a5ede8b9e3e977006d501d49804d4ce4d9c64d3a9a7a82b26f46c3bd280f",
+      "amdgcn": "run1/codegen/YUQYR4RZRTFBQ74FIFJIBDL36TRK64KXECLIAB34NHBSUXTKXLDQ-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "b60c98f08b1f5ed456bc411c8d49e021cc34c248880df1b6d3a4c7f1c8fccbc2",
+      "instructions": {
+        "v_mfma": 128,
+        "ds_write": 9,
+        "buffer_load": 40,
+        "buffer_store": 9,
+        "global_load": 6,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 512,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "254"
+      ],
+      "shared_bytes": 67520
+    },
+    {
+      "run": "run1",
+      "dtype": "float16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run1/code/float16-8192-128-causal-s1-w4.py.gz",
+      "cache_key": "D4TEQOCF2HFMTHWRD4RYAHGQLFST4YBCQS45PLJBOV55CNACCY4A",
+      "ttgir": "run1/codegen/D4TEQOCF2HFMTHWRD4RYAHGQLFST4YBCQS45PLJBOV55CNACCY4A-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "9bb6ceae5e1d3dc0de68c19db67108f35f42b01534b957db8425f38cd0a43260",
+      "amdgcn": "run1/codegen/D4TEQOCF2HFMTHWRD4RYAHGQLFST4YBCQS45PLJBOV55CNACCY4A-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "8860fa7cdc68f61aab6f7dfee600188c7ac411ad8d95fbfc3d658a887aabb70f",
+      "instructions": {
+        "v_mfma": 64,
+        "ds_write": 25,
+        "buffer_load": 24,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 256,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "248"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run1",
+      "dtype": "bfloat16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "nomask",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run1/code/bfloat16-4096-64-nomask-s1-w4.py.gz",
+      "cache_key": "7REGVYGFTSGYRRLFLEVYUS2ZMLXMEITLOHTFC4UIZL6U72WCR7CA",
+      "ttgir": "run1/codegen/7REGVYGFTSGYRRLFLEVYUS2ZMLXMEITLOHTFC4UIZL6U72WCR7CA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "2aed2d7c9ddeb01e0666b6ceefc51a2aab9e140e00fe2f1b3cfddbe52e25769e",
+      "amdgcn": "run1/codegen/7REGVYGFTSGYRRLFLEVYUS2ZMLXMEITLOHTFC4UIZL6U72WCR7CA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "11d087b6200ed529e834cf1c8875de0d94d01a208718cb63bfbec144ce7c4028",
+      "instructions": {
+        "v_mfma": 16,
+        "ds_write": 9,
+        "buffer_load": 8,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 64,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "116"
+      ],
+      "shared_bytes": 16384
+    },
+    {
+      "run": "run1",
+      "dtype": "bfloat16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "nomask",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run1/code/bfloat16-4096-64-nomask-s2-w4.py.gz",
+      "cache_key": "25XYKMREPYV5SNMXXFYP5GOM47IRZ7ST6TE2OX2BDTATFWZWSZTQ",
+      "ttgir": "run1/codegen/25XYKMREPYV5SNMXXFYP5GOM47IRZ7ST6TE2OX2BDTATFWZWSZTQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "de9088c636b4a067cd4c96cb675682e8c8358b8313cef22c3c91dcc09cb6f8d7",
+      "amdgcn": "run1/codegen/25XYKMREPYV5SNMXXFYP5GOM47IRZ7ST6TE2OX2BDTATFWZWSZTQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "adfc4bf10b6eb4a50561df45b2850ba247cc7d150325a48021b381e1b68624df",
+      "instructions": {
+        "v_mfma": 32,
+        "ds_write": 5,
+        "buffer_load": 12,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 128,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "158"
+      ],
+      "shared_bytes": 33728
+    },
+    {
+      "run": "run1",
+      "dtype": "bfloat16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "causal",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run1/code/bfloat16-4096-64-causal-s1-w4.py.gz",
+      "cache_key": "SLO7EUHOKY4KW6QKNBMRQFADG2LIU33FQCLUIKPBX3EFF5WYBKZQ",
+      "ttgir": "run1/codegen/SLO7EUHOKY4KW6QKNBMRQFADG2LIU33FQCLUIKPBX3EFF5WYBKZQ-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "18d56f8c860ffbcf40323463f5e77a8c966925c881a1a232d37920634d63b630",
+      "amdgcn": "run1/codegen/SLO7EUHOKY4KW6QKNBMRQFADG2LIU33FQCLUIKPBX3EFF5WYBKZQ-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "1515270498fdedd09b10ffa617e3f90a8f2693f72717f06f9c1bd0e0ca2730c3",
+      "instructions": {
+        "v_mfma": 32,
+        "ds_write": 13,
+        "buffer_load": 12,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 128,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "182"
+      ],
+      "shared_bytes": 16384
+    },
+    {
+      "run": "run1",
+      "dtype": "bfloat16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "causal",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run1/code/bfloat16-4096-64-causal-s2-w4.py.gz",
+      "cache_key": "LJOLANNDZDVWZV7ZGY67H4VTKPZ5ATJNVED4B66YKOAIBSXMS5SQ",
+      "ttgir": "run1/codegen/LJOLANNDZDVWZV7ZGY67H4VTKPZ5ATJNVED4B66YKOAIBSXMS5SQ-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "ad0fd147d6aa3b7907b081a1acb60e4cee557635332c2f54853f6305b1df76a6",
+      "amdgcn": "run1/codegen/LJOLANNDZDVWZV7ZGY67H4VTKPZ5ATJNVED4B66YKOAIBSXMS5SQ-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "7abb4fdd63d10261a9cdefbb015359e3177625ee7b2b5ee0b89403eec070fba9",
+      "instructions": {
+        "v_mfma": 64,
+        "ds_write": 5,
+        "buffer_load": 20,
+        "buffer_store": 5,
+        "global_load": 6,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 256,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "170"
+      ],
+      "shared_bytes": 33728
+    },
+    {
+      "run": "run1",
+      "dtype": "bfloat16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run1/code/bfloat16-4096-128-nomask-s1-w4.py.gz",
+      "cache_key": "2CXASSA572AS3OAU7SZSUR37U5SWRSMNPOXY6WNP22SESBETR5SQ",
+      "ttgir": "run1/codegen/2CXASSA572AS3OAU7SZSUR37U5SWRSMNPOXY6WNP22SESBETR5SQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "35a39a124412189ec9865ed692b8563c6104240ebad3e287ea6a1860cc1b4ed8",
+      "amdgcn": "run1/codegen/2CXASSA572AS3OAU7SZSUR37U5SWRSMNPOXY6WNP22SESBETR5SQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "045b066ee09d30a24090c0da32f143da76a880352eef7df791cd52da20838457",
+      "instructions": {
+        "v_mfma": 32,
+        "ds_write": 17,
+        "buffer_load": 16,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 128,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "192"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run1",
+      "dtype": "bfloat16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run1/code/bfloat16-4096-128-nomask-s2-w4.py.gz",
+      "cache_key": "PB2GF5BKOGUPV5K5QVUZUEM6XF5SC2PPS4BBTTDZ6KUVZRUAVVTQ",
+      "ttgir": "run1/codegen/PB2GF5BKOGUPV5K5QVUZUEM6XF5SC2PPS4BBTTDZ6KUVZRUAVVTQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "80f1e9dce27b9e372832202f047a066162a0e02eac62d964e963c1a2c6886330",
+      "amdgcn": "run1/codegen/PB2GF5BKOGUPV5K5QVUZUEM6XF5SC2PPS4BBTTDZ6KUVZRUAVVTQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "55675fb7628dc97517c9dc9895d659de54ac98f2afd41185cd2d1e1c59c09597",
+      "instructions": {
+        "v_mfma": 64,
+        "ds_write": 9,
+        "buffer_load": 24,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 256,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "226"
+      ],
+      "shared_bytes": 67520
+    },
+    {
+      "run": "run1",
+      "dtype": "bfloat16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run1/code/bfloat16-4096-128-causal-s1-w4.py.gz",
+      "cache_key": "Q5JEFZFY4NK7CSDH7YA2FZFOGUN4Z6QUSLSPJ7CYYPUON4HJCF2Q",
+      "ttgir": "run1/codegen/Q5JEFZFY4NK7CSDH7YA2FZFOGUN4Z6QUSLSPJ7CYYPUON4HJCF2Q-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "2bcb6cf40cac8a27eae3293dfde51e03a48e0b7454f930ccb106d59a65b5f2d0",
+      "amdgcn": "run1/codegen/Q5JEFZFY4NK7CSDH7YA2FZFOGUN4Z6QUSLSPJ7CYYPUON4HJCF2Q-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "4cdff73e199c0b2c00bb0a4822e16bdaabf3da08b16c8228f693fdbffe5dfb5a",
+      "instructions": {
+        "v_mfma": 64,
+        "ds_write": 25,
+        "buffer_load": 24,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 256,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "248"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run1",
+      "dtype": "bfloat16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run1/code/bfloat16-4096-128-causal-s2-w4.py.gz",
+      "cache_key": "6J5X2MWRA2OWZ7C2OI2E2YIECJFZTRPA7QPIVASTJ6XODY4CJ6HA",
+      "ttgir": "run1/codegen/6J5X2MWRA2OWZ7C2OI2E2YIECJFZTRPA7QPIVASTJ6XODY4CJ6HA-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "f2099539be0fbd3cce29eb69f30d6c67deeef3821d9e7ccf4a410b938b331eb9",
+      "amdgcn": "run1/codegen/6J5X2MWRA2OWZ7C2OI2E2YIECJFZTRPA7QPIVASTJ6XODY4CJ6HA-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "f0409bd4ecd3b3f8a5bc8a3d72bbd279bd5f9201322f9edc5f63e21fb9b070db",
+      "instructions": {
+        "v_mfma": 128,
+        "ds_write": 9,
+        "buffer_load": 40,
+        "buffer_store": 9,
+        "global_load": 6,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 512,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "254"
+      ],
+      "shared_bytes": 67520
+    },
+    {
+      "run": "run1",
+      "dtype": "bfloat16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run1/code/bfloat16-8192-128-nomask-s1-w4.py.gz",
+      "cache_key": "D5QAYDQRFNJXD7IJ64K2BHKQB56DUBYTFQD557GM5ILTSXLGD72Q",
+      "ttgir": "run1/codegen/D5QAYDQRFNJXD7IJ64K2BHKQB56DUBYTFQD557GM5ILTSXLGD72Q-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "7893eb4e0d2b9132a889b4e56986cad6f626cb678b2d870e314b829334dd71cf",
+      "amdgcn": "run1/codegen/D5QAYDQRFNJXD7IJ64K2BHKQB56DUBYTFQD557GM5ILTSXLGD72Q-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "219e86bbe4e46f4861d86b9a0a04ae4a227354c28a7776fceafb71ff9c6c5216",
+      "instructions": {
+        "v_mfma": 32,
+        "ds_write": 17,
+        "buffer_load": 16,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 128,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "192"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run1",
+      "dtype": "bfloat16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run1/code/bfloat16-8192-128-nomask-s2-w4.py.gz",
+      "cache_key": "2LTZSL3RFA6PM6I7WN3YPGEATPI4ILJJQLU2YBAFM2QAWZKNHP2Q",
+      "ttgir": "run1/codegen/2LTZSL3RFA6PM6I7WN3YPGEATPI4ILJJQLU2YBAFM2QAWZKNHP2Q-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "5fa3ef36225f79e1e2930e4901fac29ed8e209100a3c039c2f0bc2c720285e46",
+      "amdgcn": "run1/codegen/2LTZSL3RFA6PM6I7WN3YPGEATPI4ILJJQLU2YBAFM2QAWZKNHP2Q-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "0175513e525f13758b84503cee97e28eb083fb3ce5f94d9fdb971b63373a533e",
+      "instructions": {
+        "v_mfma": 64,
+        "ds_write": 9,
+        "buffer_load": 24,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 256,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "226"
+      ],
+      "shared_bytes": 67520
+    },
+    {
+      "run": "run1",
+      "dtype": "bfloat16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run1/code/bfloat16-8192-128-causal-s1-w4.py.gz",
+      "cache_key": "IL6FY2GC53VS5URR4PJ37MF2O6YYXFFPVQONYLCXCNIN36U2ANDQ",
+      "ttgir": "run1/codegen/IL6FY2GC53VS5URR4PJ37MF2O6YYXFFPVQONYLCXCNIN36U2ANDQ-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "29b6881376998c735f5178b2253987c6cd354052490ffe3fd1bff875a7c760e3",
+      "amdgcn": "run1/codegen/IL6FY2GC53VS5URR4PJ37MF2O6YYXFFPVQONYLCXCNIN36U2ANDQ-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "63b50e209417257fbee07231584e404ee330a879a15e7db95f85cfdd85de80f2",
+      "instructions": {
+        "v_mfma": 64,
+        "ds_write": 25,
+        "buffer_load": 24,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 256,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "248"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run1",
+      "dtype": "bfloat16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run1/code/bfloat16-8192-128-causal-s2-w4.py.gz",
+      "cache_key": "Q5HP2DTU4KWWGWY4XDSM4SXJSAOY4ELYZVWQWPJQCE5AMTT42XPA",
+      "ttgir": "run1/codegen/Q5HP2DTU4KWWGWY4XDSM4SXJSAOY4ELYZVWQWPJQCE5AMTT42XPA-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "0afde7ca89250e284c4f75fa32f01232b06513584404e1c83b5a715cff2f16ba",
+      "amdgcn": "run1/codegen/Q5HP2DTU4KWWGWY4XDSM4SXJSAOY4ELYZVWQWPJQCE5AMTT42XPA-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "aec41690582af6aa579fa78e6160cf78d11453e908b96e7c2d7f4e18d8d0c1b1",
+      "instructions": {
+        "v_mfma": 128,
+        "ds_write": 9,
+        "buffer_load": 40,
+        "buffer_store": 9,
+        "global_load": 6,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 512,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "254"
+      ],
+      "shared_bytes": 67520
+    },
+    {
+      "run": "run2",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "nomask",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run2/code/float16-4096-64-nomask-s1-w4.py.gz",
+      "cache_key": "TAUTNHIOUJO4UQPHL6B4JHOBND4P7ZYFHC3YUHRZ4XLE6ZEC7KYQ",
+      "ttgir": "run2/codegen/TAUTNHIOUJO4UQPHL6B4JHOBND4P7ZYFHC3YUHRZ4XLE6ZEC7KYQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "6aa8c66231ce441b4a14a99b135141480296b1f241bfa2892742faffb05cfa5d",
+      "amdgcn": "run2/codegen/TAUTNHIOUJO4UQPHL6B4JHOBND4P7ZYFHC3YUHRZ4XLE6ZEC7KYQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "5a32efb71455fb605357d10272703b303a66ce8f3d9797b51317f38dbad55ce2",
+      "instructions": {
+        "v_mfma": 16,
+        "ds_write": 9,
+        "buffer_load": 8,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 64,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "116"
+      ],
+      "shared_bytes": 16384
+    },
+    {
+      "run": "run2",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "nomask",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run2/code/float16-4096-64-nomask-s2-w4.py.gz",
+      "cache_key": "DKVEVEUSAIXFJGFKAV7GLSTBVXVKE2XVKYT34O7ZGTWVJUTSVW5Q",
+      "ttgir": "run2/codegen/DKVEVEUSAIXFJGFKAV7GLSTBVXVKE2XVKYT34O7ZGTWVJUTSVW5Q-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "4f069a424cf6e785c7bf15ae97adc7c66bad6ba7d0e1a07ad2805db077fb46b0",
+      "amdgcn": "run2/codegen/DKVEVEUSAIXFJGFKAV7GLSTBVXVKE2XVKYT34O7ZGTWVJUTSVW5Q-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "191ea3f9df7a1604801426a8ba578e05d1942a04261ca2c393c07f6e7ce0e15f",
+      "instructions": {
+        "v_mfma": 32,
+        "ds_write": 5,
+        "buffer_load": 12,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 128,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "158"
+      ],
+      "shared_bytes": 33728
+    },
+    {
+      "run": "run2",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "nomask",
+      "num_stages": 2,
+      "num_warps": 8,
+      "generated_source": "run2/code/float16-4096-64-nomask-s2-w8.py.gz",
+      "cache_key": "KVFOW54XJTH4JJMAYM7NNY2264ZFRH4KVDX2LXYM4AP5RKCPEQUQ",
+      "ttgir": "run2/codegen/KVFOW54XJTH4JJMAYM7NNY2264ZFRH4KVDX2LXYM4AP5RKCPEQUQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "6074283558b69b8c3b7324a0e74bcaf2d560cf98373c1300fab5eebba289f036",
+      "amdgcn": "run2/codegen/KVFOW54XJTH4JJMAYM7NNY2264ZFRH4KVDX2LXYM4AP5RKCPEQUQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "6c34f29248b4ce9131d9b2b9e46e0da7a7a05026e9c5d38486b24b182207b3ab",
+      "instructions": {
+        "v_mfma": 24,
+        "ds_write": 70,
+        "buffer_load": 6,
+        "buffer_store": 3,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 192,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "140"
+      ],
+      "shared_bytes": 50112
+    },
+    {
+      "run": "run2",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "nomask",
+      "num_stages": 1,
+      "num_warps": 8,
+      "generated_source": "run2/code/float16-4096-64-nomask-s1-w8.py.gz",
+      "cache_key": "YS6DEMVFCQLA4L73CQ5JCL36CS6YBTPNK3MPBTQGEF2ISGFQ6SUQ",
+      "ttgir": "run2/codegen/YS6DEMVFCQLA4L73CQ5JCL36CS6YBTPNK3MPBTQGEF2ISGFQ6SUQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "b927245e4169106cecb95e57096027737630b0f3e79717d6cd52736758b6dbe0",
+      "amdgcn": "run2/codegen/YS6DEMVFCQLA4L73CQ5JCL36CS6YBTPNK3MPBTQGEF2ISGFQ6SUQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "26ea544009edd1e6fac08f2587ba9c1cd0f6873ebe5a8b6a636f3cd4c2ae1a8b",
+      "instructions": {
+        "v_mfma": 12,
+        "ds_write": 40,
+        "buffer_load": 4,
+        "buffer_store": 3,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 96,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "128"
+      ],
+      "shared_bytes": 16384
+    },
+    {
+      "run": "run2",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "causal",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run2/code/float16-4096-64-causal-s1-w4.py.gz",
+      "cache_key": "6NILHT3WJXV67C3FU63AVD7MSABHNUFJEI476HNJXOYNPNBFCBPQ",
+      "ttgir": "run2/codegen/6NILHT3WJXV67C3FU63AVD7MSABHNUFJEI476HNJXOYNPNBFCBPQ-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "43c4071ba6553e7408d78f3927183f65d6d2bbe89dcf21323192c85748792f5c",
+      "amdgcn": "run2/codegen/6NILHT3WJXV67C3FU63AVD7MSABHNUFJEI476HNJXOYNPNBFCBPQ-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "16ad5bccba2252d7ea7248c66958383d845ddcbe4621fc021eae7d2c9e04312b",
+      "instructions": {
+        "v_mfma": 32,
+        "ds_write": 13,
+        "buffer_load": 12,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 128,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "182"
+      ],
+      "shared_bytes": 16384
+    },
+    {
+      "run": "run2",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "causal",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run2/code/float16-4096-64-causal-s2-w4.py.gz",
+      "cache_key": "G42PED7NHRVTP4PUW67YUVGC7S2NF6IK6C4BPIREVONAQPASO4BA",
+      "ttgir": "run2/codegen/G42PED7NHRVTP4PUW67YUVGC7S2NF6IK6C4BPIREVONAQPASO4BA-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "c93d0329fdc24e8efc61dc6772b23955eb16f65902781a737c6972701102cd3a",
+      "amdgcn": "run2/codegen/G42PED7NHRVTP4PUW67YUVGC7S2NF6IK6C4BPIREVONAQPASO4BA-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "4541f20eb92650abf6782901ed902334c13a76fd1895303a260c7ed623383fa5",
+      "instructions": {
+        "v_mfma": 64,
+        "ds_write": 5,
+        "buffer_load": 20,
+        "buffer_store": 5,
+        "global_load": 6,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 256,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "170"
+      ],
+      "shared_bytes": 33728
+    },
+    {
+      "run": "run2",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "causal",
+      "num_stages": 2,
+      "num_warps": 8,
+      "generated_source": "run2/code/float16-4096-64-causal-s2-w8.py.gz",
+      "cache_key": "L42DESMZECHMHAEJLMNCSFRNNPS3TRUAEMKUZ7MGKHEG6KPYJV4Q",
+      "ttgir": "run2/codegen/L42DESMZECHMHAEJLMNCSFRNNPS3TRUAEMKUZ7MGKHEG6KPYJV4Q-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "b63bd11cd044003536eb6d15d50f7dfb9230304531fb1e6b808705082f3dde63",
+      "amdgcn": "run2/codegen/L42DESMZECHMHAEJLMNCSFRNNPS3TRUAEMKUZ7MGKHEG6KPYJV4Q-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "f578539a5137de33757cf55c044ca161189c39cd5af25ea9c68bfcce237e87d7",
+      "instructions": {
+        "v_mfma": 48,
+        "ds_write": 136,
+        "buffer_load": 10,
+        "buffer_store": 3,
+        "global_load": 6,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 384,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "175"
+      ],
+      "shared_bytes": 50112
+    },
+    {
+      "run": "run2",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "causal",
+      "num_stages": 1,
+      "num_warps": 8,
+      "generated_source": "run2/code/float16-4096-64-causal-s1-w8.py.gz",
+      "cache_key": "EATNTXAKXWCV4IULSAVXWIX7KA3SYOGVFPJ6M5KFZ4CRTN7ND45Q",
+      "ttgir": "run2/codegen/EATNTXAKXWCV4IULSAVXWIX7KA3SYOGVFPJ6M5KFZ4CRTN7ND45Q-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "fd38facba17941fc8a4677552c05df749f96c937cb401461f2a310dad1188b98",
+      "amdgcn": "run2/codegen/EATNTXAKXWCV4IULSAVXWIX7KA3SYOGVFPJ6M5KFZ4CRTN7ND45Q-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "2c5b69474cf9515c2acaecc62e7c33795c79c13e67c90eb0bd9c19f87c0a6e79",
+      "instructions": {
+        "v_mfma": 24,
+        "ds_write": 76,
+        "buffer_load": 6,
+        "buffer_store": 3,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 192,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "164"
+      ],
+      "shared_bytes": 16384
+    },
+    {
+      "run": "run2",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run2/code/float16-4096-128-nomask-s1-w4.py.gz",
+      "cache_key": "DDFOLAQNUFTDZ4LTUQOYRZZATVI5RLEGS7BK34TTXCOKW5KVQDYA",
+      "ttgir": "run2/codegen/DDFOLAQNUFTDZ4LTUQOYRZZATVI5RLEGS7BK34TTXCOKW5KVQDYA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "32f6a84437144095e7fc2b87ae81e0e6cc2417d39beb0a08605368cdbc923601",
+      "amdgcn": "run2/codegen/DDFOLAQNUFTDZ4LTUQOYRZZATVI5RLEGS7BK34TTXCOKW5KVQDYA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "34eee07303457b110d2e04f9e0ed2ad2917e1474a5b23077ac1077ddc1012e5f",
+      "instructions": {
+        "v_mfma": 32,
+        "ds_write": 17,
+        "buffer_load": 16,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 128,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "192"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run2",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run2/code/float16-4096-128-nomask-s2-w4.py.gz",
+      "cache_key": "BXHM6QD5JDNKH3R5P5JFTP3A75EG5KKR5A2YLV43ZTIWFKHPWT2A",
+      "ttgir": "run2/codegen/BXHM6QD5JDNKH3R5P5JFTP3A75EG5KKR5A2YLV43ZTIWFKHPWT2A-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "8dea156d89076742f1b1f2bbdc46a3cd5496120aae99161aa8d37818ab3a174d",
+      "amdgcn": "run2/codegen/BXHM6QD5JDNKH3R5P5JFTP3A75EG5KKR5A2YLV43ZTIWFKHPWT2A-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "46aad27d3ef14226490b7fb4cc2d30670db7c7c22d15906f6c253cd0dee1ed10",
+      "instructions": {
+        "v_mfma": 64,
+        "ds_write": 9,
+        "buffer_load": 24,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 256,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "226"
+      ],
+      "shared_bytes": 67520
+    },
+    {
+      "run": "run2",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 2,
+      "num_warps": 8,
+      "generated_source": "run2/code/float16-4096-128-nomask-s2-w8.py.gz",
+      "cache_key": "YDIJXRA5LN5XHH5NZUCAY74FIRG535S2UAR3YJGZGK7B5RBSODJA",
+      "ttgir": "run2/codegen/YDIJXRA5LN5XHH5NZUCAY74FIRG535S2UAR3YJGZGK7B5RBSODJA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "a3cc9db9de5e7e978b68e3fb5f78c957eb0e2577341f418566f4adebae76f456",
+      "amdgcn": "run2/codegen/YDIJXRA5LN5XHH5NZUCAY74FIRG535S2UAR3YJGZGK7B5RBSODJA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "fd0a6a18f55f082670df3371779d6fa08756490948d90a564e98e2a875078f2d",
+      "instructions": {
+        "v_mfma": 48,
+        "ds_write": 72,
+        "buffer_load": 12,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 384,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "196"
+      ],
+      "shared_bytes": 83904
+    },
+    {
+      "run": "run2",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 1,
+      "num_warps": 8,
+      "generated_source": "run2/code/float16-4096-128-nomask-s1-w8.py.gz",
+      "cache_key": "C4V4POQDNRRM7FRR2U5W2JLNVAJTQI7OPWGCUFQWVR7CZTBRKOVQ",
+      "ttgir": "run2/codegen/C4V4POQDNRRM7FRR2U5W2JLNVAJTQI7OPWGCUFQWVR7CZTBRKOVQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "cba9e21e36247b96bb7392b7e63b8146c193e96deb50417b922eb71c5b5e7aef",
+      "amdgcn": "run2/codegen/C4V4POQDNRRM7FRR2U5W2JLNVAJTQI7OPWGCUFQWVR7CZTBRKOVQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "aa166c0e006215e607a2612d5c538a7c55fd4d4277abb692f86e979fba569261",
+      "instructions": {
+        "v_mfma": 24,
+        "ds_write": 43,
+        "buffer_load": 8,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 192,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "166"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run2",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run2/code/float16-4096-128-causal-s1-w4.py.gz",
+      "cache_key": "OSIEMOLCZCA6JD6Y47PMFW5GRN3OQLKLF7GM76QQJFLE5624MLOQ",
+      "ttgir": "run2/codegen/OSIEMOLCZCA6JD6Y47PMFW5GRN3OQLKLF7GM76QQJFLE5624MLOQ-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "2ceb28d930141a09a8cc58fc03768a4bfb56971314b2b09ae8b96872302ae3eb",
+      "amdgcn": "run2/codegen/OSIEMOLCZCA6JD6Y47PMFW5GRN3OQLKLF7GM76QQJFLE5624MLOQ-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "a40b4d77ea206429640544918c35a50229dae5adf394cab4def52b0fa191d456",
+      "instructions": {
+        "v_mfma": 64,
+        "ds_write": 25,
+        "buffer_load": 24,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 256,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "248"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run2",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run2/code/float16-4096-128-causal-s2-w4.py.gz",
+      "cache_key": "GG7HFZAPCJQ3UKKNJWGMN5QKFJZBHUYYRU3FWI3RRCXD4HQGYJCA",
+      "ttgir": "run2/codegen/GG7HFZAPCJQ3UKKNJWGMN5QKFJZBHUYYRU3FWI3RRCXD4HQGYJCA-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "791d7a8026516cdb95ca5b14ab9ee1bff3803763efaf5b73035418017f74b2a5",
+      "amdgcn": "run2/codegen/GG7HFZAPCJQ3UKKNJWGMN5QKFJZBHUYYRU3FWI3RRCXD4HQGYJCA-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "59bce2cd40e97e3d65be910cd4c0e36e14ab2c3ab6da7a10ccd5a50c1eaeccde",
+      "instructions": {
+        "v_mfma": 128,
+        "ds_write": 9,
+        "buffer_load": 40,
+        "buffer_store": 9,
+        "global_load": 6,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 512,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "254"
+      ],
+      "shared_bytes": 67520
+    },
+    {
+      "run": "run2",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 2,
+      "num_warps": 8,
+      "generated_source": "run2/code/float16-4096-128-causal-s2-w8.py.gz",
+      "cache_key": "R2FE7SQKJYNOMYHY4KFQPW737MT2WCQDXDY3IUHYO6QF6ZK5MCCA",
+      "ttgir": "run2/codegen/R2FE7SQKJYNOMYHY4KFQPW737MT2WCQDXDY3IUHYO6QF6ZK5MCCA-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "333bb3dea13f43165f699bbc851c34369a40c9476ba09775124dabcc7fb76629",
+      "amdgcn": "run2/codegen/R2FE7SQKJYNOMYHY4KFQPW737MT2WCQDXDY3IUHYO6QF6ZK5MCCA-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "8b1906f9a4be8a62f1ca9bcfdd1504883b1b82257743f586510c4e824ac8134e",
+      "instructions": {
+        "v_mfma": 96,
+        "ds_write": 138,
+        "buffer_load": 20,
+        "buffer_store": 5,
+        "global_load": 6,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 768,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "235"
+      ],
+      "shared_bytes": 83904
+    },
+    {
+      "run": "run2",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 1,
+      "num_warps": 8,
+      "generated_source": "run2/code/float16-4096-128-causal-s1-w8.py.gz",
+      "cache_key": "UR6HSF7KSAJSSPA366J3ZLP5UOERA7ZZG3B7BX2KTCEW2KTJOYEA",
+      "ttgir": "run2/codegen/UR6HSF7KSAJSSPA366J3ZLP5UOERA7ZZG3B7BX2KTCEW2KTJOYEA-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "af031d7e07c751379268ffd06c666380e6e9dd1b6737b3f79789e1deaa41d884",
+      "amdgcn": "run2/codegen/UR6HSF7KSAJSSPA366J3ZLP5UOERA7ZZG3B7BX2KTCEW2KTJOYEA-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "b8984e5923ff8c32a39108d2305259bb58d8d7daf97a858eacd70b5d430164ca",
+      "instructions": {
+        "v_mfma": 48,
+        "ds_write": 80,
+        "buffer_load": 12,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 384,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "218"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run2",
+      "dtype": "float16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run2/code/float16-8192-128-nomask-s1-w4.py.gz",
+      "cache_key": "45UALJ5TGCQKXUCGNSLRAJPRNQXMB5XBL4WXGI5ENJ6ERBGTPV2Q",
+      "ttgir": "run2/codegen/45UALJ5TGCQKXUCGNSLRAJPRNQXMB5XBL4WXGI5ENJ6ERBGTPV2Q-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "419663b7819d18e279731f5501975595654edb59a9f99f3d01f1494636b40c30",
+      "amdgcn": "run2/codegen/45UALJ5TGCQKXUCGNSLRAJPRNQXMB5XBL4WXGI5ENJ6ERBGTPV2Q-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "c35ffaa55300a3496cfdfb301ef2c61f2c6ee1d09e34bdc2dd8eec46c41f05a8",
+      "instructions": {
+        "v_mfma": 32,
+        "ds_write": 17,
+        "buffer_load": 16,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 128,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "192"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run2",
+      "dtype": "float16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run2/code/float16-8192-128-nomask-s2-w4.py.gz",
+      "cache_key": "4AYSAL5KO5M7T5J5PUVYLB4LB5VG4RCNVIUOARMJTMBN4SEXRTAA",
+      "ttgir": "run2/codegen/4AYSAL5KO5M7T5J5PUVYLB4LB5VG4RCNVIUOARMJTMBN4SEXRTAA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "9fcd9efb624c596048e5cb71708929a09b2b89167cc45bbaa87aeaf616ae0414",
+      "amdgcn": "run2/codegen/4AYSAL5KO5M7T5J5PUVYLB4LB5VG4RCNVIUOARMJTMBN4SEXRTAA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "915fced686b9b1ca055d456a8d697831e526f6d0ef487c5a8360e49f0887d2cb",
+      "instructions": {
+        "v_mfma": 64,
+        "ds_write": 9,
+        "buffer_load": 24,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 256,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "226"
+      ],
+      "shared_bytes": 67520
+    },
+    {
+      "run": "run2",
+      "dtype": "float16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 2,
+      "num_warps": 8,
+      "generated_source": "run2/code/float16-8192-128-nomask-s2-w8.py.gz",
+      "cache_key": "IIWCI4D3AY5X4CB5ZNIZGIBEQOQESYBTDLMI73WJNNYBNU7LKPCA",
+      "ttgir": "run2/codegen/IIWCI4D3AY5X4CB5ZNIZGIBEQOQESYBTDLMI73WJNNYBNU7LKPCA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "3ba9754173de3a1f0bc7f067aac06b05d5d1c659896cc9e2244b49ef7f888a6c",
+      "amdgcn": "run2/codegen/IIWCI4D3AY5X4CB5ZNIZGIBEQOQESYBTDLMI73WJNNYBNU7LKPCA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "0d08010d7c445f802a24df73da92a994895b34f608c34bbdcdb1bab0b7f1709d",
+      "instructions": {
+        "v_mfma": 48,
+        "ds_write": 72,
+        "buffer_load": 12,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 384,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "196"
+      ],
+      "shared_bytes": 83904
+    },
+    {
+      "run": "run2",
+      "dtype": "float16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 1,
+      "num_warps": 8,
+      "generated_source": "run2/code/float16-8192-128-nomask-s1-w8.py.gz",
+      "cache_key": "WV343QRYL6TSY3VKJUVWBCOC2NOLII6SSQXUSFJKLU765GGRVZ7Q",
+      "ttgir": "run2/codegen/WV343QRYL6TSY3VKJUVWBCOC2NOLII6SSQXUSFJKLU765GGRVZ7Q-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "af084f64fd987f1476f5d2ab601399776a9b82e9e0c842e003dbebbc07ec0ef9",
+      "amdgcn": "run2/codegen/WV343QRYL6TSY3VKJUVWBCOC2NOLII6SSQXUSFJKLU765GGRVZ7Q-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "822825a98b31dc82ba134c2ced7eccc6ae56a435f2532507e3a3af78c4d5717a",
+      "instructions": {
+        "v_mfma": 24,
+        "ds_write": 43,
+        "buffer_load": 8,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 192,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "166"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run2",
+      "dtype": "float16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run2/code/float16-8192-128-causal-s1-w4.py.gz",
+      "cache_key": "D4TEQOCF2HFMTHWRD4RYAHGQLFST4YBCQS45PLJBOV55CNACCY4A",
+      "ttgir": "run2/codegen/D4TEQOCF2HFMTHWRD4RYAHGQLFST4YBCQS45PLJBOV55CNACCY4A-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "109da993f9d811010358c1e5a803ed375f65cca002a55e9543a7554144eca576",
+      "amdgcn": "run2/codegen/D4TEQOCF2HFMTHWRD4RYAHGQLFST4YBCQS45PLJBOV55CNACCY4A-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "c0ad995fefa52d8f9ae26cb656cd54b569fe764fbb3989e4a9c6f850611ea763",
+      "instructions": {
+        "v_mfma": 64,
+        "ds_write": 25,
+        "buffer_load": 24,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 256,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "248"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run2",
+      "dtype": "float16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run2/code/float16-8192-128-causal-s2-w4.py.gz",
+      "cache_key": "YUQYR4RZRTFBQ74FIFJIBDL36TRK64KXECLIAB34NHBSUXTKXLDQ",
+      "ttgir": "run2/codegen/YUQYR4RZRTFBQ74FIFJIBDL36TRK64KXECLIAB34NHBSUXTKXLDQ-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "e4c0ef7ea17044010824882fe27593110d79f342662dae1bfbf3ad0d88fcf416",
+      "amdgcn": "run2/codegen/YUQYR4RZRTFBQ74FIFJIBDL36TRK64KXECLIAB34NHBSUXTKXLDQ-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "14b00fe5d8c9cd12a608f8d24bc9c39c4760de2c90b01209e4aa2fff12cc8522",
+      "instructions": {
+        "v_mfma": 128,
+        "ds_write": 9,
+        "buffer_load": 40,
+        "buffer_store": 9,
+        "global_load": 6,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 512,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "254"
+      ],
+      "shared_bytes": 67520
+    },
+    {
+      "run": "run2",
+      "dtype": "float16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 2,
+      "num_warps": 8,
+      "generated_source": "run2/code/float16-8192-128-causal-s2-w8.py.gz",
+      "cache_key": "YJGAASSGRG63J2FZH6I2BTZNYXPT6C4ITZN64F3LBSL6T5KC4AYQ",
+      "ttgir": "run2/codegen/YJGAASSGRG63J2FZH6I2BTZNYXPT6C4ITZN64F3LBSL6T5KC4AYQ-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "461e4447a9a8fdcbb9d694d1b238e1e1e2c7929a974b06018f77ab3f361db884",
+      "amdgcn": "run2/codegen/YJGAASSGRG63J2FZH6I2BTZNYXPT6C4ITZN64F3LBSL6T5KC4AYQ-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "e045040ac031ea4357d9cfcb278ec03131f88ff8818ee56d7a73658f7863ea81",
+      "instructions": {
+        "v_mfma": 96,
+        "ds_write": 138,
+        "buffer_load": 20,
+        "buffer_store": 5,
+        "global_load": 6,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 768,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "235"
+      ],
+      "shared_bytes": 83904
+    },
+    {
+      "run": "run2",
+      "dtype": "float16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 1,
+      "num_warps": 8,
+      "generated_source": "run2/code/float16-8192-128-causal-s1-w8.py.gz",
+      "cache_key": "3GKVEA2W6CPGFRF6RXB37PRVXR6Q3IMTPTB27PLTAQS75V2PIULQ",
+      "ttgir": "run2/codegen/3GKVEA2W6CPGFRF6RXB37PRVXR6Q3IMTPTB27PLTAQS75V2PIULQ-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "eb26a9d0b6f647cf7e7cdba20ba1d4ef49cc3aebc9db5989c892c3f6bf5500d7",
+      "amdgcn": "run2/codegen/3GKVEA2W6CPGFRF6RXB37PRVXR6Q3IMTPTB27PLTAQS75V2PIULQ-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "6e775539011d6c8f1a4c470452486eeea7d74ffc71d2407f44c37145261dd248",
+      "instructions": {
+        "v_mfma": 48,
+        "ds_write": 80,
+        "buffer_load": 12,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 384,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "218"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run2",
+      "dtype": "bfloat16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "nomask",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run2/code/bfloat16-4096-64-nomask-s2-w4.py.gz",
+      "cache_key": "25XYKMREPYV5SNMXXFYP5GOM47IRZ7ST6TE2OX2BDTATFWZWSZTQ",
+      "ttgir": "run2/codegen/25XYKMREPYV5SNMXXFYP5GOM47IRZ7ST6TE2OX2BDTATFWZWSZTQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "852fd3757a1dec93dcbe793ce08cba0a5e37a036213ade52a09f2ef7c9b2a922",
+      "amdgcn": "run2/codegen/25XYKMREPYV5SNMXXFYP5GOM47IRZ7ST6TE2OX2BDTATFWZWSZTQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "f53a84e859205df14e796b2c5898947489bc97323f22c3aa51cba22a0c877bfc",
+      "instructions": {
+        "v_mfma": 32,
+        "ds_write": 5,
+        "buffer_load": 12,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 128,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "158"
+      ],
+      "shared_bytes": 33728
+    },
+    {
+      "run": "run2",
+      "dtype": "bfloat16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "nomask",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run2/code/bfloat16-4096-64-nomask-s1-w4.py.gz",
+      "cache_key": "7REGVYGFTSGYRRLFLEVYUS2ZMLXMEITLOHTFC4UIZL6U72WCR7CA",
+      "ttgir": "run2/codegen/7REGVYGFTSGYRRLFLEVYUS2ZMLXMEITLOHTFC4UIZL6U72WCR7CA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "c7743e2882982277868eab0ecd44300e39d45698897ab8bedff7488c529b27da",
+      "amdgcn": "run2/codegen/7REGVYGFTSGYRRLFLEVYUS2ZMLXMEITLOHTFC4UIZL6U72WCR7CA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "70326de83b729ee95a44d2df05d31cb80a5f290481d99d1c4e83c1db965ea662",
+      "instructions": {
+        "v_mfma": 16,
+        "ds_write": 9,
+        "buffer_load": 8,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 64,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "116"
+      ],
+      "shared_bytes": 16384
+    },
+    {
+      "run": "run2",
+      "dtype": "bfloat16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "causal",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run2/code/bfloat16-4096-64-causal-s2-w4.py.gz",
+      "cache_key": "LJOLANNDZDVWZV7ZGY67H4VTKPZ5ATJNVED4B66YKOAIBSXMS5SQ",
+      "ttgir": "run2/codegen/LJOLANNDZDVWZV7ZGY67H4VTKPZ5ATJNVED4B66YKOAIBSXMS5SQ-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "bae2e34c131c9df32f85e0158cc604e4585256d45a28552633f3927f59195cad",
+      "amdgcn": "run2/codegen/LJOLANNDZDVWZV7ZGY67H4VTKPZ5ATJNVED4B66YKOAIBSXMS5SQ-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "2152d71331af3562954648f2a800685f6a2e30c78b975a5109359a622459aede",
+      "instructions": {
+        "v_mfma": 64,
+        "ds_write": 5,
+        "buffer_load": 20,
+        "buffer_store": 5,
+        "global_load": 6,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 256,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "170"
+      ],
+      "shared_bytes": 33728
+    },
+    {
+      "run": "run2",
+      "dtype": "bfloat16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "causal",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run2/code/bfloat16-4096-64-causal-s1-w4.py.gz",
+      "cache_key": "SLO7EUHOKY4KW6QKNBMRQFADG2LIU33FQCLUIKPBX3EFF5WYBKZQ",
+      "ttgir": "run2/codegen/SLO7EUHOKY4KW6QKNBMRQFADG2LIU33FQCLUIKPBX3EFF5WYBKZQ-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "37164e9622441d20b667587d529cdd17bfaed255a415b82cf691738240489412",
+      "amdgcn": "run2/codegen/SLO7EUHOKY4KW6QKNBMRQFADG2LIU33FQCLUIKPBX3EFF5WYBKZQ-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "c9daffbf6bf8affb6bb459642a6ac5f6761f2f73c063fbf8cfebaf8597da012d",
+      "instructions": {
+        "v_mfma": 32,
+        "ds_write": 13,
+        "buffer_load": 12,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 128,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "182"
+      ],
+      "shared_bytes": 16384
+    },
+    {
+      "run": "run2",
+      "dtype": "bfloat16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run2/code/bfloat16-4096-128-nomask-s2-w4.py.gz",
+      "cache_key": "PB2GF5BKOGUPV5K5QVUZUEM6XF5SC2PPS4BBTTDZ6KUVZRUAVVTQ",
+      "ttgir": "run2/codegen/PB2GF5BKOGUPV5K5QVUZUEM6XF5SC2PPS4BBTTDZ6KUVZRUAVVTQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "6b66c59a706ee896a55c4fa4300cfcb2cfdcfd809d9d0b807b9324b839df707b",
+      "amdgcn": "run2/codegen/PB2GF5BKOGUPV5K5QVUZUEM6XF5SC2PPS4BBTTDZ6KUVZRUAVVTQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "b469dbcdb821df4e15d5a3ead7e83ccdeafcab92d1f2e3411418206b52b6d3f3",
+      "instructions": {
+        "v_mfma": 64,
+        "ds_write": 9,
+        "buffer_load": 24,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 256,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "226"
+      ],
+      "shared_bytes": 67520
+    },
+    {
+      "run": "run2",
+      "dtype": "bfloat16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run2/code/bfloat16-4096-128-nomask-s1-w4.py.gz",
+      "cache_key": "2CXASSA572AS3OAU7SZSUR37U5SWRSMNPOXY6WNP22SESBETR5SQ",
+      "ttgir": "run2/codegen/2CXASSA572AS3OAU7SZSUR37U5SWRSMNPOXY6WNP22SESBETR5SQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "40094a524c7f428c613ca8f93181cb4d3b7656cf45f04db7b26527a843b6b552",
+      "amdgcn": "run2/codegen/2CXASSA572AS3OAU7SZSUR37U5SWRSMNPOXY6WNP22SESBETR5SQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "4b213df5999240b9f5dcc33363b674891e367810bf39659b6e2bb7fd66e0d9bc",
+      "instructions": {
+        "v_mfma": 32,
+        "ds_write": 17,
+        "buffer_load": 16,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 128,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "192"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run2",
+      "dtype": "bfloat16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run2/code/bfloat16-4096-128-causal-s2-w4.py.gz",
+      "cache_key": "6J5X2MWRA2OWZ7C2OI2E2YIECJFZTRPA7QPIVASTJ6XODY4CJ6HA",
+      "ttgir": "run2/codegen/6J5X2MWRA2OWZ7C2OI2E2YIECJFZTRPA7QPIVASTJ6XODY4CJ6HA-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "2f127f4c3fcf175c4afba6cef7b947192d8e05d0f166dedf22bd81eed40e5673",
+      "amdgcn": "run2/codegen/6J5X2MWRA2OWZ7C2OI2E2YIECJFZTRPA7QPIVASTJ6XODY4CJ6HA-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "34df7591532650b2bd387891a74b0f87a3272f07c70050ce7c01d497205db3fa",
+      "instructions": {
+        "v_mfma": 128,
+        "ds_write": 9,
+        "buffer_load": 40,
+        "buffer_store": 9,
+        "global_load": 6,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 512,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "254"
+      ],
+      "shared_bytes": 67520
+    },
+    {
+      "run": "run2",
+      "dtype": "bfloat16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run2/code/bfloat16-4096-128-causal-s1-w4.py.gz",
+      "cache_key": "Q5JEFZFY4NK7CSDH7YA2FZFOGUN4Z6QUSLSPJ7CYYPUON4HJCF2Q",
+      "ttgir": "run2/codegen/Q5JEFZFY4NK7CSDH7YA2FZFOGUN4Z6QUSLSPJ7CYYPUON4HJCF2Q-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "556b7d65df1ec3cc02bc7f3b6fdaf99640f12b098327e31fac63da6b8daafe1b",
+      "amdgcn": "run2/codegen/Q5JEFZFY4NK7CSDH7YA2FZFOGUN4Z6QUSLSPJ7CYYPUON4HJCF2Q-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "11afb1ba447e5c6da7083400a1117970e9a91e7811428ed52bfe9e10def5238b",
+      "instructions": {
+        "v_mfma": 64,
+        "ds_write": 25,
+        "buffer_load": 24,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 256,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "248"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run2",
+      "dtype": "bfloat16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run2/code/bfloat16-8192-128-nomask-s2-w4.py.gz",
+      "cache_key": "2LTZSL3RFA6PM6I7WN3YPGEATPI4ILJJQLU2YBAFM2QAWZKNHP2Q",
+      "ttgir": "run2/codegen/2LTZSL3RFA6PM6I7WN3YPGEATPI4ILJJQLU2YBAFM2QAWZKNHP2Q-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "309c19624bfabcf95bcdef31a00452a53478c3f657cbf06d90db7cf60c9ba802",
+      "amdgcn": "run2/codegen/2LTZSL3RFA6PM6I7WN3YPGEATPI4ILJJQLU2YBAFM2QAWZKNHP2Q-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "b961366b95e33715b7498df7537ed461852df00a2eaefe2a4c4aa7a3c0acc737",
+      "instructions": {
+        "v_mfma": 64,
+        "ds_write": 9,
+        "buffer_load": 24,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 256,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "226"
+      ],
+      "shared_bytes": 67520
+    },
+    {
+      "run": "run2",
+      "dtype": "bfloat16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run2/code/bfloat16-8192-128-nomask-s1-w4.py.gz",
+      "cache_key": "D5QAYDQRFNJXD7IJ64K2BHKQB56DUBYTFQD557GM5ILTSXLGD72Q",
+      "ttgir": "run2/codegen/D5QAYDQRFNJXD7IJ64K2BHKQB56DUBYTFQD557GM5ILTSXLGD72Q-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "5db383da8a001a550476159922e93fd15f452d3535b864c4d84af997ec203ee1",
+      "amdgcn": "run2/codegen/D5QAYDQRFNJXD7IJ64K2BHKQB56DUBYTFQD557GM5ILTSXLGD72Q-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "8e5de7a62ea5b9415587bdf3e7bb95157b294ede81744ac8fdbf980f38c55afe",
+      "instructions": {
+        "v_mfma": 32,
+        "ds_write": 17,
+        "buffer_load": 16,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 128,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "192"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run2",
+      "dtype": "bfloat16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run2/code/bfloat16-8192-128-causal-s2-w4.py.gz",
+      "cache_key": "Q5HP2DTU4KWWGWY4XDSM4SXJSAOY4ELYZVWQWPJQCE5AMTT42XPA",
+      "ttgir": "run2/codegen/Q5HP2DTU4KWWGWY4XDSM4SXJSAOY4ELYZVWQWPJQCE5AMTT42XPA-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "8869f021faa7e9267966a26662c38a95a28de1af80e220c7636c5f7ff3f9d3ac",
+      "amdgcn": "run2/codegen/Q5HP2DTU4KWWGWY4XDSM4SXJSAOY4ELYZVWQWPJQCE5AMTT42XPA-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "9ceb31793c52726a60e7ef384427e1c2c3cd056590bda3b4418dc8cbd2832232",
+      "instructions": {
+        "v_mfma": 128,
+        "ds_write": 9,
+        "buffer_load": 40,
+        "buffer_store": 9,
+        "global_load": 6,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 512,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "254"
+      ],
+      "shared_bytes": 67520
+    },
+    {
+      "run": "run2",
+      "dtype": "bfloat16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run2/code/bfloat16-8192-128-causal-s1-w4.py.gz",
+      "cache_key": "IL6FY2GC53VS5URR4PJ37MF2O6YYXFFPVQONYLCXCNIN36U2ANDQ",
+      "ttgir": "run2/codegen/IL6FY2GC53VS5URR4PJ37MF2O6YYXFFPVQONYLCXCNIN36U2ANDQ-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "b6e4168b71802bd33e3ecff6aba05d363045b997ad0ea7c19d6d61c572f7ada4",
+      "amdgcn": "run2/codegen/IL6FY2GC53VS5URR4PJ37MF2O6YYXFFPVQONYLCXCNIN36U2ANDQ-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "7d0e604aae42cdaf8251939e6681867fba97449e5edcbc589aba328d2006767c",
+      "instructions": {
+        "v_mfma": 64,
+        "ds_write": 25,
+        "buffer_load": 24,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 256,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "248"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run3",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "nomask",
+      "num_stages": 1,
+      "num_warps": 8,
+      "generated_source": "run3/code/float16-4096-64-nomask-s1-w8.py.gz",
+      "cache_key": "YS6DEMVFCQLA4L73CQ5JCL36CS6YBTPNK3MPBTQGEF2ISGFQ6SUQ",
+      "ttgir": "run3/codegen/YS6DEMVFCQLA4L73CQ5JCL36CS6YBTPNK3MPBTQGEF2ISGFQ6SUQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "60dc892ae2207d427d765b7daf334fa55fe4edcea5cf9ffd3f0b1530b0d010f0",
+      "amdgcn": "run3/codegen/YS6DEMVFCQLA4L73CQ5JCL36CS6YBTPNK3MPBTQGEF2ISGFQ6SUQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "5e616fe1950f287194af6f7b661e0394b19fd705deed63200520478a48eab731",
+      "instructions": {
+        "v_mfma": 12,
+        "ds_write": 40,
+        "buffer_load": 4,
+        "buffer_store": 3,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 96,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "128"
+      ],
+      "shared_bytes": 16384
+    },
+    {
+      "run": "run3",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "nomask",
+      "num_stages": 2,
+      "num_warps": 8,
+      "generated_source": "run3/code/float16-4096-64-nomask-s2-w8.py.gz",
+      "cache_key": "KVFOW54XJTH4JJMAYM7NNY2264ZFRH4KVDX2LXYM4AP5RKCPEQUQ",
+      "ttgir": "run3/codegen/KVFOW54XJTH4JJMAYM7NNY2264ZFRH4KVDX2LXYM4AP5RKCPEQUQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "62ebb74d1e4711126ead23dcf63ae8ccb7447c0dcac774854deed602909a71b7",
+      "amdgcn": "run3/codegen/KVFOW54XJTH4JJMAYM7NNY2264ZFRH4KVDX2LXYM4AP5RKCPEQUQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "af13e95098da5cb7fa0a163e91b59129fa27bc66d2bfe1b588eaadb85bcc93a7",
+      "instructions": {
+        "v_mfma": 24,
+        "ds_write": 70,
+        "buffer_load": 6,
+        "buffer_store": 3,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 192,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "140"
+      ],
+      "shared_bytes": 50112
+    },
+    {
+      "run": "run3",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "nomask",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run3/code/float16-4096-64-nomask-s2-w4.py.gz",
+      "cache_key": "DKVEVEUSAIXFJGFKAV7GLSTBVXVKE2XVKYT34O7ZGTWVJUTSVW5Q",
+      "ttgir": "run3/codegen/DKVEVEUSAIXFJGFKAV7GLSTBVXVKE2XVKYT34O7ZGTWVJUTSVW5Q-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "af42fdedc5af22098b5c3eb7a8f90c106c188e2f9a52ea677c91f3e3306b359f",
+      "amdgcn": "run3/codegen/DKVEVEUSAIXFJGFKAV7GLSTBVXVKE2XVKYT34O7ZGTWVJUTSVW5Q-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "96620ba18a2345740bf0a46d22c4ea1847735f22adc6926336ba6d6758734fc4",
+      "instructions": {
+        "v_mfma": 32,
+        "ds_write": 5,
+        "buffer_load": 12,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 128,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "158"
+      ],
+      "shared_bytes": 33728
+    },
+    {
+      "run": "run3",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "nomask",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run3/code/float16-4096-64-nomask-s1-w4.py.gz",
+      "cache_key": "TAUTNHIOUJO4UQPHL6B4JHOBND4P7ZYFHC3YUHRZ4XLE6ZEC7KYQ",
+      "ttgir": "run3/codegen/TAUTNHIOUJO4UQPHL6B4JHOBND4P7ZYFHC3YUHRZ4XLE6ZEC7KYQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "0aec86975cc680d9d9f6bb88efad3de98d344535edeb3d3faa269f56a7bd6ad4",
+      "amdgcn": "run3/codegen/TAUTNHIOUJO4UQPHL6B4JHOBND4P7ZYFHC3YUHRZ4XLE6ZEC7KYQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "22b3c401a41f5ef9a6bb972c95db9a431d22945584180bc33c9257c29e5f1416",
+      "instructions": {
+        "v_mfma": 16,
+        "ds_write": 9,
+        "buffer_load": 8,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 64,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "116"
+      ],
+      "shared_bytes": 16384
+    },
+    {
+      "run": "run3",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "causal",
+      "num_stages": 1,
+      "num_warps": 8,
+      "generated_source": "run3/code/float16-4096-64-causal-s1-w8.py.gz",
+      "cache_key": "EATNTXAKXWCV4IULSAVXWIX7KA3SYOGVFPJ6M5KFZ4CRTN7ND45Q",
+      "ttgir": "run3/codegen/EATNTXAKXWCV4IULSAVXWIX7KA3SYOGVFPJ6M5KFZ4CRTN7ND45Q-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "111ad5d9ba236ec5e586aa5d21964846d421518ce69f659ad819c12d6f6b70ad",
+      "amdgcn": "run3/codegen/EATNTXAKXWCV4IULSAVXWIX7KA3SYOGVFPJ6M5KFZ4CRTN7ND45Q-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "49ce1311f7752f5ba974bf3f55e644c6cac1242c9f03c140c75ff79b8d0af0f2",
+      "instructions": {
+        "v_mfma": 24,
+        "ds_write": 76,
+        "buffer_load": 6,
+        "buffer_store": 3,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 192,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "164"
+      ],
+      "shared_bytes": 16384
+    },
+    {
+      "run": "run3",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "causal",
+      "num_stages": 2,
+      "num_warps": 8,
+      "generated_source": "run3/code/float16-4096-64-causal-s2-w8.py.gz",
+      "cache_key": "L42DESMZECHMHAEJLMNCSFRNNPS3TRUAEMKUZ7MGKHEG6KPYJV4Q",
+      "ttgir": "run3/codegen/L42DESMZECHMHAEJLMNCSFRNNPS3TRUAEMKUZ7MGKHEG6KPYJV4Q-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "e9d3d889f298d9f05090ddb943dc4dcd004f257b06b9c672a78f86a856c20e86",
+      "amdgcn": "run3/codegen/L42DESMZECHMHAEJLMNCSFRNNPS3TRUAEMKUZ7MGKHEG6KPYJV4Q-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "b71fa0e0b5fc9247d8d31fd24937ed0708a817c1b4a5a779470725a7affb0dea",
+      "instructions": {
+        "v_mfma": 48,
+        "ds_write": 136,
+        "buffer_load": 10,
+        "buffer_store": 3,
+        "global_load": 6,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 384,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "175"
+      ],
+      "shared_bytes": 50112
+    },
+    {
+      "run": "run3",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "causal",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run3/code/float16-4096-64-causal-s2-w4.py.gz",
+      "cache_key": "G42PED7NHRVTP4PUW67YUVGC7S2NF6IK6C4BPIREVONAQPASO4BA",
+      "ttgir": "run3/codegen/G42PED7NHRVTP4PUW67YUVGC7S2NF6IK6C4BPIREVONAQPASO4BA-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "dc0a6783f9189a7bf04915493f5ff17d8d348046744e87f2308626b51627687e",
+      "amdgcn": "run3/codegen/G42PED7NHRVTP4PUW67YUVGC7S2NF6IK6C4BPIREVONAQPASO4BA-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "288f2740c5186df23c10df7f64f781e4710b3dfe4c1bae3d31e4bc45b2c8a9ca",
+      "instructions": {
+        "v_mfma": 64,
+        "ds_write": 5,
+        "buffer_load": 20,
+        "buffer_store": 5,
+        "global_load": 6,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 256,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "170"
+      ],
+      "shared_bytes": 33728
+    },
+    {
+      "run": "run3",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "causal",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run3/code/float16-4096-64-causal-s1-w4.py.gz",
+      "cache_key": "6NILHT3WJXV67C3FU63AVD7MSABHNUFJEI476HNJXOYNPNBFCBPQ",
+      "ttgir": "run3/codegen/6NILHT3WJXV67C3FU63AVD7MSABHNUFJEI476HNJXOYNPNBFCBPQ-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "0177fb890b3a00278189d5044d652bba5a9e00c72334279f50557d5412e10ec2",
+      "amdgcn": "run3/codegen/6NILHT3WJXV67C3FU63AVD7MSABHNUFJEI476HNJXOYNPNBFCBPQ-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "b5587decd33b7c997bd89b4b253ac77e2f2667d220d5c24ba7d4a9bd6aecc972",
+      "instructions": {
+        "v_mfma": 32,
+        "ds_write": 13,
+        "buffer_load": 12,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 128,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "182"
+      ],
+      "shared_bytes": 16384
+    },
+    {
+      "run": "run3",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 1,
+      "num_warps": 8,
+      "generated_source": "run3/code/float16-4096-128-nomask-s1-w8.py.gz",
+      "cache_key": "C4V4POQDNRRM7FRR2U5W2JLNVAJTQI7OPWGCUFQWVR7CZTBRKOVQ",
+      "ttgir": "run3/codegen/C4V4POQDNRRM7FRR2U5W2JLNVAJTQI7OPWGCUFQWVR7CZTBRKOVQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "4c2e721d722995ef16e8bb8a10a6ed76def9848dc36c765fa58d25b6bba2f8f5",
+      "amdgcn": "run3/codegen/C4V4POQDNRRM7FRR2U5W2JLNVAJTQI7OPWGCUFQWVR7CZTBRKOVQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "987c2ab91d1aa7841bcef36013f75aefeb85626f68a0fced43defb40568306dc",
+      "instructions": {
+        "v_mfma": 24,
+        "ds_write": 43,
+        "buffer_load": 8,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 192,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "166"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run3",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 2,
+      "num_warps": 8,
+      "generated_source": "run3/code/float16-4096-128-nomask-s2-w8.py.gz",
+      "cache_key": "YDIJXRA5LN5XHH5NZUCAY74FIRG535S2UAR3YJGZGK7B5RBSODJA",
+      "ttgir": "run3/codegen/YDIJXRA5LN5XHH5NZUCAY74FIRG535S2UAR3YJGZGK7B5RBSODJA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "79976a99b2924b039365387a65a587b8197f870408fe7d5186ce6b24ece5f4a6",
+      "amdgcn": "run3/codegen/YDIJXRA5LN5XHH5NZUCAY74FIRG535S2UAR3YJGZGK7B5RBSODJA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "87c153357a4d3233385d5b39f5cac781b6d2e5fa5e2a762e235e50177e90a964",
+      "instructions": {
+        "v_mfma": 48,
+        "ds_write": 72,
+        "buffer_load": 12,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 384,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "196"
+      ],
+      "shared_bytes": 83904
+    },
+    {
+      "run": "run3",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run3/code/float16-4096-128-nomask-s2-w4.py.gz",
+      "cache_key": "BXHM6QD5JDNKH3R5P5JFTP3A75EG5KKR5A2YLV43ZTIWFKHPWT2A",
+      "ttgir": "run3/codegen/BXHM6QD5JDNKH3R5P5JFTP3A75EG5KKR5A2YLV43ZTIWFKHPWT2A-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "fb5c5c49953077f52e4f6f9f2c038c80244c406c0a8cf503ba478b8901060930",
+      "amdgcn": "run3/codegen/BXHM6QD5JDNKH3R5P5JFTP3A75EG5KKR5A2YLV43ZTIWFKHPWT2A-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "67633ea5994f6fcfc66304d7ca54dd1b97403b68891edce03571f4a6901cf585",
+      "instructions": {
+        "v_mfma": 64,
+        "ds_write": 9,
+        "buffer_load": 24,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 256,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "226"
+      ],
+      "shared_bytes": 67520
+    },
+    {
+      "run": "run3",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run3/code/float16-4096-128-nomask-s1-w4.py.gz",
+      "cache_key": "DDFOLAQNUFTDZ4LTUQOYRZZATVI5RLEGS7BK34TTXCOKW5KVQDYA",
+      "ttgir": "run3/codegen/DDFOLAQNUFTDZ4LTUQOYRZZATVI5RLEGS7BK34TTXCOKW5KVQDYA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "7fddc6c021a4ae7f6122371c1e93cc97910ad7f07b9eccabe15550167f4e38e8",
+      "amdgcn": "run3/codegen/DDFOLAQNUFTDZ4LTUQOYRZZATVI5RLEGS7BK34TTXCOKW5KVQDYA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "ec5f485786ce654e4b60987699c83b3976bf384c57735bd912dd8ffd2b3b940a",
+      "instructions": {
+        "v_mfma": 32,
+        "ds_write": 17,
+        "buffer_load": 16,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 128,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "192"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run3",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 1,
+      "num_warps": 8,
+      "generated_source": "run3/code/float16-4096-128-causal-s1-w8.py.gz",
+      "cache_key": "UR6HSF7KSAJSSPA366J3ZLP5UOERA7ZZG3B7BX2KTCEW2KTJOYEA",
+      "ttgir": "run3/codegen/UR6HSF7KSAJSSPA366J3ZLP5UOERA7ZZG3B7BX2KTCEW2KTJOYEA-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "5373dedc16bd3d5df06d840331bde6ae5e7d93ca78bf78cff691954d6c3542be",
+      "amdgcn": "run3/codegen/UR6HSF7KSAJSSPA366J3ZLP5UOERA7ZZG3B7BX2KTCEW2KTJOYEA-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "f895efde2648c3b7efb218e014db3eecd910637434fd9e8f34e9bff998f1581e",
+      "instructions": {
+        "v_mfma": 48,
+        "ds_write": 80,
+        "buffer_load": 12,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 384,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "218"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run3",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 2,
+      "num_warps": 8,
+      "generated_source": "run3/code/float16-4096-128-causal-s2-w8.py.gz",
+      "cache_key": "R2FE7SQKJYNOMYHY4KFQPW737MT2WCQDXDY3IUHYO6QF6ZK5MCCA",
+      "ttgir": "run3/codegen/R2FE7SQKJYNOMYHY4KFQPW737MT2WCQDXDY3IUHYO6QF6ZK5MCCA-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "4df0a3f4e762d94173326e9157c5b5dd752cda053efebcb935bb3d1a30159057",
+      "amdgcn": "run3/codegen/R2FE7SQKJYNOMYHY4KFQPW737MT2WCQDXDY3IUHYO6QF6ZK5MCCA-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "9eb8c7fd7880c612017cf311178b7ed94678bb78fda3fc244a515c699c0bb750",
+      "instructions": {
+        "v_mfma": 96,
+        "ds_write": 138,
+        "buffer_load": 20,
+        "buffer_store": 5,
+        "global_load": 6,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 768,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "235"
+      ],
+      "shared_bytes": 83904
+    },
+    {
+      "run": "run3",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run3/code/float16-4096-128-causal-s2-w4.py.gz",
+      "cache_key": "GG7HFZAPCJQ3UKKNJWGMN5QKFJZBHUYYRU3FWI3RRCXD4HQGYJCA",
+      "ttgir": "run3/codegen/GG7HFZAPCJQ3UKKNJWGMN5QKFJZBHUYYRU3FWI3RRCXD4HQGYJCA-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "10562f6daadb484df24f28bfbd242f48674e3ce8d0e5420b4429ab6139c3b208",
+      "amdgcn": "run3/codegen/GG7HFZAPCJQ3UKKNJWGMN5QKFJZBHUYYRU3FWI3RRCXD4HQGYJCA-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "344a7fbb33472003f846654b319fc2b62f2ec1457ddc78d869ef2dba0d0101ea",
+      "instructions": {
+        "v_mfma": 128,
+        "ds_write": 9,
+        "buffer_load": 40,
+        "buffer_store": 9,
+        "global_load": 6,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 512,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "254"
+      ],
+      "shared_bytes": 67520
+    },
+    {
+      "run": "run3",
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run3/code/float16-4096-128-causal-s1-w4.py.gz",
+      "cache_key": "OSIEMOLCZCA6JD6Y47PMFW5GRN3OQLKLF7GM76QQJFLE5624MLOQ",
+      "ttgir": "run3/codegen/OSIEMOLCZCA6JD6Y47PMFW5GRN3OQLKLF7GM76QQJFLE5624MLOQ-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "8b09a48935cd0fb09c1e2115be3422231480ec218e1d18969b5c349481a5e861",
+      "amdgcn": "run3/codegen/OSIEMOLCZCA6JD6Y47PMFW5GRN3OQLKLF7GM76QQJFLE5624MLOQ-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "0842b6e6e92c6d6cc51f620f0ac1ea84b81facd679b23f6bf1f3037accfe111b",
+      "instructions": {
+        "v_mfma": 64,
+        "ds_write": 25,
+        "buffer_load": 24,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 256,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "248"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run3",
+      "dtype": "float16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 1,
+      "num_warps": 8,
+      "generated_source": "run3/code/float16-8192-128-nomask-s1-w8.py.gz",
+      "cache_key": "WV343QRYL6TSY3VKJUVWBCOC2NOLII6SSQXUSFJKLU765GGRVZ7Q",
+      "ttgir": "run3/codegen/WV343QRYL6TSY3VKJUVWBCOC2NOLII6SSQXUSFJKLU765GGRVZ7Q-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "0435251077df5e26965a330cb0139ab0a863867e5fe47b1b1cd042e2ac47af57",
+      "amdgcn": "run3/codegen/WV343QRYL6TSY3VKJUVWBCOC2NOLII6SSQXUSFJKLU765GGRVZ7Q-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "7f46468d54f59bebb61a1d127d918537a5ff34b813079c33c8d271ee04d9fc66",
+      "instructions": {
+        "v_mfma": 24,
+        "ds_write": 43,
+        "buffer_load": 8,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 192,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "166"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run3",
+      "dtype": "float16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 2,
+      "num_warps": 8,
+      "generated_source": "run3/code/float16-8192-128-nomask-s2-w8.py.gz",
+      "cache_key": "IIWCI4D3AY5X4CB5ZNIZGIBEQOQESYBTDLMI73WJNNYBNU7LKPCA",
+      "ttgir": "run3/codegen/IIWCI4D3AY5X4CB5ZNIZGIBEQOQESYBTDLMI73WJNNYBNU7LKPCA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "0616372e8928597ce48cf1f6eb5fd280c9b7e706d5dd297a943d977ba8f42a83",
+      "amdgcn": "run3/codegen/IIWCI4D3AY5X4CB5ZNIZGIBEQOQESYBTDLMI73WJNNYBNU7LKPCA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "88f46581c93a56cde54361ecd344326c2ca46e5a53c9f3b32d2c65e16e4adc97",
+      "instructions": {
+        "v_mfma": 48,
+        "ds_write": 72,
+        "buffer_load": 12,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 384,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "196"
+      ],
+      "shared_bytes": 83904
+    },
+    {
+      "run": "run3",
+      "dtype": "float16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run3/code/float16-8192-128-nomask-s2-w4.py.gz",
+      "cache_key": "4AYSAL5KO5M7T5J5PUVYLB4LB5VG4RCNVIUOARMJTMBN4SEXRTAA",
+      "ttgir": "run3/codegen/4AYSAL5KO5M7T5J5PUVYLB4LB5VG4RCNVIUOARMJTMBN4SEXRTAA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "d8bd48751c5332672b56258fba49d3c71a0926ccbb65995d9ff582ab5f2ae3af",
+      "amdgcn": "run3/codegen/4AYSAL5KO5M7T5J5PUVYLB4LB5VG4RCNVIUOARMJTMBN4SEXRTAA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "51a3cc2225d8a11b11c04ae4e6bd9fcc021f83664758208dfb7307ecec9fbb0e",
+      "instructions": {
+        "v_mfma": 64,
+        "ds_write": 9,
+        "buffer_load": 24,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 256,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "226"
+      ],
+      "shared_bytes": 67520
+    },
+    {
+      "run": "run3",
+      "dtype": "float16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run3/code/float16-8192-128-nomask-s1-w4.py.gz",
+      "cache_key": "45UALJ5TGCQKXUCGNSLRAJPRNQXMB5XBL4WXGI5ENJ6ERBGTPV2Q",
+      "ttgir": "run3/codegen/45UALJ5TGCQKXUCGNSLRAJPRNQXMB5XBL4WXGI5ENJ6ERBGTPV2Q-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "fe00bbca2fa04ebeddbde34d0cc05f7ee931ee12f01ff8dfb181a4c0b0fcd21f",
+      "amdgcn": "run3/codegen/45UALJ5TGCQKXUCGNSLRAJPRNQXMB5XBL4WXGI5ENJ6ERBGTPV2Q-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "ecd08518a86da95d61776e30a9588fab4fc19ec7b7d05d65db5820740b5291d5",
+      "instructions": {
+        "v_mfma": 32,
+        "ds_write": 17,
+        "buffer_load": 16,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 128,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "192"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run3",
+      "dtype": "float16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 1,
+      "num_warps": 8,
+      "generated_source": "run3/code/float16-8192-128-causal-s1-w8.py.gz",
+      "cache_key": "3GKVEA2W6CPGFRF6RXB37PRVXR6Q3IMTPTB27PLTAQS75V2PIULQ",
+      "ttgir": "run3/codegen/3GKVEA2W6CPGFRF6RXB37PRVXR6Q3IMTPTB27PLTAQS75V2PIULQ-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "a6ecf7bd752ac1da305194c534612ceb54960f77b6697da11b985a031f8919a9",
+      "amdgcn": "run3/codegen/3GKVEA2W6CPGFRF6RXB37PRVXR6Q3IMTPTB27PLTAQS75V2PIULQ-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "49282f85cffa4ec7b898d2c436f37863358627386ccc61b128205adada2512f3",
+      "instructions": {
+        "v_mfma": 48,
+        "ds_write": 80,
+        "buffer_load": 12,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 384,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "218"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run3",
+      "dtype": "float16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 2,
+      "num_warps": 8,
+      "generated_source": "run3/code/float16-8192-128-causal-s2-w8.py.gz",
+      "cache_key": "YJGAASSGRG63J2FZH6I2BTZNYXPT6C4ITZN64F3LBSL6T5KC4AYQ",
+      "ttgir": "run3/codegen/YJGAASSGRG63J2FZH6I2BTZNYXPT6C4ITZN64F3LBSL6T5KC4AYQ-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "831935ba666a0211d3168aa1eeb14e97808ae940d2123ad390ad9af223368bd9",
+      "amdgcn": "run3/codegen/YJGAASSGRG63J2FZH6I2BTZNYXPT6C4ITZN64F3LBSL6T5KC4AYQ-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "cc6f3f186a2cd9b8d726de8288615ff7287bbe48dcdda20da342d89bd361e118",
+      "instructions": {
+        "v_mfma": 96,
+        "ds_write": 138,
+        "buffer_load": 20,
+        "buffer_store": 5,
+        "global_load": 6,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 768,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [8, 1], instrShape = [32, 32, 16], isTransposed = true}>",
+        "#mma1 = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 2], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "235"
+      ],
+      "shared_bytes": 83904
+    },
+    {
+      "run": "run3",
+      "dtype": "float16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run3/code/float16-8192-128-causal-s2-w4.py.gz",
+      "cache_key": "YUQYR4RZRTFBQ74FIFJIBDL36TRK64KXECLIAB34NHBSUXTKXLDQ",
+      "ttgir": "run3/codegen/YUQYR4RZRTFBQ74FIFJIBDL36TRK64KXECLIAB34NHBSUXTKXLDQ-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "2ea3a665d4aa7460c5493684f48056c2bbf1c6c8cda13f31b4fe42f5cc9531a2",
+      "amdgcn": "run3/codegen/YUQYR4RZRTFBQ74FIFJIBDL36TRK64KXECLIAB34NHBSUXTKXLDQ-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "370ce4d13cf4122823f0c917cdb83d428d04704a269dd5ee7d14f183a2e414ee",
+      "instructions": {
+        "v_mfma": 128,
+        "ds_write": 9,
+        "buffer_load": 40,
+        "buffer_store": 9,
+        "global_load": 6,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 512,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "254"
+      ],
+      "shared_bytes": 67520
+    },
+    {
+      "run": "run3",
+      "dtype": "float16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run3/code/float16-8192-128-causal-s1-w4.py.gz",
+      "cache_key": "D4TEQOCF2HFMTHWRD4RYAHGQLFST4YBCQS45PLJBOV55CNACCY4A",
+      "ttgir": "run3/codegen/D4TEQOCF2HFMTHWRD4RYAHGQLFST4YBCQS45PLJBOV55CNACCY4A-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "36583134a897fa0f603cc5712f963f9029fe44127099f946f55cc3488cea08e2",
+      "amdgcn": "run3/codegen/D4TEQOCF2HFMTHWRD4RYAHGQLFST4YBCQS45PLJBOV55CNACCY4A-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "17db15d993ae16e5775bec2a1eb7a9b8dc4cc7369c0019e8a62500f6b65a7ac2",
+      "instructions": {
+        "v_mfma": 64,
+        "ds_write": 25,
+        "buffer_load": 24,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 256,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_f16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "248"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run3",
+      "dtype": "bfloat16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "nomask",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run3/code/bfloat16-4096-64-nomask-s1-w4.py.gz",
+      "cache_key": "7REGVYGFTSGYRRLFLEVYUS2ZMLXMEITLOHTFC4UIZL6U72WCR7CA",
+      "ttgir": "run3/codegen/7REGVYGFTSGYRRLFLEVYUS2ZMLXMEITLOHTFC4UIZL6U72WCR7CA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "3a21669c2f7c67b674a63e644fe2241666d834abc3f5866d45f0620cbd03c03e",
+      "amdgcn": "run3/codegen/7REGVYGFTSGYRRLFLEVYUS2ZMLXMEITLOHTFC4UIZL6U72WCR7CA-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "90e7ed287c435452880866573cf7cebc728c56b44cfc906aed986bd4b01138b5",
+      "instructions": {
+        "v_mfma": 16,
+        "ds_write": 9,
+        "buffer_load": 8,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 64,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "116"
+      ],
+      "shared_bytes": 16384
+    },
+    {
+      "run": "run3",
+      "dtype": "bfloat16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "nomask",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run3/code/bfloat16-4096-64-nomask-s2-w4.py.gz",
+      "cache_key": "25XYKMREPYV5SNMXXFYP5GOM47IRZ7ST6TE2OX2BDTATFWZWSZTQ",
+      "ttgir": "run3/codegen/25XYKMREPYV5SNMXXFYP5GOM47IRZ7ST6TE2OX2BDTATFWZWSZTQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "df71e7573329e3e10b2af857c69a476131661103765bd72b4c64a4d84bc84f50",
+      "amdgcn": "run3/codegen/25XYKMREPYV5SNMXXFYP5GOM47IRZ7ST6TE2OX2BDTATFWZWSZTQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "b55fef7ffaef97c685a8d55aeea753f0439bec98876c8f53fa3ffbcc6189cc1a",
+      "instructions": {
+        "v_mfma": 32,
+        "ds_write": 5,
+        "buffer_load": 12,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 128,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "158"
+      ],
+      "shared_bytes": 33728
+    },
+    {
+      "run": "run3",
+      "dtype": "bfloat16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "causal",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run3/code/bfloat16-4096-64-causal-s1-w4.py.gz",
+      "cache_key": "SLO7EUHOKY4KW6QKNBMRQFADG2LIU33FQCLUIKPBX3EFF5WYBKZQ",
+      "ttgir": "run3/codegen/SLO7EUHOKY4KW6QKNBMRQFADG2LIU33FQCLUIKPBX3EFF5WYBKZQ-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "ca4f4d0a30952782e563d4a40e02be23fc23a818577fa89f3e3898dd597d05b6",
+      "amdgcn": "run3/codegen/SLO7EUHOKY4KW6QKNBMRQFADG2LIU33FQCLUIKPBX3EFF5WYBKZQ-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "7468a44f82f8bc9ab0dfdb980087ea8e0cbcea750d667caee482f66087aa9e4e",
+      "instructions": {
+        "v_mfma": 32,
+        "ds_write": 13,
+        "buffer_load": 12,
+        "buffer_store": 5,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 128,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "182"
+      ],
+      "shared_bytes": 16384
+    },
+    {
+      "run": "run3",
+      "dtype": "bfloat16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "causal",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run3/code/bfloat16-4096-64-causal-s2-w4.py.gz",
+      "cache_key": "LJOLANNDZDVWZV7ZGY67H4VTKPZ5ATJNVED4B66YKOAIBSXMS5SQ",
+      "ttgir": "run3/codegen/LJOLANNDZDVWZV7ZGY67H4VTKPZ5ATJNVED4B66YKOAIBSXMS5SQ-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "173646b1cdc40a4c4f659aece07d670ad0075d63cdef497be442262fe45b80fe",
+      "amdgcn": "run3/codegen/LJOLANNDZDVWZV7ZGY67H4VTKPZ5ATJNVED4B66YKOAIBSXMS5SQ-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "8bde02488568a3b5b76e2b6fad8b56786fc248e2d492abb4ef92c33599b15690",
+      "instructions": {
+        "v_mfma": 64,
+        "ds_write": 5,
+        "buffer_load": 20,
+        "buffer_store": 5,
+        "global_load": 6,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 256,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "170"
+      ],
+      "shared_bytes": 33728
+    },
+    {
+      "run": "run3",
+      "dtype": "bfloat16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run3/code/bfloat16-4096-128-nomask-s1-w4.py.gz",
+      "cache_key": "2CXASSA572AS3OAU7SZSUR37U5SWRSMNPOXY6WNP22SESBETR5SQ",
+      "ttgir": "run3/codegen/2CXASSA572AS3OAU7SZSUR37U5SWRSMNPOXY6WNP22SESBETR5SQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "c939fc15831d57c54d06e34bd032b60bf2f3939e97f3d2c761efc96bb494f2bc",
+      "amdgcn": "run3/codegen/2CXASSA572AS3OAU7SZSUR37U5SWRSMNPOXY6WNP22SESBETR5SQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "73f5c072d20b0e522abd045730f134a20ba7304571625c76e8961c3b75154e15",
+      "instructions": {
+        "v_mfma": 32,
+        "ds_write": 17,
+        "buffer_load": 16,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 128,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "192"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run3",
+      "dtype": "bfloat16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run3/code/bfloat16-4096-128-nomask-s2-w4.py.gz",
+      "cache_key": "PB2GF5BKOGUPV5K5QVUZUEM6XF5SC2PPS4BBTTDZ6KUVZRUAVVTQ",
+      "ttgir": "run3/codegen/PB2GF5BKOGUPV5K5QVUZUEM6XF5SC2PPS4BBTTDZ6KUVZRUAVVTQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "c4b10d168a8a020f48ef0604c4ba14e97bcb541728a4e67c5a68196ef41f6f1c",
+      "amdgcn": "run3/codegen/PB2GF5BKOGUPV5K5QVUZUEM6XF5SC2PPS4BBTTDZ6KUVZRUAVVTQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "820c2e4193f09fcf1c29624b9ed30880881c1cd8c0954fd51b03e76f6d60594d",
+      "instructions": {
+        "v_mfma": 64,
+        "ds_write": 9,
+        "buffer_load": 24,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 256,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "226"
+      ],
+      "shared_bytes": 67520
+    },
+    {
+      "run": "run3",
+      "dtype": "bfloat16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run3/code/bfloat16-4096-128-causal-s1-w4.py.gz",
+      "cache_key": "Q5JEFZFY4NK7CSDH7YA2FZFOGUN4Z6QUSLSPJ7CYYPUON4HJCF2Q",
+      "ttgir": "run3/codegen/Q5JEFZFY4NK7CSDH7YA2FZFOGUN4Z6QUSLSPJ7CYYPUON4HJCF2Q-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "9b8c875ca47204dfa0a256b8079057e6a22f2440fbfff8916e82838d52aa0dbd",
+      "amdgcn": "run3/codegen/Q5JEFZFY4NK7CSDH7YA2FZFOGUN4Z6QUSLSPJ7CYYPUON4HJCF2Q-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "d34565c234b7b8af1233750121a5a7c9f94ab8b6da8bbecee6789169a0cfcbe5",
+      "instructions": {
+        "v_mfma": 64,
+        "ds_write": 25,
+        "buffer_load": 24,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 256,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "248"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run3",
+      "dtype": "bfloat16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run3/code/bfloat16-4096-128-causal-s2-w4.py.gz",
+      "cache_key": "6J5X2MWRA2OWZ7C2OI2E2YIECJFZTRPA7QPIVASTJ6XODY4CJ6HA",
+      "ttgir": "run3/codegen/6J5X2MWRA2OWZ7C2OI2E2YIECJFZTRPA7QPIVASTJ6XODY4CJ6HA-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "83f3f600fec35c0f32702e3f5d1beb1692242e6a9fede0a84b4bd6d32b4c04c1",
+      "amdgcn": "run3/codegen/6J5X2MWRA2OWZ7C2OI2E2YIECJFZTRPA7QPIVASTJ6XODY4CJ6HA-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "baf8ecb178553a8ba20e99d0335c261ca0619352f5ed4925ac9a9092da8bcfbe",
+      "instructions": {
+        "v_mfma": 128,
+        "ds_write": 9,
+        "buffer_load": 40,
+        "buffer_store": 9,
+        "global_load": 6,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 512,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "254"
+      ],
+      "shared_bytes": 67520
+    },
+    {
+      "run": "run3",
+      "dtype": "bfloat16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run3/code/bfloat16-8192-128-nomask-s1-w4.py.gz",
+      "cache_key": "D5QAYDQRFNJXD7IJ64K2BHKQB56DUBYTFQD557GM5ILTSXLGD72Q",
+      "ttgir": "run3/codegen/D5QAYDQRFNJXD7IJ64K2BHKQB56DUBYTFQD557GM5ILTSXLGD72Q-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "9709fd3e9c2a53fcfea36d1b41149efad2efc67834297928260c7122f2674c76",
+      "amdgcn": "run3/codegen/D5QAYDQRFNJXD7IJ64K2BHKQB56DUBYTFQD557GM5ILTSXLGD72Q-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "135151464c1c2ebbd9c567438bdbe57e871f14f33883fbd3e4f13edd4923a6f9",
+      "instructions": {
+        "v_mfma": 32,
+        "ds_write": 17,
+        "buffer_load": 16,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 128,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "192"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run3",
+      "dtype": "bfloat16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "nomask",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run3/code/bfloat16-8192-128-nomask-s2-w4.py.gz",
+      "cache_key": "2LTZSL3RFA6PM6I7WN3YPGEATPI4ILJJQLU2YBAFM2QAWZKNHP2Q",
+      "ttgir": "run3/codegen/2LTZSL3RFA6PM6I7WN3YPGEATPI4ILJJQLU2YBAFM2QAWZKNHP2Q-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.ttgir.gz",
+      "ttgir_sha256": "7d726938e1877bf60b15fc58c7194054dfdcb0c8dfaad8f75f3ffd04a5abc090",
+      "amdgcn": "run3/codegen/2LTZSL3RFA6PM6I7WN3YPGEATPI4ILJJQLU2YBAFM2QAWZKNHP2Q-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "amdgcn_sha256": "5b46b740f04449199b391621c87eb3eee0b434dec3e4ec218eee667589e443ac",
+      "instructions": {
+        "v_mfma": 64,
+        "ds_write": 9,
+        "buffer_load": 24,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 256,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 1,
+      "vgprs": [
+        "226"
+      ],
+      "shared_bytes": 67520
+    },
+    {
+      "run": "run3",
+      "dtype": "bfloat16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 1,
+      "num_warps": 4,
+      "generated_source": "run3/code/bfloat16-8192-128-causal-s1-w4.py.gz",
+      "cache_key": "IL6FY2GC53VS5URR4PJ37MF2O6YYXFFPVQONYLCXCNIN36U2ANDQ",
+      "ttgir": "run3/codegen/IL6FY2GC53VS5URR4PJ37MF2O6YYXFFPVQONYLCXCNIN36U2ANDQ-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "4b4b287e907b570e4780c2a14313a5011d73ba21ff32ec282d77bcdfada6a61e",
+      "amdgcn": "run3/codegen/IL6FY2GC53VS5URR4PJ37MF2O6YYXFFPVQONYLCXCNIN36U2ANDQ-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "11ae3f52d25f5753e43d159ae3dd113e469c13808b69e37f3e4df31791113523",
+      "instructions": {
+        "v_mfma": 64,
+        "ds_write": 25,
+        "buffer_load": 24,
+        "buffer_store": 9,
+        "global_load": 0,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 256,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "248"
+      ],
+      "shared_bytes": 32768
+    },
+    {
+      "run": "run3",
+      "dtype": "bfloat16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "causal",
+      "num_stages": 2,
+      "num_warps": 4,
+      "generated_source": "run3/code/bfloat16-8192-128-causal-s2-w4.py.gz",
+      "cache_key": "Q5HP2DTU4KWWGWY4XDSM4SXJSAOY4ELYZVWQWPJQCE5AMTT42XPA",
+      "ttgir": "run3/codegen/Q5HP2DTU4KWWGWY4XDSM4SXJSAOY4ELYZVWQWPJQCE5AMTT42XPA-triton_tem_fused_flex_attention_0.ttgir.gz",
+      "ttgir_sha256": "03e9eba0fa41b92d721afd1b55bf9b8938cd0050d224fe5fcf95c1a753dc9abd",
+      "amdgcn": "run3/codegen/Q5HP2DTU4KWWGWY4XDSM4SXJSAOY4ELYZVWQWPJQCE5AMTT42XPA-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "amdgcn_sha256": "3c8fbb4269ea0039a93eb0bb01d2f1c7cc0a397a617167fc24be610d7f41588a",
+      "instructions": {
+        "v_mfma": 128,
+        "ds_write": 9,
+        "buffer_load": 40,
+        "buffer_store": 9,
+        "global_load": 6,
+        "global_store": 0
+      },
+      "wave_weighted_mfma_sites": 512,
+      "mfma_opcodes": [
+        "v_mfma_f32_32x32x16_bf16"
+      ],
+      "mfma_layouts": [
+        "#mma = #ttg.amd_mfma<{version = 4, warpsPerCTA = [4, 1], instrShape = [32, 32, 16], isTransposed = true}>"
+      ],
+      "scf_for_sites": 2,
+      "vgprs": [
+        "254"
+      ],
+      "shared_bytes": 67520
+    }
+  ]
+}

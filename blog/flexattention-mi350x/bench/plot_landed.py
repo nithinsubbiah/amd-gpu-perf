@@ -1,54 +1,30 @@
-"""Render the blog figures from the aggregated bench_landed.py runs.
+"""Render the charts from the preserved summary CSV or a complete JSONL campaign.
 
-Reads the same logs aggregate_landed.py consumes so the figures and the tables
-in the post cannot drift apart.
-
-Usage: plot_landed.py '/tmp/hb_r*.log' <output_dir>
+Usage: plot_landed.py [input_csv_or_jsonl_glob] [output_directory]
+Defaults to the historical summary and the article's images directory. No GPU is used.
 """
 
-import glob
-import re
-import statistics
+from pathlib import Path
 import sys
-from collections import defaultdict
 
 import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 
-LINE = re.compile(
-    r"LANDED\s+(?P<dtype>\w+)\s+N=(?P<n>\d+)\s+D=(?P<d>\d+)\s+(?P<mask>\w+)\s+"
-    r"stages=(?P<stages>\d+)\s+warps=(?P<warps>\d+)\s+(?P<tflops>[\d.]+)\s+TFLOPS"
-)
+from landed_data import SUMMARY, SHAPES, load_data, medians  # noqa: E402
 
-SHAPES = [(4096, 64, "nomask"), (4096, 64, "causal"), (4096, 128, "nomask"),
-          (4096, 128, "causal"), (8192, 128, "nomask"), (8192, 128, "causal")]
+plt.rcParams["svg.fonttype"] = "none"
 
 BEFORE_COLOR = "#8a8f98"
 AFTER_COLOR = "#ED1C24"  # AMD red
 
 
-def load(pattern):
-    samples = defaultdict(list)
-    for path in sorted(glob.glob(pattern)):
-        with open(path) as fh:
-            for line in fh:
-                m = LINE.search(line)
-                if m:
-                    key = (m["dtype"], int(m["n"]), int(m["d"]), m["mask"],
-                           int(m["stages"]), int(m["warps"]))
-                    samples[key].append(float(m["tflops"]))
-    return {k: statistics.median(v) for k, v in samples.items()}
-
-
 def chart(med, dtype, before, after, before_label, after_label, title, path):
     xs, bs, as_ = [], [], []
     for n, d, mask in SHAPES:
-        b = med.get((dtype, n, d, mask) + before)
-        a = med.get((dtype, n, d, mask) + after)
-        if b is None or a is None:
-            continue
+        b = med[(dtype, n, d, mask) + before]
+        a = med[(dtype, n, d, mask) + after]
         xs.append(f"{n}\nD={d}\n{'causal' if mask == 'causal' else 'no mask'}")
         bs.append(b)
         as_.append(a)
@@ -74,30 +50,36 @@ def chart(med, dtype, before, after, before_label, after_label, title, path):
     ax.set_ylabel("Throughput (TFLOP/s)")
     ax.set_xlabel("Sequence length / head dimension / masking")
     ax.set_title(title, fontsize=12, fontweight="bold")
-    ax.set_ylim(0, max(as_) * 1.22)
+    ax.set_ylim(0, max(bs + as_) * 1.30)
     ax.legend(frameon=False, loc="upper left")
     ax.spines[["top", "right"]].set_visible(False)
     ax.grid(axis="y", alpha=0.25, linewidth=0.6)
     ax.set_axisbelow(True)
     fig.tight_layout()
-    fig.savefig(path, dpi=160)
+    for ext in ("png", "svg"):
+        target = Path(path).with_suffix("." + ext)
+        fig.savefig(target, dpi=160,
+                    metadata={"Date": None} if ext == "svg" else None)
+        print("wrote", target)
     plt.close(fig)
-    print("wrote", path)
 
 
 if __name__ == "__main__":
-    pattern = sys.argv[1] if len(sys.argv) > 1 else "/tmp/hb_r*.log"
-    outdir = sys.argv[2].rstrip("/") if len(sys.argv) > 2 else "."
-    med = load(pattern)
+    pattern = sys.argv[1] if len(sys.argv) > 1 else str(SUMMARY)
+    outdir = Path(sys.argv[2]) if len(sys.argv) > 2 else Path(__file__).resolve().parents[1] / "images"
+    outdir.mkdir(parents=True, exist_ok=True)
+    runs, description = load_data(pattern)
+    print("Input:", description)
+    med = medians(runs)
 
     chart(med, "float16", (1, 8), (2, 4),
           "Previous defaults (num_stages=1, num_warps=8)",
-          "Current defaults (num_stages=2, num_warps=4)",
+          "Updated defaults (num_stages=2, num_warps=4)",
           "FlexAttention forward, fp16, AMD Instinct MI350X",
           f"{outdir}/01-fp16-speedup.png")
 
     chart(med, "bfloat16", (1, 4), (2, 4),
-          "num_stages=1 (pipelining disabled)",
-          "num_stages=2 (pipelining enabled)",
+          "1 software-pipeline stage",
+          "2 software-pipeline stages",
           "FlexAttention forward, bf16, effect of software pipelining on MI350X",
           f"{outdir}/02-bf16-pipelining.png")

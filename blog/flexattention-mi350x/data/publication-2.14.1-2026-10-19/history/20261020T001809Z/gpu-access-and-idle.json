@@ -1,0 +1,52 @@
+{
+  "torch": "2.14.1+rocm7.2",
+  "torch_git": "5c4886908584029761b579af026dcfb627c84070",
+  "device": "_CudaDeviceProperties(name='AMD Instinct MI350X', major=9, minor=5, gcnArchName='gfx950:sramecc+:xnack-', total_memory=258032MB, multi_processor_count=256, uuid=33373733-6138-6438-3166-643366366566, pci_bus_id=229, pci_device_id=0, pci_domain_id=0, L2_cache_size=4MB)",
+  "gpu_count": 1,
+  "idle_samples": [
+    {
+      "time_ns": 1792455497809346600,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2698007
+      ],
+      "sclk_mhz": 1605,
+      "gpu_use_pct": 1,
+      "phase": "idle_check"
+    },
+    {
+      "time_ns": 1792455498299593371,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2698007
+      ],
+      "sclk_mhz": 2198,
+      "gpu_use_pct": 0,
+      "phase": "idle_check"
+    },
+    {
+      "time_ns": 1792455498794282468,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2698007
+      ],
+      "sclk_mhz": 2202,
+      "gpu_use_pct": 0,
+      "phase": "idle_check"
+    },
+    {
+      "time_ns": 1792455499293135955,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2698007
+      ],
+      "sclk_mhz": 2202,
+      "gpu_use_pct": 0,
+      "phase": "idle_check"
+    }
+  ]
+}

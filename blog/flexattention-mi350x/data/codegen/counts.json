@@ -1,0 +1,16 @@
+{
+  "4": {
+    "ttgir_sha256": "bc4d2071b230ad5bd09cf99b6c9b111d0fc60736f8f11a7e89be3fc8bdecc65a",
+    "amdgcn_sha256": "01216ae73564f4cdfd24582c9efe34c6b8f29f164ca6dbca75306ebdc98922ed",
+    "mfma_sites": 128,
+    "wave_weighted_mfma_sites": 512,
+    "ds_write_sites": 9
+  },
+  "8": {
+    "ttgir_sha256": "810226aeeb20200de586a286f67b77d31520103cacfbb7b224ceca23e5fd17b3",
+    "amdgcn_sha256": "230a4e6a1f777fabce6e2b3a5a0fec2d82f140cdf2357833e7afda5ee9e2c38b",
+    "mfma_sites": 96,
+    "wave_weighted_mfma_sites": 768,
+    "ds_write_sites": 138
+  }
+}

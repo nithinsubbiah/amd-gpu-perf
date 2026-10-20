@@ -1,0 +1,23 @@
+{
+  "recorded_utc": "2026-10-20T00:22:31.865974+00:00",
+  "accepted_complete_campaign": false,
+  "failed_run": "run1.jsonl",
+  "accepted_points_before_abort": 2,
+  "error": "RuntimeError: Insufficient clock observations under load; discard this run",
+  "loaded_observations": 1,
+  "required_loaded_observations": 2,
+  "timing_utilizations": [
+    100,
+    88,
+    46
+  ],
+  "failed_point_trials_ms": [
+    0.1364849954843521,
+    0.136243999004364,
+    0.13612499833106995
+  ],
+  "failed_point_trial_spread_pct": 0.2642297318875927,
+  "observed_competition": false,
+  "replacement_campaign": "publication-2.14.1-2026-10-20",
+  "protocol_change": "Six trials per point instead of three; all correctness, isolation, clock, and timing thresholds remain unchanged. No failed-attempt samples enter the replacement aggregate."
+}

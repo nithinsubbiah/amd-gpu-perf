@@ -1,0 +1,10 @@
+{
+  "recorded_utc": "2026-10-20T00:18:24.970393+00:00",
+  "torch": "2.14.1+rocm7.2",
+  "torch_git": "5c4886908584029761b579af026dcfb627c84070",
+  "gpu_available": true,
+  "device_count": 1,
+  "kfd_exposed": true,
+  "selected_ordinal": 6,
+  "rocm_smi": "\n\n============================ ROCm System Management Interface ============================\n=================================== % time GPU is busy ===================================\nGPU[0]\t\t: GPU use (%): 1\nGPU[1]\t\t: GPU use (%): 1\nGPU[2]\t\t: GPU use (%): 1\nGPU[3]\t\t: GPU use (%): 1\nGPU[4]\t\t: GPU use (%): 1\nGPU[5]\t\t: GPU use (%): 1\nGPU[6]\t\t: GPU use (%): 1\nGPU[7]\t\t: GPU use (%): 1\n==========================================================================================\n================================== GPUs Indexed by PID ===================================\nNo KFD PIDs currently running\n==========================================================================================\n================================== End of ROCm SMI Log ===================================\n"
+}

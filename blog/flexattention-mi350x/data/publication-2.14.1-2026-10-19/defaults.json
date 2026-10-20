@@ -1,0 +1,838 @@
+{
+  "torch": "2.14.1+rocm7.2",
+  "torch_git": "5c4886908584029761b579af026dcfb627c84070",
+  "initial_gpu_state": [
+    {
+      "time_ns": 1792455510344199247,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2699016
+      ],
+      "sclk_mhz": 1658,
+      "gpu_use_pct": 1,
+      "phase": "idle_check"
+    },
+    {
+      "time_ns": 1792455510829136418,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2699016
+      ],
+      "sclk_mhz": 2198,
+      "gpu_use_pct": 0,
+      "phase": "idle_check"
+    },
+    {
+      "time_ns": 1792455511322646397,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2699016
+      ],
+      "sclk_mhz": 2202,
+      "gpu_use_pct": 0,
+      "phase": "idle_check"
+    },
+    {
+      "time_ns": 1792455511807877141,
+      "pci_bus": "0000:e5:00.0",
+      "smi_device": 6,
+      "pids": [
+        2699016
+      ],
+      "sclk_mhz": 2203,
+      "gpu_use_pct": 0,
+      "phase": "idle_check"
+    }
+  ],
+  "inductor_overrides": {
+    "max_autotune": false,
+    "max_autotune_gemm": false,
+    "fx_graph_cache": false
+  },
+  "kernel_options": {},
+  "checks": [
+    {
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "nomask",
+      "compiler_settings": [
+        [
+          2,
+          4
+        ]
+      ],
+      "grad_enabled": true,
+      "output_logsumexp": true,
+      "correctness_passed": true,
+      "max_abs_diff": 0.0001220703125,
+      "pre_compile_idle_samples": [
+        {
+          "time_ns": 1792455512040941767,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2203,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        },
+        {
+          "time_ns": 1792455512523365436,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2192,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        },
+        {
+          "time_ns": 1792455513002369314,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2203,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        }
+      ],
+      "post_compile_state": {
+        "time_ns": 1792455518610539822,
+        "pci_bus": "0000:e5:00.0",
+        "smi_device": 6,
+        "pids": [
+          2699016
+        ],
+        "sclk_mhz": 1966,
+        "gpu_use_pct": 4,
+        "phase": "check"
+      },
+      "generated_source": "float16-4096-64-nomask.py.gz",
+      "generated_source_sha256": "d3760ab522a4b2a2b1b637bd0ad277e2dcd8d2e280e68548d2bb9e70518e5116"
+    },
+    {
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "causal",
+      "compiler_settings": [
+        [
+          2,
+          4
+        ]
+      ],
+      "grad_enabled": true,
+      "output_logsumexp": true,
+      "correctness_passed": true,
+      "max_abs_diff": 0.0009765625,
+      "pre_compile_idle_samples": [
+        {
+          "time_ns": 1792455518850555538,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2181,
+          "gpu_use_pct": 1,
+          "phase": "idle_check"
+        },
+        {
+          "time_ns": 1792455519333837723,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2200,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        },
+        {
+          "time_ns": 1792455519818663795,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2202,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        },
+        {
+          "time_ns": 1792455520305019904,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2202,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        }
+      ],
+      "post_compile_state": {
+        "time_ns": 1792455521373521414,
+        "pci_bus": "0000:e5:00.0",
+        "smi_device": 6,
+        "pids": [
+          2699016
+        ],
+        "sclk_mhz": 2105,
+        "gpu_use_pct": 0,
+        "phase": "check"
+      },
+      "generated_source": "float16-4096-64-causal.py.gz",
+      "generated_source_sha256": "fb747fcf3780bbbab9e55e88d7c3e0231a04d9679c5a9b5c1e2d5d1005499e9a"
+    },
+    {
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "nomask",
+      "compiler_settings": [
+        [
+          2,
+          4
+        ]
+      ],
+      "grad_enabled": true,
+      "output_logsumexp": true,
+      "correctness_passed": true,
+      "max_abs_diff": 0.0001220703125,
+      "pre_compile_idle_samples": [
+        {
+          "time_ns": 1792455521620388378,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2194,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        },
+        {
+          "time_ns": 1792455522116851269,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2202,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        },
+        {
+          "time_ns": 1792455522600288850,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2202,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        }
+      ],
+      "post_compile_state": {
+        "time_ns": 1792455523474077845,
+        "pci_bus": "0000:e5:00.0",
+        "smi_device": 6,
+        "pids": [
+          2699016
+        ],
+        "sclk_mhz": 1578,
+        "gpu_use_pct": 0,
+        "phase": "check"
+      },
+      "generated_source": "float16-4096-128-nomask.py.gz",
+      "generated_source_sha256": "9151ba29510d1bb9f703bfd871fc4342d09efd5d170e5c6f0b240be3f9095eca"
+    },
+    {
+      "dtype": "float16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "causal",
+      "compiler_settings": [
+        [
+          2,
+          4
+        ]
+      ],
+      "grad_enabled": true,
+      "output_logsumexp": true,
+      "correctness_passed": true,
+      "max_abs_diff": 0.001953125,
+      "pre_compile_idle_samples": [
+        {
+          "time_ns": 1792455523713963084,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2147,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        },
+        {
+          "time_ns": 1792455524207521958,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2200,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        },
+        {
+          "time_ns": 1792455524696091970,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2202,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        }
+      ],
+      "post_compile_state": {
+        "time_ns": 1792455526040209948,
+        "pci_bus": "0000:e5:00.0",
+        "smi_device": 6,
+        "pids": [
+          2699016
+        ],
+        "sclk_mhz": 2073,
+        "gpu_use_pct": 0,
+        "phase": "check"
+      },
+      "generated_source": "float16-4096-128-causal.py.gz",
+      "generated_source_sha256": "a60c36832236364b459e1044072b828a158f5032b0d8bc4b9408b247deb887ad"
+    },
+    {
+      "dtype": "float16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "nomask",
+      "compiler_settings": [
+        [
+          2,
+          4
+        ]
+      ],
+      "grad_enabled": true,
+      "output_logsumexp": true,
+      "correctness_passed": true,
+      "max_abs_diff": 6.103515625e-05,
+      "pre_compile_idle_samples": [
+        {
+          "time_ns": 1792455526274319575,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2190,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        },
+        {
+          "time_ns": 1792455526773512850,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2200,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        },
+        {
+          "time_ns": 1792455527258707631,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2200,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        }
+      ],
+      "post_compile_state": {
+        "time_ns": 1792455528199116904,
+        "pci_bus": "0000:e5:00.0",
+        "smi_device": 6,
+        "pids": [
+          2699016
+        ],
+        "sclk_mhz": 1614,
+        "gpu_use_pct": 1,
+        "phase": "check"
+      },
+      "generated_source": "float16-8192-128-nomask.py.gz",
+      "generated_source_sha256": "0d96d2042e31954cbad15d66fb68607f4ba003489b1bf15180d489ae2df80a5a"
+    },
+    {
+      "dtype": "float16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "causal",
+      "compiler_settings": [
+        [
+          2,
+          4
+        ]
+      ],
+      "grad_enabled": true,
+      "output_logsumexp": true,
+      "correctness_passed": true,
+      "max_abs_diff": 0.001953125,
+      "pre_compile_idle_samples": [
+        {
+          "time_ns": 1792455528430874311,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2151,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        },
+        {
+          "time_ns": 1792455528923405784,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2200,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        },
+        {
+          "time_ns": 1792455529408258402,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2200,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        }
+      ],
+      "post_compile_state": {
+        "time_ns": 1792455530586716925,
+        "pci_bus": "0000:e5:00.0",
+        "smi_device": 6,
+        "pids": [
+          2699016
+        ],
+        "sclk_mhz": 2077,
+        "gpu_use_pct": 1,
+        "phase": "check"
+      },
+      "generated_source": "float16-8192-128-causal.py.gz",
+      "generated_source_sha256": "9a081372d343a2db66cc294c17f32dc8a31d43fe544f7bea443cd72cf073de74"
+    },
+    {
+      "dtype": "bfloat16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "nomask",
+      "compiler_settings": [
+        [
+          2,
+          4
+        ]
+      ],
+      "grad_enabled": true,
+      "output_logsumexp": true,
+      "correctness_passed": true,
+      "max_abs_diff": 0.0009765625,
+      "pre_compile_idle_samples": [
+        {
+          "time_ns": 1792455530824314516,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2190,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        },
+        {
+          "time_ns": 1792455531307182407,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2200,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        },
+        {
+          "time_ns": 1792455531794896188,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2200,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        }
+      ],
+      "post_compile_state": {
+        "time_ns": 1792455535020255387,
+        "pci_bus": "0000:e5:00.0",
+        "smi_device": 6,
+        "pids": [
+          2699016
+        ],
+        "sclk_mhz": 1604,
+        "gpu_use_pct": 0,
+        "phase": "check"
+      },
+      "generated_source": "bfloat16-4096-64-nomask.py.gz",
+      "generated_source_sha256": "8614d436fc28154d2ed07ae1438f3084b4bf355fbce79ff061fd97e6af53047e"
+    },
+    {
+      "dtype": "bfloat16",
+      "sequence_length": 4096,
+      "head_dim": 64,
+      "mask": "causal",
+      "compiler_settings": [
+        [
+          2,
+          4
+        ]
+      ],
+      "grad_enabled": true,
+      "output_logsumexp": true,
+      "correctness_passed": true,
+      "max_abs_diff": 0.015625,
+      "pre_compile_idle_samples": [
+        {
+          "time_ns": 1792455535252227600,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2145,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        },
+        {
+          "time_ns": 1792455535745818204,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2200,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        },
+        {
+          "time_ns": 1792455536228553211,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2202,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        }
+      ],
+      "post_compile_state": {
+        "time_ns": 1792455537234348355,
+        "pci_bus": "0000:e5:00.0",
+        "smi_device": 6,
+        "pids": [
+          2699016
+        ],
+        "sclk_mhz": 2075,
+        "gpu_use_pct": 0,
+        "phase": "check"
+      },
+      "generated_source": "bfloat16-4096-64-causal.py.gz",
+      "generated_source_sha256": "89b335f6d5539a1d759965061a51785bce332800c1a8c191ff01e487f8f8f807"
+    },
+    {
+      "dtype": "bfloat16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "nomask",
+      "compiler_settings": [
+        [
+          2,
+          4
+        ]
+      ],
+      "grad_enabled": true,
+      "output_logsumexp": true,
+      "correctness_passed": true,
+      "max_abs_diff": 0.0009765625,
+      "pre_compile_idle_samples": [
+        {
+          "time_ns": 1792455537468688941,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2191,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        },
+        {
+          "time_ns": 1792455537956930355,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2200,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        },
+        {
+          "time_ns": 1792455538453377768,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2200,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        }
+      ],
+      "post_compile_state": {
+        "time_ns": 1792455539320813848,
+        "pci_bus": "0000:e5:00.0",
+        "smi_device": 6,
+        "pids": [
+          2699016
+        ],
+        "sclk_mhz": 1583,
+        "gpu_use_pct": 0,
+        "phase": "check"
+      },
+      "generated_source": "bfloat16-4096-128-nomask.py.gz",
+      "generated_source_sha256": "c4b676670b995aeaa2778f070702f315665edb5ece109af252fc919b18a889d0"
+    },
+    {
+      "dtype": "bfloat16",
+      "sequence_length": 4096,
+      "head_dim": 128,
+      "mask": "causal",
+      "compiler_settings": [
+        [
+          2,
+          4
+        ]
+      ],
+      "grad_enabled": true,
+      "output_logsumexp": true,
+      "correctness_passed": true,
+      "max_abs_diff": 0.015625,
+      "pre_compile_idle_samples": [
+        {
+          "time_ns": 1792455539549862786,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2143,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        },
+        {
+          "time_ns": 1792455540037409782,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2200,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        },
+        {
+          "time_ns": 1792455540529038298,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2200,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        }
+      ],
+      "post_compile_state": {
+        "time_ns": 1792455541663945583,
+        "pci_bus": "0000:e5:00.0",
+        "smi_device": 6,
+        "pids": [
+          2699016
+        ],
+        "sclk_mhz": 2053,
+        "gpu_use_pct": 0,
+        "phase": "check"
+      },
+      "generated_source": "bfloat16-4096-128-causal.py.gz",
+      "generated_source_sha256": "518d93f389ece3b1d6b76ff37de436b1c77458a2f969ef1e53a35a608e04b0bc"
+    },
+    {
+      "dtype": "bfloat16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "nomask",
+      "compiler_settings": [
+        [
+          2,
+          4
+        ]
+      ],
+      "grad_enabled": true,
+      "output_logsumexp": true,
+      "correctness_passed": true,
+      "max_abs_diff": 0.00048828125,
+      "pre_compile_idle_samples": [
+        {
+          "time_ns": 1792455541899016652,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2188,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        },
+        {
+          "time_ns": 1792455542382127442,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2202,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        },
+        {
+          "time_ns": 1792455542876791068,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2202,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        }
+      ],
+      "post_compile_state": {
+        "time_ns": 1792455544020297182,
+        "pci_bus": "0000:e5:00.0",
+        "smi_device": 6,
+        "pids": [
+          2699016
+        ],
+        "sclk_mhz": 1574,
+        "gpu_use_pct": 1,
+        "phase": "check"
+      },
+      "generated_source": "bfloat16-8192-128-nomask.py.gz",
+      "generated_source_sha256": "756978b247496a02fece2279f1d5b4b6a1e5785d94933784a431c6287719b231"
+    },
+    {
+      "dtype": "bfloat16",
+      "sequence_length": 8192,
+      "head_dim": 128,
+      "mask": "causal",
+      "compiler_settings": [
+        [
+          2,
+          4
+        ]
+      ],
+      "grad_enabled": true,
+      "output_logsumexp": true,
+      "correctness_passed": true,
+      "max_abs_diff": 0.015625,
+      "pre_compile_idle_samples": [
+        {
+          "time_ns": 1792455544253792649,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2143,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        },
+        {
+          "time_ns": 1792455544744830499,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2200,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        },
+        {
+          "time_ns": 1792455545233933165,
+          "pci_bus": "0000:e5:00.0",
+          "smi_device": 6,
+          "pids": [
+            2699016
+          ],
+          "sclk_mhz": 2202,
+          "gpu_use_pct": 0,
+          "phase": "idle_check"
+        }
+      ],
+      "post_compile_state": {
+        "time_ns": 1792455546369433626,
+        "pci_bus": "0000:e5:00.0",
+        "smi_device": 6,
+        "pids": [
+          2699016
+        ],
+        "sclk_mhz": 2065,
+        "gpu_use_pct": 1,
+        "phase": "check"
+      },
+      "generated_source": "bfloat16-8192-128-causal.py.gz",
+      "generated_source_sha256": "98c856da2716dab0599509865c9619534cf8abf90e69a74813f9ff892d70fdc8"
+    }
+  ],
+  "complete": true
+}
