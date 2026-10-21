@@ -84,7 +84,7 @@ instruction sites with eight wavefronts, versus 256 with four. Static `ds_write`
 sites fall from 72 to 9. These counts support the explanation of redundant
 computation and the added layout conversion; the throughput table measures
 the runtime impact of changing the wavefront count. The [compiler appendix](#compiler-appendix)
-includes the layout details and inspectable artifacts.
+summarizes the layouts and instruction counts.
 
 The change to Inductor is one configuration value. The rendered Triton kernel
 body stays the same, while the compiler derives different layouts and machine
@@ -133,11 +133,30 @@ The gfx950 backward-default update[^3] does this for fp16 and bf16 at head
 dimensions 64 and 128. It selects
 `(BLOCK_M1, BLOCK_N1, BLOCK_M2, BLOCK_N2, num_stages, num_warps) =
 (32, 128, 128, 32, 2, 4)`. The first pair controls dK/dV, the second dQ.
+The previous configurations were `(64, 64, 64, 64, 1, 4)` at head dimension 64
+and `(64, 128, 128, 64, 1, 4)` at head dimension 128.
 
 Independent measurements on MI350X show **1.13x to 2.26x faster bf16
 backward** across the tested causal, grouped-query and sliding-window workloads.
-At sequence length 4096 with 16 query and KV heads, fp16 improves by
-**2.08x at head dimension 64** and **1.17x at 128**.
+The full set of 11 workloads is:
+
+| Data type | Sequence length | Head dim | Query/KV heads | Mask | Backward speedup |
+|---|---|---|---|---|---|
+| bf16 | 2048 | 64 | 16/16 | causal | 1.79x |
+| bf16 | 4096 | 64 | 16/16 | causal | 2.09x |
+| bf16 | 8192 | 64 | 16/16 | causal | 2.26x |
+| bf16 | 2048 | 128 | 16/16 | causal | 1.18x |
+| bf16 | 4096 | 128 | 16/16 | causal | 1.17x |
+| bf16 | 8192 | 128 | 16/16 | causal | 1.13x |
+| bf16 | 4096 | 64 | 16/4 | causal | 1.53x |
+| bf16 | 4096 | 128 | 16/4 | causal | 1.41x |
+| bf16 | 4096 | 128 | 16/16 | causal window, 1024 | 1.34x |
+| fp16 | 4096 | 64 | 16/16 | causal | 2.08x |
+| fp16 | 4096 | 128 | 16/16 | causal | 1.17x |
+
+*Batch size is 1 throughout. The 16/4 rows use grouped-query attention;
+the window includes keys satisfying `q_idx - 1024 < kv_idx <= q_idx`.*
+
 The tile and pipeline changes work together. For bf16 causal attention at head
 dimension 128 and sequence lengths 2048–8192:
 
@@ -151,9 +170,10 @@ dimension 128 and sequence lengths 2048–8192:
 
 This change has landed upstream and is absent from the PyTorch 2.14.1 wheel used
 for this comparison. We set both configurations explicitly on that same build,
-check outputs and all three gradients against FP64, and time the complete
-backward pass in two processes. The [backward validation report](data/backward-validation-2026-10-21/README.md)
-contains all 11 workloads, exact options, numerical checks and raw trials.
+with triton-rocm 3.8.0 and ROCm 7.2.1. We check outputs and all three gradients
+against FP64, then time the complete backward pass in two processes with six
+alternating-order trials each. Speedups are medians of the two processes'
+median paired ratios; the numerical criteria are given below.
 Training-step gains depend on the fraction of time spent in attention backward.
 
 ## Streamlining Memory Addressing
@@ -205,13 +225,28 @@ AMD kernels beyond the MI350X comparisons here.
 
 Both columns in the forward configuration comparisons use the same compiler
 with buffer operations enabled. They isolate the configuration changes and
-do not measure the compiler changes discussed here. A separate [addressing ablation](data/validation-2026-10-19/README.md#memory-addressing-ablation)
-at `B=1, H=16, S=4096, D=128`, fp16 with grad mode disabled, measured
-**399.6 versus 305.5 TFLOP/s** for
-causal attention with and without the buffer path: **1.31x**. The unmasked case
-improved by **1.04x**. Saved assembly verifies that the accesses switch between
-buffer and global operations. This comparison measures a different change and
-contributes no additional factor to the headline result.
+do not measure the compiler changes discussed here.
+
+A separate experiment toggled the pointer-range annotation at
+`B=1, H=16, S=4096, D=128`, fp16 with grad mode disabled, holding
+`(BLOCK_M, BLOCK_N, num_stages, num_warps) = (128, 64, 2, 4)` fixed:
+
+| Mask | Buffer path enabled | Buffer path disabled | Speedup |
+|---|---|---|---|
+| none | 613.9 | 588.1 | 1.04x |
+| causal | 399.6 | 305.5 | 1.31x |
+
+*Forward throughput in TFLOP/s on MI350X. This comparison uses PyTorch
+`2.14.0a0+gitb5460ee` with a locally modified Python checkout at `37200109b999`,
+including template flag handling, and Triton `3.8.0+gitc8305ccc`.
+Each setting has three fresh processes with private
+caches and three timing trials per process; values are medians of process medians.*
+
+The experiment uses the same idle-device checks and warmup protocol described
+below. All output and isolation checks passed. Assembly confirms that disabling
+the annotation replaces buffer loads and stores with global operations.
+This comparison measures a different change and contributes no additional factor
+to the headline result.
 
 ## Measurements and reproduction
 
@@ -229,12 +264,11 @@ The combined fp16 results shown in the opening figure are:
 *Forward throughput in TFLOP/s. Previous: `(128, 64, 1, 8)`; updated:
 `(128, 64, 2, 4)`, ordered as `(BLOCK_M, BLOCK_N, num_stages, num_warps)`.*
 
-All forward tables use one MI350X (gfx950), batch size 1, 16 heads at sequence
+The forward configuration comparisons use one MI350X (gfx950), batch size 1, 16 heads at sequence
 length 4096 and 32 at 8192, head dimensions 64 and 128, and either no mask or a
 causal mask produced by `create_block_mask`. The software is **official PyTorch
 2.14.1+rocm7.2**, **triton-rocm 3.8.0**, and **ROCm 7.2.1**, with Python 3.12.3.
-The [release record](data/publication-2.14.1-2026-10-20/README.md#frozen-environment)
-pins the PyTorch source revision and the exact PyTorch and Triton wheel hashes.
+The PyTorch source revision is `5c4886908584029761b579af026dcfb627c84070`.
 
 Throughput counts `4 * B * H * D * V` FLOPs, where `V` is the number of live score
 entries: `S * S` without a mask or `(S * S + S) / 2` for a causal mask. Compare
@@ -257,21 +291,47 @@ checks finite outputs against an eager reference, requires three idle GPU
 observations with no competing processes, ramps clocks with eight seconds of
 dense matmul, and warms the attention workload for three seconds. Each
 `triton.testing.do_bench` trial uses 200 ms warmup and 500 ms of repetitions.
-GPU process and clock monitoring continues during timing.
+GPU process and clock monitoring continues during timing. Forward output checks
+use `(atol, rtol) = (0.003, 0.01)` for fp16 and `(0.02, 0.02)` for bf16.
 
-Tables and charts use median throughput across the three processes, each of
+Forward configuration tables and charts use median throughput across the three processes, each of
 which reports its median trial. Ratios use unrounded values. All correctness,
 isolation and timing checks passed; the largest within-configuration trial
 range was 4.49% of its median. These observed ranges are descriptive, not
-confidence intervals. The [release validation report](data/publication-2.14.1-2026-10-20/README.md)
-contains raw trials, tolerances, monitoring evidence, generated kernels and
-all twelve checks of the unforced forward defaults.
+confidence intervals. All twelve checks of the unforced forward defaults also
+passed and selected the expected configuration.
 
 The landed backward comparison uses the same official wheel with old and new
 options set explicitly. The open backward PR uses separately pinned source
-builds, identified in its section. The addressing ablation has its own linked
-environment and protocol. Each comparison measures a different change;
-their speedups should not be multiplied.
+builds, identified in its section. The addressing experiment uses the separate
+development environment specified above. Each comparison measures a different
+change; their speedups should not be multiplied.
+
+### Backward measurement and numerical checks
+
+Both backward tuning and specialization measurements include gradient clearing,
+delta preprocessing, dQ/dK/dV kernels and any additional reductions. Forward
+execution, compilation and reference calculations are outside the timer. Each
+configuration has six timing trials with the same idle-device checks, clock
+ramp, warmup and `do_bench` settings as the forward campaign.
+
+Outputs and all three gradients are checked against independently implemented
+FP64 attention and derivatives, also cross-checked against CPU FP64 autograd.
+Inputs are quantized to the test dtype before reference conversion. The final
+tolerances were calibrated on stock kernels and applied to both variants:
+
+| Data type | Absolute tolerance | Relative tolerance | Relative-L2 limit |
+|---|---|---|---|
+| bf16 | 0.02 | 0.02 | 0.01 |
+| fp16 | 0.003 | 0.01 | 0.002 |
+| fp32 | 0.0001 | 0.001 | 0.0001 |
+
+Every output and gradient must be finite and pass both the elementwise and
+relative-L2 checks. Optimized-gradient relative-L2 error must also stay within
+twice the stock error plus `1e-6`. All reported workloads passed with two input
+seeds. The landed-default comparison uses an all-ones incoming gradient for
+the first seed and a random gradient for the second; the specialization
+comparison uses random incoming gradients for both seeds.
 
 ### Using the updated forward defaults
 
@@ -294,11 +354,20 @@ compiled = torch.compile(flex_attention, fullgraph=True)
 out = compiled(q, k, v, block_mask=block_mask, scale=D**-0.5)
 ```
 
-To reproduce the comparisons, use the [benchmark instructions](bench/README.md)
-to install the pinned release wheels and run three fresh processes on an
-exclusively allocated GPU, with six trials per configuration and private caches.
-The [published summary](data/publication-2.14.1-2026-10-20/forward-summary.csv),
-raw trials and plot scripts are bundled with this article.
+To compare forward configurations explicitly, pass the settings to the compiled
+call through `kernel_options`, for example:
+
+```python
+out = compiled(
+    q, k, v, block_mask=block_mask, scale=D**-0.5,
+    kernel_options={"BLOCK_M": 128, "BLOCK_N": 64,
+                    "num_stages": 2, "num_warps": 4},
+)
+```
+
+Use the same software build for both configurations and the measurement protocol
+above: three fresh processes, six trials per configuration, private compiler
+caches and an exclusively allocated GPU.
 
 To tune other shapes, use
 `torch.compile(flex_attention, mode="max-autotune", fullgraph=True)` and validate
@@ -328,9 +397,9 @@ count needs to be evaluated with the rest of the configuration.
 
 ## Next: Giving Backward Kernels Their Own Schedules
 
-A further backward optimization[^11] is **under review as of October 21, 2026**.
-It separates dQ and dK/dV into distinct kernel launches, allowing each to use its
-own launch and compiler settings. In the inspected D96 grouped-query path,
+A further backward optimization[^11] separates dQ and dK/dV into distinct
+kernel launches, allowing each to use its own launch and compiler settings.
+In the inspected D96 grouped-query path,
 dK/dV uses one pipeline stage while dQ uses two.
 
 The proposed kernels also expose independent work earlier: `dP = dO Vᵀ` can be
@@ -353,8 +422,9 @@ speedups range from **1.18x to 2.93x**. Representative results:
 versus PR `d64287342982`; Triton `fc8d31a5439e`. Ratios compare median latencies
 from the first measurement pass. All 23 configurations passed independent FP64
 checks with two seeds; seven received a second performance measurement on both
-builds. The [full report](data/backward-validation-2026-10-21/README.md#open-pr-automatic-selection-against-the-actual-parent)
-includes every row and repeat.*
+builds, with speedup ratios differing by at most 1.14% between the two passes.
+Each build uses six timing trials per configuration, with autotuning disabled
+and `BACKEND="TRITON"`.*
 
 Automatic selection is guarded by the supported shapes, layouts, masks and
 other input conditions; explicit tuning settings take precedence. These results
@@ -400,9 +470,8 @@ along the rows and assigns any remaining wavefronts to output columns:
 Matching layouts avoids this particular conversion. Other LDS operations
 remain. These are static instruction sites; loop execution and masking
 determine dynamic counts, so the counts alone cannot predict runtime.
-The [preserved IR and assembly](data/README.md#compiler-artifacts) support the
-diagram, and the [compiler audit](data/publication-2.14.1-2026-10-20/compiler-audit.json)
-checks that these counts agree across all three processes.
+The IR layouts and assembly counts agree across all three processes in the
+release campaign.
 
 ### Captured-gradient atomics: a contention stress test
 
@@ -435,9 +504,6 @@ with both bias shapes before and after the guard; those controls were not timed.
 
 The 63.81x result characterizes this synthetic contention stress test. Its
 zero-gradient numerical issue limits what it establishes about training.
-The [atomic validation report](data/atomic-validation-2026-10-21/README.md)
-retains the exact source intervention, reference checks, raw trials, isolation
-records and compiler artifacts.
 
 ### Other defaults and compiler maintenance
 
@@ -454,8 +520,8 @@ in this article.
 
 ## Pull request references
 
-The backward specialization PR marked **open** remains under review. All other
-changes referenced below have landed in their respective upstream repositories.
+The backward specialization PR is marked **open** below. The other referenced
+changes have landed in their respective upstream repositories.
 
 [^1]: [PyTorch #180720: Change the fp16 default from eight to four wavefronts](https://github.com/pytorch/pytorch/pull/180720).
 [^2]: [PyTorch #176676: Enable software pipelining for FlexAttention](https://github.com/pytorch/pytorch/pull/176676).

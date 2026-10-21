@@ -1,8 +1,8 @@
 {
-  "completed_utc": "2026-10-21T19:51:51.057147+00:00",
+  "completed_utc": "2026-10-21T20:42:26.377963+00:00",
   "status": "technical_and_editorial_review_passed",
   "publication_state": "local_working_tree_not_pushed",
-  "scope": "Official PyTorch 2.14.1 forward and independently validated backward results; final atomic-stress appendix integration, evidence audit, link and browser review",
+  "scope": "Final publication review and self-contained editorial revision; original performance measurements and evidence retained",
   "forward_environment": {
     "torch": "2.14.1+rocm7.2",
     "triton_distribution": "triton-rocm==3.8.0",
@@ -21,7 +21,7 @@
     "backward_archive_hashes_verified": 134,
     "backward_independent_archive_reaggregation_matches_summary": true,
     "numbered_pr_references": 13,
-    "local_document_links_and_anchors_checked": 202,
+    "local_document_links_and_anchors_checked": 197,
     "bash_blocks_syntax_checked": true,
     "changed_figures_visually_reviewed": [
       "01-fp16-speedup.png",
@@ -76,7 +76,7 @@
           "brokenAnchors": [],
           "viewportWidth": 1280,
           "documentWidth": 1280,
-          "tables": 8,
+          "tables": 11,
           "horizontalTableScrolls": 0,
           "viewport": "desktop",
           "pageErrors": []
@@ -113,8 +113,8 @@
           "brokenAnchors": [],
           "viewportWidth": 390,
           "documentWidth": 390,
-          "tables": 8,
-          "horizontalTableScrolls": 6,
+          "tables": 11,
+          "horizontalTableScrolls": 8,
           "viewport": "mobile",
           "pageErrors": []
         }
@@ -131,8 +131,21 @@
       "open backward outlook",
       "atomic appendix",
       "numbered references",
-      "mobile appendix"
-    ]
+      "mobile appendix",
+      "inlined backward results and numerical criteria"
+    ],
+    "self_contained_editorial_revision": {
+      "local_links_and_anchors_checked": 197,
+      "numbered_pr_references": 13,
+      "landed_backward_rows_match_validated_report": 11,
+      "separate_document_links_in_article": 0,
+      "dated_review_wording_removed": true,
+      "based_on_commit": "300096374a26569b76ecf98a05ab29af8d23349d",
+      "performance_evidence_changed": false,
+      "new_gpu_benchmarks": false,
+      "numerical_methods_and_configurations_inlined": true,
+      "existing_test_results_retained_not_rerun": true
+    }
   },
   "measurement_scope": {
     "new_gpu_benchmarks_this_editorial_pass": false,
@@ -167,10 +180,10 @@
       "numerical_qualification": "Outputs and Q/K/V pass FP64 tolerances. Additive per-head bias fails strict 0.003 absolute tolerance before and after; true derivative is zero. Nonconstant key-linear controls must pass all gradients.",
       "nonconstant_controls_timed": false
     },
-    "publisher_specific_rendering": "Publisher CMS not evaluated. Local Pandoc GFM and Chromium desktop/mobile preview passed; all four figures, eight tables, 13 numbered references and anchors rendered."
+    "publisher_specific_rendering": "Publisher CMS not evaluated. Local Pandoc GFM and Chromium desktop/mobile preview passed; all four figures, eleven tables, 13 numbered references and anchors rendered."
   },
   "files_sha256": {
-    "README.md": "c5cfbf2e76fd8f5d664d150fc97d9e56141067e42f1852858933125cddc1518c",
+    "README.md": "0eac9621e5e2a3e7f20c87c3770073ade3897a275e8f96b2bca4fb9d2edc213b",
     "bench/README.md": "a6309619596052de784ad41986a96c171b42932ca8b094de5280b29bb2545c96",
     "bench/aggregate_landed.py": "db43df0d08e2df5d8a0bb0c4dc04b92d891e45fc0bbf93b032ddfe2c086113d1",
     "bench/landed_data.py": "aa34aa805758fb8cf319be62484d26952b3082246dc841c2ae02e95a44574b61",
@@ -195,5 +208,5 @@
     "images/04-memory-addressing.png": "2c11fb6250613d5bba78e752f21db11ad3d1a269b46ee09985ba4ff16e91dfa0",
     "images/04-memory-addressing.svg": "625ba8a08eccbe38a241e6ec55bcd770a69d88beaf63cf991a62a0129ea9f02f"
   },
-  "previous_review_completed_utc": "2026-10-21T19:20:07.401613+00:00"
+  "previous_review_completed_utc": "2026-10-21T19:51:51.057147+00:00"
 }
