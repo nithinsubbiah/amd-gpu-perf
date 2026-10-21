@@ -1,0 +1,199 @@
+{
+  "completed_utc": "2026-10-21T19:51:51.057147+00:00",
+  "status": "technical_and_editorial_review_passed",
+  "publication_state": "local_working_tree_not_pushed",
+  "scope": "Official PyTorch 2.14.1 forward and independently validated backward results; final atomic-stress appendix integration, evidence audit, link and browser review",
+  "forward_environment": {
+    "torch": "2.14.1+rocm7.2",
+    "triton_distribution": "triton-rocm==3.8.0",
+    "host_rocm": "7.2.1",
+    "source_commit": "5c4886908584029761b579af026dcfb627c84070"
+  },
+  "checks": {
+    "cpu_harness_tests": {
+      "passed": 12,
+      "command": "python -m unittest discover -s bench -p test_validation.py"
+    },
+    "forward_table_rows_recomputed_from_raw": 18,
+    "forward_raw_measurements_validated": 108,
+    "release_summary_matches_raw_medians": true,
+    "assembly_and_ir_hashes_and_instruction_counts_verified_for_measurements": 108,
+    "backward_archive_hashes_verified": 134,
+    "backward_independent_archive_reaggregation_matches_summary": true,
+    "numbered_pr_references": 13,
+    "local_document_links_and_anchors_checked": 202,
+    "bash_blocks_syntax_checked": true,
+    "changed_figures_visually_reviewed": [
+      "01-fp16-speedup.png",
+      "02-bf16-pipelining.png",
+      "03-wavefront-distribution.png"
+    ],
+    "chart_svg_labels_match_raw_measurements": true,
+    "wavefront_svg_counts_match_release_audit": true,
+    "preintegration_files_archived_and_hash_checked": 16,
+    "historical_summary_environment_and_compiler_artifacts_unchanged": true,
+    "main_article_excludes_out_of_scope_backend_and_personal_attribution": true,
+    "git_diff_check": true,
+    "external_article_links_checked": 19,
+    "external_article_links_all_http_200": true,
+    "atomic_bundle_hashes_verified": 9,
+    "atomic_independent_archive_reaggregation_matches_summary": true,
+    "atomic_article_table_matches_summary": true,
+    "atomic_measurements_validated": 12,
+    "atomic_timing_trials_validated": 72,
+    "browser_preview": {
+      "renderer": "Pandoc GFM + Chromium; local preview, publisher CMS not evaluated",
+      "viewports": [
+        {
+          "images": [
+            {
+              "src": "images/01-fp16-speedup.png",
+              "loaded": true,
+              "width": 928,
+              "naturalWidth": 1600
+            },
+            {
+              "src": "images/03-wavefront-distribution.png",
+              "loaded": true,
+              "width": 928,
+              "naturalWidth": 2560
+            },
+            {
+              "src": "images/02-bf16-pipelining.png",
+              "loaded": true,
+              "width": 928,
+              "naturalWidth": 1600
+            },
+            {
+              "src": "images/04-memory-addressing.png",
+              "loaded": true,
+              "width": 928,
+              "naturalWidth": 2560
+            }
+          ],
+          "numberedReferences": 13,
+          "footnotes": 13,
+          "brokenAnchors": [],
+          "viewportWidth": 1280,
+          "documentWidth": 1280,
+          "tables": 8,
+          "horizontalTableScrolls": 0,
+          "viewport": "desktop",
+          "pageErrors": []
+        },
+        {
+          "images": [
+            {
+              "src": "images/01-fp16-speedup.png",
+              "loaded": true,
+              "width": 354,
+              "naturalWidth": 1600
+            },
+            {
+              "src": "images/03-wavefront-distribution.png",
+              "loaded": true,
+              "width": 354,
+              "naturalWidth": 2560
+            },
+            {
+              "src": "images/02-bf16-pipelining.png",
+              "loaded": true,
+              "width": 354,
+              "naturalWidth": 1600
+            },
+            {
+              "src": "images/04-memory-addressing.png",
+              "loaded": true,
+              "width": 354,
+              "naturalWidth": 2560
+            }
+          ],
+          "numberedReferences": 13,
+          "footnotes": 13,
+          "brokenAnchors": [],
+          "viewportWidth": 390,
+          "documentWidth": 390,
+          "tables": 8,
+          "horizontalTableScrolls": 6,
+          "viewport": "mobile",
+          "pageErrors": []
+        }
+      ]
+    },
+    "browser_figures_visually_reviewed": [
+      "01-fp16-speedup.png",
+      "02-bf16-pipelining.png",
+      "03-wavefront-distribution.png",
+      "04-memory-addressing.png"
+    ],
+    "browser_sections_visually_reviewed": [
+      "landed backward",
+      "open backward outlook",
+      "atomic appendix",
+      "numbered references",
+      "mobile appendix"
+    ]
+  },
+  "measurement_scope": {
+    "new_gpu_benchmarks_this_editorial_pass": false,
+    "open_backward_pr": {
+      "url": "https://github.com/pytorch/pytorch/pull/200959",
+      "status": "open",
+      "checked_on": "2026-10-21",
+      "measured_head": "d642873429820f9f05d26958a83bc8503e9b528f",
+      "current_head_at_review": "d642873429820f9f05d26958a83bc8503e9b528f",
+      "measured_head_still_current": true
+    },
+    "captured_bias_atomic_case": {
+      "url": "https://github.com/pytorch/pytorch/pull/194136",
+      "status": "independently verified; synthetic stress case with per-head captured-gradient numerical limitation",
+      "location": "compiler appendix",
+      "report": "data/atomic-validation-2026-10-21/README.md",
+      "intervention": "stock official PyTorch 2.14.1+rocm7.2 versus atomic annotation guard restored in memory on the same build",
+      "process_pairs": 3,
+      "timing_trials": 72,
+      "results": {
+        "head": {
+          "median_before_ms": 425.0517578125,
+          "median_after_ms": 6.661100506782532,
+          "speedup": 63.811041040395594
+        },
+        "query": {
+          "median_before_ms": 0.2619670033454895,
+          "median_after_ms": 0.22412700206041336,
+          "speedup": 1.1688328534144063
+        }
+      },
+      "numerical_qualification": "Outputs and Q/K/V pass FP64 tolerances. Additive per-head bias fails strict 0.003 absolute tolerance before and after; true derivative is zero. Nonconstant key-linear controls must pass all gradients.",
+      "nonconstant_controls_timed": false
+    },
+    "publisher_specific_rendering": "Publisher CMS not evaluated. Local Pandoc GFM and Chromium desktop/mobile preview passed; all four figures, eight tables, 13 numbered references and anchors rendered."
+  },
+  "files_sha256": {
+    "README.md": "c5cfbf2e76fd8f5d664d150fc97d9e56141067e42f1852858933125cddc1518c",
+    "bench/README.md": "a6309619596052de784ad41986a96c171b42932ca8b094de5280b29bb2545c96",
+    "bench/aggregate_landed.py": "db43df0d08e2df5d8a0bb0c4dc04b92d891e45fc0bbf93b032ddfe2c086113d1",
+    "bench/landed_data.py": "aa34aa805758fb8cf319be62484d26952b3082246dc841c2ae02e95a44574b61",
+    "bench/plot_landed.py": "d21924ee1a905aac759b5b0a54f296ae113f9efa22ef111cc97772394872e44e",
+    "bench/plot_mechanisms.py": "ca845c88373e72e57245f26a6086f1b67388b92ec3a37098f56b1608f00ed5f1",
+    "data/README.md": "fab617025daf98a75642611945f13f156ff41196403697ce66d13485819f7062",
+    "data/atomic-validation-2026-10-21/README.md": "fdc4ee6150bea62a3565fc7f1849b60b076a030693cf34e12a411ce471c1bef5",
+    "data/atomic-validation-2026-10-21/manifest.json": "26fe7611c0c9f607843fd09f05852bc85492f4450a12b819be5b54b9dbb0c4a5",
+    "data/atomic-validation-2026-10-21/raw-results.tar.gz": "b64c35a6525bd78d045705175d3f2e41defffe1c6f3946ebefd4a043e4e0a87f",
+    "data/atomic-validation-2026-10-21/summary.json": "69f6ef9534e731e1c0da2d84fd345caea93d178438c5d73b971f43c984190d07",
+    "data/backward-validation-2026-10-21/README.md": "910a7fc14bf3c845e0a8c051f777cbe8fddeb772ec48970e85348c9e3e1b98de",
+    "data/backward-validation-2026-10-21/manifest.json": "5add485b95b134a5b4f2d9761d0f1bd07e5b7a97d7cd9a2918d98fbcc8ac71fe",
+    "data/backward-validation-2026-10-21/raw-results.tar.gz": "01ee2c854bab220246ef08d96a26843ee1cc0c6c52cc6129d0ba5a8c89ad7154",
+    "data/backward-validation-2026-10-21/summary.json": "43fc503bcddb95838b3bc76ed1ea48d09bf87daaff1f407800927502a3d1ff81",
+    "data/publication-2.14.1-2026-10-20/README.md": "19a7375ca0ea814d8ef3fe721558153cb57c04b46060bbe17c7e3085981e4fe0",
+    "images/01-fp16-speedup.png": "397bd9da4daf110cb97af0a433bbe78c420e9d09d6dc3a9679cea568e47a6f12",
+    "images/01-fp16-speedup.svg": "ba1c418357aa141fa0cc45d3c97eced15347f075a5516f84dc02d2b394689815",
+    "images/02-bf16-pipelining.png": "a73388cfc78b1de8d22d2efa43d766eb6b5d69fe4d258ac5b41ca79422c01eb7",
+    "images/02-bf16-pipelining.svg": "690cb85fdbfee29217118e380446d0fbdf642dd419e17ed2de424c36733e3735",
+    "images/03-wavefront-distribution.png": "a439876238ca5cceaf27ef0e63bf0247c94c38219f5adc3b0c092d0b07079fb1",
+    "images/03-wavefront-distribution.svg": "e46f148189cf383cb23b361608662ac9ed2e96d8367796099c8721e7024edcce",
+    "images/04-memory-addressing.png": "2c11fb6250613d5bba78e752f21db11ad3d1a269b46ee09985ba4ff16e91dfa0",
+    "images/04-memory-addressing.svg": "625ba8a08eccbe38a241e6ec55bcd770a69d88beaf63cf991a62a0129ea9f02f"
+  },
+  "previous_review_completed_utc": "2026-10-21T19:20:07.401613+00:00"
+}

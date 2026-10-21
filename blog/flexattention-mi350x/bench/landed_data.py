@@ -12,7 +12,8 @@ import statistics
 
 from gpu_monitor import validate_clocks
 
-SUMMARY = Path(__file__).resolve().parents[1] / "data/forward-summary.csv"
+SUMMARY = (Path(__file__).resolve().parents[1]
+           / "data/publication-2.14.1-2026-10-20/forward-summary.csv")
 SHAPES = [(4096, 64, "nomask"), (4096, 64, "causal"),
           (4096, 128, "nomask"), (4096, 128, "causal"),
           (8192, 128, "nomask"), (8192, 128, "causal")]

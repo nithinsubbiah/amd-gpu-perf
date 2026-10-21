@@ -1,0 +1,23 @@
+{
+  "source": "User-supplied agent writeup in this conversation",
+  "claimed_environment": "MI350X, PyTorch 2.13.0+rocm7.1; exact stock/overlay source revisions unspecified",
+  "comparison_caution": "These are claims to evaluate, not measurements from this independent campaign. A changed software baseline prevents an exact like-for-like numerical reproduction.",
+  "rows_by_open_case_index": {
+    "2": 2.82,
+    "3": 2.97,
+    "6": 1.54,
+    "11": 1.99,
+    "10": 2.58,
+    "12": 1.45,
+    "13": 1.52,
+    "15": 1.73,
+    "16": 1.51,
+    "14": 1.68,
+    "17": 2.88,
+    "18": 2.62,
+    "20": 2.63,
+    "22": 2.76,
+    "21": 2.27,
+    "19": 2.92
+  }
+}

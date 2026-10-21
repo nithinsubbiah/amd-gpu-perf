@@ -25,7 +25,9 @@ No partial results from the rejected attempt are included here.
 
 Original campaign files and a manifest of all preexisting article files are
 preserved in the [resume archive](../publication-2.14.1-2026-10-19/history/20261020T001809Z/).
-Historical results and article figures retain their existing attribution.
+Historical results retain their original attribution. The later editorial
+integration preserves the earlier article and figures in a separate
+[archive](../history/pre-release-integration-2026-10-21/article-and-figures.tar.gz).
 
 ## Frozen environment
 
@@ -66,7 +68,9 @@ is absent: template metadata calls `config_of(signature)` without the shared
 guard or pointer override. The official 2.14.1 environment is suitable for
 the forward configuration comparison. The existing addressing on/off script
 requires that later flag handling and needs a separate pinned upstream environment.
-Its backward results must retain attribution to the PR's measurements.
+The later [atomic validation](../atomic-validation-2026-10-21/README.md)
+compares the stock release with the guard restored in memory. It independently
+measures the contention cases and records their numerical qualification.
 
 ## Campaign command and retained artifacts
 
@@ -145,8 +149,9 @@ limit rather than a clock-range limit.
 The separate release charts are available as
 [fp16 PNG](figures/01-fp16-speedup.png) / [SVG](figures/01-fp16-speedup.svg) and
 [bf16 PNG](figures/02-bf16-pipelining.png) / [SVG](figures/02-bf16-pipelining.svg).
-Both chart exports were visually reviewed. The article's existing tables and
-images continue to use the historical development-build measurements.
+Both chart exports were visually reviewed. The article now uses these release
+measurements; its figures add an environment label and its mechanism diagram
+uses the release compiler counts below.
 
 ## Compiler evidence
 
@@ -172,18 +177,25 @@ static sites do not establish dynamic instruction counts or an additional
 runtime speedup. The [compiler audit](compiler-audit.json) links each artifact
 and records buffer/global access counts, registers, and shared memory.
 
-The historical diagram and its original evidence remain unchanged. A version
-attributed to this release must use the release counts above.
+The article's diagram and compiler appendix now use these release counts.
+Historical artifacts remain under `../codegen/`, with the earlier diagram
+preserved in the pre-integration archive.
 
-## Remaining publication work
+## Publication integration
 
-1. Validate the addressing section on a separately pinned upstream build that
-   contains the template/atomics guard. Keep the backward results attributed to
-   the PR's measurements.
-2. Integrate accepted release tables, charts, and revised mechanism counts into
-   the article with updated software and six-trial protocol attribution, while
-   retaining the historical results and figures.
+On 2026-10-21, the article's forward tables, charts, compiler explanation and
+reproduction instructions were updated together to use this accepted campaign.
+The historical CSV, compiler artifacts, original run records and failed attempt
+remain intact. The [data index](../README.md) distinguishes their provenance.
+
+The [separate addressing ablation](../validation-2026-10-19/README.md#memory-addressing-ablation)
+retains its own pinned environment and validation. The [atomic validation](../atomic-validation-2026-10-21/README.md)
+independently measures the captured-bias stress cases, now in the article's
+appendix with their numerical limits. The newer [backward validation](../backward-validation-2026-10-21/README.md)
+independently checks the landed defaults and the open kernel-specialization PR;
+each comparison has its own stated baseline.
 
 CPU status: all twelve harness validation tests passed. The launcher log is
-`publication.log`. The [preservation audit](preservation-audit.json) checks the
-preexisting file manifest and the archive of replaced campaign status records.
+`publication.log`. The [preservation audit](preservation-audit.json) records the
+preexisting file manifest and archive checks at campaign completion, before
+the later editorial integration.

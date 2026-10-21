@@ -1,0 +1,57 @@
+[
+  {
+    "claim": "Stock backward scatters dQ with atomics; splitting removes them",
+    "verdict": "incorrect",
+    "finding": "Stock assigns disjoint dQ and dK/dV programs within one launch; dQ uses tl.store. Captured-buffer gradients are a separate atomic path. Stock already has two tile pairs. Separate launches permit independent compiler settings.",
+    "source": "https://github.com/pytorch/pytorch/blob/656560bcbe2f0056162828918c6755888e5efe2b/torch/_inductor/kernel/flex/templates/flex_backwards.py.jinja"
+  },
+  {
+    "claim": "Backward is five matmuls per tile and about 2.5x forward FLOPs",
+    "verdict": "not an accurate count of these implementations",
+    "finding": "The ideal algebra has five matmuls when reconstructed intermediates can be shared. This template separately recomputes QK and dP in dQ and dK/dV traversals. Avoid a numerical FLOP ratio in this section.",
+    "source": "https://github.com/pytorch/pytorch/blob/656560bcbe2f0056162828918c6755888e5efe2b/torch/_inductor/kernel/flex/templates/flex_backwards.py.jinja"
+  },
+  {
+    "claim": "Early dP overlaps matrix work with exponentials and cuts an illustrative 17 units to 12",
+    "verdict": "dependency change supported; hardware overlap and numerical timing unverified",
+    "finding": "dP=dO V^T does not depend on reconstructed P. Selected paths move it earlier. A dependency graph is appropriate; a measured timeline requires profiling.",
+    "source": "https://github.com/pytorch/pytorch/blob/d642873429820f9f05d26958a83bc8503e9b528f/torch/_inductor/kernel/flex/templates/flex_backwards.py.jinja"
+  },
+  {
+    "claim": "Panel dots and dV fragments reduce registers and avoid spills",
+    "verdict": "source transformation supported; resource improvement requires native-code comparison",
+    "finding": "D96/D192/D256 products are split into panels. Some dV paths use 64-column fragments; the FP16 query-first path uses 32-column fragments. Do not generalize all paths as two 64-column views.",
+    "source": "https://github.com/pytorch/pytorch/blob/d642873429820f9f05d26958a83bc8503e9b528f/torch/_inductor/kernel/flex/templates/flex_backwards.py.jinja"
+  },
+  {
+    "claim": "XCD remapping pins each head to an XCD and improves L2 hits",
+    "verdict": "too strong",
+    "finding": "The code permutes logical program IDs using an eight-XCD model. It neither binds programs to physical XCDs nor proves improved cache hit rate. State intent to improve locality. MI350 has eight XCDs and 4 MB L2 per XCD in the AMD architecture documentation.",
+    "source": "https://github.com/pytorch/pytorch/blob/d642873429820f9f05d26958a83bc8503e9b528f/torch/_inductor/kernel/flex/templates/flex_backwards.py.jinja",
+    "hardware_source": "https://www.amd.com/content/dam/amd/en/documents/instinct-tech-docs/white-papers/amd-cdna-4-architecture-whitepaper.pdf"
+  },
+  {
+    "claim": "Reversing causal dQ rows launches the longest work first and shortens the tail",
+    "verdict": "mapping supported; dispatch order and performance effect need evidence",
+    "finding": "Reversal puts the largest causal rows at the earliest logical program IDs. Actual hardware scheduling and tail reduction are not established by this code alone.",
+    "source": "https://github.com/pytorch/pytorch/blob/d642873429820f9f05d26958a83bc8503e9b528f/torch/_inductor/kernel/flex/templates/flex_backwards.py.jinja"
+  },
+  {
+    "claim": "Query-first traversal shares kv_num_blocks and kv_indices across query heads",
+    "verdict": "mechanism valid but metadata names wrong",
+    "finding": "The dK/dV query-first traversal shares the Q block metadata traversal (Q_NUM_BLKS / Q_IDX), while each query head retains its own tensor accesses.",
+    "source": "https://github.com/pytorch/pytorch/blob/d642873429820f9f05d26958a83bc8503e9b528f/torch/_inductor/kernel/flex/templates/flex_backwards.py.jinja"
+  },
+  {
+    "claim": "All users automatically receive the reported speedups",
+    "verdict": "unsupported",
+    "finding": "Automatic selection is guarded by exact gfx950 shapes, layouts, mask, scale, score modification and options. The PR body reports explicit-option results on an installed build with source overlays and explicitly leaves automatic indexed-path performance pending. Independently benchmark actual automatic selection.",
+    "source": "https://github.com/pytorch/pytorch/blob/d642873429820f9f05d26958a83bc8503e9b528f/torch/_inductor/kernel/flex/flex_attention.py"
+  },
+  {
+    "claim": "Merged backward tuning was measured on dense attention",
+    "verdict": "original benchmark labels misleading",
+    "finding": "The original local scripts call q>=kv causal attention dense. GQA cases are causal; block-sparse cases use a causal window of 1024. New results record masks explicitly.",
+    "source": "/home/nmeganat/flex/gluon_flex/bench_flex_bwd_configs.py"
+  }
+]

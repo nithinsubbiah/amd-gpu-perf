@@ -1,0 +1,31 @@
+{
+  "observed_utc": "2026-10-21T19:34:25.758572+00:00",
+  "utilization": {
+    "card0": {
+      "GPU use (%)": "1"
+    },
+    "card1": {
+      "GPU use (%)": "1"
+    },
+    "card2": {
+      "GPU use (%)": "1"
+    },
+    "card3": {
+      "GPU use (%)": "1"
+    },
+    "card4": {
+      "GPU use (%)": "1"
+    },
+    "card5": {
+      "GPU use (%)": "1"
+    },
+    "card6": {
+      "GPU use (%)": "1"
+    },
+    "card7": {
+      "GPU use (%)": "1"
+    }
+  },
+  "processes": "\n\n============================ ROCm System Management Interface ============================\n===================================== KFD Processes ======================================\nKFD process information:\nPID   \tPROCESS NAME\tGPU(s)\tVRAM USED \tSDMA USED\tCU OCCUPANCY\t\n103333\tpython      \t1     \t5494255616\t0        \t0           \t\n==========================================================================================\n================================== GPUs Indexed by PID ===================================\nPID 103333 is using 1 DRM device(s):\n3 \n==========================================================================================\n================================== End of ROCm SMI Log ===================================\n",
+  "note": "Each accepted run independently passed its own selected-device idle postflight. This later machine-wide snapshot contains other activity and is not timing evidence. No other workload was modified."
+}

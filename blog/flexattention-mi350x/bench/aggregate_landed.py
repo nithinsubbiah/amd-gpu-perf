@@ -1,6 +1,6 @@
 """Print article tables from the aggregate CSV or complete JSONL process runs.
 
-Default: the preserved historical summary. For a new campaign, pass a quoted
+Default: the official PyTorch 2.14.1 summary. For a new campaign, pass a quoted
 JSONL glob. Ratio ranges describe the retained runs; they are not confidence intervals.
 """
 

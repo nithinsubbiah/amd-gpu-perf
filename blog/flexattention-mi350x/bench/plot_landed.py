@@ -1,7 +1,8 @@
 """Render the charts from the preserved summary CSV or a complete JSONL campaign.
 
 Usage: plot_landed.py [input_csv_or_jsonl_glob] [output_directory]
-Defaults to the historical summary and the article's images directory. No GPU is used.
+Defaults to the official PyTorch 2.14.1 summary and the article's images directory.
+No GPU is used. Custom inputs are not given the publication environment label.
 """
 
 from pathlib import Path
@@ -20,7 +21,8 @@ BEFORE_COLOR = "#8a8f98"
 AFTER_COLOR = "#ED1C24"  # AMD red
 
 
-def chart(med, dtype, before, after, before_label, after_label, title, path):
+def chart(med, dtype, before, after, before_label, after_label, title, path,
+          source_label=None):
     xs, bs, as_ = [], [], []
     for n, d, mask in SHAPES:
         b = med[(dtype, n, d, mask) + before]
@@ -56,6 +58,9 @@ def chart(med, dtype, before, after, before_label, after_label, title, path):
     ax.grid(axis="y", alpha=0.25, linewidth=0.6)
     ax.set_axisbelow(True)
     fig.tight_layout()
+    if source_label:
+        fig.subplots_adjust(bottom=0.27)
+        fig.text(0.5, 0.025, source_label, ha="center", fontsize=8, color="#444")
     for ext in ("png", "svg"):
         target = Path(path).with_suffix("." + ext)
         fig.savefig(target, dpi=160,
@@ -71,15 +76,19 @@ if __name__ == "__main__":
     runs, description = load_data(pattern)
     print("Input:", description)
     med = medians(runs)
+    source_label = (
+        "PyTorch 2.14.1+rocm7.2 · triton-rocm 3.8.0 · ROCm 7.2.1 · B=1 · H=16 / 32 at S=4096 / 8192"
+        if Path(pattern).resolve() == SUMMARY.resolve() else None
+    )
 
     chart(med, "float16", (1, 8), (2, 4),
           "Previous defaults (num_stages=1, num_warps=8)",
           "Updated defaults (num_stages=2, num_warps=4)",
           "FlexAttention forward, fp16, AMD Instinct MI350X",
-          f"{outdir}/01-fp16-speedup.png")
+          f"{outdir}/01-fp16-speedup.png", source_label)
 
     chart(med, "bfloat16", (1, 4), (2, 4),
           "1 software-pipeline stage",
           "2 software-pipeline stages",
           "FlexAttention forward, bf16, effect of software pipelining on MI350X",
-          f"{outdir}/02-bf16-pipelining.png")
+          f"{outdir}/02-bf16-pipelining.png", source_label)

@@ -1,0 +1,25 @@
+{
+  "checked_utc": "2026-10-21T00:53:18.736123+00:00",
+  "prs": {
+    "194151": {
+      "html_url": "https://github.com/pytorch/pytorch/pull/194151",
+      "state": "closed",
+      "merged": false,
+      "merged_at": null,
+      "closed_at": "2026-09-04T00:58:04Z",
+      "updated_at": "2026-09-04T01:12:25Z",
+      "head_sha": "d0bbb65e008598c3ca4db5f5089fd1555336610c",
+      "landed_sha": "1e9d530d4a901a846f06d65f925d4b98fe842b2b",
+      "landed_commit_is_parent_ancestor": true
+    },
+    "200959": {
+      "html_url": "https://github.com/pytorch/pytorch/pull/200959",
+      "state": "open",
+      "merged": false,
+      "merged_at": null,
+      "closed_at": null,
+      "updated_at": "2026-10-15T18:08:11Z",
+      "head_sha": "d642873429820f9f05d26958a83bc8503e9b528f"
+    }
+  }
+}

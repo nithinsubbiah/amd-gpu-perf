@@ -1,0 +1,38 @@
+{
+  "README.md": {
+    "sha256": "fdc4ee6150bea62a3565fc7f1849b60b076a030693cf34e12a411ce471c1bef5",
+    "bytes": 5876
+  },
+  "aggregate_atomics.py": {
+    "sha256": "95b4522474f43ec9f03112ab8aa68064211123b482100f87624a102b4636570a",
+    "bytes": 6454
+  },
+  "bench_atomics.py": {
+    "sha256": "11d256cc7acfc1e93ddb396361fa9ae1345cac0efcb907b1bfa66c189d3a69f4",
+    "bytes": 14829
+  },
+  "raw-results.tar.gz": {
+    "sha256": "b64c35a6525bd78d045705175d3f2e41defffe1c6f3946ebefd4a043e4e0a87f",
+    "bytes": 3526257
+  },
+  "requirements.lock": {
+    "sha256": "01ce2e7870fa5bb22eec1f110e24f8c5592319bcf6318777a1991d418685b0c4",
+    "bytes": 5148
+  },
+  "summary.json": {
+    "sha256": "69f6ef9534e731e1c0da2d84fd345caea93d178438c5d73b971f43c984190d07",
+    "bytes": 11162
+  },
+  "support/bench_landed.py": {
+    "sha256": "d9a0cbd4ce5ae7d9e5e6d5cac4b19914cc01344b514f3ea68e22943754b47292",
+    "bytes": 15920
+  },
+  "support/gpu_monitor.py": {
+    "sha256": "bd01ca053784383c3aea0ed760f5c84452635419523b9683c416310fc7756339",
+    "bytes": 6317
+  },
+  "postflight.json": {
+    "sha256": "8f6d715317f37005a0ebfd776d739cccdf503e7d96def50b22769762d2561ca0",
+    "bytes": 1447
+  }
+}

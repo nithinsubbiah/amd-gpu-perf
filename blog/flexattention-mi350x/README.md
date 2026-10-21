@@ -8,19 +8,22 @@ changes to the ROCm defaults improved fp16 forward throughput by **2.1x to 3.0x*
 on the shapes we measured: increasing the software-pipelining depth from one to
 two stages and reducing the wavefront count from eight to four.
 
-![Previous and updated configurations on MI350X: fp16 FlexAttention forward throughput improves by 2.12x to 3.03x across six measured cases.](images/01-fp16-speedup.png)
+![Previous and updated configurations on MI350X: fp16 FlexAttention forward throughput improves by 2.12x to 3.04x across six measured cases.](images/01-fp16-speedup.png)
 
 *Combined effect of `num_stages=1 → 2` and `num_warps=8 → 4`, with both configurations
-compiled on the same software build. Batch size is 1; the tests cover head dimensions
-64 and 128, sequence lengths 4096 and 8192, and unmasked and causal attention.*
+compiled on official PyTorch 2.14.1+rocm7.2 with triton-rocm 3.8.0. Batch size is 1;
+the tests cover head dimensions 64 and 128, sequence lengths 4096 and 8192, and
+unmasked and causal attention.*
 
 The bf16 defaults already used four wavefronts, so they benefit from the
-pipelining change alone: **1.11x to 1.18x**. These configuration changes are included
+pipelining change alone: **1.10x to 1.18x**. These configuration changes are included
 in the [PyTorch 2.14.1 ROCm defaults](https://github.com/pytorch/pytorch/blob/5c4886908584029761b579af026dcfb627c84070/torch/_inductor/heuristics/template/triton.py).
-The investigation also led to
-architecture-specific defaults and improvements to memory addressing in Inductor
-and Triton. Together, they show how configuration choices and compiler lowering
-shape the performance of the same attention algorithm.
+
+Backward tuning improves performance by **1.13x to 2.26x** on the tested bf16
+workloads; that change has landed upstream but is absent from this release.
+The investigation also led to architecture-specific defaults and improvements
+to memory addressing in Inductor and Triton. Together, they show how configuration
+choices and compiler lowering shape the performance of the same attention algorithm.
 
 ## How Inductor configures FlexAttention
 
@@ -40,16 +43,16 @@ between them.
 
 The fp16 defaults used `num_warps=8` at head dimensions 64 and 128, while bf16 used
 four for the same shapes. Changing the fp16 default to four[^1] improved forward
-throughput by **1.86x to 2.61x**, holding `num_stages=2` fixed:
+throughput by **1.86x to 2.63x**, holding `num_stages=2` fixed:
 
 | Sequence length | Head dim | Mask | 8 wavefronts | 4 wavefronts | Speedup |
 |---|---|---|---|---|---|
-| 4096 | 64 | none | 233.9 | 508.0 | 2.17x |
-| 4096 | 64 | causal | 119.1 | 311.4 | 2.61x |
-| 4096 | 128 | none | 331.2 | 616.2 | 1.86x |
-| 4096 | 128 | causal | 187.0 | 402.7 | 2.15x |
-| 8192 | 128 | none | 337.7 | 637.2 | 1.89x |
-| 8192 | 128 | causal | 225.5 | 467.4 | 2.07x |
+| 4096 | 64 | none | 231.9 | 504.2 | 2.17x |
+| 4096 | 64 | causal | 119.1 | 312.8 | 2.63x |
+| 4096 | 128 | none | 327.3 | 609.3 | 1.86x |
+| 4096 | 128 | causal | 187.1 | 401.6 | 2.15x |
+| 8192 | 128 | none | 333.5 | 631.9 | 1.90x |
+| 8192 | 128 | causal | 227.9 | 463.2 | 2.03x |
 
 *Forward throughput in TFLOP/s; higher is better. Both columns use `BLOCK_M=128`,
 `BLOCK_N=64`, and `num_stages=2`. The upstream PR also measures larger batches and
@@ -65,8 +68,9 @@ Triton distributes that work across the two matrix products.
 
 *Work assignments for `BLOCK_M=128`, `BLOCK_N=64`, head dimension 128, fp16 on
 gfx950. The two QK assignments in each band on the left cover the same keys;
-the two PV wavefronts divide alternating 32-column tiles. The counters are static
-compiler evidence, with MFMA instruction sites weighted by wavefront count.*
+the two PV wavefronts divide alternating 32-column tiles. The counters come from
+the PyTorch 2.14.1 release campaign and count static compiler sites, with MFMA
+sites weighted by wavefront count.*
 
 Triton's first matrix product assigns all wavefronts along the query-row axis,
 keeping each softmax row within a wavefront. With eight wavefronts, pairs of them
@@ -75,10 +79,11 @@ along the rows and two along the output columns. Moving between those layouts
 requires a conversion through LDS, the GPU's shared memory. With four
 wavefronts, both products use a `[4, 1]` layout.
 
-The saved assembly contains 768 wave-weighted MFMA instruction sites with eight
-wavefronts, versus 512 with four. Static `ds_write` sites fall from 138 to 9.
-These counts explain redundant computation and the added layout conversion;
-the throughput table measures their runtime impact. The [compiler appendix](#compiler-appendix)
+On the release build, the saved assembly contains 384 wave-weighted MFMA
+instruction sites with eight wavefronts, versus 256 with four. Static `ds_write`
+sites fall from 72 to 9. These counts support the explanation of redundant
+computation and the added layout conversion; the throughput table measures
+the runtime impact of changing the wavefront count. The [compiler appendix](#compiler-appendix)
 includes the layout details and inspectable artifacts.
 
 The change to Inductor is one configuration value. The rendered Triton kernel
@@ -92,19 +97,18 @@ of four wavefronts is specific to these configurations.
 Triton's software pipeliner can schedule loads for upcoming key/value blocks
 alongside computation on the current block. The ROCm defaults used
 `num_stages=1`, limiting that software-pipelining opportunity. Increasing the
-default to two stages[^2]
-provides a consistent gain on the measured bf16 cases:
+default to two stages[^2] provides a consistent gain on the measured bf16 cases:
 
-![Changing from one to two software-pipeline stages improves bf16 FlexAttention forward throughput by 1.11x to 1.18x on MI350X.](images/02-bf16-pipelining.png)
+![Changing from one to two software-pipeline stages improves bf16 FlexAttention forward throughput by 1.10x to 1.18x on MI350X.](images/02-bf16-pipelining.png)
 
 | Sequence length | Head dim | Mask | 1 stage | 2 stages | Speedup |
 |---|---|---|---|---|---|
-| 4096 | 64 | none | 445.4 | 523.6 | 1.18x |
-| 4096 | 64 | causal | 274.6 | 313.9 | 1.14x |
-| 4096 | 128 | none | 548.2 | 647.6 | 1.18x |
-| 4096 | 128 | causal | 373.0 | 412.7 | 1.11x |
-| 8192 | 128 | none | 579.1 | 667.1 | 1.15x |
-| 8192 | 128 | causal | 431.0 | 484.1 | 1.12x |
+| 4096 | 64 | none | 442.9 | 519.4 | 1.17x |
+| 4096 | 64 | causal | 274.2 | 315.2 | 1.15x |
+| 4096 | 128 | none | 540.9 | 637.3 | 1.18x |
+| 4096 | 128 | causal | 372.0 | 411.0 | 1.10x |
+| 8192 | 128 | none | 576.2 | 660.9 | 1.15x |
+| 8192 | 128 | causal | 430.1 | 480.3 | 1.12x |
 
 *Forward throughput in TFLOP/s, with four wavefronts in both columns. The upstream
 review swept 16 shapes with [attention-gym](https://github.com/meta-pytorch/attention-gym)
@@ -112,11 +116,45 @@ and reported a geometric mean speedup of 1.13x.*
 
 The two knobs interact. In the grad-enabled forward setup measured here,
 pipelining is slightly negative with eight wavefronts on the unmasked fp16
-head-dimension-64 case: 239.1 to 233.9 TFLOP/s, or 0.98x. With four wavefronts,
+head-dimension-64 case: 237.9 to 231.9 TFLOP/s, or 0.97x. With four wavefronts,
 pipelining benefits that shape. The reproduction harness measures all four
 combinations so each effect can be checked in the same execution context.
 When tuning a new target, benchmark combinations of tile size, wavefront count,
 and pipeline depth.
+
+## Better Defaults for Backward
+
+Training computes gradients for queries, keys and values. The dK/dV work holds
+a key/value tile fixed while walking query blocks; dQ holds a query tile fixed
+while walking key/value blocks. Each traversal has its own tile pair, and both
+need to be tuned with the pipeline depth.
+
+The gfx950 backward-default update[^3] does this for fp16 and bf16 at head
+dimensions 64 and 128. It selects
+`(BLOCK_M1, BLOCK_N1, BLOCK_M2, BLOCK_N2, num_stages, num_warps) =
+(32, 128, 128, 32, 2, 4)`. The first pair controls dK/dV, the second dQ.
+
+Independent measurements on MI350X show **1.13x to 2.26x faster bf16
+backward** across the tested causal, grouped-query and sliding-window workloads.
+At sequence length 4096 with 16 query and KV heads, fp16 improves by
+**2.08x at head dimension 64** and **1.17x at 128**.
+The tile and pipeline changes work together. For bf16 causal attention at head
+dimension 128 and sequence lengths 2048–8192:
+
+| Change from previous defaults | Backward speedup |
+|---|---|
+| Tile shape alone | 0.86x–0.89x |
+| Two pipeline stages alone | 0.93x–0.98x |
+| Tile shape and two stages together | 1.13x–1.18x |
+
+*Values below 1x indicate a slowdown. Batch size is 1, with 16 query and KV heads.*
+
+This change has landed upstream and is absent from the PyTorch 2.14.1 wheel used
+for this comparison. We set both configurations explicitly on that same build,
+check outputs and all three gradients against FP64, and time the complete
+backward pass in two processes. The [backward validation report](data/backward-validation-2026-10-21/README.md)
+contains all 11 workloads, exact options, numerical checks and raw trials.
+Training-step gains depend on the fraction of time spent in attention backward.
 
 ## Streamlining Memory Addressing
 
@@ -130,16 +168,15 @@ tensor offsets fit in 32 bits, it can represent those accesses as a shared
 *The accessed addresses remain 64-bit. The optimization narrows the offsets
 where the compiler can prove that doing so preserves the addresses.*
 
-Inductor supplies that information through a pointer-range annotation[^3]: on
-HIP, tensor arguments whose storage is provably
-smaller than 2 GiB receive `tt.pointer_range=32`. Triton's pointer canonicalization and
-buffer-operation lowering can then use the bounded-offset representation.
-The compiler suppresses the annotation for user-defined Triton kernels[^4],
-where Inductor cannot establish
-the necessary pointer bounds.
+Inductor supplies that information through a pointer-range annotation[^4]: on
+HIP, tensor arguments whose storage is provably smaller than 2 GiB receive
+`tt.pointer_range=32`. Triton's pointer canonicalization and buffer-operation
+lowering can then use the bounded-offset representation.
+The compiler suppresses the annotation for user-defined Triton kernels[^5],
+where Inductor cannot establish the necessary pointer bounds.
 
-Triton's 64-bit offset support[^5]
-also allows eligible offset expressions to reach buffer operations when it can
+Triton's 64-bit offset support[^6] also allows eligible offset expressions to
+reach buffer operations when it can
 prove they are safe to narrow. The useful condition is the proof of the offset
 range; the expression's initial integer width alone does not decide eligibility.
 
@@ -148,32 +185,27 @@ range; the expression's initial integer width alone does not decide eligibility.
 The annotation needs consistent controls across Inductor's code-generation
 paths. FlexAttention uses a template path that bypassed both
 `TORCHINDUCTOR_EMIT_POINTER_RANGE_32=0` and the existing suppression for kernels
-containing atomics. The template guard[^6]
-moves the decision into a shared helper and records atomics emitted by
-FlexAttention's captured-buffer gradient lowering.
-This later template guard is absent from PyTorch 2.14.1; the backward results
-below are measurements reported in the PR.
+containing atomics. The template guard[^7] shares the annotation policy across
+those paths and records atomics emitted by FlexAttention's captured-buffer
+gradient lowering. Suppressing the annotation allows global atomics to handle
+highly contended gradient accumulation.
 
-> **A workload where the guard matters.** With a learnable per-head bias captured
-> by `score_mod`, backward accumulates many contributions into just eight
-> addresses. Suppressing the annotation avoids buffer atomics for this highly
-> contended accumulation. Restoring the guard changed backward latency from **425.2 ms to
-> 6.8 ms** at `B=1, H=8, S=2048, D=64`, fp16 on MI350X. A per-query bias spreads
-> the accumulation over 16,384 addresses and improves by **1.09x** instead.
-> The penalty depends strongly on contention. These backward measurements are
-> separate from the forward results above.
+This guard has landed upstream and is absent from PyTorch 2.14.1. We independently
+checked its effect by restoring the guard on that same release build. The
+[appendix](#captured-gradient-atomics-a-contention-stress-test) describes the
+synthetic contention measurements and their numerical limits.
 
 ### Supporting compiler changes
 
-The buffer path also needed an SSA dominance fix.[^7]
-A separate packed fp32-to-bf16 conversion[^8]
+The buffer path also needed an SSA dominance fix.[^8]
+A separate packed fp32-to-bf16 conversion[^9]
 uses `v_perm_b32` for round-toward-zero packing; its reported reduction in register
 pressure and spills was measured on gfx1250. These changes support efficient
 AMD kernels beyond the MI350X comparisons here.
 
-Both configurations in every forward comparison use the same compiler with
-buffer operations enabled, so these compiler changes are already shared by
-both columns. A separate [fresh addressing ablation](data/validation-2026-10-19/README.md#memory-addressing-ablation)
+Both columns in the forward configuration comparisons use the same compiler
+with buffer operations enabled. They isolate the configuration changes and
+do not measure the compiler changes discussed here. A separate [addressing ablation](data/validation-2026-10-19/README.md#memory-addressing-ablation)
 at `B=1, H=16, S=4096, D=128`, fp16 with grad mode disabled, measured
 **399.6 versus 305.5 TFLOP/s** for
 causal attention with and without the buffer path: **1.31x**. The unmasked case
@@ -187,72 +219,61 @@ The combined fp16 results shown in the opening figure are:
 
 | Sequence length | Head dim | Mask | Previous defaults | Updated defaults | Speedup |
 |---|---|---|---|---|---|
-| 4096 | 64 | none | 239.1 | 508.0 | 2.12x |
-| 4096 | 64 | causal | 102.7 | 311.4 | 3.03x |
-| 4096 | 128 | none | 278.7 | 616.2 | 2.21x |
-| 4096 | 128 | causal | 153.5 | 402.7 | 2.62x |
-| 8192 | 128 | none | 289.1 | 637.2 | 2.20x |
-| 8192 | 128 | causal | 193.5 | 467.4 | 2.42x |
+| 4096 | 64 | none | 237.9 | 504.2 | 2.12x |
+| 4096 | 64 | causal | 102.7 | 312.8 | 3.04x |
+| 4096 | 128 | none | 277.6 | 609.3 | 2.20x |
+| 4096 | 128 | causal | 154.5 | 401.6 | 2.60x |
+| 8192 | 128 | none | 285.5 | 631.9 | 2.21x |
+| 8192 | 128 | causal | 193.1 | 463.2 | 2.40x |
 
 *Forward throughput in TFLOP/s. Previous: `(128, 64, 1, 8)`; updated:
 `(128, 64, 2, 4)`, ordered as `(BLOCK_M, BLOCK_N, num_stages, num_warps)`.*
 
 All forward tables use one MI350X (gfx950), batch size 1, 16 heads at sequence
 length 4096 and 32 at 8192, head dimensions 64 and 128, and either no mask or a
-causal mask produced by `create_block_mask`. The software build was ROCm 7.2.1,
-PyTorch `2.14.0a0+gitb5460ee`, and Triton 3.8.0. The
-[environment record](data/environment.json) identifies the PyTorch source
-revision and the available compiler metadata.
+causal mask produced by `create_block_mask`. The software is **official PyTorch
+2.14.1+rocm7.2**, **triton-rocm 3.8.0**, and **ROCm 7.2.1**, with Python 3.12.3.
+The [release record](data/publication-2.14.1-2026-10-20/README.md#frozen-environment)
+pins the PyTorch source revision and the exact PyTorch and Triton wheel hashes.
 
 Throughput counts `4 * B * H * D * V` FLOPs, where `V` is the number of live score
-entries: `S * S` without a mask or `(S * S + S) / 2` for a causal mask. This
-normalization makes causal and unmasked throughput different measures of useful
-work; compare configurations within the same workload row.
+entries: `S * S` without a mask or `(S * S + S) / 2` for a causal mask. Compare
+configurations within the same row; causal and unmasked throughput count
+different amounts of useful work.
 
 ### Measurement protocol
 
-The previous configurations are pinned through `kernel_options` on the same
-build as the updated ones. This isolates the configuration changes from other
-changes between software releases. The headline result measures the default
-Triton path with autotuning disabled.
+We pin previous and updated configurations through `kernel_options` on the same
+build, with autotuning disabled. This isolates the settings from changes between
+software releases. The forward campaign uses the default grad-enabled context
+with inputs that do not require gradients: it emits logsumexp, but times no
+backward pass. Disabling grad mode changes the generated kernel and constitutes
+a different comparison.
 
-The original script uses the default grad-enabled context, with input tensors
-that do not require gradients; no backward pass is timed. In this context,
-FlexAttention still emits logsumexp. Disabling grad mode changes that generated
-kernel, so the harness records both grad mode and `OUTPUT_LOGSUMEXP`. Its default
-matches the original script; use `--grad-mode disabled` for a separate
-grad-disabled forward comparison.
+The campaign retains **three fresh processes × 36 configurations × six timing
+trials = 648 trials**. Each process uses private compiler caches; the second
+reverses configuration order. Before timing each configuration, the harness
+checks finite outputs against an eager reference, requires three idle GPU
+observations with no competing processes, ramps clocks with eight seconds of
+dense matmul, and warms the attention workload for three seconds. Each
+`triton.testing.do_bench` trial uses 200 ms warmup and 500 ms of repetitions.
+GPU process and clock monitoring continues during timing.
 
-The reported values are medians across three independent processes. Each process
-used a dense-matmul clock ramp, an idle selected GPU, and three
-`triton.testing.do_bench` measurements per configuration, each with a 200 ms
-warmup and 500 ms of repetitions. The preserved
-[summary CSV](data/forward-summary.csv) contains the aggregate throughputs used
-in the tables and charts. It does not contain the individual process samples,
-so we report no uncertainty interval derived from them.
+Tables and charts use median throughput across the three processes, each of
+which reports its median trial. Ratios use unrounded values. All correctness,
+isolation and timing checks passed; the largest within-configuration trial
+range was 4.49% of its median. These observed ranges are descriptive, not
+confidence intervals. The [release validation report](data/publication-2.14.1-2026-10-20/README.md)
+contains raw trials, tolerances, monitoring evidence, generated kernels and
+all twelve checks of the unforced forward defaults.
 
-The [reproduction harness](bench/bench_landed.py) makes the checks explicit for
-new runs: compile and check finite outputs against an eager reference before
-timing; ramp clocks after compilation for each configuration; monitor the
-selected physical GPU for competing processes and clock changes; and retain
-the individual timing trials and environment in JSONL. A failed check aborts
-the run. The [benchmark instructions](bench/README.md) give the tolerances,
-monitoring limits, source setup, and commands for retaining complete runs.
+The landed backward comparison uses the same official wheel with old and new
+options set explicitly. The open backward PR uses separately pinned source
+builds, identified in its section. The addressing ablation has its own linked
+environment and protocol. Each comparison measures a different change;
+their speedups should not be multiplied.
 
-The [validation report](data/validation-2026-10-19/README.md) retains three
-complete grad-disabled processes, their generated kernels, and their monitoring
-evidence. A [targeted recheck](data/validation-2026-10-19/baseline-recheck/README.md)
-identified the grad-mode mismatch in the first validation harness and reproduced
-the historical baseline after restoring the original context. The grad-disabled
-tables and charts remain separate from the article's grad-enabled measurements.
-
-A separate [official PyTorch 2.14.1 validation](data/publication-2.14.1-2026-10-20/README.md)
-passed all twelve unforced-default checks and three complete grad-enabled
-processes, retaining 108 measurements and 648 timing trials. It includes new
-release charts and a compiler comparison; the tables and figures in this article
-retain their historical development-build attribution.
-
-### Using the updated defaults
+### Using the updated forward defaults
 
 A PyTorch ROCm build containing the changes uses the updated defaults without
 an opt-in flag:
@@ -273,19 +294,13 @@ compiled = torch.compile(flex_attention, fullgraph=True)
 out = compiled(q, k, v, block_mask=block_mask, scale=D**-0.5)
 ```
 
-To reproduce the comparisons on an exclusively allocated GPU, run the bundled
-harness in three fresh processes, reversing configuration order in the second:
+To reproduce the comparisons, use the [benchmark instructions](bench/README.md)
+to install the pinned release wheels and run three fresh processes on an
+exclusively allocated GPU, with six trials per configuration and private caches.
+The [published summary](data/publication-2.14.1-2026-10-20/forward-summary.csv),
+raw trials and plot scripts are bundled with this article.
 
-```bash
-mkdir -p results
-HIP_VISIBLE_DEVICES=0 python bench/bench_landed.py --output results/run1.jsonl
-HIP_VISIBLE_DEVICES=0 python bench/bench_landed.py --reverse-order --output results/run2.jsonl
-HIP_VISIBLE_DEVICES=0 python bench/bench_landed.py --output results/run3.jsonl
-python bench/aggregate_landed.py 'results/run*.jsonl'
-```
-
-Run these commands from this article's directory. They create a new measurement
-campaign; the published summary data stays separate. To tune other shapes, use
+To tune other shapes, use
 `torch.compile(flex_attention, mode="max-autotune", fullgraph=True)` and validate
 the selected configuration on your workload.
 
@@ -294,7 +309,7 @@ the selected configuration on your workload.
 MI300X (gfx942) and MI350X (gfx950) have different LDS capacities and matrix
 throughput, so they can favor different tile sizes and wavefront counts. These
 settings balance data reuse and latency hiding against the resources needed by
-each workgroup. A separate default table for each architecture[^9] allows either
+each workgroup. A separate default table for each architecture[^10] allows either
 to be tuned without changing the other's defaults. The half-precision forward
 entries are shown as `(BLOCK_M, BLOCK_N, num_stages, num_warps)`:
 
@@ -311,13 +326,52 @@ so it contributes no additional MI350X speedup to the figures here. The smaller
 MI300X tiles and head-dimension-256 entries also illustrate why the wavefront
 count needs to be evaluated with the rest of the configuration.
 
+## Next: Giving Backward Kernels Their Own Schedules
+
+A further backward optimization[^11] is **under review as of October 21, 2026**.
+It separates dQ and dK/dV into distinct kernel launches, allowing each to use its
+own launch and compiler settings. In the inspected D96 grouped-query path,
+dK/dV uses one pipeline stage while dQ uses two.
+
+The proposed kernels also expose independent work earlier: `dP = dO Vᵀ` can be
+computed before the attention probabilities have been reconstructed. For
+selected D128 grouped-query inputs, the dK/dV traversal shares a walk through
+the query-block metadata across query heads that use the same KV head. These
+are opportunities for better scheduling and less repeated mask traversal.
+
+We built the PR and its exact parent with the same pinned compiler and measured
+automatic selection. Across 23 supported configurations, complete backward
+speedups range from **1.18x to 2.93x**. Representative results:
+
+| Data type | Batch | Query/KV heads | Sequence length | Head dim | Mask | Backward speedup |
+|---|---|---|---|---|---|---|
+| bf16 | 4 | 21/21 | 4096 | 96 | dense | 2.86x |
+| fp16 | 2 | 64/8 | 4096 | 128 | causal | 1.86x |
+| fp32 | 4 | 64/8 | 2048 | 128 | causal | 2.87x |
+
+*MI350X, ROCm 7.2.1, PyTorch 2.16.0a0 source builds: parent `656560bcbe2f`
+versus PR `d64287342982`; Triton `fc8d31a5439e`. Ratios compare median latencies
+from the first measurement pass. All 23 configurations passed independent FP64
+checks with two seeds; seven received a second performance measurement on both
+builds. The [full report](data/backward-validation-2026-10-21/README.md#open-pr-automatic-selection-against-the-actual-parent)
+includes every row and repeat.*
+
+Automatic selection is guarded by the supported shapes, layouts, masks and
+other input conditions; explicit tuning settings take precedence. These results
+describe this PR revision, with its own software baseline, and are not part of
+the released forward defaults measured earlier.
+
 ## Summary
 
 Revisiting two defaults recovered substantial MI350X performance: four
 wavefronts avoid replicated work and a layout conversion in the inspected fp16
 kernel, and two pipeline stages improve overlap across key/value iterations.
 Together, they deliver 2.1x to 3.0x higher fp16 forward throughput on the measured
-shapes, with 1.11x to 1.18x from pipelining alone on bf16.
+shapes, with 1.10x to 1.18x from pipelining alone on bf16.
+
+Backward benefits from the same approach: the landed tile-and-pipeline tuning
+improves the tested bf16 workloads by 1.13x to 2.26x. The open kernel
+specializations extend that work with independent schedules for dQ and dK/dV.
 
 The practical lesson is to tune the configuration as a whole when bringing up
 an architecture. Per-architecture tables give validated defaults a home, and
@@ -328,61 +382,91 @@ compiler inspection helps explain which combinations deserve measurement.
 
 ### How Triton assigns wavefronts
 
-In the inspected compiler, [`planWarps`](https://github.com/triton-lang/triton/blob/c8305cccdeb7c2eb07441a5e696e7f9b17cd8e24/third_party/amd/lib/TritonAMDGPUTransforms/AccelerateAMDMatmul.cpp)
-recognizes chained matrix products. The first receives `[num_warps, 1]` to keep
-softmax reductions within a wavefront. The second distributes wavefronts down
-the rows first, capping that axis according to the output shape and the chosen
-MFMA instruction's row dimension, then assigns the remaining wavefronts to
-output columns.
+The release campaign's Triton GPU IR records the assignments used by the
+wavefront diagram. For fp16, `B=1, H=16, S=4096, D=128`, unmasked, with
+`BLOCK_M=128`, `BLOCK_N=64` and two stages, both kernels use
+`v_mfma_f32_32x32x16_f16`.
 
-For the inspected 32×32 MFMA cases, that row capacity is
-`ceil(BLOCK_M / 32)`. At `BLOCK_M=128`, four wavefronts give matching layouts;
-eight give `[8, 1]` followed by `[4, 2]`. Additional saved compiler inspections
-reported the following layouts and static LDS write counts:
+The first matrix product assigns wavefronts along query rows, keeping softmax
+reductions within each wavefront. Four 32-row tiles cover the 128 query rows;
+eight wavefronts replicate those bands. The second product uses four wavefronts
+along the rows and assigns any remaining wavefronts to output columns:
 
-| `BLOCK_M` | `num_warps` | Wave layouts emitted | Static `ds_write` sites |
+| Wavefronts | QK / PV wave layouts | MFMA sites | Sites × wavefronts | `ds_write` sites |
+|---|---|---|---|---|
+| 4 | `[4, 1]` / `[4, 1]` | 64 | 256 | 9 |
+| 8 | `[8, 1]` / `[4, 2]` | 48 | 384 | 72 |
+
+Matching layouts avoids this particular conversion. Other LDS operations
+remain. These are static instruction sites; loop execution and masking
+determine dynamic counts, so the counts alone cannot predict runtime.
+The [preserved IR and assembly](data/README.md#compiler-artifacts) support the
+diagram, and the [compiler audit](data/publication-2.14.1-2026-10-20/compiler-audit.json)
+checks that these counts agree across all three processes.
+
+### Captured-gradient atomics: a contention stress test
+
+For dense fp16 attention at `B=1, H=8, S=2048, D=64`, an additive bias captured
+by `score_mod` makes backward accumulate into either eight per-head destinations
+or 16,384 per-query destinations. We compared the stock PyTorch 2.14.1+rocm7.2
+wheel with the atomic guard restored in memory, using triton-rocm 3.8.0 and
+ROCm 7.2.1. Three fresh process pairs retained 72 timing trials:
+
+| Captured bias | Stock backward | Guard restored | Speedup |
 |---|---|---|---|
-| 128 | 4 | `[4, 1]` | 9 |
-| 128 | 2 | `[2, 1]` | 17 |
-| 64 | 2 | `[2, 1]` | 9 |
-| 128 | 8 | `[8, 1]` and `[4, 2]` | 138 |
-| 64 | 8 | `[8, 1]` and `[2, 4]` | 136 |
+| Per head: `bias[h]` | 425.052 ms | 6.661 ms | 63.81x |
+| Per query: `bias[h, q_idx]` | 261.967 µs | 224.127 µs | 1.17x |
 
-Matching wave layouts avoids this particular conversion. Other LDS operations
-remain, and these static counts alone do not establish the fastest
-configuration for a different shape or architecture.
+*Complete backward latency; lower is better. Each value is the median of three
+process medians. Compilation and forward execution are outside the timer.*
 
-The [preserved IR and assembly](data/README.md#compiler-artifacts) for the
-four- and eight-wavefront kernels let you inspect the main diagram's evidence.
-There are 128 MFMA instruction sites at four wavefronts and 96 at eight;
-weighting them gives 512 and 768 respectively. Loop execution and masking
-still determine the dynamic instruction count.
+The generated template bodies match within every pair. The backward assembly
+changes from 16 `buffer_atomic_add_f32` sites to 16 `global_atomic_add_f32` sites.
+The large difference between the two workloads illustrates how strongly
+contention affects this path.
+
+These biases add a constant across each softmax row, so their true gradients
+are zero. The per-head captured gradient exceeds our preset absolute tolerance
+of 0.003 in both versions, with maximum errors of 0.0062–0.0125 before and
+0.0062–0.0065 after. Outputs and Q/K/V gradients pass the FP64 checks, as does
+the per-query bias gradient. A separate nonconstant modifier,
+`score + bias * (kv_idx / S)`, passes checks for the output and all four gradients
+with both bias shapes before and after the guard; those controls were not timed.
+
+The 63.81x result characterizes this synthetic contention stress test. Its
+zero-gradient numerical issue limits what it establishes about training.
+The [atomic validation report](data/atomic-validation-2026-10-21/README.md)
+retains the exact source intervention, reference checks, raw trials, isolation
+records and compiler artifacts.
 
 ### Other defaults and compiler maintenance
 
 The architecture-table change also retains these fp32 entries on both gfx942
 and gfx950: `(128, 32, 1, 4)` at head dimensions 64 and 128, and
-`(64, 16, 1, 4)` at head dimension 256. The measurements here cover half
+`(64, 16, 1, 4)` at head dimension 256. The forward measurements here cover half
 precision; they do not establish whether fp32 benefits from additional stages.
 
 Two further Triton maintenance changes accompany this work: a driver support
-check for cooperative groups[^10] and corrected architecture selection in a
-`num_ctas` test.[^11] They improve the surrounding
-compiler support and testing without contributing a separately measured speedup
+check for cooperative groups[^12] and corrected architecture selection in a
+`num_ctas` test.[^13] They improve compiler support and testing
+without contributing a separately measured speedup
 in this article.
 
 ## Pull request references
 
-All changes referenced below have landed in their respective upstream repositories.
+The backward specialization PR marked **open** remains under review. All other
+changes referenced below have landed in their respective upstream repositories.
 
 [^1]: [PyTorch #180720: Change the fp16 default from eight to four wavefronts](https://github.com/pytorch/pytorch/pull/180720).
 [^2]: [PyTorch #176676: Enable software pipelining for FlexAttention](https://github.com/pytorch/pytorch/pull/176676).
-[^3]: [PyTorch #176675: Emit pointer-range annotations for small tensor arguments](https://github.com/pytorch/pytorch/pull/176675).
-[^4]: [PyTorch #178541: Suppress pointer-range annotations for user-defined Triton kernels](https://github.com/pytorch/pytorch/pull/178541).
-[^5]: [Triton #9619: Enable buffer operations for eligible 64-bit offsets](https://github.com/triton-lang/triton/pull/9619).
-[^6]: [PyTorch #194136: Apply pointer-range guards to template kernels](https://github.com/pytorch/pytorch/pull/194136).
-[^7]: [Triton #9912: Fix SSA dominance in buffer-operation lowering](https://github.com/triton-lang/triton/pull/9912).
-[^8]: [Triton #10592: Pack fp32-to-bf16 RTZ conversions with v_perm_b32](https://github.com/triton-lang/triton/pull/10592).
-[^9]: [PyTorch #181283: Add architecture-specific FlexAttention defaults](https://github.com/pytorch/pytorch/pull/181283).
-[^10]: [Triton #8935: Check driver support for cooperative groups](https://github.com/triton-lang/triton/pull/8935).
-[^11]: [Triton #8847: Correct architecture selection in the num_ctas test](https://github.com/triton-lang/triton/pull/8847).
+[^3]: [PyTorch #194151: Add gfx950 FlexAttention backward default configs](https://github.com/pytorch/pytorch/pull/194151). Landed at [`1e9d530d4a9`](https://github.com/pytorch/pytorch/commit/1e9d530d4a901a846f06d65f925d4b98fe842b2b); absent from the tested PyTorch 2.14.1 wheel.
+[^4]: [PyTorch #176675: Emit pointer-range annotations for small tensor arguments](https://github.com/pytorch/pytorch/pull/176675).
+[^5]: [PyTorch #178541: Suppress pointer-range annotations for user-defined Triton kernels](https://github.com/pytorch/pytorch/pull/178541).
+[^6]: [Triton #9619: Enable buffer operations for eligible 64-bit offsets](https://github.com/triton-lang/triton/pull/9619).
+[^7]: [PyTorch #194136: Apply pointer-range guards to template kernels](https://github.com/pytorch/pytorch/pull/194136).
+[^8]: [Triton #9912: Fix SSA dominance in buffer-operation lowering](https://github.com/triton-lang/triton/pull/9912).
+[^9]: [Triton #10592: Pack fp32-to-bf16 RTZ conversions with v_perm_b32](https://github.com/triton-lang/triton/pull/10592).
+[^10]: [PyTorch #181283: Add architecture-specific FlexAttention defaults](https://github.com/pytorch/pytorch/pull/181283).
+[^11]: [PyTorch #200959: Optimize FlexAttention backward on gfx950](https://github.com/pytorch/pytorch/pull/200959). **Open.** Discussion and measurements use revision [`d64287342982`](https://github.com/pytorch/pytorch/commit/d642873429820f9f05d26958a83bc8503e9b528f), compared with its parent [`656560bcbe2f`](https://github.com/pytorch/pytorch/commit/656560bcbe2f0056162828918c6755888e5efe2b).
+[^12]: [Triton #8935: Check driver support for cooperative groups](https://github.com/triton-lang/triton/pull/8935).
+[^13]: [Triton #8847: Correct architecture selection in the num_ctas test](https://github.com/triton-lang/triton/pull/8847).

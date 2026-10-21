@@ -1,0 +1,355 @@
+{
+  "environment": {
+    "torch": "2.14.1+rocm7.2",
+    "torch_commit": "5c4886908584029761b579af026dcfb627c84070",
+    "triton_distribution": "3.8.0",
+    "hip": "7.2.53211",
+    "python": "3.12.3",
+    "gpu": "AMD Instinct MI350X",
+    "arch": "gfx950:sramecc+:xnack-",
+    "pci": "0000:e5:00.0"
+  },
+  "workload": {
+    "shape": [
+      1,
+      8,
+      2048,
+      64
+    ],
+    "dtype": "float16",
+    "mask": "dense",
+    "seed": 0,
+    "incoming_gradient": "ones"
+  },
+  "results": {
+    "head": {
+      "before_ms": [
+        425.0517578125,
+        425.0520782470703,
+        425.0511016845703
+      ],
+      "after_ms": [
+        6.662230014801025,
+        6.660650849342346,
+        6.661100506782532
+      ],
+      "median_before_ms": 425.0517578125,
+      "median_after_ms": 6.661100506782532,
+      "speedup": 63.811041040395594,
+      "paired_speedups": [
+        63.800222578354585,
+        63.81539700268762,
+        63.81094253896493
+      ],
+      "bias_max_abs_errors": {
+        "before": [
+          0.012466430664064256,
+          0.011421203613283006,
+          0.006210327148433786
+        ],
+        "after": [
+          0.006462097167972032,
+          0.006240844726565782,
+          0.006317138671878282
+        ]
+      }
+    },
+    "query": {
+      "before_ms": [
+        0.2626679986715317,
+        0.2619670033454895,
+        0.259427011013031
+      ],
+      "after_ms": [
+        0.2256064936518669,
+        0.22388599812984467,
+        0.22412700206041336
+      ],
+      "median_before_ms": 0.2619670033454895,
+      "median_after_ms": 0.22412700206041336,
+      "speedup": 1.1688328534144063,
+      "paired_speedups": [
+        1.1642749923539626,
+        1.1700910531866286,
+        1.1575000273420983
+      ],
+      "bias_max_abs_errors": {
+        "before": [
+          0.0004417896270753549,
+          0.00044202804565445647,
+          0.0004417896270753549
+        ],
+        "after": [
+          0.0004417896270753549,
+          0.0004417896270753549,
+          0.0004417896270753549
+        ]
+      }
+    }
+  },
+  "kernel_body_matches": [
+    "run1-head",
+    "run1-query",
+    "run2-head",
+    "run2-query",
+    "run3-head",
+    "run3-query"
+  ],
+  "measurements": 12,
+  "timing_trials": 72,
+  "controls": {
+    "before": {
+      "head": {
+        "type": "measurement",
+        "kind": "head",
+        "metrics": {
+          "out": {
+            "finite": true,
+            "max_abs_error": 8.078846307360554e-05,
+            "reference_max_abs": 0.30707256879096584,
+            "actual_max_abs": 0.30712890625,
+            "relative_l2": 0.00027971236584009416,
+            "max_tolerance_ratio": 0.017790685722431535,
+            "assert_close_passed": true
+          },
+          "dq": {
+            "finite": true,
+            "max_abs_error": 0.00018264557244257462,
+            "reference_max_abs": 0.5721499055606518,
+            "actual_max_abs": 0.572265625,
+            "relative_l2": 0.00029950854681901295,
+            "max_tolerance_ratio": 0.028298959207573644,
+            "assert_close_passed": true
+          },
+          "dk": {
+            "finite": true,
+            "max_abs_error": 0.00022131010332493428,
+            "reference_max_abs": 0.5149154086466751,
+            "actual_max_abs": 0.51513671875,
+            "relative_l2": 0.0002932888829513205,
+            "max_tolerance_ratio": 0.034843738286068966,
+            "assert_close_passed": true
+          },
+          "dv": {
+            "finite": true,
+            "max_abs_error": 0.00011775314937648163,
+            "reference_max_abs": 0.32685687099107963,
+            "actual_max_abs": 0.326904296875,
+            "relative_l2": 0.00029460871557082874,
+            "max_tolerance_ratio": 0.024411439242095302,
+            "assert_close_passed": true
+          },
+          "dbias": {
+            "finite": true,
+            "max_abs_error": 0.004518196123581175,
+            "reference_max_abs": 6.399710021541842,
+            "actual_max_abs": 6.3984375,
+            "relative_l2": 0.0005514270300515548,
+            "max_tolerance_ratio": 0.3494242045240847,
+            "assert_close_passed": true
+          }
+        },
+        "code_sha256": "b1094a4e4182825a3c0b5ef16d6b4097ae763a7316fcec861da63c0b33d8ebf7",
+        "options": {
+          "BACKEND": "TRITON"
+        },
+        "mask": "dense",
+        "shape": [
+          1,
+          8,
+          2048,
+          64
+        ]
+      },
+      "query": {
+        "type": "measurement",
+        "kind": "query",
+        "metrics": {
+          "out": {
+            "finite": true,
+            "max_abs_error": 0.00010848328603052515,
+            "reference_max_abs": 0.3289613203010707,
+            "actual_max_abs": 0.328857421875,
+            "relative_l2": 0.00027827654314926123,
+            "max_tolerance_ratio": 0.01884662549103476,
+            "assert_close_passed": true
+          },
+          "dq": {
+            "finite": true,
+            "max_abs_error": 0.00019091068936211153,
+            "reference_max_abs": 0.49635913853540775,
+            "actual_max_abs": 0.496337890625,
+            "relative_l2": 0.0002995063693143387,
+            "max_tolerance_ratio": 0.031153966797776985,
+            "assert_close_passed": true
+          },
+          "dk": {
+            "finite": true,
+            "max_abs_error": 0.0002825031252640109,
+            "reference_max_abs": 0.4461007401340504,
+            "actual_max_abs": 0.446044921875,
+            "relative_l2": 0.000293510423560544,
+            "max_tolerance_ratio": 0.041052834842865774,
+            "assert_close_passed": true
+          },
+          "dv": {
+            "finite": true,
+            "max_abs_error": 0.0001271632472795714,
+            "reference_max_abs": 0.3036539142371472,
+            "actual_max_abs": 0.3037109375,
+            "relative_l2": 0.00029449518244742054,
+            "max_tolerance_ratio": 0.025213763220774486,
+            "assert_close_passed": true
+          },
+          "dbias": {
+            "finite": true,
+            "max_abs_error": 0.000242250071427641,
+            "reference_max_abs": 0.4128846577254717,
+            "actual_max_abs": 0.412841796875,
+            "relative_l2": 0.0005621375455043931,
+            "max_tolerance_ratio": 0.07748815018225798,
+            "assert_close_passed": true
+          }
+        },
+        "code_sha256": "f71f6b5f0f6db7d2646973c469ddbbbd29d54ad63368345bd19b484d9a6363c4",
+        "options": {
+          "BACKEND": "TRITON"
+        },
+        "mask": "dense",
+        "shape": [
+          1,
+          8,
+          2048,
+          64
+        ]
+      }
+    },
+    "after": {
+      "head": {
+        "type": "measurement",
+        "kind": "head",
+        "metrics": {
+          "out": {
+            "finite": true,
+            "max_abs_error": 8.078846307360554e-05,
+            "reference_max_abs": 0.30707256879096584,
+            "actual_max_abs": 0.30712890625,
+            "relative_l2": 0.00027971236584009416,
+            "max_tolerance_ratio": 0.017790685722431535,
+            "assert_close_passed": true
+          },
+          "dq": {
+            "finite": true,
+            "max_abs_error": 0.00018264557244257462,
+            "reference_max_abs": 0.5721499055606518,
+            "actual_max_abs": 0.572265625,
+            "relative_l2": 0.00029950854681901295,
+            "max_tolerance_ratio": 0.028298959207573644,
+            "assert_close_passed": true
+          },
+          "dk": {
+            "finite": true,
+            "max_abs_error": 0.00022131010332493428,
+            "reference_max_abs": 0.5149154086466751,
+            "actual_max_abs": 0.51513671875,
+            "relative_l2": 0.0002932888829513205,
+            "max_tolerance_ratio": 0.034843738286068966,
+            "assert_close_passed": true
+          },
+          "dv": {
+            "finite": true,
+            "max_abs_error": 0.00011775314937648163,
+            "reference_max_abs": 0.32685687099107963,
+            "actual_max_abs": 0.326904296875,
+            "relative_l2": 0.00029460871557082874,
+            "max_tolerance_ratio": 0.024411439242095302,
+            "assert_close_passed": true
+          },
+          "dbias": {
+            "finite": true,
+            "max_abs_error": 0.004518196123581175,
+            "reference_max_abs": 6.399710021541842,
+            "actual_max_abs": 6.3984375,
+            "relative_l2": 0.0005512829969971344,
+            "max_tolerance_ratio": 0.3494242045240847,
+            "assert_close_passed": true
+          }
+        },
+        "code_sha256": "3b393256169d83acfd41bf4dc986d39de2ee8c5f73433ed3707469be450ca9b4",
+        "options": {
+          "BACKEND": "TRITON"
+        },
+        "mask": "dense",
+        "shape": [
+          1,
+          8,
+          2048,
+          64
+        ]
+      },
+      "query": {
+        "type": "measurement",
+        "kind": "query",
+        "metrics": {
+          "out": {
+            "finite": true,
+            "max_abs_error": 0.00010848328603052515,
+            "reference_max_abs": 0.3289613203010707,
+            "actual_max_abs": 0.328857421875,
+            "relative_l2": 0.00027827654314926123,
+            "max_tolerance_ratio": 0.01884662549103476,
+            "assert_close_passed": true
+          },
+          "dq": {
+            "finite": true,
+            "max_abs_error": 0.00019091068936211153,
+            "reference_max_abs": 0.49635913853540775,
+            "actual_max_abs": 0.496337890625,
+            "relative_l2": 0.0002995063693143387,
+            "max_tolerance_ratio": 0.031153966797776985,
+            "assert_close_passed": true
+          },
+          "dk": {
+            "finite": true,
+            "max_abs_error": 0.0002825031252640109,
+            "reference_max_abs": 0.4461007401340504,
+            "actual_max_abs": 0.446044921875,
+            "relative_l2": 0.000293510423560544,
+            "max_tolerance_ratio": 0.041052834842865774,
+            "assert_close_passed": true
+          },
+          "dv": {
+            "finite": true,
+            "max_abs_error": 0.0001271632472795714,
+            "reference_max_abs": 0.3036539142371472,
+            "actual_max_abs": 0.3037109375,
+            "relative_l2": 0.00029449518244742054,
+            "max_tolerance_ratio": 0.025213763220774486,
+            "assert_close_passed": true
+          },
+          "dbias": {
+            "finite": true,
+            "max_abs_error": 0.000242250071427641,
+            "reference_max_abs": 0.4128846577254717,
+            "actual_max_abs": 0.412841796875,
+            "relative_l2": 0.0005621086551447134,
+            "max_tolerance_ratio": 0.07748815018225798,
+            "assert_close_passed": true
+          }
+        },
+        "code_sha256": "323dbb786e3ba69099295ebe0e3f6aee5bf4702e96e4e8e0b93bfd6b6cc16656",
+        "options": {
+          "BACKEND": "TRITON"
+        },
+        "mask": "dense",
+        "shape": [
+          1,
+          8,
+          2048,
+          64
+        ]
+      }
+    }
+  },
+  "numerical_scope": "Outputs and Q/K/V pass FP64 tolerances. Additive per-head bias fails strict 0.003 absolute tolerance before and after; true derivative is zero. Nonconstant key-linear controls must pass all gradients."
+}

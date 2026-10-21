@@ -4,6 +4,7 @@ Run with a Python environment containing matplotlib. No GPU is used.
 """
 
 from pathlib import Path
+import json
 
 import matplotlib
 
@@ -58,6 +59,9 @@ def save(fig, name):
 
 
 def wavefronts():
+    audit = OUT.parent / "data/publication-2.14.1-2026-10-20/compiler-audit.json"
+    counts = {row["num_warps"]: row["publication"]
+              for row in json.loads(audit.read_text())["historical_comparison"]}
     fig, ax = canvas(1600, 1040)
     text(ax, 40, 42, "Making every wavefront count", 27, weight="bold")
     text(ax, 40, 82,
@@ -110,9 +114,10 @@ def wavefronts():
             else:
                 text(ax, cx, y + 16, f"W{row}: all 128 columns", 14, color, ha="center")
 
-        text(ax, left + 25, 877, "Static compiler evidence", 14, MUTED, "bold")
+        text(ax, left + 25, 877, "Static evidence · PyTorch 2.14.1 · triton-rocm 3.8.0", 14, MUTED, "bold")
         text(ax, left + 25, 910,
-             f"MFMA sites × waves: {768 if waves == 8 else 512}     ·     ds_write sites: {138 if waves == 8 else 9}",
+             f"MFMA sites × waves: {counts[waves]['wave_weighted_mfma_sites']}"
+             f"     ·     ds_write sites: {counts[waves]['instructions']['ds_write']}",
              16, color, "bold")
 
     text(ax, 40, 977, "Each horizontal band represents 32 query rows. Hatching marks replicated computation.", 15, MUTED)

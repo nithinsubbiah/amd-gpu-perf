@@ -1,0 +1,31 @@
+{
+  "change": "BF16 accuracy threshold adjusted after stock failed initial elementwise check; original failure preserved in results/merged-0.jsonl",
+  "initial": {
+    "atol": 0.01,
+    "rtol": 0.05,
+    "relative_l2": 0.02
+  },
+  "revised": {
+    "atol": 0.02,
+    "rtol": 0.02,
+    "relative_l2": 0.01
+  },
+  "reason": "Stock 8K D64 BF16 dQ max absolute error 0.011365, relative L2 0.002468. Initial pointwise threshold rejected a cancellation-sensitive element. Revised elementwise limits match forward checks and are stricter than 0.03/0.03 backward limits in pinned test_flex_attention.py. Relative L2 limit tightened to 1%; optimized gradients additionally may not exceed 2x stock relative L2 error + 1e-6.",
+  "source": "pytorch-pr/test/inductor/test_flex_attention.py:8449 and :9005-9020",
+  "publication_rule": "No timing from a row whose reference check failed is accepted. Rerun all cases under the fixed revised protocol; do not erase the initial result.",
+  "fp16_calibration_before_testing_pr": {
+    "initial": {
+      "atol": 0.001,
+      "rtol": 0.01,
+      "relative_l2": 0.002
+    },
+    "revised": {
+      "atol": 0.003,
+      "rtol": 0.01,
+      "relative_l2": 0.002
+    },
+    "reason": "Five parent-revision FP16 GQA cases failed the 0.001 absolute pointwise threshold at cancellation-sensitive gradient elements. Their failing gradients have relative L2 error 0.000288-0.000306. Calibrated on the unmodified parent before running the proposed optimization; relative L2 criterion unchanged and optimized errors must additionally remain within 2x stock + 1e-6. This pointwise tolerance is also stricter than the pinned upstream generic FP16 tolerance of atol=rtol=0.02 at test_flex_attention.py:5827.",
+    "retained_failures": "results/parent-0.jsonl cases 12-16",
+    "rule": "All failed rows rerun. No failing row contributes timing data."
+  }
+}

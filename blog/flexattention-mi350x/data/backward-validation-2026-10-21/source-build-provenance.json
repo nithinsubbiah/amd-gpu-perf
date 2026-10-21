@@ -1,0 +1,51 @@
+{
+  "native_build_revision": "656560bcbe2f0056162828918c6755888e5efe2b",
+  "pr_revision": "d642873429820f9f05d26958a83bc8503e9b528f",
+  "native_diff_between_revisions": [],
+  "pr_changed_files": [
+    "docs/source/nn.attention.flex_attention.md",
+    "test/inductor/test_flex_attention.py",
+    "test/inductor/test_triton_heuristics.py",
+    "torch/_inductor/choices.py",
+    "torch/_inductor/kernel/flex/flex_attention.py",
+    "torch/_inductor/kernel/flex/templates/flex_backwards.py.jinja",
+    "torch/_inductor/runtime/triton_heuristics.py",
+    "torch/nn/attention/flex_attention.py"
+  ],
+  "rocm_conversion": "Unmodified upstream tools/amd_build/build_amd.py; generated diff retained separately",
+  "hip_header_selection": "CMAKE_HIP_FLAGS explicitly prioritizes /opt/rocm-7.2.1/include, avoiding older /usr/include/hip headers",
+  "build_command": "bash build.sh",
+  "build_sh_sha256": "5fe71f9bef3536dc9d32a7111c3bcddc41c8dddbad6a2c49f4741833e88b659c",
+  "triton_git": "fc8d31a5439ec9842557a284dc7ca61aee69246b",
+  "compiler_wheel": "https://download-r2.pytorch.org/whl/nightly/triton_rocm-3.9.0+gitfc8d31a5-cp312-abi3-linux_x86_64.whl",
+  "native_binaries": {
+    "pytorch-pr/build/lib/libtorch_python.so": "2028b83828e5d476ab27ec2ba18eaeaa4d39cccc2f7c5d93b4893667b20d737d",
+    "pytorch-pr/build/lib/libtorch_hip.so": "20f9ec6d3de4ac8f6eb8f42e8d9b22d374d195be402cab4a30b1ceda5c48c71c",
+    "pytorch-pr/build/lib/libtorch_global_deps.so": "3349b37aac3269b3b71196237ff852241ddfa07ae8556c51ab3a93c2e1cbba30",
+    "pytorch-pr/build/lib/libtorch_cpu.so": "650463d333d50a150984500eedf2e6243176ac58fd959fbaa1f8b07d2a62aaaa",
+    "pytorch-pr/build/lib/libtorch.so": "018b05f15277447dc8cee2eeee386c03ba59c19ef8f7810adbfc2ba1b3b23f37"
+  },
+  "triton_wheel_direct_url": {
+    "archive_info": {
+      "hash": "sha256=15ef843047a0ced25962f33313ad3817d131d28f285962e370c98414ffeb509e",
+      "hashes": {
+        "sha256": "15ef843047a0ced25962f33313ad3817d131d28f285962e370c98414ffeb509e"
+      }
+    },
+    "url": "https://download-r2.pytorch.org/whl/nightly/triton_rocm-3.9.0+gitfc8d31a5-cp312-abi3-linux_x86_64.whl"
+  },
+  "hipify_python_files": [
+    "torch/_inductor/codegen/cpp_wrapper_gpu.py",
+    "torch/_inductor/codegen/cuda/device_op_overrides.py",
+    "torch/_inductor/codegen/wrapper.py"
+  ],
+  "pr_built_version": "2.16.0a0+gitd642873",
+  "pr_built_git": "d642873429820f9f05d26958a83bc8503e9b528f",
+  "pr_native_binaries": {
+    "pytorch-pr/build/lib/libtorch_python.so": "2028b83828e5d476ab27ec2ba18eaeaa4d39cccc2f7c5d93b4893667b20d737d",
+    "pytorch-pr/build/lib/libtorch_hip.so": "20f9ec6d3de4ac8f6eb8f42e8d9b22d374d195be402cab4a30b1ceda5c48c71c",
+    "pytorch-pr/build/lib/libtorch_global_deps.so": "3349b37aac3269b3b71196237ff852241ddfa07ae8556c51ab3a93c2e1cbba30",
+    "pytorch-pr/build/lib/libtorch_cpu.so": "34ef47f4f9b726825661dbe97ec5923599af7cb6b1a6d3b1d8c44988aa0c6efe",
+    "pytorch-pr/build/lib/libtorch.so": "018b05f15277447dc8cee2eeee386c03ba59c19ef8f7810adbfc2ba1b3b23f37"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "captured_before": "Official 2.14.1 forward data integration; includes completed backward additions",
+  "git_head": "03897227d1459423b787ffb008029b139535794a",
+  "files": {
+    "README.md": "07a8f1a9803b1e2a4c10a47bc7df3cfd4ed2488edb5d14801c96aaff7e635cce",
+    "bench/plot_landed.py": "26840f8123f9fdc7cdb81c47670d26958d921521f783031009e8aec0f638575b",
+    "bench/plot_mechanisms.py": "0cdb52f3dd02998f85fcff3ef04b4716b675a1fa0c3f5b577378012ba9d709d0",
+    "bench/landed_data.py": "c3ad27cfe9e0b3072cf33ab8e8cc56940e6e4930a3869c29639fd3a79d8fb138",
+    "bench/aggregate_landed.py": "61d96d40a1a7b767ec3c7b779ec51f8f465d6971d76f3687ef51c73553d38fe9",
+    "bench/README.md": "0b24fd4fb0af81e78ef9f475b4a19d6ce2294858c5ee63868bc0556ba7bf7b4f",
+    "data/README.md": "30014469e13cd5faf6ae16043fb90817cd43be748d8007e465eb5371f7c1cd79",
+    "data/publication-2.14.1-2026-10-20/README.md": "fe82da607a52fe0032e9ccc43b233898750ba47b9d9c9555557e9a34e9e754a9",
+    "images/01-fp16-speedup.png": "6d06b17231cfada0ca5f30d16aa9bc4b01080c3fc1d600bb97af365610c2a684",
+    "images/01-fp16-speedup.svg": "abca255c6866ffd05cd2a954f7ccb0098cf5371a2e84107dc32e89a2d30a4074",
+    "images/02-bf16-pipelining.png": "3263943983592f16390d2d828ab99e3c3d64fb72983d748173d3d856fed3ce6c",
+    "images/02-bf16-pipelining.svg": "82e89389047f91d80edc1ff40c269286c884350716d2c81e1353b0835e749fae",
+    "images/03-wavefront-distribution.png": "5e0b84ce18a5d9c1634186ce53a4796388120393872122ef3cad62dcc0b4e792",
+    "images/03-wavefront-distribution.svg": "3da670dbde71709149c344d85522dafc77f2926a56a4d27e16fb2ad197beb42a",
+    "images/04-memory-addressing.png": "2c11fb6250613d5bba78e752f21db11ad3d1a269b46ee09985ba4ff16e91dfa0",
+    "images/04-memory-addressing.svg": "625ba8a08eccbe38a241e6ec55bcd770a69d88beaf63cf991a62a0129ea9f02f"
+  }
+}
