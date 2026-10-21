@@ -395,6 +395,20 @@ so it contributes no additional MI350X speedup to the figures here. The smaller
 MI300X tiles and head-dimension-256 entries also illustrate why the wavefront
 count needs to be evaluated with the rest of the configuration.
 
+## From Kernel Improvements to Video-Planner Training
+
+Researchers at MIT CSAIL used FlexAttention for the custom attention patterns in
+*Mirror: Self-Improving Video-to-Action Models*, finetuning their Minecraft Diamond
+video planners on 16 AMD Instinct MI350X GPUs. Their
+[paper](https://arxiv.org/html/2610.24177v1#A1) describes how FlexAttention supports
+the planner's block-causal sliding-window attention.
+
+In measurements shared by the team, tuning guidance and follow-up changes reduced
+attention latency from **27.18 to 16.05 ms**, a **1.69x speedup**. Reported planner
+throughput increased from **15.8 to 19.9 video-seconds per second**, **26% higher**,
+excluding VAE and text processing. These application results were measured by the
+MIT team separately from the kernel benchmarks presented above.
+
 ## Next: Giving Backward Kernels Their Own Schedules
 
 A further backward optimization[^11] separates dQ and dK/dV into distinct
