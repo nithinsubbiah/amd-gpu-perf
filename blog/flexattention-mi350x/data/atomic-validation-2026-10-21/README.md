@@ -106,5 +106,5 @@ second pair. For the two numerical-control processes, also pass
 `--modifier key_linear --seed 1 --gradient random --correctness-only`.
 The harness refuses to overwrite existing output directories.
 
-The [article](../../README.md#captured-gradient-atomics-a-contention-stress-test)
+The [supporting guide](../README.md#captured-gradient-atomics-a-contention-stress-test)
 links this evidence and states the numerical qualification alongside the results.

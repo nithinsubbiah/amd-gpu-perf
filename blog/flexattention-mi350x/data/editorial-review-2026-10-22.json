@@ -1,0 +1,423 @@
+{
+  "completed_utc": "2026-10-22T21:29:55.226563+00:00",
+  "status": "editorial_and_claim_checks_passed",
+  "base_commit": "35480e92ae8c9fb7130cfbe3b6e5db713a6b798b",
+  "scope": "Shorter narrative and consolidated supporting guide, using existing validated performance measurements",
+  "article": {
+    "words_before": 4422,
+    "words_after": 1885,
+    "visuals_before": 15,
+    "visuals_after": 5,
+    "figures": 3,
+    "tables": 2,
+    "numbered_references": 9
+  },
+  "checks": {
+    "local_links_and_anchors_checked": 74,
+    "backward_rows_verified": 8,
+    "forward_raw_records_reaggregated": 108,
+    "forward_ranges": {
+      "fp16_combined": [
+        2.12,
+        3.04
+      ],
+      "fp16_wavefronts": [
+        1.86,
+        2.63
+      ],
+      "bf16_pipeline": [
+        1.1,
+        1.18
+      ]
+    },
+    "mit_ratios": {
+      "attention": 1.6934579439252335,
+      "throughput_percent": 25.949367088607577
+    },
+    "atomic_bundle_hashes_verified": 9
+  },
+  "external_article_links": [
+    {
+      "url": "https://arxiv.org/html/2610.24177v1#A1",
+      "status": 200
+    },
+    {
+      "url": "https://github.com/pytorch/pytorch/commit/1e9d530d4a901a846f06d65f925d4b98fe842b2b",
+      "status": 200
+    },
+    {
+      "url": "https://github.com/pytorch/pytorch/commit/d642873429820f9f05d26958a83bc8503e9b528f",
+      "status": 200
+    },
+    {
+      "url": "https://github.com/pytorch/pytorch/pull/176675",
+      "status": 200
+    },
+    {
+      "url": "https://github.com/pytorch/pytorch/pull/176676",
+      "status": 200
+    },
+    {
+      "url": "https://github.com/pytorch/pytorch/pull/178541",
+      "status": 200
+    },
+    {
+      "url": "https://github.com/pytorch/pytorch/pull/180720",
+      "status": 200
+    },
+    {
+      "url": "https://github.com/pytorch/pytorch/pull/181283",
+      "status": 200
+    },
+    {
+      "url": "https://github.com/pytorch/pytorch/pull/194136",
+      "status": 200
+    },
+    {
+      "url": "https://github.com/pytorch/pytorch/pull/194151",
+      "status": 200
+    },
+    {
+      "url": "https://github.com/pytorch/pytorch/pull/200959",
+      "status": 200
+    },
+    {
+      "url": "https://github.com/triton-lang/triton/pull/9619",
+      "status": 200
+    },
+    {
+      "url": "https://rocm.docs.amd.com/en/docs-7.2.4/how-to/rocm-for-ai/inference-optimization/workload.html#architecture-comparison",
+      "status": 200
+    }
+  ],
+  "browser_preview": {
+    "renderer": "Pandoc GFM and Chromium; desktop/mobile local preview",
+    "viewports": [
+      {
+        "images": [
+          {
+            "src": "images/01-fp16-speedup.png",
+            "loaded": true
+          },
+          {
+            "src": "images/03-wavefront-distribution.png",
+            "loaded": true
+          },
+          {
+            "src": "images/04-memory-addressing.png",
+            "loaded": true
+          }
+        ],
+        "numberedReferences": 9,
+        "footnotes": 9,
+        "brokenAnchors": [],
+        "viewportWidth": 1280,
+        "documentWidth": 1280,
+        "tables": 2,
+        "viewport": "desktop",
+        "pageErrors": []
+      },
+      {
+        "images": [
+          {
+            "src": "images/01-fp16-speedup.png",
+            "loaded": true
+          },
+          {
+            "src": "images/03-wavefront-distribution.png",
+            "loaded": true
+          },
+          {
+            "src": "images/04-memory-addressing.png",
+            "loaded": true
+          }
+        ],
+        "numberedReferences": 9,
+        "footnotes": 9,
+        "brokenAnchors": [],
+        "viewportWidth": 390,
+        "documentWidth": 390,
+        "tables": 2,
+        "viewport": "mobile",
+        "pageErrors": []
+      }
+    ]
+  },
+  "pipeline_resources": [
+    {
+      "run": "run1",
+      "num_stages": 1,
+      "total_vgprs": 128,
+      "shared_bytes": 16384,
+      "compiler_occupancy": 4,
+      "artifact": "run1/codegen/YS6DEMVFCQLA4L73CQ5JCL36CS6YBTPNK3MPBTQGEF2ISGFQ6SUQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "text_sha256": "f08c7b5a8259e997aefc9d09cf51871d8e62955b20f17e507e8d2d8c67ea8c32"
+    },
+    {
+      "run": "run1",
+      "num_stages": 2,
+      "total_vgprs": 140,
+      "shared_bytes": 50112,
+      "compiler_occupancy": 3,
+      "artifact": "run1/codegen/KVFOW54XJTH4JJMAYM7NNY2264ZFRH4KVDX2LXYM4AP5RKCPEQUQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "text_sha256": "30e2606572a4d70cbad5e5bb68a2561580f8e8688078d6d32ca5d611789dab19"
+    },
+    {
+      "run": "run2",
+      "num_stages": 2,
+      "total_vgprs": 140,
+      "shared_bytes": 50112,
+      "compiler_occupancy": 3,
+      "artifact": "run2/codegen/KVFOW54XJTH4JJMAYM7NNY2264ZFRH4KVDX2LXYM4AP5RKCPEQUQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "text_sha256": "6c34f29248b4ce9131d9b2b9e46e0da7a7a05026e9c5d38486b24b182207b3ab"
+    },
+    {
+      "run": "run2",
+      "num_stages": 1,
+      "total_vgprs": 128,
+      "shared_bytes": 16384,
+      "compiler_occupancy": 4,
+      "artifact": "run2/codegen/YS6DEMVFCQLA4L73CQ5JCL36CS6YBTPNK3MPBTQGEF2ISGFQ6SUQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "text_sha256": "26ea544009edd1e6fac08f2587ba9c1cd0f6873ebe5a8b6a636f3cd4c2ae1a8b"
+    },
+    {
+      "run": "run3",
+      "num_stages": 1,
+      "total_vgprs": 128,
+      "shared_bytes": 16384,
+      "compiler_occupancy": 4,
+      "artifact": "run3/codegen/YS6DEMVFCQLA4L73CQ5JCL36CS6YBTPNK3MPBTQGEF2ISGFQ6SUQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "text_sha256": "5e616fe1950f287194af6f7b661e0394b19fd705deed63200520478a48eab731"
+    },
+    {
+      "run": "run3",
+      "num_stages": 2,
+      "total_vgprs": 140,
+      "shared_bytes": 50112,
+      "compiler_occupancy": 3,
+      "artifact": "run3/codegen/KVFOW54XJTH4JJMAYM7NNY2264ZFRH4KVDX2LXYM4AP5RKCPEQUQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "text_sha256": "af13e95098da5cb7fa0a163e91b59129fa27bc66d2bfe1b588eaadb85bcc93a7"
+    }
+  ],
+  "addressing_resources": [
+    {
+      "pointer_range": "on",
+      "run": 1,
+      "mask": "none",
+      "artifact": "data/validation-2026-10-19/address-on1/assembly/KNPWNDTZGY26BU74CFIRQ3NZRIQU5HUYJYZ2W4COD55ZPOGFWL4A-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "text_sha256": "69e4ba1ac827d80dfc6b6f51399be695014af07fd89ad7ca2d45a69463588e01",
+      "total_vgprs": 224,
+      "compiler_occupancy": 2,
+      "scratch_bytes": 0
+    },
+    {
+      "pointer_range": "on",
+      "run": 1,
+      "mask": "causal",
+      "artifact": "data/validation-2026-10-19/address-on1/assembly/RP6C2BG2UM3H4CMMFMR3JTGPRWBRFM2I7WETMM2UH73SBSQJU5YQ-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "text_sha256": "aef2e45fd48d3ec07d6510ff085aa4f53cf8c3a344e13331586cbb0d638b940a",
+      "total_vgprs": 252,
+      "compiler_occupancy": 2,
+      "scratch_bytes": 0
+    },
+    {
+      "pointer_range": "on",
+      "run": 2,
+      "mask": "none",
+      "artifact": "data/validation-2026-10-19/address-on2/assembly/KNPWNDTZGY26BU74CFIRQ3NZRIQU5HUYJYZ2W4COD55ZPOGFWL4A-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "text_sha256": "732574b580959cdf9c0bf7f19db7dc7ede33c181faa7c2c1798d70c41dc251ac",
+      "total_vgprs": 224,
+      "compiler_occupancy": 2,
+      "scratch_bytes": 0
+    },
+    {
+      "pointer_range": "on",
+      "run": 2,
+      "mask": "causal",
+      "artifact": "data/validation-2026-10-19/address-on2/assembly/RP6C2BG2UM3H4CMMFMR3JTGPRWBRFM2I7WETMM2UH73SBSQJU5YQ-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "text_sha256": "dcc6b28ae1e250e335a4b746745ae6007373f1ee5dd3589b16ef6b83ac7cf043",
+      "total_vgprs": 252,
+      "compiler_occupancy": 2,
+      "scratch_bytes": 0
+    },
+    {
+      "pointer_range": "on",
+      "run": 3,
+      "mask": "none",
+      "artifact": "data/validation-2026-10-19/address-on3/assembly/KNPWNDTZGY26BU74CFIRQ3NZRIQU5HUYJYZ2W4COD55ZPOGFWL4A-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "text_sha256": "9e95ab22cc58cd90600a5b4f9ac7f4ae3d056b91c70e20c757bc57965f139530",
+      "total_vgprs": 224,
+      "compiler_occupancy": 2,
+      "scratch_bytes": 0
+    },
+    {
+      "pointer_range": "on",
+      "run": 3,
+      "mask": "causal",
+      "artifact": "data/validation-2026-10-19/address-on3/assembly/RP6C2BG2UM3H4CMMFMR3JTGPRWBRFM2I7WETMM2UH73SBSQJU5YQ-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "text_sha256": "d0e6db6324257c047245664b1cd8999a338ceda64077a9349ada41363c53a7c2",
+      "total_vgprs": 252,
+      "compiler_occupancy": 2,
+      "scratch_bytes": 0
+    },
+    {
+      "pointer_range": "off",
+      "run": 1,
+      "mask": "none",
+      "artifact": "data/validation-2026-10-19/address-off1/assembly/E65QTCUY4FPQL66HUY4AZQM627L2GHEUVQOCBJRDD3YOKDGWFGXQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "text_sha256": "d266a4e31cb32f433799cf26f6082689d684f5ae7ff85a6e41456f40770a3bd0",
+      "total_vgprs": 214,
+      "compiler_occupancy": 2,
+      "scratch_bytes": 0
+    },
+    {
+      "pointer_range": "off",
+      "run": 1,
+      "mask": "causal",
+      "artifact": "data/validation-2026-10-19/address-off1/assembly/XL7RIXXZ46V2VE7DFNMWFCYVXWG6K64UZO25WOPGHQUDI7V5ZY4Q-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "text_sha256": "dd3d0050852b40b03b1c7577da1ab97203a89bf81918225eff9d4434eccde188",
+      "total_vgprs": 260,
+      "compiler_occupancy": 1,
+      "scratch_bytes": 0
+    },
+    {
+      "pointer_range": "off",
+      "run": 2,
+      "mask": "none",
+      "artifact": "data/validation-2026-10-19/address-off2/assembly/E65QTCUY4FPQL66HUY4AZQM627L2GHEUVQOCBJRDD3YOKDGWFGXQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "text_sha256": "854f3a9aa7899140dd80128141995b5d81d65db4cfe3b59badf3f87f5cac57a2",
+      "total_vgprs": 214,
+      "compiler_occupancy": 2,
+      "scratch_bytes": 0
+    },
+    {
+      "pointer_range": "off",
+      "run": 2,
+      "mask": "causal",
+      "artifact": "data/validation-2026-10-19/address-off2/assembly/XL7RIXXZ46V2VE7DFNMWFCYVXWG6K64UZO25WOPGHQUDI7V5ZY4Q-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "text_sha256": "276bc1254c3424333364b213917e2fbfd962ae4753920f6656202ecbb966991c",
+      "total_vgprs": 260,
+      "compiler_occupancy": 1,
+      "scratch_bytes": 0
+    },
+    {
+      "pointer_range": "off",
+      "run": 3,
+      "mask": "none",
+      "artifact": "data/validation-2026-10-19/address-off3/assembly/E65QTCUY4FPQL66HUY4AZQM627L2GHEUVQOCBJRDD3YOKDGWFGXQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "text_sha256": "e62851e0bca4b11b3862feaf6b27aa22f966d20f796bd279ad1902f7fed48c56",
+      "total_vgprs": 214,
+      "compiler_occupancy": 2,
+      "scratch_bytes": 0
+    },
+    {
+      "pointer_range": "off",
+      "run": 3,
+      "mask": "causal",
+      "artifact": "data/validation-2026-10-19/address-off3/assembly/XL7RIXXZ46V2VE7DFNMWFCYVXWG6K64UZO25WOPGHQUDI7V5ZY4Q-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "text_sha256": "a802f57692d62633a4f83ddd956531172982e7065811db06895ebcf9f319e09e",
+      "total_vgprs": 260,
+      "compiler_occupancy": 1,
+      "scratch_bytes": 0
+    }
+  ],
+  "addressing_instruction_inspection": [
+    {
+      "pointer_range": "on",
+      "mask": "none",
+      "artifact": "data/validation-2026-10-19/address-on2/assembly/KNPWNDTZGY26BU74CFIRQ3NZRIQU5HUYJYZ2W4COD55ZPOGFWL4A-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "resources": [
+        "; TotalNumVgprs: 224",
+        "; ScratchSize: 0",
+        "; Occupancy: 2"
+      ],
+      "buffer_load": 24,
+      "global_load": 0,
+      "v_cndmask": 25,
+      "v_add": 45,
+      "s_and_saveexec": 0,
+      "s_or_saveexec": 0,
+      "ds_read": 104,
+      "ds_write": 8
+    },
+    {
+      "pointer_range": "on",
+      "mask": "causal",
+      "artifact": "data/validation-2026-10-19/address-on2/assembly/RP6C2BG2UM3H4CMMFMR3JTGPRWBRFM2I7WETMM2UH73SBSQJU5YQ-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "resources": [
+        "; TotalNumVgprs: 252",
+        "; ScratchSize: 0",
+        "; Occupancy: 2"
+      ],
+      "buffer_load": 40,
+      "global_load": 6,
+      "v_cndmask": 104,
+      "v_add": 133,
+      "s_and_saveexec": 0,
+      "s_or_saveexec": 0,
+      "ds_read": 200,
+      "ds_write": 8
+    },
+    {
+      "pointer_range": "off",
+      "mask": "none",
+      "artifact": "data/validation-2026-10-19/address-off1/assembly/E65QTCUY4FPQL66HUY4AZQM627L2GHEUVQOCBJRDD3YOKDGWFGXQ-triton_tem_fused__to_copy_flex_attention_ones_slice_sum_transpose_zeros_2.amdgcn.gz",
+      "resources": [
+        "; TotalNumVgprs: 214",
+        "; ScratchSize: 0",
+        "; Occupancy: 2"
+      ],
+      "buffer_load": 0,
+      "global_load": 24,
+      "v_cndmask": 8,
+      "v_add": 55,
+      "s_and_saveexec": 5,
+      "s_or_saveexec": 0,
+      "ds_read": 104,
+      "ds_write": 8
+    },
+    {
+      "pointer_range": "off",
+      "mask": "causal",
+      "artifact": "data/validation-2026-10-19/address-off1/assembly/XL7RIXXZ46V2VE7DFNMWFCYVXWG6K64UZO25WOPGHQUDI7V5ZY4Q-triton_tem_fused_flex_attention_0.amdgcn.gz",
+      "resources": [
+        "; TotalNumVgprs: 260",
+        "; ScratchSize: 0",
+        "; Occupancy: 1"
+      ],
+      "buffer_load": 0,
+      "global_load": 46,
+      "v_cndmask": 79,
+      "v_add": 140,
+      "s_and_saveexec": 9,
+      "s_or_saveexec": 0,
+      "ds_read": 200,
+      "ds_write": 8
+    }
+  ],
+  "interpretation": "Compiler occupancy is a static resource estimate. Register and scheduling changes support possible mechanisms without isolating a single cause of runtime differences.",
+  "open_backward_pr": {
+    "number": 200959,
+    "state": "open",
+    "checked_on": "2026-10-22",
+    "head": "d642873429820f9f05d26958a83bc8503e9b528f"
+  },
+  "new_gpu_measurements": false,
+  "raw_performance_data_and_figures_unchanged": true,
+  "visually_reviewed_sections": [
+    "opening and headline chart",
+    "wavefront and addressing diagrams",
+    "backward specialization",
+    "mobile landed-backward table",
+    "usage and methodology"
+  ],
+  "files_sha256": {
+    "README.md": "d3066c12414bbdf9776082dd593c847b20d08a01e9b2c0124d0834e6fde02a49",
+    "data/README.md": "b2bbdf81cb3ba2e71b01369a71b56683377994e2103a8823125417d3061af2db",
+    "data/atomic-validation-2026-10-21/README.md": "eb0f4f795334f4c2849a08239674c552814795bf1ca765bd3b9af86f59e0fb12",
+    "data/atomic-validation-2026-10-21/manifest.json": "867d2151a6ef2072355aaa69a961c34bd35239c9074e5d0a15b0e7e0e8c7b7d7",
+    "images/01-fp16-speedup.png": "397bd9da4daf110cb97af0a433bbe78c420e9d09d6dc3a9679cea568e47a6f12",
+    "images/03-wavefront-distribution.png": "a439876238ca5cceaf27ef0e63bf0247c94c38219f5adc3b0c092d0b07079fb1",
+    "images/04-memory-addressing.png": "2c11fb6250613d5bba78e752f21db11ad3d1a269b46ee09985ba4ff16e91dfa0"
+  }
+}
