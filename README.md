@@ -10,7 +10,7 @@ are squash-merged into `main`, which acts as the collected index.
 | Draft | Development branch | Review |
 |---|---|---|
 | [Tuning PyTorch FlexAttention for AMD Instinct MI350X](blog/flexattention-mi350x/README.md) | `blog/flexattention-mi350x` | [PR #3](https://github.com/nithinsubbiah/amd-gpu-perf/pull/3) |
-| [Engineering a Faster FlashAttention Prefill Kernel on gfx1250](blog/gfx1250-mha-prefill/README.md) | `blog/gfx1250-mha-prefill` | [PR #2](https://github.com/nithinsubbiah/amd-gpu-perf/pull/2) |
+| [Engineering a Faster FlashAttention Prefill Kernel on gfx1250](blog/gfx1250-mha-prefill/README.md) | `blog/gfx1250-mha-prefill-refresh` | [PR #4](https://github.com/nithinsubbiah/amd-gpu-perf/pull/4) |
 
 ## Branch model
 
