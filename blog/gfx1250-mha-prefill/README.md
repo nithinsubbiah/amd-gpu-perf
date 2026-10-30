@@ -1,6 +1,6 @@
 # Engineering a Faster FlashAttention Prefill Kernel on gfx1250
 
-*By Nithin Meganathan. Updated through [TokenSpeed #2641](https://github.com/lightseekorg/tokenspeed/pull/2641), merged October 27, 2026. Draft for technical review.*
+*By Nithin Meganathan. Updated through [TokenSpeed #2641](https://github.com/lightseekorg/tokenspeed/pull/2641), merged October 27, 2026. Coverage checked October 30, 2026.*
 
 A fast attention kernel has to do more than keep its matrix units busy. It has
 to give them useful work, bring in the next operands on time, and get through
@@ -425,6 +425,21 @@ feature fallbacks, changing inputs under graph replay, and bounded JIT
 specialization. Simulator coverage checks the selected wide-transport
 variants. Each protects a concrete behavior that the optimization could break.
 
+### Making CI follow the architecture
+
+The follow-up [#2743](https://github.com/lightseekorg/tokenspeed/pull/2743)
+merged after the kernel work. I moved architecture-specific AMD tests under
+`gfx950/` and `gfx1250/`, grouped benchmark tests under `benchmark/`, and used
+those directory boundaries to select the appropriate existing CI suites.
+Shared AMD changes still run both suites; an implementation change also
+retains an import/dispatch check for the other family. Task metadata supplies
+the routing information, and the MI450 jobs share one software-stack definition.
+
+This makes coverage more relevant without claiming new hardware coverage.
+The upstream MI450 workflow uses its existing functional simulator. A gfx950
+hardware pass or a gfx1250 simulator pass does not establish gfx1250 hardware
+numerics or performance; those remain distinct validation results.
+
 ## What the measurements support
 
 For full causal attention with equal query/key lengths, the useful matrix
@@ -483,6 +498,35 @@ merged kernel includes subsequent numerical fixes and has a different source
 hash. We have not re-established these timings for that final source on a
 healthy host.
 
+### Vendor comparisons across shapes
+
+The vendor work was broader than the 90k case. An earlier development campaign
+covered 16 D128 configurations in each dtype: uniform and ragged MHA/GQA/MQA,
+from 1,024 through 16,384 tokens, plus a 16,385-token tail. Across three matched
+sweeps, that candidate beat every eligible measured vendor entry for all 32
+configurations, using aligned, normal-scale random inputs.
+
+| Historical D128 comparison | Winning configurations | Geometric-mean speedup |
+|---|---:|---:|
+| BF16 versus AITER assembly | 16/16 | 1.074× |
+| BF16 versus AITER FlyDSL | 16/16 | 1.227× |
+| FP16 versus AITER FlyDSL | 16/16 | 1.217× |
+
+Those results belong to that candidate and matrix, not the final merged source
+or every supported shape. In particular, they did not cover D64. A subsequent
+confidence run at B16/S512/Hq8/Hkv1/D64 used eight independent processes per
+dtype and full-output FP64 checks. BF16 beat assembly in all eight processes
+but beat the fastest FlyDSL entry in only three; FP16 beat FlyDSL in six of
+eight. The paired geometric-mean ratios were 0.973× for BF16 versus FlyDSL and
+1.025× for FP16. That small FP16 advantage was not a win in every process.
+
+The retry path also has a measurable cost. In an earlier stress experiment,
+one-element storage offsets with Q/K scaled by eight produced correct outputs
+but took 2.45–2.64× the latency of an online-only control with the same
+layout/dispatch. Shape coverage and input-value coverage are separate questions.
+The [vendor campaign notes](evidence.md#historical-d128-vendor-sweep-and-d64-confidence-run)
+retain source identities, measurement protocols, and the confidence results.
+
 ### A separate check at 90,000 tokens
 
 We also compared a pre-final-fix #2641 revision with AITER assembly and FlyDSL
@@ -513,7 +557,8 @@ and warmup are outside the steady-state timings.
 
 ## Where the contributions fit
 
-I authored the eleven optimization and validation PRs below. They build on
+I authored the eleven kernel optimization and validation PRs below, plus the
+CI follow-up #2743 described above. They build on
 TokenSpeed's existing implementation and its maintainers' work; this series
 did not introduce FlashAttention, the original kernel, or FP8 support.
 Pengzhan Zhao (`borontion`) is also credited as a co-author of the merged

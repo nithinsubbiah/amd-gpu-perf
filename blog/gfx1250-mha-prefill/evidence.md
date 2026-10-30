@@ -117,6 +117,68 @@ and 0.0176% in FP16. Validation of sampled rows is not validation of every
 output element. The margins over the other implementations are small and
 should not be generalized to other shapes or the subsequently fixed source.
 
+## Historical D128 vendor sweep and D64 confidence run
+
+[historical-vendor-comparisons.json](data/historical-vendor-comparisons.json)
+retains the complete 32-row D128 audit, 96 sweep medians, and the separate D64
+summary with 16 process-median records. These campaigns preceded the final
+#2641 source and are not interchangeable with the later main or 90k results.
+
+### D128: breadth within a defined matrix
+
+The October 22 campaign used candidate kernel SHA-256
+`c7772b764fdeb398e30ce41df9c8937a4c129d6583cabc8621e5d96101632237`,
+AITER `1c464e51bab63567b67bb3414663babb56057a22`, FlyDSL `0.4.0`,
+PyTorch `2.14.0+rocm10.1.0`, and reported Triton version `3.9.10` on gfx1250.
+It used three sweeps, each with 17 retained paired rounds after two discarded
+warmup rounds, rotated/reversed backend order, shared QKV/output, and sampled
+independent FP64 checks before and after timing. The supervisor held `gpu-lock`
+and observed no foreign GPU clients. Clocks were not pinned.
+
+Per-backend aggregate latency is the median of the three sweep medians. For
+each vendor family, the comparison selects the fastest eligible measured API.
+The geometric mean then weights the 16 shapes per dtype equally. Every
+comparison also favored the candidate in each individual sweep.
+
+| Comparison | Throughput-gain range | Geometric-mean gain |
+|---|---:|---:|
+| BF16 versus assembly | 2.52–30.45% | 7.38% |
+| BF16 versus FlyDSL | 4.35–53.60% | 22.67% |
+| FP16 versus FlyDSL | 4.17–52.62% | 21.67% |
+
+Assembly was unavailable for FP16. The audit's 2,000-sample hierarchical
+bootstrap resampled sweeps and paired timing rounds, reselecting the fastest
+vendor API after resampling. All recorded 95% lower bounds exceeded 1.0.
+That describes observed timing variation within this campaign, not a guarantee
+across machines, compiler revisions, other shapes, or input distributions.
+
+The associated offset-one/QK-scale-eight stress comparison measured
+2.45–2.64× online-only-control latency while remaining numerically correct.
+It demonstrates the cost of retry; it is not part of the normal-input wins.
+
+### D64: checking a ranking that changed between runs
+
+The October 23 confidence run used PR commit
+`c2e10222bc97eb93536ffc589b1304cf7039dd6a`, kernel SHA-256
+`36409c7f03e09c79e4df24378b41e7051e2b03fd8ae1a9904e90632e193ca744`,
+and the same recorded AITER/compiler environment as the D128 campaign above.
+The workload was B16/S512/Hq8/Hkv1/D64. Each dtype ran in eight independent
+processes with 24 paired timing rounds per process, full-output FP64 validation,
+GPU locking/process monitoring, and unpinned clocks.
+
+| Comparison | Paired geometric-mean speedup | Winning processes | Approximate process-bootstrap 95% interval |
+|---|---:|---:|---:|
+| BF16 versus fastest assembly | 1.123× | 8/8 | 1.087–1.161× |
+| BF16 versus fastest FlyDSL | 0.973× | 3/8 | 0.951–0.998× |
+| FP16 versus fastest FlyDSL | 1.025× | 6/8 | 1.003–1.043× |
+
+These ratios are geometric means of paired process speedups, not ratios of
+independently aggregated backend medians. Two compiled binary hashes appeared
+for the fixed PR source in each dtype. The report therefore preserves both
+process variation and code-generation identity rather than treating one fast
+process as definitive. The D64 results qualify the earlier D128-only win and
+do not change that earlier matrix's scope.
+
 ## Historical geometry and scheduling campaigns
 
 ### #1332, #1337, and #1357
@@ -363,11 +425,13 @@ carried forward as a claim about #2641. The ragged row uses Hq8/Hkv1.
 The main article links all eleven optimization/validation PRs and credits the
 kernel's other contributors. The test-path companion
 [#1522](https://github.com/lightseekorg/tokenspeed/pull/1522) separated vendor
-coverage. The later architecture-scoped CI follow-up
-[#2743](https://github.com/lightseekorg/tokenspeed/pull/2743) is separate from
-the kernel performance results; its purpose is to direct changed architecture
-paths to the appropriate existing runner coverage. A test passing on gfx950
-is not hardware validation of gfx1250 code.
+coverage. The architecture-scoped CI follow-up
+[#2743](https://github.com/lightseekorg/tokenspeed/pull/2743) merged on October
+27 as `6fb2852d08ce20939a6a2351ff58e3e43ae25e8f`. It directs changed architecture
+paths to the appropriate existing suites. MI450 uses the upstream functional
+simulator; this does not provide new gfx1250 hardware validation. Shared AMD
+changes run both full suites, and unknown paths or potentially truncated diffs
+retain full coverage.
 
 Dependency changes are also separate from kernel attribution:
 [#1410](https://github.com/lightseekorg/tokenspeed/pull/1410) moved TokenSpeed
