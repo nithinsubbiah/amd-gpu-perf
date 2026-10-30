@@ -35,7 +35,7 @@ During prefill, attention processes the tokens of an input prompt together.
 For one head, its central computation is
 
 $$
-O = \operatorname{softmax}(s QK^\mathsf{T} + M)V,
+O = \mathrm{softmax}(s QK^{T} + M)V,
 $$
 
 where $s$ is usually $1/\sqrt{D}$ and $M$ applies the attention mask. In causal
@@ -106,7 +106,7 @@ arrays, with caches between HBM and the compute units.
 
 Two facilities matter throughout this story. **TDM** performs asynchronous
 tensor transfers into LDS. **WMMA** performs the matrix operations used for
-both $QK^\mathsf{T}$ and $PV$.
+both $QK^{T}$ and $PV$.
 
 ```mermaid
 flowchart TD
