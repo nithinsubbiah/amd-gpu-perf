@@ -7,9 +7,32 @@ The [October 13 draft](https://github.com/nithinsubbiah/amd-gpu-perf/blob/1aab02
 retains the full earlier experiment narrative.
 
 All throughput tables use useful attention TFLOP/s unless labeled otherwise.
-A reported percentage gain is throughput gain; the latest regression table in
+A reported percentage gain is throughput gain; the latest regression discussion in
 the article explicitly reports **latency increase** instead. These percentages
 are not interchangeable.
+
+## Figures and reproduction
+
+The first four article figures are explanatory schematics, not profiler
+traces. The scheduling example uses eight toy durations on four abstract
+execution slots; its completion times do not represent the measured 23% gain.
+The ragged-grid example includes launch rounding: five live query tiles occupy
+eight compact slots instead of twelve rectangular slots.
+
+The performance figure reads every aggregate row from
+[main-comparison.json](data/main-comparison.json), including both regressions
+in each dtype. Its source versions and measurement limits match the table
+below. No new performance measurements were collected for these figures.
+
+To regenerate the five SVG assets, run from this article's directory with
+Matplotlib installed:
+
+```bash
+python figures/render.py
+```
+
+The optional `--preview-dir <directory>` also writes PNG previews for review.
+The renderer uses only the CPU; it does not import or launch the GPU kernel.
 
 ## Latest main comparison: #2641
 
