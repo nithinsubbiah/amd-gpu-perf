@@ -13,18 +13,21 @@ are not interchangeable.
 
 ## Figures and reproduction
 
-The first four article figures are explanatory schematics, not profiler
+The four conceptual figures are explanatory schematics, not profiler
 traces. The scheduling example uses eight toy durations on four abstract
 execution slots; its completion times do not represent the measured 23% gain.
 The ragged-grid example includes launch rounding: five live query tiles occupy
 eight compact slots instead of twelve rectangular slots.
 
-The performance figure reads every aggregate row from
+The opening performance figure shows before-and-after kernel latency for the
+8K MQA example; its latency and throughput labels come from
+[main-comparison.json](data/main-comparison.json). The complete performance
+figure reads every aggregate row from
 [main-comparison.json](data/main-comparison.json), including both regressions
 in each dtype. Its source versions and measurement limits match the table
 below. No new performance measurements were collected for these figures.
 
-To regenerate the five SVG assets, run from this article's directory with
+To regenerate the six SVG assets, run from this article's directory with
 Matplotlib installed:
 
 ```bash
@@ -116,6 +119,15 @@ The final refactor also preserved selection and applied grid/flag behavior
 across 465,360 CPU-generated configurations. Tests and numerical documentation
 are available in [#2641](https://github.com/lightseekorg/tokenspeed/pull/2641).
 No GPU benchmark was rerun for this article update.
+
+## Architecture-specific CI coverage
+
+The follow-up [CI change, #2743](https://github.com/lightseekorg/tokenspeed/pull/2743),
+put architecture-specific tests under `gfx950/` and `gfx1250/`, grouped
+benchmark tests, and used those boundaries to select existing suites. Shared
+changes retain both suites; implementation changes retain an import/dispatch
+check on the other family. The MI450 workflow uses the existing functional
+simulator. This improves coverage routing without adding hardware validation.
 
 ## Separate 90k vendor comparison
 

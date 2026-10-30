@@ -12,17 +12,33 @@ overlapped transfers with computation, and reduced the normalization work
 between matrix operations. Each change had to earn its place through timing
 and numerical validation.
 
-The later development campaign improved **16 of 18 configurations in each of
-BF16 and FP16**, with geometric-mean speedups of **1.468× and 1.472×**. For one
-8,192-token BF16 workload, latency fell from **118.6 μs to 65.0 μs**, and useful
-causal throughput rose from **1,159 to 2,115 TFLOP/s**. These were additional
-gains over a baseline that already contained the earlier optimizations in
-this article. [[2]](#reference-2)
+The later development campaign delivered **about 47% higher kernel throughput
+on a geometric-mean basis**, across 18 configurations per dtype. These were
+additional gains over a baseline that already contained the earlier
+optimizations in this article. [[2]](#reference-2)
 
-Those timings belong to a validated candidate **before the final numerical
-fixes**. The final merged source has not been retimed on a healthy host. The
-results below retain that boundary, include the two regressions, and describe
-kernel performance rather than end-to-end model speedup.
+| Measured result | BF16 | FP16 |
+|---|---:|---:|
+| **Geometric-mean speedup, all 18 shapes** | **1.468×** | **1.472×** |
+| Configurations improved | 16 / 18 | 16 / 18 |
+| Largest speedup: skewed ragged batch | 4.37× | 4.35× |
+| Worst regression: increase in kernel latency | +8.5% | +9.1% |
+
+For an 8,192-token prompt with eight query heads sharing one KV head, the
+BF16 kernel went from **118.6 μs to 65.0 μs**: **45% less time**, with useful
+causal throughput rising from **1,159 to 2,115 TFLOP/s**. FP16 showed a similar
+reduction.
+
+![Before-and-after kernel latency for 8K MQA: BF16 falls from 118.6 to 65.0 microseconds, and FP16 from 119.8 to 66.7 microseconds.](figures/prefill-impact.svg)
+
+*Figure 1. One measured example, B1/S8192/Hq8/Hkv1/D128. The table summarizes
+all 18 shapes; the [complete comparison](#what-the-work-changed) includes both
+regressions in each dtype.*
+
+**Measurement scope:** these timings belong to a validated development
+candidate **before the final numerical fixes**. The final merged source has
+not been retimed on a healthy host. These are kernel results, not end-to-end
+model speedups; every shape receives equal weight in the geometric mean.
 
 ## What one attention workgroup does
 
@@ -57,7 +73,7 @@ shared within the workgroup. HBM holds the large input and output arrays.
 
 ![A causal attention matrix with one query/key tile highlighted, alongside the workgroup's on-chip QK, softmax, and PV computation.](figures/attention-tile.svg)
 
-*Figure 1. In the separate-head layout, one workgroup owns a tile of query rows
+*Figure 2. In the separate-head layout, one workgroup owns a tile of query rows
 from one sequence and one head. It visits successive key tiles and accumulates
 its output. The matrix drawing is schematic, not a measured workload.*
 
@@ -115,7 +131,7 @@ campaign. [[7]](#reference-7)
 
 ![Two distinct optimizations: query heads sharing one staged K/V tile, and compacting live query tiles from an uneven batch into fewer launch slots.](figures/packing-and-compaction.svg)
 
-*Figure 2. Head packing changes ownership inside a workgroup. Ragged compaction
+*Figure 3. Head packing changes ownership inside a workgroup. Ragged compaction
 changes how live query tiles map to the launch grid. Each preserves sequence
 boundaries and per-head outputs. The toy grid includes rounding slots: a
 compact launch need not contain exactly as many slots as live tiles.*
@@ -163,7 +179,7 @@ were effectively unchanged. [[1]](#reference-1)
 
 ![The same eight toy workgroups scheduled short-first and longest-first across four execution slots; longest-first reduces idle time near completion.](figures/workgroup-order.svg)
 
-*Figure 3. An illustrative schedule, with identical work in both panels. These
+*Figure 4. An illustrative schedule, with identical work in both panels. These
 are abstract execution slots and arbitrary time units, not a hardware trace.
 The drawing explains the tail effect; its durations do not reproduce the
 measured 23% gain.*
@@ -200,7 +216,7 @@ made buffer ownership and live ranges predictable. [[10]](#reference-10)
 
 ![A schematic K-ahead and V-behind schedule, followed by a wide transfer consumed in two narrower compute steps.](figures/kv-pipeline.svg)
 
-*Figure 4. Transfers look ahead while computation consumes earlier tiles. Each
+*Figure 5. Transfers look ahead while computation consumes earlier tiles. Each
 compute block combines current-tile QK with the previous tile's softmax/PV;
 exact instruction interleaving varies by route. Below, 128-key transport feeds
 two 64-key compute steps.*
@@ -301,7 +317,7 @@ this is not weighted by production traffic.
 
 ![Speedup for all 18 measured configurations, with separate BF16 and FP16 markers and a baseline at one. Sixteen shapes improve in each dtype; two regress.](figures/prefill-speedups.svg)
 
-*Figure 5. Baseline `b5474d8` versus candidate kernel contents matching
+*Figure 6. Baseline `b5474d8` versus candidate kernel contents matching
 `34bf268`. The candidate predates the final numerical fixes. Points use the
 aggregate latencies from two runs; they are not confidence intervals. All 18
 shapes, including both regressions, appear in the [retained data](data/main-comparison.json).*
@@ -362,27 +378,11 @@ and [90K results](evidence.md#separate-90k-vendor-comparison) retain the full
 protocols and limitations. None of these kernel campaigns measures full-model
 quality, end-to-end serving latency, or cold compilation cost.
 
-## Keeping the improvements maintainable
-
-The follow-up CI work put architecture-specific tests under `gfx950/` and
-`gfx1250/`, grouped benchmark tests, and used those boundaries to select the
-appropriate existing suites. Shared changes retain both suites, and
-implementation changes retain an import/dispatch check on the other family.
-The MI450 workflow uses the existing functional simulator; this is better
-routing of coverage, not new hardware validation. [[12]](#reference-12)
-
-The performance work changed how the GPU spends its time. More query rows
-reuse staged data. Fewer launch slots and matrix rows do nothing. Uneven
-causal work finishes with a shorter tail. Transfers arrive ahead of their
-consumers, and eligible rows avoid repeated softmax state updates. Together,
-those changes made a compiler-generated attention kernel substantially faster
-across a broad measured workload set, with explicit boundaries for when the
-faster algorithms apply.
-
 ## Contributions and references
 
 I authored the eleven kernel optimization/validation changes and the CI
-follow-up cited here.
+follow-up cited here. The [CI coverage notes](evidence.md#architecture-specific-ci-coverage)
+describe how architecture-specific tests are routed. [[12]](#reference-12)
 
 The work builds on TokenSpeed's original implementation. [[13]](#reference-13) [[14]](#reference-14)
 Pengzhan Zhao organized the AMD kernels by generation, [[15]](#reference-15) Zhewen Yu added
