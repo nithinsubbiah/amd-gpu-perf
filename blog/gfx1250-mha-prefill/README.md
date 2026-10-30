@@ -1,7 +1,5 @@
 # Engineering a Faster FlashAttention Prefill Kernel on gfx1250
 
-*By Nithin Meganathan. Kernel work through October 27, 2026.*
-
 One of the largest gains in this project came from changing which work ran
 first. In a measured causal-attention workload, scheduling the longest query
 prefixes first raised throughput by **23%**, with essentially the same local
@@ -384,8 +382,7 @@ faster algorithms apply.
 ## Contributions and references
 
 I authored the eleven kernel optimization/validation changes and the CI
-follow-up cited here. Pengzhan Zhao (`borontion`) is also credited as a
-co-author of the final kernel update. [[2]](#reference-2)
+follow-up cited here.
 
 The work builds on TokenSpeed's original implementation. [[13]](#reference-13) [[14]](#reference-14)
 Pengzhan Zhao organized the AMD kernels by generation, [[15]](#reference-15) Zhewen Yu added
