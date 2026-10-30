@@ -1,0 +1,1802 @@
+{
+  "shape_bshd": [
+    1,
+    90000,
+    40,
+    128
+  ],
+  "causal": true,
+  "aiter_commit": "2bafed472893c6a8008758dec2591b9a9c73547b",
+  "pr_head": "1d074b7099117bef74e258478bb07a390383083a",
+  "fresh_process_runs": 3,
+  "paired_rounds_per_run": 13,
+  "graph_replays_per_measurement": 3,
+  "clock_pinning": false,
+  "sampled_fp64_rows": [
+    0,
+    1,
+    15,
+    16,
+    31,
+    32,
+    63,
+    64,
+    127,
+    128,
+    255,
+    256,
+    511,
+    512,
+    4095,
+    4096,
+    5999,
+    11999,
+    16383,
+    16384,
+    17999,
+    23999,
+    29999,
+    32767,
+    32768,
+    35999,
+    41999,
+    47999,
+    53999,
+    59999,
+    65534,
+    65535,
+    65536,
+    65537,
+    65999,
+    71999,
+    77999,
+    83999,
+    89998,
+    89999
+  ],
+  "backends": {
+    "bfloat16": {
+      "asm_batch": {
+        "median_ms": 35.6842295328776,
+        "run_median_ms_range": [
+          35.591931660970054,
+          35.911048889160156
+        ],
+        "tflops": 2324.413969021773,
+        "run_tflops": [
+          2330.441696452149,
+          2309.7326356579115,
+          2324.413969021773
+        ],
+        "worst_numerical_relative_rms": 0.001401328615916761,
+        "worst_numerical_max_abs": 0.0074217612078815165
+      },
+      "asm_varlen": {
+        "median_ms": 35.67444356282552,
+        "run_median_ms_range": [
+          35.553245544433594,
+          35.72168477376302
+        ],
+        "tflops": 2325.051586408837,
+        "run_tflops": [
+          2332.977491361159,
+          2321.976752365321,
+          2325.051586408837
+        ],
+        "worst_numerical_relative_rms": 0.001401328615916761,
+        "worst_numerical_max_abs": 0.0074217612078815165,
+        "pr_speedup": 1.0067985173082856,
+        "paired_run_pr_speedup_range": [
+          1.0036791960977705,
+          1.0067985173082856
+        ]
+      },
+      "flydsl_batch": {
+        "median_ms": 35.7206064860026,
+        "run_median_ms_range": [
+          35.472913106282554,
+          35.73112487792969
+        ],
+        "tflops": 2322.046845215313,
+        "run_tflops": [
+          2338.2607836994857,
+          2321.363289943139,
+          2322.046845215313
+        ],
+        "worst_numerical_relative_rms": 0.002270632865300089,
+        "worst_numerical_max_abs": 0.010627413532440677
+      },
+      "flydsl_varlen": {
+        "median_ms": 35.59103647867838,
+        "run_median_ms_range": [
+          35.4564208984375,
+          35.6142832438151
+        ],
+        "tflops": 2330.500311495284,
+        "run_tflops": [
+          2339.3484028630546,
+          2328.9791074036143,
+          2330.500311495284
+        ],
+        "worst_numerical_relative_rms": 0.002270632865300089,
+        "worst_numerical_max_abs": 0.010627413532440677,
+        "pr_speedup": 1.0044446157399411,
+        "paired_run_pr_speedup_range": [
+          1.0009458061816696,
+          1.0044446157399411
+        ]
+      },
+      "pr": {
+        "median_ms": 35.43354797363281,
+        "run_median_ms_range": [
+          35.42291768391927,
+          35.561859130859375
+        ],
+        "tflops": 2340.858489861694,
+        "run_tflops": [
+          2341.5609730435617,
+          2332.412411139192,
+          2340.858489861694
+        ],
+        "worst_numerical_relative_rms": 0.0014053551770353723,
+        "worst_numerical_max_abs": 0.0074217612078815165
+      }
+    },
+    "float16": {
+      "flydsl_batch": {
+        "median_ms": 36.82103729248047,
+        "run_median_ms_range": [
+          36.73469543457031,
+          36.92993672688802
+        ],
+        "tflops": 2252.6503243551715,
+        "run_tflops": [
+          2257.9449922958156,
+          2252.6503243551715,
+          2246.0076824233847
+        ],
+        "worst_numerical_relative_rms": 0.0002763420379484794,
+        "worst_numerical_max_abs": 0.0013799903896813959
+      },
+      "flydsl_varlen": {
+        "median_ms": 36.793958028157554,
+        "run_median_ms_range": [
+          36.70184580485026,
+          36.850606282552086
+        ],
+        "tflops": 2254.308208334754,
+        "run_tflops": [
+          2259.965943975455,
+          2254.308208334754,
+          2250.842793847669
+        ],
+        "worst_numerical_relative_rms": 0.0002763420379484794,
+        "worst_numerical_max_abs": 0.0013799903896813959,
+        "pr_speedup": 1.01010356792453,
+        "paired_run_pr_speedup_range": [
+          1.0089318422437596,
+          1.01010356792453
+        ]
+      },
+      "pr": {
+        "median_ms": 36.425926208496094,
+        "run_median_ms_range": [
+          36.376932779947914,
+          36.51074981689453
+        ],
+        "tflops": 2277.08476444049,
+        "run_tflops": [
+          2280.151603263313,
+          2277.08476444049,
+          2271.794526707285
+        ],
+        "worst_numerical_relative_rms": 0.00017629808783645255,
+        "worst_numerical_max_abs": 0.0009526888971382874
+      }
+    }
+  },
+  "note": "Separate pre-final-fix campaign. All rows are causal MHA. No FP16 assembly result was available in this AITER build. FP64 validation samples query rows, not the entire output.",
+  "environment": {
+    "torch": "2.14.0+rocm10.1.0",
+    "hip": "7.16.26385",
+    "flydsl": "0.4.0",
+    "tokenspeed_triton": "3.9.10.post20261008",
+    "arch": "gfx1250",
+    "compute_units": 256
+  },
+  "kernel_sha256": "8b0aa29e4f07d1d0e023accb1b4cfaadbf4323e3870f53d0b752423909c306d1",
+  "gpu_lock": true,
+  "foreign_gpu_clients_observed": false,
+  "runs": [
+    {
+      "file": "run1_bfloat16.json",
+      "sample_order": [
+        {
+          "pair": 0,
+          "backend": "flydsl_varlen",
+          "us": 35239.93682861328
+        },
+        {
+          "pair": 0,
+          "backend": "flydsl_batch",
+          "us": 35214.41904703776
+        },
+        {
+          "pair": 0,
+          "backend": "pr",
+          "us": 35103.172302246094
+        },
+        {
+          "pair": 0,
+          "backend": "asm_varlen",
+          "us": 35491.46016438802
+        },
+        {
+          "pair": 0,
+          "backend": "asm_batch",
+          "us": 35369.13045247396
+        },
+        {
+          "pair": 1,
+          "backend": "asm_varlen",
+          "us": 35372.05505371094
+        },
+        {
+          "pair": 1,
+          "backend": "pr",
+          "us": 35422.91768391927
+        },
+        {
+          "pair": 1,
+          "backend": "flydsl_batch",
+          "us": 35565.86710611979
+        },
+        {
+          "pair": 1,
+          "backend": "flydsl_varlen",
+          "us": 35229.296366373695
+        },
+        {
+          "pair": 1,
+          "backend": "asm_batch",
+          "us": 35808.09529622396
+        },
+        {
+          "pair": 2,
+          "backend": "asm_varlen",
+          "us": 35562.04477945963
+        },
+        {
+          "pair": 2,
+          "backend": "asm_batch",
+          "us": 35451.36006673177
+        },
+        {
+          "pair": 2,
+          "backend": "flydsl_varlen",
+          "us": 36128.45357259115
+        },
+        {
+          "pair": 2,
+          "backend": "flydsl_batch",
+          "us": 35463.83158365885
+        },
+        {
+          "pair": 2,
+          "backend": "pr",
+          "us": 34966.27553304037
+        },
+        {
+          "pair": 3,
+          "backend": "flydsl_batch",
+          "us": 35348.92781575521
+        },
+        {
+          "pair": 3,
+          "backend": "flydsl_varlen",
+          "us": 35226.21154785156
+        },
+        {
+          "pair": 3,
+          "backend": "asm_batch",
+          "us": 35707.27793375651
+        },
+        {
+          "pair": 3,
+          "backend": "asm_varlen",
+          "us": 35609.46400960287
+        },
+        {
+          "pair": 3,
+          "backend": "pr",
+          "us": 35436.69891357422
+        },
+        {
+          "pair": 4,
+          "backend": "flydsl_batch",
+          "us": 35475.22481282552
+        },
+        {
+          "pair": 4,
+          "backend": "pr",
+          "us": 35076.24053955078
+        },
+        {
+          "pair": 4,
+          "backend": "asm_varlen",
+          "us": 35784.0321858724
+        },
+        {
+          "pair": 4,
+          "backend": "asm_batch",
+          "us": 35300.03865559896
+        },
+        {
+          "pair": 4,
+          "backend": "flydsl_varlen",
+          "us": 36195.83384195963
+        },
+        {
+          "pair": 5,
+          "backend": "asm_batch",
+          "us": 35591.931660970055
+        },
+        {
+          "pair": 5,
+          "backend": "asm_varlen",
+          "us": 35369.71791585287
+        },
+        {
+          "pair": 5,
+          "backend": "pr",
+          "us": 35456.84814453125
+        },
+        {
+          "pair": 5,
+          "backend": "flydsl_batch",
+          "us": 35498.03161621094
+        },
+        {
+          "pair": 5,
+          "backend": "flydsl_varlen",
+          "us": 35317.14630126953
+        },
+        {
+          "pair": 6,
+          "backend": "asm_batch",
+          "us": 35920.83740234375
+        },
+        {
+          "pair": 6,
+          "backend": "flydsl_varlen",
+          "us": 35677.284240722656
+        },
+        {
+          "pair": 6,
+          "backend": "flydsl_batch",
+          "us": 35472.913106282555
+        },
+        {
+          "pair": 6,
+          "backend": "pr",
+          "us": 35077.42563883463
+        },
+        {
+          "pair": 6,
+          "backend": "asm_varlen",
+          "us": 35649.91251627604
+        },
+        {
+          "pair": 7,
+          "backend": "pr",
+          "us": 35452.921549479164
+        },
+        {
+          "pair": 7,
+          "backend": "flydsl_batch",
+          "us": 35468.119303385414
+        },
+        {
+          "pair": 7,
+          "backend": "flydsl_varlen",
+          "us": 35362.33266194662
+        },
+        {
+          "pair": 7,
+          "backend": "asm_batch",
+          "us": 35823.98478190104
+        },
+        {
+          "pair": 7,
+          "backend": "asm_varlen",
+          "us": 35573.90340169271
+        },
+        {
+          "pair": 8,
+          "backend": "pr",
+          "us": 36340.68044026693
+        },
+        {
+          "pair": 8,
+          "backend": "asm_varlen",
+          "us": 35547.82358805338
+        },
+        {
+          "pair": 8,
+          "backend": "asm_batch",
+          "us": 35386.82301839193
+        },
+        {
+          "pair": 8,
+          "backend": "flydsl_varlen",
+          "us": 36214.97090657552
+        },
+        {
+          "pair": 8,
+          "backend": "flydsl_batch",
+          "us": 35470.176696777344
+        },
+        {
+          "pair": 9,
+          "backend": "flydsl_varlen",
+          "us": 35250.526428222656
+        },
+        {
+          "pair": 9,
+          "backend": "asm_batch",
+          "us": 35931.69403076172
+        },
+        {
+          "pair": 9,
+          "backend": "asm_varlen",
+          "us": 35552.0985921224
+        },
+        {
+          "pair": 9,
+          "backend": "pr",
+          "us": 35517.285664876305
+        },
+        {
+          "pair": 9,
+          "backend": "flydsl_batch",
+          "us": 35522.72033691406
+        },
+        {
+          "pair": 10,
+          "backend": "flydsl_varlen",
+          "us": 35456.4208984375
+        },
+        {
+          "pair": 10,
+          "backend": "flydsl_batch",
+          "us": 35322.835286458336
+        },
+        {
+          "pair": 10,
+          "backend": "pr",
+          "us": 35179.32637532552
+        },
+        {
+          "pair": 10,
+          "backend": "asm_varlen",
+          "us": 35734.1562906901
+        },
+        {
+          "pair": 10,
+          "backend": "asm_batch",
+          "us": 35365.125020345055
+        },
+        {
+          "pair": 11,
+          "backend": "asm_varlen",
+          "us": 35553.245544433594
+        },
+        {
+          "pair": 11,
+          "backend": "pr",
+          "us": 35502.9296875
+        },
+        {
+          "pair": 11,
+          "backend": "flydsl_batch",
+          "us": 35577.55025227865
+        },
+        {
+          "pair": 11,
+          "backend": "flydsl_varlen",
+          "us": 36733.91977945963
+        },
+        {
+          "pair": 11,
+          "backend": "asm_batch",
+          "us": 35947.062174479164
+        },
+        {
+          "pair": 12,
+          "backend": "asm_varlen",
+          "us": 35393.140157063805
+        },
+        {
+          "pair": 12,
+          "backend": "asm_batch",
+          "us": 35578.712463378906
+        },
+        {
+          "pair": 12,
+          "backend": "flydsl_varlen",
+          "us": 36305.267333984375
+        },
+        {
+          "pair": 12,
+          "backend": "flydsl_batch",
+          "us": 35589.795430501305
+        },
+        {
+          "pair": 12,
+          "backend": "pr",
+          "us": 35103.43933105469
+        }
+      ]
+    },
+    {
+      "file": "run1_float16.json",
+      "sample_order": [
+        {
+          "pair": 0,
+          "backend": "flydsl_varlen",
+          "us": 36703.155517578125
+        },
+        {
+          "pair": 0,
+          "backend": "flydsl_batch",
+          "us": 36566.017150878906
+        },
+        {
+          "pair": 0,
+          "backend": "pr",
+          "us": 36338.035583496094
+        },
+        {
+          "pair": 1,
+          "backend": "flydsl_batch",
+          "us": 36635.43955485026
+        },
+        {
+          "pair": 1,
+          "backend": "flydsl_varlen",
+          "us": 36646.148681640625
+        },
+        {
+          "pair": 1,
+          "backend": "pr",
+          "us": 36291.16566975912
+        },
+        {
+          "pair": 2,
+          "backend": "flydsl_batch",
+          "us": 36734.69543457031
+        },
+        {
+          "pair": 2,
+          "backend": "pr",
+          "us": 36324.85707600912
+        },
+        {
+          "pair": 2,
+          "backend": "flydsl_varlen",
+          "us": 36747.86122639974
+        },
+        {
+          "pair": 3,
+          "backend": "pr",
+          "us": 36295.08972167969
+        },
+        {
+          "pair": 3,
+          "backend": "flydsl_batch",
+          "us": 36764.689127604164
+        },
+        {
+          "pair": 3,
+          "backend": "flydsl_varlen",
+          "us": 36611.16282145182
+        },
+        {
+          "pair": 4,
+          "backend": "pr",
+          "us": 36347.89021809896
+        },
+        {
+          "pair": 4,
+          "backend": "flydsl_varlen",
+          "us": 36831.58620198568
+        },
+        {
+          "pair": 4,
+          "backend": "flydsl_batch",
+          "us": 36656.24491373698
+        },
+        {
+          "pair": 5,
+          "backend": "flydsl_varlen",
+          "us": 36701.43127441406
+        },
+        {
+          "pair": 5,
+          "backend": "pr",
+          "us": 36342.94891357422
+        },
+        {
+          "pair": 5,
+          "backend": "flydsl_batch",
+          "us": 36777.74556477865
+        },
+        {
+          "pair": 6,
+          "backend": "flydsl_varlen",
+          "us": 36644.87965901693
+        },
+        {
+          "pair": 6,
+          "backend": "flydsl_batch",
+          "us": 36778.45255533854
+        },
+        {
+          "pair": 6,
+          "backend": "pr",
+          "us": 36394.493103027344
+        },
+        {
+          "pair": 7,
+          "backend": "flydsl_batch",
+          "us": 36652.626037597656
+        },
+        {
+          "pair": 7,
+          "backend": "flydsl_varlen",
+          "us": 36787.829081217445
+        },
+        {
+          "pair": 7,
+          "backend": "pr",
+          "us": 36376.932779947914
+        },
+        {
+          "pair": 8,
+          "backend": "flydsl_batch",
+          "us": 36768.54705810547
+        },
+        {
+          "pair": 8,
+          "backend": "pr",
+          "us": 36413.187662760414
+        },
+        {
+          "pair": 8,
+          "backend": "flydsl_varlen",
+          "us": 36790.3798421224
+        },
+        {
+          "pair": 9,
+          "backend": "pr",
+          "us": 36416.699727376305
+        },
+        {
+          "pair": 9,
+          "backend": "flydsl_batch",
+          "us": 36717.908223470055
+        },
+        {
+          "pair": 9,
+          "backend": "flydsl_varlen",
+          "us": 36690.68145751953
+        },
+        {
+          "pair": 10,
+          "backend": "pr",
+          "us": 36395.30690511068
+        },
+        {
+          "pair": 10,
+          "backend": "flydsl_varlen",
+          "us": 36664.538065592445
+        },
+        {
+          "pair": 10,
+          "backend": "flydsl_batch",
+          "us": 36818.95446777344
+        },
+        {
+          "pair": 11,
+          "backend": "flydsl_varlen",
+          "us": 36731.02315266927
+        },
+        {
+          "pair": 11,
+          "backend": "pr",
+          "us": 36398.00516764323
+        },
+        {
+          "pair": 11,
+          "backend": "flydsl_batch",
+          "us": 36779.92248535156
+        },
+        {
+          "pair": 12,
+          "backend": "flydsl_varlen",
+          "us": 36701.84580485026
+        },
+        {
+          "pair": 12,
+          "backend": "flydsl_batch",
+          "us": 36664.95259602865
+        },
+        {
+          "pair": 12,
+          "backend": "pr",
+          "us": 36414.65504964193
+        }
+      ]
+    },
+    {
+      "file": "run2_bfloat16.json",
+      "sample_order": [
+        {
+          "pair": 0,
+          "backend": "asm_varlen",
+          "us": 35651.54012044271
+        },
+        {
+          "pair": 0,
+          "backend": "pr",
+          "us": 35562.339782714844
+        },
+        {
+          "pair": 0,
+          "backend": "flydsl_batch",
+          "us": 35768.75559488932
+        },
+        {
+          "pair": 0,
+          "backend": "flydsl_varlen",
+          "us": 35488.29650878906
+        },
+        {
+          "pair": 0,
+          "backend": "asm_batch",
+          "us": 35911.048889160156
+        },
+        {
+          "pair": 1,
+          "backend": "asm_varlen",
+          "us": 35631.66809082031
+        },
+        {
+          "pair": 1,
+          "backend": "asm_batch",
+          "us": 35608.04748535156
+        },
+        {
+          "pair": 1,
+          "backend": "flydsl_varlen",
+          "us": 36233.60951741537
+        },
+        {
+          "pair": 1,
+          "backend": "flydsl_batch",
+          "us": 35723.18013509115
+        },
+        {
+          "pair": 1,
+          "backend": "pr",
+          "us": 35122.240702311195
+        },
+        {
+          "pair": 2,
+          "backend": "flydsl_batch",
+          "us": 35783.44472249349
+        },
+        {
+          "pair": 2,
+          "backend": "flydsl_varlen",
+          "us": 35584.0810139974
+        },
+        {
+          "pair": 2,
+          "backend": "asm_batch",
+          "us": 35958.67919921875
+        },
+        {
+          "pair": 2,
+          "backend": "asm_varlen",
+          "us": 36460.192362467445
+        },
+        {
+          "pair": 2,
+          "backend": "pr",
+          "us": 35633.138020833336
+        },
+        {
+          "pair": 3,
+          "backend": "flydsl_batch",
+          "us": 35731.12487792969
+        },
+        {
+          "pair": 3,
+          "backend": "pr",
+          "us": 35130.58725992838
+        },
+        {
+          "pair": 3,
+          "backend": "asm_varlen",
+          "us": 35916.81671142578
+        },
+        {
+          "pair": 3,
+          "backend": "asm_batch",
+          "us": 35501.46230061849
+        },
+        {
+          "pair": 3,
+          "backend": "flydsl_varlen",
+          "us": 36217.760721842445
+        },
+        {
+          "pair": 4,
+          "backend": "asm_batch",
+          "us": 35725.89111328125
+        },
+        {
+          "pair": 4,
+          "backend": "asm_varlen",
+          "us": 35409.21529134115
+        },
+        {
+          "pair": 4,
+          "backend": "pr",
+          "us": 35561.859130859375
+        },
+        {
+          "pair": 4,
+          "backend": "flydsl_batch",
+          "us": 35729.41589355469
+        },
+        {
+          "pair": 4,
+          "backend": "flydsl_varlen",
+          "us": 35550.682067871094
+        },
+        {
+          "pair": 5,
+          "backend": "asm_batch",
+          "us": 38071.97825113932
+        },
+        {
+          "pair": 5,
+          "backend": "flydsl_varlen",
+          "us": 36180.98704020182
+        },
+        {
+          "pair": 5,
+          "backend": "flydsl_batch",
+          "us": 35722.991943359375
+        },
+        {
+          "pair": 5,
+          "backend": "pr",
+          "us": 35151.509602864586
+        },
+        {
+          "pair": 5,
+          "backend": "asm_varlen",
+          "us": 35862.72176106771
+        },
+        {
+          "pair": 6,
+          "backend": "pr",
+          "us": 35474.955240885414
+        },
+        {
+          "pair": 6,
+          "backend": "flydsl_batch",
+          "us": 35799.49442545573
+        },
+        {
+          "pair": 6,
+          "backend": "flydsl_varlen",
+          "us": 35491.62038167318
+        },
+        {
+          "pair": 6,
+          "backend": "asm_batch",
+          "us": 35940.36102294922
+        },
+        {
+          "pair": 6,
+          "backend": "asm_varlen",
+          "us": 35721.68477376302
+        },
+        {
+          "pair": 7,
+          "backend": "pr",
+          "us": 35583.87756347656
+        },
+        {
+          "pair": 7,
+          "backend": "asm_varlen",
+          "us": 35756.41632080078
+        },
+        {
+          "pair": 7,
+          "backend": "asm_batch",
+          "us": 35430.623372395836
+        },
+        {
+          "pair": 7,
+          "backend": "flydsl_varlen",
+          "us": 36149.76501464844
+        },
+        {
+          "pair": 7,
+          "backend": "flydsl_batch",
+          "us": 35666.13515218099
+        },
+        {
+          "pair": 8,
+          "backend": "flydsl_varlen",
+          "us": 35615.1377360026
+        },
+        {
+          "pair": 8,
+          "backend": "asm_batch",
+          "us": 35952.52227783203
+        },
+        {
+          "pair": 8,
+          "backend": "asm_varlen",
+          "us": 35791.735331217445
+        },
+        {
+          "pair": 8,
+          "backend": "pr",
+          "us": 35608.76719156901
+        },
+        {
+          "pair": 8,
+          "backend": "flydsl_batch",
+          "us": 35752.9296875
+        },
+        {
+          "pair": 9,
+          "backend": "flydsl_varlen",
+          "us": 35614.2832438151
+        },
+        {
+          "pair": 9,
+          "backend": "flydsl_batch",
+          "us": 35653.917948404945
+        },
+        {
+          "pair": 9,
+          "backend": "pr",
+          "us": 35223.76505533854
+        },
+        {
+          "pair": 9,
+          "backend": "asm_varlen",
+          "us": 35949.37388102213
+        },
+        {
+          "pair": 9,
+          "backend": "asm_batch",
+          "us": 35480.81970214844
+        },
+        {
+          "pair": 10,
+          "backend": "asm_varlen",
+          "us": 35600.33162434896
+        },
+        {
+          "pair": 10,
+          "backend": "pr",
+          "us": 35595.9218343099
+        },
+        {
+          "pair": 10,
+          "backend": "flydsl_batch",
+          "us": 35767.50183105469
+        },
+        {
+          "pair": 10,
+          "backend": "flydsl_varlen",
+          "us": 35599.58140055338
+        },
+        {
+          "pair": 10,
+          "backend": "asm_batch",
+          "us": 35924.76145426432
+        },
+        {
+          "pair": 11,
+          "backend": "asm_varlen",
+          "us": 35668.48500569662
+        },
+        {
+          "pair": 11,
+          "backend": "asm_batch",
+          "us": 35626.810709635414
+        },
+        {
+          "pair": 11,
+          "backend": "flydsl_varlen",
+          "us": 36303.23791503906
+        },
+        {
+          "pair": 11,
+          "backend": "flydsl_batch",
+          "us": 35706.76930745443
+        },
+        {
+          "pair": 11,
+          "backend": "pr",
+          "us": 35227.396647135414
+        },
+        {
+          "pair": 12,
+          "backend": "flydsl_batch",
+          "us": 35798.47971598307
+        },
+        {
+          "pair": 12,
+          "backend": "flydsl_varlen",
+          "us": 35580.86140950521
+        },
+        {
+          "pair": 12,
+          "backend": "asm_batch",
+          "us": 35977.012634277344
+        },
+        {
+          "pair": 12,
+          "backend": "asm_varlen",
+          "us": 35711.283365885414
+        },
+        {
+          "pair": 12,
+          "backend": "pr",
+          "us": 35591.86299641927
+        }
+      ]
+    },
+    {
+      "file": "run2_float16.json",
+      "sample_order": [
+        {
+          "pair": 0,
+          "backend": "flydsl_batch",
+          "us": 36799.817403157555
+        },
+        {
+          "pair": 0,
+          "backend": "flydsl_varlen",
+          "us": 36738.76444498698
+        },
+        {
+          "pair": 0,
+          "backend": "pr",
+          "us": 36409.96805826823
+        },
+        {
+          "pair": 1,
+          "backend": "flydsl_batch",
+          "us": 36732.59735107422
+        },
+        {
+          "pair": 1,
+          "backend": "pr",
+          "us": 36535.26051839193
+        },
+        {
+          "pair": 1,
+          "backend": "flydsl_varlen",
+          "us": 36822.985331217445
+        },
+        {
+          "pair": 2,
+          "backend": "pr",
+          "us": 36425.926208496094
+        },
+        {
+          "pair": 2,
+          "backend": "flydsl_batch",
+          "us": 38423.75691731771
+        },
+        {
+          "pair": 2,
+          "backend": "flydsl_varlen",
+          "us": 36609.07999674479
+        },
+        {
+          "pair": 3,
+          "backend": "pr",
+          "us": 36414.42616780599
+        },
+        {
+          "pair": 3,
+          "backend": "flydsl_varlen",
+          "us": 36912.506103515625
+        },
+        {
+          "pair": 3,
+          "backend": "flydsl_batch",
+          "us": 36692.578633626305
+        },
+        {
+          "pair": 4,
+          "backend": "flydsl_varlen",
+          "us": 36702.738444010414
+        },
+        {
+          "pair": 4,
+          "backend": "pr",
+          "us": 36434.83225504557
+        },
+        {
+          "pair": 4,
+          "backend": "flydsl_batch",
+          "us": 36791.88537597656
+        },
+        {
+          "pair": 5,
+          "backend": "flydsl_varlen",
+          "us": 36805.89294433594
+        },
+        {
+          "pair": 5,
+          "backend": "flydsl_batch",
+          "us": 36941.37827555338
+        },
+        {
+          "pair": 5,
+          "backend": "pr",
+          "us": 36406.481424967445
+        },
+        {
+          "pair": 6,
+          "backend": "flydsl_batch",
+          "us": 36821.03729248047
+        },
+        {
+          "pair": 6,
+          "backend": "flydsl_varlen",
+          "us": 36870.79111735026
+        },
+        {
+          "pair": 6,
+          "backend": "pr",
+          "us": 36383.30078125
+        },
+        {
+          "pair": 7,
+          "backend": "flydsl_batch",
+          "us": 36774.64803059896
+        },
+        {
+          "pair": 7,
+          "backend": "pr",
+          "us": 36409.38059488932
+        },
+        {
+          "pair": 7,
+          "backend": "flydsl_varlen",
+          "us": 36876.34531656901
+        },
+        {
+          "pair": 8,
+          "backend": "pr",
+          "us": 36449.07887776693
+        },
+        {
+          "pair": 8,
+          "backend": "flydsl_batch",
+          "us": 36915.16621907552
+        },
+        {
+          "pair": 8,
+          "backend": "flydsl_varlen",
+          "us": 36793.958028157555
+        },
+        {
+          "pair": 9,
+          "backend": "pr",
+          "us": 36469.65789794922
+        },
+        {
+          "pair": 9,
+          "backend": "flydsl_varlen",
+          "us": 36838.25174967448
+        },
+        {
+          "pair": 9,
+          "backend": "flydsl_batch",
+          "us": 36771.99045817057
+        },
+        {
+          "pair": 10,
+          "backend": "flydsl_varlen",
+          "us": 36768.54451497396
+        },
+        {
+          "pair": 10,
+          "backend": "pr",
+          "us": 36448.987325032555
+        },
+        {
+          "pair": 10,
+          "backend": "flydsl_batch",
+          "us": 36884.27734375
+        },
+        {
+          "pair": 11,
+          "backend": "flydsl_varlen",
+          "us": 36733.87908935547
+        },
+        {
+          "pair": 11,
+          "backend": "flydsl_batch",
+          "us": 36942.75156656901
+        },
+        {
+          "pair": 11,
+          "backend": "pr",
+          "us": 36406.656901041664
+        },
+        {
+          "pair": 12,
+          "backend": "flydsl_batch",
+          "us": 36869.188944498695
+        },
+        {
+          "pair": 12,
+          "backend": "flydsl_varlen",
+          "us": 36749.237060546875
+        },
+        {
+          "pair": 12,
+          "backend": "pr",
+          "us": 36459.136962890625
+        }
+      ]
+    },
+    {
+      "file": "run3_bfloat16.json",
+      "sample_order": [
+        {
+          "pair": 0,
+          "backend": "asm_varlen",
+          "us": 35640.45969645182
+        },
+        {
+          "pair": 0,
+          "backend": "asm_batch",
+          "us": 35563.891092936195
+        },
+        {
+          "pair": 0,
+          "backend": "flydsl_varlen",
+          "us": 36139.41955566406
+        },
+        {
+          "pair": 0,
+          "backend": "flydsl_batch",
+          "us": 35677.87424723307
+        },
+        {
+          "pair": 0,
+          "backend": "pr",
+          "us": 35053.60412597656
+        },
+        {
+          "pair": 1,
+          "backend": "flydsl_batch",
+          "us": 35647.77628580729
+        },
+        {
+          "pair": 1,
+          "backend": "flydsl_varlen",
+          "us": 35582.438151041664
+        },
+        {
+          "pair": 1,
+          "backend": "asm_batch",
+          "us": 35978.538513183594
+        },
+        {
+          "pair": 1,
+          "backend": "asm_varlen",
+          "us": 35674.44356282552
+        },
+        {
+          "pair": 1,
+          "backend": "pr",
+          "us": 35515.75215657552
+        },
+        {
+          "pair": 2,
+          "backend": "flydsl_batch",
+          "us": 35805.023193359375
+        },
+        {
+          "pair": 2,
+          "backend": "pr",
+          "us": 35161.8906656901
+        },
+        {
+          "pair": 2,
+          "backend": "asm_varlen",
+          "us": 35740.928649902344
+        },
+        {
+          "pair": 2,
+          "backend": "asm_batch",
+          "us": 35451.16170247396
+        },
+        {
+          "pair": 2,
+          "backend": "flydsl_varlen",
+          "us": 36134.70458984375
+        },
+        {
+          "pair": 3,
+          "backend": "asm_batch",
+          "us": 35684.2295328776
+        },
+        {
+          "pair": 3,
+          "backend": "asm_varlen",
+          "us": 35353.736877441406
+        },
+        {
+          "pair": 3,
+          "backend": "pr",
+          "us": 35555.676778157555
+        },
+        {
+          "pair": 3,
+          "backend": "flydsl_batch",
+          "us": 35705.291748046875
+        },
+        {
+          "pair": 3,
+          "backend": "flydsl_varlen",
+          "us": 35572.23765055338
+        },
+        {
+          "pair": 4,
+          "backend": "asm_batch",
+          "us": 35847.99448649088
+        },
+        {
+          "pair": 4,
+          "backend": "flydsl_varlen",
+          "us": 36189.50653076172
+        },
+        {
+          "pair": 4,
+          "backend": "flydsl_batch",
+          "us": 35694.417317708336
+        },
+        {
+          "pair": 4,
+          "backend": "pr",
+          "us": 35128.41288248698
+        },
+        {
+          "pair": 4,
+          "backend": "asm_varlen",
+          "us": 35830.7851155599
+        },
+        {
+          "pair": 5,
+          "backend": "pr",
+          "us": 35433.54797363281
+        },
+        {
+          "pair": 5,
+          "backend": "flydsl_batch",
+          "us": 35688.011169433594
+        },
+        {
+          "pair": 5,
+          "backend": "flydsl_varlen",
+          "us": 35510.37089029948
+        },
+        {
+          "pair": 5,
+          "backend": "asm_batch",
+          "us": 35933.12327067057
+        },
+        {
+          "pair": 5,
+          "backend": "asm_varlen",
+          "us": 35647.308349609375
+        },
+        {
+          "pair": 6,
+          "backend": "pr",
+          "us": 35547.157287597656
+        },
+        {
+          "pair": 6,
+          "backend": "asm_varlen",
+          "us": 35651.47399902344
+        },
+        {
+          "pair": 6,
+          "backend": "asm_batch",
+          "us": 35463.31278483073
+        },
+        {
+          "pair": 6,
+          "backend": "flydsl_varlen",
+          "us": 36191.65802001953
+        },
+        {
+          "pair": 6,
+          "backend": "flydsl_batch",
+          "us": 35784.98077392578
+        },
+        {
+          "pair": 7,
+          "backend": "flydsl_varlen",
+          "us": 35553.16670735677
+        },
+        {
+          "pair": 7,
+          "backend": "asm_batch",
+          "us": 35935.58247884115
+        },
+        {
+          "pair": 7,
+          "backend": "asm_varlen",
+          "us": 35718.63047281901
+        },
+        {
+          "pair": 7,
+          "backend": "pr",
+          "us": 35569.51141357422
+        },
+        {
+          "pair": 7,
+          "backend": "flydsl_batch",
+          "us": 35823.54736328125
+        },
+        {
+          "pair": 8,
+          "backend": "flydsl_varlen",
+          "us": 35476.06658935547
+        },
+        {
+          "pair": 8,
+          "backend": "flydsl_batch",
+          "us": 35616.42201741537
+        },
+        {
+          "pair": 8,
+          "backend": "pr",
+          "us": 35210.41615804037
+        },
+        {
+          "pair": 8,
+          "backend": "asm_varlen",
+          "us": 35915.46885172526
+        },
+        {
+          "pair": 8,
+          "backend": "asm_batch",
+          "us": 35387.306213378906
+        },
+        {
+          "pair": 9,
+          "backend": "asm_varlen",
+          "us": 35632.82012939453
+        },
+        {
+          "pair": 9,
+          "backend": "pr",
+          "us": 35554.67732747396
+        },
+        {
+          "pair": 9,
+          "backend": "flydsl_batch",
+          "us": 35843.12184651693
+        },
+        {
+          "pair": 9,
+          "backend": "flydsl_varlen",
+          "us": 35523.0967203776
+        },
+        {
+          "pair": 9,
+          "backend": "asm_batch",
+          "us": 35943.44584147135
+        },
+        {
+          "pair": 10,
+          "backend": "asm_varlen",
+          "us": 35634.81140136719
+        },
+        {
+          "pair": 10,
+          "backend": "asm_batch",
+          "us": 35620.56223551432
+        },
+        {
+          "pair": 10,
+          "backend": "flydsl_varlen",
+          "us": 36195.00732421875
+        },
+        {
+          "pair": 10,
+          "backend": "flydsl_batch",
+          "us": 35748.687744140625
+        },
+        {
+          "pair": 10,
+          "backend": "pr",
+          "us": 35148.8291422526
+        },
+        {
+          "pair": 11,
+          "backend": "flydsl_batch",
+          "us": 35720.6064860026
+        },
+        {
+          "pair": 11,
+          "backend": "flydsl_varlen",
+          "us": 35591.03647867838
+        },
+        {
+          "pair": 11,
+          "backend": "asm_batch",
+          "us": 36102.12198893229
+        },
+        {
+          "pair": 11,
+          "backend": "asm_varlen",
+          "us": 35699.066162109375
+        },
+        {
+          "pair": 11,
+          "backend": "pr",
+          "us": 35591.54764811198
+        },
+        {
+          "pair": 12,
+          "backend": "flydsl_batch",
+          "us": 35836.204528808594
+        },
+        {
+          "pair": 12,
+          "backend": "pr",
+          "us": 35148.60280354818
+        },
+        {
+          "pair": 12,
+          "backend": "asm_varlen",
+          "us": 35885.43955485026
+        },
+        {
+          "pair": 12,
+          "backend": "asm_batch",
+          "us": 35545.03631591797
+        },
+        {
+          "pair": 12,
+          "backend": "flydsl_varlen",
+          "us": 36183.553059895836
+        }
+      ]
+    },
+    {
+      "file": "run3_float16.json",
+      "sample_order": [
+        {
+          "pair": 0,
+          "backend": "flydsl_batch",
+          "us": 37121.716817220055
+        },
+        {
+          "pair": 0,
+          "backend": "pr",
+          "us": 36431.966145833336
+        },
+        {
+          "pair": 0,
+          "backend": "flydsl_varlen",
+          "us": 37003.83504231771
+        },
+        {
+          "pair": 1,
+          "backend": "pr",
+          "us": 36504.59289550781
+        },
+        {
+          "pair": 1,
+          "backend": "flydsl_batch",
+          "us": 37044.30898030599
+        },
+        {
+          "pair": 1,
+          "backend": "flydsl_varlen",
+          "us": 36835.289001464844
+        },
+        {
+          "pair": 2,
+          "backend": "pr",
+          "us": 36540.35186767578
+        },
+        {
+          "pair": 2,
+          "backend": "flydsl_varlen",
+          "us": 36886.95271809896
+        },
+        {
+          "pair": 2,
+          "backend": "flydsl_batch",
+          "us": 36877.63214111328
+        },
+        {
+          "pair": 3,
+          "backend": "flydsl_varlen",
+          "us": 36837.0361328125
+        },
+        {
+          "pair": 3,
+          "backend": "pr",
+          "us": 36495.740254720055
+        },
+        {
+          "pair": 3,
+          "backend": "flydsl_batch",
+          "us": 36882.667541503906
+        },
+        {
+          "pair": 4,
+          "backend": "flydsl_varlen",
+          "us": 36861.26200358073
+        },
+        {
+          "pair": 4,
+          "backend": "flydsl_batch",
+          "us": 37038.49792480469
+        },
+        {
+          "pair": 4,
+          "backend": "pr",
+          "us": 36471.05153401693
+        },
+        {
+          "pair": 5,
+          "backend": "flydsl_batch",
+          "us": 36993.52518717448
+        },
+        {
+          "pair": 5,
+          "backend": "flydsl_varlen",
+          "us": 36977.620442708336
+        },
+        {
+          "pair": 5,
+          "backend": "pr",
+          "us": 36505.30242919922
+        },
+        {
+          "pair": 6,
+          "backend": "flydsl_batch",
+          "us": 36929.93672688802
+        },
+        {
+          "pair": 6,
+          "backend": "pr",
+          "us": 36553.466796875
+        },
+        {
+          "pair": 6,
+          "backend": "flydsl_varlen",
+          "us": 36849.46950276693
+        },
+        {
+          "pair": 7,
+          "backend": "pr",
+          "us": 36542.371114095055
+        },
+        {
+          "pair": 7,
+          "backend": "flydsl_batch",
+          "us": 36917.022705078125
+        },
+        {
+          "pair": 7,
+          "backend": "flydsl_varlen",
+          "us": 36817.90415445963
+        },
+        {
+          "pair": 8,
+          "backend": "pr",
+          "us": 36510.74981689453
+        },
+        {
+          "pair": 8,
+          "backend": "flydsl_varlen",
+          "us": 36835.487365722656
+        },
+        {
+          "pair": 8,
+          "backend": "flydsl_batch",
+          "us": 36828.57004801432
+        },
+        {
+          "pair": 9,
+          "backend": "flydsl_varlen",
+          "us": 37001.47247314453
+        },
+        {
+          "pair": 9,
+          "backend": "pr",
+          "us": 36494.61873372396
+        },
+        {
+          "pair": 9,
+          "backend": "flydsl_batch",
+          "us": 36985.92885335287
+        },
+        {
+          "pair": 10,
+          "backend": "flydsl_varlen",
+          "us": 36810.19846598307
+        },
+        {
+          "pair": 10,
+          "backend": "flydsl_batch",
+          "us": 36823.37951660156
+        },
+        {
+          "pair": 10,
+          "backend": "pr",
+          "us": 36600.30873616537
+        },
+        {
+          "pair": 11,
+          "backend": "flydsl_batch",
+          "us": 37013.67441813151
+        },
+        {
+          "pair": 11,
+          "backend": "flydsl_varlen",
+          "us": 36850.606282552086
+        },
+        {
+          "pair": 11,
+          "backend": "pr",
+          "us": 36573.77624511719
+        },
+        {
+          "pair": 12,
+          "backend": "flydsl_batch",
+          "us": 36923.728942871094
+        },
+        {
+          "pair": 12,
+          "backend": "pr",
+          "us": 36529.2714436849
+        },
+        {
+          "pair": 12,
+          "backend": "flydsl_varlen",
+          "us": 37047.28698730469
+        }
+      ]
+    }
+  ]
+}

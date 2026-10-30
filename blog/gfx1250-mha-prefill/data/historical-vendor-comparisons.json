@@ -1,0 +1,3014 @@
+{
+  "note": "Historical development campaigns before the final #2641 source. Separate from the later main comparison and 90k comparison; do not combine their absolute values or gains. Summaries and per-process/sweep medians are retained here; full raw timing samples remain in the original experiment records.",
+  "d128": {
+    "source_sha256": "c7772b764fdeb398e30ce41df9c8937a4c129d6583cabc8621e5d96101632237",
+    "sweeps": 3,
+    "cases_per_sweep": 32,
+    "summary": {
+      "bfloat16_vs_asm": {
+        "wins": 16,
+        "minimum_speedup": 1.0252188441876828,
+        "maximum_speedup": 1.3045155185172586,
+        "geometric_mean_speedup": 1.0737716389354544,
+        "minimum_single_sweep_speedup": 1.025049408095702,
+        "minimum_95_lower_bound": 1.0244195634180207
+      },
+      "bfloat16_vs_flydsl": {
+        "wins": 16,
+        "minimum_speedup": 1.043466773123128,
+        "maximum_speedup": 1.5359883271065717,
+        "geometric_mean_speedup": 1.2267123697078974,
+        "minimum_single_sweep_speedup": 1.0426950863187172,
+        "minimum_95_lower_bound": 1.041991472845767
+      },
+      "float16_vs_flydsl": {
+        "wins": 16,
+        "minimum_speedup": 1.041684972116608,
+        "maximum_speedup": 1.5262315875665309,
+        "geometric_mean_speedup": 1.2167481656814163,
+        "minimum_single_sweep_speedup": 1.0397833253316648,
+        "minimum_95_lower_bound": 1.0395923021284637
+      }
+    },
+    "rows": [
+      {
+        "case": "short",
+        "dtype": "bfloat16",
+        "shape": [
+          [
+            1024,
+            1024,
+            1024,
+            1024,
+            1024,
+            1024,
+            1024,
+            1024
+          ],
+          8,
+          1,
+          128,
+          -1
+        ],
+        "gluon_tflops": 1261.767750668085,
+        "gluon_us": 13.629010878503323,
+        "vendors": {
+          "flydsl": {
+            "entry": "flydsl_batch",
+            "tflops": 1120.5063767276692,
+            "speedup": 1.126069228051121,
+            "run_speedups_against_fastest": [
+              1.1457783017716896,
+              1.1225731056298138,
+              1.1252138251100738
+            ],
+            "paired_bootstrap_95": [
+              1.1219578987596064,
+              1.1458352780218328
+            ],
+            "max_cv_percent": 0.26784198215833355
+          },
+          "asm": {
+            "entry": "asm_batch",
+            "tflops": 1181.2712021262414,
+            "speedup": 1.0681440031695966,
+            "run_speedups_against_fastest": [
+              1.071953564216776,
+              1.0662784412261492,
+              1.0681440031695966
+            ],
+            "paired_bootstrap_95": [
+              1.0656534374759492,
+              1.0732988208692031
+            ],
+            "max_cv_percent": 6.363582210833478
+          }
+        }
+      },
+      {
+        "case": "short",
+        "dtype": "float16",
+        "shape": [
+          [
+            1024,
+            1024,
+            1024,
+            1024,
+            1024,
+            1024,
+            1024,
+            1024
+          ],
+          8,
+          1,
+          128,
+          -1
+        ],
+        "gluon_tflops": 1225.4147963700325,
+        "gluon_us": 14.033326879143715,
+        "vendors": {
+          "flydsl": {
+            "entry": "flydsl_batch",
+            "tflops": 1103.7767215626595,
+            "speedup": 1.1102017033256195,
+            "run_speedups_against_fastest": [
+              1.1045114089673036,
+              1.110560781576518,
+              1.1100567620354695
+            ],
+            "paired_bootstrap_95": [
+              1.1043585421816131,
+              1.1109323126346593
+            ],
+            "max_cv_percent": 0.11628803968103171
+          }
+        }
+      },
+      {
+        "case": "medium",
+        "dtype": "bfloat16",
+        "shape": [
+          [
+            2048,
+            2048,
+            2048,
+            2048
+          ],
+          8,
+          1,
+          128,
+          -1
+        ],
+        "gluon_tflops": 1689.7268854189595,
+        "gluon_us": 20.34442126750946,
+        "vendors": {
+          "flydsl": {
+            "entry": "flydsl_batch",
+            "tflops": 1321.1337703167887,
+            "speedup": 1.2789975726786451,
+            "run_speedups_against_fastest": [
+              1.2671307101657787,
+              1.2789975726786451,
+              1.2808118952521605
+            ],
+            "paired_bootstrap_95": [
+              1.2661802439758605,
+              1.282309654865033
+            ],
+            "max_cv_percent": 0.3756135901411549
+          },
+          "asm": {
+            "entry": "asm_batch",
+            "tflops": 1604.2334456205508,
+            "speedup": 1.0532923933432505,
+            "run_speedups_against_fastest": [
+              1.0269878857314914,
+              1.0550037501162757,
+              1.0549800983140079
+            ],
+            "paired_bootstrap_95": [
+              1.0264367121594964,
+              1.0558021290710955
+            ],
+            "max_cv_percent": 0.1989232007002616
+          }
+        }
+      },
+      {
+        "case": "medium",
+        "dtype": "float16",
+        "shape": [
+          [
+            2048,
+            2048,
+            2048,
+            2048
+          ],
+          8,
+          1,
+          128,
+          -1
+        ],
+        "gluon_tflops": 1502.3841612063236,
+        "gluon_us": 22.88130857050419,
+        "vendors": {
+          "flydsl": {
+            "entry": "flydsl_batch",
+            "tflops": 1317.459404411542,
+            "speedup": 1.1403646717125073,
+            "run_speedups_against_fastest": [
+              1.1342453537740815,
+              1.1432447792349039,
+              1.1403646717125073
+            ],
+            "paired_bootstrap_95": [
+              1.1340701635594634,
+              1.1451253872999811
+            ],
+            "max_cv_percent": 0.4717154780467878
+          }
+        }
+      },
+      {
+        "case": "dense",
+        "dtype": "bfloat16",
+        "shape": [
+          [
+            4096,
+            4096,
+            4096,
+            4096
+          ],
+          8,
+          1,
+          128,
+          -1
+        ],
+        "gluon_tflops": 2295.9316320701573,
+        "gluon_us": 59.876568615436554,
+        "vendors": {
+          "flydsl": {
+            "entry": "flydsl_batch",
+            "tflops": 1724.6032814538817,
+            "speedup": 1.3312810295331412,
+            "run_speedups_against_fastest": [
+              1.338313578046203,
+              1.3312810295331412,
+              1.324936993975601
+            ],
+            "paired_bootstrap_95": [
+              1.3228466236246825,
+              1.339218668291982
+            ],
+            "max_cv_percent": 0.2861358255027196
+          },
+          "asm": {
+            "entry": "asm_batch",
+            "tflops": 2060.9533686754844,
+            "speedup": 1.1140143522731358,
+            "run_speedups_against_fastest": [
+              1.1147867651223986,
+              1.116753356593053,
+              1.1101178530398819
+            ],
+            "paired_bootstrap_95": [
+              1.1085898297131687,
+              1.1169186180261699
+            ],
+            "max_cv_percent": 0.2861358255027196
+          }
+        }
+      },
+      {
+        "case": "dense",
+        "dtype": "float16",
+        "shape": [
+          [
+            4096,
+            4096,
+            4096,
+            4096
+          ],
+          8,
+          1,
+          128,
+          -1
+        ],
+        "gluon_tflops": 2224.04940953214,
+        "gluon_us": 61.81180477142334,
+        "vendors": {
+          "flydsl": {
+            "entry": "flydsl_batch",
+            "tflops": 1684.0746843770899,
+            "speedup": 1.3206358543147256,
+            "run_speedups_against_fastest": [
+              1.3170431424356095,
+              1.3245748267236854,
+              1.307910970757813
+            ],
+            "paired_bootstrap_95": [
+              1.3075005200590584,
+              1.3246152081522264
+            ],
+            "max_cv_percent": 0.25568060099264905
+          }
+        }
+      },
+      {
+        "case": "long",
+        "dtype": "bfloat16",
+        "shape": [
+          [
+            8192,
+            8192
+          ],
+          8,
+          1,
+          128,
+          -1
+        ],
+        "gluon_tflops": 2488.4806578583466,
+        "gluon_us": 110.4736179113388,
+        "vendors": {
+          "flydsl": {
+            "entry": "flydsl_batch",
+            "tflops": 2318.461160931544,
+            "speedup": 1.0733329070988145,
+            "run_speedups_against_fastest": [
+              1.0749563394285804,
+              1.0733329070988145,
+              1.0709850937632994
+            ],
+            "paired_bootstrap_95": [
+              1.0708700035201224,
+              1.0751797486182386
+            ],
+            "max_cv_percent": 0.15579207162729772
+          },
+          "asm": {
+            "entry": "asm_batch",
+            "tflops": 2328.494329211136,
+            "speedup": 1.0687080602431236,
+            "run_speedups_against_fastest": [
+              1.0747450894849362,
+              1.0687080602431236,
+              1.0664181396025363
+            ],
+            "paired_bootstrap_95": [
+              1.0660561233010284,
+              1.0750360567295694
+            ],
+            "max_cv_percent": 0.2554772414515818
+          }
+        }
+      },
+      {
+        "case": "long",
+        "dtype": "float16",
+        "shape": [
+          [
+            8192,
+            8192
+          ],
+          8,
+          1,
+          128,
+          -1
+        ],
+        "gluon_tflops": 2412.8725285296164,
+        "gluon_us": 113.93534392118454,
+        "vendors": {
+          "flydsl": {
+            "entry": "flydsl_batch",
+            "tflops": 2253.8448622273936,
+            "speedup": 1.0705583906716019,
+            "run_speedups_against_fastest": [
+              1.0727461154398046,
+              1.0715339174632963,
+              1.068825168560942
+            ],
+            "paired_bootstrap_95": [
+              1.0684218949541269,
+              1.073408154762874
+            ],
+            "max_cv_percent": 0.12105388644032129
+          }
+        }
+      },
+      {
+        "case": "gqa4",
+        "dtype": "bfloat16",
+        "shape": [
+          [
+            4096,
+            4096,
+            4096,
+            4096
+          ],
+          32,
+          8,
+          128,
+          -1
+        ],
+        "gluon_tflops": 2124.9464248365052,
+        "gluon_us": 258.77830386161804,
+        "vendors": {
+          "flydsl": {
+            "entry": "flydsl_batch",
+            "tflops": 1902.7636648211885,
+            "speedup": 1.1167684479807407,
+            "run_speedups_against_fastest": [
+              1.116304479155284,
+              1.1133752991806074,
+              1.117581170631564
+            ],
+            "paired_bootstrap_95": [
+              1.1130617379261696,
+              1.1196424713291826
+            ],
+            "max_cv_percent": 0.5994682307175149
+          },
+          "asm": {
+            "entry": "asm_batch",
+            "tflops": 2054.177600016312,
+            "speedup": 1.034451171514883,
+            "run_speedups_against_fastest": [
+              1.0348016044721555,
+              1.0329648060501362,
+              1.034451171514883
+            ],
+            "paired_bootstrap_95": [
+              1.0317613458192312,
+              1.0380879568674501
+            ],
+            "max_cv_percent": 0.5994682307175149
+          }
+        }
+      },
+      {
+        "case": "gqa4",
+        "dtype": "float16",
+        "shape": [
+          [
+            4096,
+            4096,
+            4096,
+            4096
+          ],
+          32,
+          8,
+          128,
+          -1
+        ],
+        "gluon_tflops": 2171.611840608693,
+        "gluon_us": 253.2174587249756,
+        "vendors": {
+          "flydsl": {
+            "entry": "flydsl_batch",
+            "tflops": 1850.468179248089,
+            "speedup": 1.173547248724426,
+            "run_speedups_against_fastest": [
+              1.1758535674262234,
+              1.173547248724426,
+              1.1678598378305207
+            ],
+            "paired_bootstrap_95": [
+              1.1658467516170872,
+              1.1775358866737868
+            ],
+            "max_cv_percent": 0.5480020865096191
+          }
+        }
+      },
+      {
+        "case": "mha",
+        "dtype": "bfloat16",
+        "shape": [
+          [
+            4096,
+            4096,
+            4096,
+            4096
+          ],
+          8,
+          8,
+          128,
+          -1
+        ],
+        "gluon_tflops": 2204.134003639851,
+        "gluon_us": 62.37030401825905,
+        "vendors": {
+          "flydsl": {
+            "entry": "flydsl_batch",
+            "tflops": 1450.6663826857748,
+            "speedup": 1.5193941418557588,
+            "run_speedups_against_fastest": [
+              1.5377753154125633,
+              1.5193941418557588,
+              1.515457528249385
+            ],
+            "paired_bootstrap_95": [
+              1.5149305293506805,
+              1.537603581879149
+            ],
+            "max_cv_percent": 0.5237071274118095
+          },
+          "asm": {
+            "entry": "asm_batch",
+            "tflops": 2029.1209951034873,
+            "speedup": 1.0862506518628958,
+            "run_speedups_against_fastest": [
+              1.089128010462445,
+              1.084938295289905,
+              1.0854417441893638
+            ],
+            "paired_bootstrap_95": [
+              1.0841249943822608,
+              1.0894677638121497
+            ],
+            "max_cv_percent": 0.2037426351267718
+          }
+        }
+      },
+      {
+        "case": "mha",
+        "dtype": "float16",
+        "shape": [
+          [
+            4096,
+            4096,
+            4096,
+            4096
+          ],
+          8,
+          8,
+          128,
+          -1
+        ],
+        "gluon_tflops": 2140.7759937125684,
+        "gluon_us": 64.21620398759842,
+        "vendors": {
+          "flydsl": {
+            "entry": "flydsl_batch",
+            "tflops": 1411.5561276202905,
+            "speedup": 1.5166070635261615,
+            "run_speedups_against_fastest": [
+              1.510791920618546,
+              1.5161874062999747,
+              1.5166070635261615
+            ],
+            "paired_bootstrap_95": [
+              1.5101885501741525,
+              1.5204956279644257
+            ],
+            "max_cv_percent": 0.8754555054377674
+          }
+        }
+      },
+      {
+        "case": "mqa",
+        "dtype": "bfloat16",
+        "shape": [
+          [
+            4096,
+            4096,
+            4096,
+            4096
+          ],
+          32,
+          1,
+          128,
+          -1
+        ],
+        "gluon_tflops": 2329.476218077372,
+        "gluon_us": 236.0573709011078,
+        "vendors": {
+          "flydsl": {
+            "entry": "flydsl_batch",
+            "tflops": 2163.184742165454,
+            "speedup": 1.076873450829471,
+            "run_speedups_against_fastest": [
+              1.0789927526657614,
+              1.076873450829471,
+              1.0670404559429623
+            ],
+            "paired_bootstrap_95": [
+              1.0655396770070873,
+              1.0811280399106118
+            ],
+            "max_cv_percent": 0.46747356116502226
+          },
+          "asm": {
+            "entry": "asm_batch",
+            "tflops": 2097.013642320593,
+            "speedup": 1.1108541075104936,
+            "run_speedups_against_fastest": [
+              1.1110113848804053,
+              1.1112597498400092,
+              1.0992329324343402
+            ],
+            "paired_bootstrap_95": [
+              1.0979056535671834,
+              1.1124181736838634
+            ],
+            "max_cv_percent": 0.555134278007029
+          }
+        }
+      },
+      {
+        "case": "mqa",
+        "dtype": "float16",
+        "shape": [
+          [
+            4096,
+            4096,
+            4096,
+            4096
+          ],
+          32,
+          1,
+          128,
+          -1
+        ],
+        "gluon_tflops": 2267.006937166432,
+        "gluon_us": 242.56213009357452,
+        "vendors": {
+          "flydsl": {
+            "entry": "flydsl_batch",
+            "tflops": 2103.037740687441,
+            "speedup": 1.0779677859824774,
+            "run_speedups_against_fastest": [
+              1.0778647967724222,
+              1.0779677859824774,
+              1.0725012614771554
+            ],
+            "paired_bootstrap_95": [
+              1.0699219222069758,
+              1.0798315865913366
+            ],
+            "max_cv_percent": 0.39859497011852435
+          }
+        }
+      },
+      {
+        "case": "ragged_small",
+        "dtype": "bfloat16",
+        "shape": [
+          [
+            851,
+            914,
+            1053
+          ],
+          32,
+          8,
+          128,
+          -1
+        ],
+        "gluon_tflops": 1057.3778046328177,
+        "gluon_us": 20.695220679044724,
+        "vendors": {
+          "flydsl": {
+            "entry": "flydsl_varlen",
+            "tflops": 822.9045647141527,
+            "speedup": 1.2849336970200336,
+            "run_speedups_against_fastest": [
+              1.2822940822966342,
+              1.2862245291954701,
+              1.287030818319814
+            ],
+            "paired_bootstrap_95": [
+              1.2822069804777645,
+              1.2872413543854324
+            ],
+            "max_cv_percent": 0.12196815566207558
+          },
+          "asm": {
+            "entry": "asm_varlen",
+            "tflops": 810.552108904505,
+            "speedup": 1.3045155185172586,
+            "run_speedups_against_fastest": [
+              1.3023762790109221,
+              1.3109012766296013,
+              1.2879755958905061
+            ],
+            "paired_bootstrap_95": [
+              1.2875271486528554,
+              1.3114137030608655
+            ],
+            "max_cv_percent": 0.1856655878305234
+          }
+        }
+      },
+      {
+        "case": "ragged_small",
+        "dtype": "float16",
+        "shape": [
+          [
+            851,
+            914,
+            1053
+          ],
+          32,
+          8,
+          128,
+          -1
+        ],
+        "gluon_tflops": 1034.711977877954,
+        "gluon_us": 21.14855870604515,
+        "vendors": {
+          "flydsl": {
+            "entry": "flydsl_varlen",
+            "tflops": 813.1869096477127,
+            "speedup": 1.272415929968929,
+            "run_speedups_against_fastest": [
+              1.2734127717134465,
+              1.271033627727492,
+              1.2715245296698638
+            ],
+            "paired_bootstrap_95": [
+              1.2707788705783294,
+              1.2739664083484372
+            ],
+            "max_cv_percent": 0.12721563812586695
+          }
+        }
+      },
+      {
+        "case": "r4096",
+        "dtype": "bfloat16",
+        "shape": [
+          [
+            4096,
+            3500,
+            3000
+          ],
+          32,
+          8,
+          128,
+          -1
+        ],
+        "gluon_tflops": 1894.6036948520718,
+        "gluon_us": 164.4701510667801,
+        "vendors": {
+          "flydsl": {
+            "entry": "flydsl_varlen",
+            "tflops": 1545.1636868373987,
+            "speedup": 1.2261508026569652,
+            "run_speedups_against_fastest": [
+              1.2269823230892323,
+              1.2226502184429842,
+              1.2287751514056067
+            ],
+            "paired_bootstrap_95": [
+              1.2185064447476885,
+              1.2320832466521376
+            ],
+            "max_cv_percent": 1.1184759280883452
+          },
+          "asm": {
+            "entry": "asm_varlen",
+            "tflops": 1831.8221491688353,
+            "speedup": 1.0342727298672105,
+            "run_speedups_against_fastest": [
+              1.0289835153004214,
+              1.0324928512199958,
+              1.035688642393751
+            ],
+            "paired_bootstrap_95": [
+              1.0258572851390304,
+              1.0368612015900913
+            ],
+            "max_cv_percent": 1.1184759280883452
+          }
+        }
+      },
+      {
+        "case": "r4096",
+        "dtype": "float16",
+        "shape": [
+          [
+            4096,
+            3500,
+            3000
+          ],
+          32,
+          8,
+          128,
+          -1
+        ],
+        "gluon_tflops": 1851.8386470224816,
+        "gluon_us": 168.26830804347992,
+        "vendors": {
+          "flydsl": {
+            "entry": "flydsl_varlen",
+            "tflops": 1504.13364479664,
+            "speedup": 1.23116629524822,
+            "run_speedups_against_fastest": [
+              1.2324363555586537,
+              1.23116629524822,
+              1.2261489715497875
+            ],
+            "paired_bootstrap_95": [
+              1.2245617352301663,
+              1.2415989729639096
+            ],
+            "max_cv_percent": 0.7226133887238086
+          }
+        }
+      },
+      {
+        "case": "r8192",
+        "dtype": "bfloat16",
+        "shape": [
+          [
+            8192,
+            6145,
+            4097
+          ],
+          32,
+          8,
+          128,
+          -1
+        ],
+        "gluon_tflops": 2262.625115588969,
+        "gluon_us": 440.52866101264954,
+        "vendors": {
+          "flydsl": {
+            "entry": "flydsl_varlen",
+            "tflops": 1552.6146026951321,
+            "speedup": 1.457299906661546,
+            "run_speedups_against_fastest": [
+              1.4557782766126321,
+              1.4583000630036256,
+              1.4561699769467766
+            ],
+            "paired_bootstrap_95": [
+              1.4546466560961118,
+              1.4590972142680985
+            ],
+            "max_cv_percent": 0.2310639442643183
+          },
+          "asm": {
+            "entry": "asm_varlen",
+            "tflops": 2169.3517415258316,
+            "speedup": 1.0429959661578592,
+            "run_speedups_against_fastest": [
+              1.0435212230047997,
+              1.0463235290635597,
+              1.0421872704809028
+            ],
+            "paired_bootstrap_95": [
+              1.0416320814235824,
+              1.046899797500647
+            ],
+            "max_cv_percent": 0.35247354738024705
+          }
+        }
+      },
+      {
+        "case": "r8192",
+        "dtype": "float16",
+        "shape": [
+          [
+            8192,
+            6145,
+            4097
+          ],
+          32,
+          8,
+          128,
+          -1
+        ],
+        "gluon_tflops": 2194.8968245584633,
+        "gluon_us": 454.1221261024475,
+        "vendors": {
+          "flydsl": {
+            "entry": "flydsl_varlen",
+            "tflops": 1516.4393093768044,
+            "speedup": 1.4474016935504512,
+            "run_speedups_against_fastest": [
+              1.4483098292996173,
+              1.4507951760564677,
+              1.446103143307608
+            ],
+            "paired_bootstrap_95": [
+              1.4447735254535654,
+              1.4519346367326704
+            ],
+            "max_cv_percent": 0.527473334364119
+          }
+        }
+      },
+      {
+        "case": "u16384_h8",
+        "dtype": "bfloat16",
+        "shape": [
+          [
+            16384
+          ],
+          8,
+          1,
+          128,
+          -1
+        ],
+        "gluon_tflops": 2567.0673294430553,
+        "gluon_us": 214.1702175140381,
+        "vendors": {
+          "flydsl": {
+            "entry": "flydsl_batch",
+            "tflops": 2455.5017007632227,
+            "speedup": 1.045434962901942,
+            "run_speedups_against_fastest": [
+              1.0426950863187172,
+              1.0451066564607172,
+              1.0464433315336277
+            ],
+            "paired_bootstrap_95": [
+              1.041991472845767,
+              1.0470426173471483
+            ],
+            "max_cv_percent": 4.005587034379625
+          },
+          "asm": {
+            "entry": "asm_batch",
+            "tflops": 2492.2718794374427,
+            "speedup": 1.0300109513021891,
+            "run_speedups_against_fastest": [
+              1.0305713516802397,
+              1.0301503731419845,
+              1.0300109513021891
+            ],
+            "paired_bootstrap_95": [
+              1.0283361160890812,
+              1.0316525358419877
+            ],
+            "max_cv_percent": 4.299100560502853
+          }
+        }
+      },
+      {
+        "case": "u16384_h8",
+        "dtype": "float16",
+        "shape": [
+          [
+            16384
+          ],
+          8,
+          1,
+          128,
+          -1
+        ],
+        "gluon_tflops": 2486.986298644078,
+        "gluon_us": 221.06650471687317,
+        "vendors": {
+          "flydsl": {
+            "entry": "flydsl_batch",
+            "tflops": 2386.4702912064577,
+            "speedup": 1.042119111144185,
+            "run_speedups_against_fastest": [
+              1.0397833253316648,
+              1.041608836970074,
+              1.042119111144185
+            ],
+            "paired_bootstrap_95": [
+              1.0395923021284637,
+              1.0425735609437943
+            ],
+            "max_cv_percent": 0.1400096231606955
+          }
+        }
+      },
+      {
+        "case": "u16384_gqa",
+        "dtype": "bfloat16",
+        "shape": [
+          [
+            16384,
+            16384
+          ],
+          32,
+          8,
+          128,
+          -1
+        ],
+        "gluon_tflops": 2544.305854753618,
+        "gluon_us": 1728.6895513534546,
+        "vendors": {
+          "flydsl": {
+            "entry": "flydsl_batch",
+            "tflops": 2424.6094299829483,
+            "speedup": 1.0493673015086442,
+            "run_speedups_against_fastest": [
+              1.0499507695181658,
+              1.049813123638096,
+              1.0491938744441416
+            ],
+            "paired_bootstrap_95": [
+              1.0488282943849434,
+              1.0502800580509548
+            ],
+            "max_cv_percent": 4.657591514356625
+          },
+          "asm": {
+            "entry": "asm_batch",
+            "tflops": 2481.7197510347773,
+            "speedup": 1.0252188441876828,
+            "run_speedups_against_fastest": [
+              1.0256421310124955,
+              1.0260312541655752,
+              1.025049408095702
+            ],
+            "paired_bootstrap_95": [
+              1.0244195634180207,
+              1.0272820879474287
+            ],
+            "max_cv_percent": 0.2300097615846801
+          }
+        }
+      },
+      {
+        "case": "u16384_gqa",
+        "dtype": "float16",
+        "shape": [
+          [
+            16384,
+            16384
+          ],
+          32,
+          8,
+          128,
+          -1
+        ],
+        "gluon_tflops": 2464.1368222170313,
+        "gluon_us": 1784.9313020706177,
+        "vendors": {
+          "flydsl": {
+            "entry": "flydsl_varlen",
+            "tflops": 2356.572584954848,
+            "speedup": 1.0456443556837203,
+            "run_speedups_against_fastest": [
+              1.044692088115914,
+              1.0456443556837203,
+              1.0455049851124396
+            ],
+            "paired_bootstrap_95": [
+              1.0436413484647202,
+              1.0461262628050048
+            ],
+            "max_cv_percent": 0.17303008016258786
+          }
+        }
+      },
+      {
+        "case": "u16384_mha",
+        "dtype": "bfloat16",
+        "shape": [
+          [
+            16384
+          ],
+          32,
+          32,
+          128,
+          -1
+        ],
+        "gluon_tflops": 2497.867762589914,
+        "gluon_us": 880.4138898849487,
+        "vendors": {
+          "flydsl": {
+            "entry": "flydsl_varlen",
+            "tflops": 2129.2471813495185,
+            "speedup": 1.173122493465866,
+            "run_speedups_against_fastest": [
+              1.1756085544452055,
+              1.173122493465866,
+              1.1741964345797802
+            ],
+            "paired_bootstrap_95": [
+              1.1727067961122972,
+              1.1765754543917117
+            ],
+            "max_cv_percent": 0.4851345895349848
+          },
+          "asm": {
+            "entry": "asm_batch",
+            "tflops": 2404.198720468863,
+            "speedup": 1.0389606072591138,
+            "run_speedups_against_fastest": [
+              1.0380310881110464,
+              1.039067100474758,
+              1.0389456957386942
+            ],
+            "paired_bootstrap_95": [
+              1.0371910642276196,
+              1.0401394284744585
+            ],
+            "max_cv_percent": 0.3244377948572813
+          }
+        }
+      },
+      {
+        "case": "u16384_mha",
+        "dtype": "float16",
+        "shape": [
+          [
+            16384
+          ],
+          32,
+          32,
+          128,
+          -1
+        ],
+        "gluon_tflops": 2418.707773662842,
+        "gluon_us": 909.228265285492,
+        "vendors": {
+          "flydsl": {
+            "entry": "flydsl_batch",
+            "tflops": 2073.928748175563,
+            "speedup": 1.166244392817536,
+            "run_speedups_against_fastest": [
+              1.166007900464397,
+              1.166990542153996,
+              1.166208919523798
+            ],
+            "paired_bootstrap_95": [
+              1.1650029401494055,
+              1.1673908629814451
+            ],
+            "max_cv_percent": 0.21488193443242573
+          }
+        }
+      },
+      {
+        "case": "r16384_gqa",
+        "dtype": "bfloat16",
+        "shape": [
+          [
+            16384,
+            12289,
+            8193
+          ],
+          32,
+          8,
+          128,
+          -1
+        ],
+        "gluon_tflops": 2484.3856573272815,
+        "gluon_us": 1604.568600654602,
+        "vendors": {
+          "flydsl": {
+            "entry": "flydsl_varlen",
+            "tflops": 1682.5979061077153,
+            "speedup": 1.4765177398052927,
+            "run_speedups_against_fastest": [
+              1.476554737875116,
+              1.4765177398052927,
+              1.4771976828686415
+            ],
+            "paired_bootstrap_95": [
+              1.4757623794721915,
+              1.4778984340273404
+            ],
+            "max_cv_percent": 0.1159137209057545
+          },
+          "asm": {
+            "entry": "asm_varlen",
+            "tflops": 2402.1882230414017,
+            "speedup": 1.034217732606236,
+            "run_speedups_against_fastest": [
+              1.034860479356681,
+              1.0342036911026717,
+              1.034193448619472
+            ],
+            "paired_bootstrap_95": [
+              1.0330156012413967,
+              1.0355068642807987
+            ],
+            "max_cv_percent": 0.2190860600348063
+          }
+        }
+      },
+      {
+        "case": "r16384_gqa",
+        "dtype": "float16",
+        "shape": [
+          [
+            16384,
+            12289,
+            8193
+          ],
+          32,
+          8,
+          128,
+          -1
+        ],
+        "gluon_tflops": 2409.221182962086,
+        "gluon_us": 1654.6289920806885,
+        "vendors": {
+          "flydsl": {
+            "entry": "flydsl_varlen",
+            "tflops": 1642.3535314077812,
+            "speedup": 1.4669321415206908,
+            "run_speedups_against_fastest": [
+              1.466774565640545,
+              1.4661404487436174,
+              1.4673606707303455
+            ],
+            "paired_bootstrap_95": [
+              1.465244971086575,
+              1.4678875351452672
+            ],
+            "max_cv_percent": 0.1408713635875972
+          }
+        }
+      },
+      {
+        "case": "r16384_mha",
+        "dtype": "bfloat16",
+        "shape": [
+          [
+            16384,
+            12289,
+            8193
+          ],
+          32,
+          32,
+          128,
+          -1
+        ],
+        "gluon_tflops": 2415.7243038198753,
+        "gluon_us": 1650.1747369766235,
+        "vendors": {
+          "flydsl": {
+            "entry": "flydsl_varlen",
+            "tflops": 1572.7491291359695,
+            "speedup": 1.5359883271065717,
+            "run_speedups_against_fastest": [
+              1.536321714713745,
+              1.5347125660883765,
+              1.5412277791226534
+            ],
+            "paired_bootstrap_95": [
+              1.5325684114992257,
+              1.541564037028535
+            ],
+            "max_cv_percent": 0.3137016608091947
+          },
+          "asm": {
+            "entry": "asm_varlen",
+            "tflops": 2348.070010887464,
+            "speedup": 1.028812723904617,
+            "run_speedups_against_fastest": [
+              1.0288008098784436,
+              1.0279582127439408,
+              1.029823367155568
+            ],
+            "paired_bootstrap_95": [
+              1.0271910072457575,
+              1.030171876167529
+            ],
+            "max_cv_percent": 0.18027829998738262
+          }
+        }
+      },
+      {
+        "case": "r16384_mha",
+        "dtype": "float16",
+        "shape": [
+          [
+            16384,
+            12289,
+            8193
+          ],
+          32,
+          32,
+          128,
+          -1
+        ],
+        "gluon_tflops": 2341.092193680855,
+        "gluon_us": 1702.7809619903564,
+        "vendors": {
+          "flydsl": {
+            "entry": "flydsl_varlen",
+            "tflops": 1533.9036439506287,
+            "speedup": 1.5262315875665309,
+            "run_speedups_against_fastest": [
+              1.5282894244672791,
+              1.5259355655348217,
+              1.528174185845636
+            ],
+            "paired_bootstrap_95": [
+              1.5235082786246512,
+              1.529991572118089
+            ],
+            "max_cv_percent": 0.3564633175882518
+          }
+        }
+      },
+      {
+        "case": "tail16385",
+        "dtype": "bfloat16",
+        "shape": [
+          [
+            16385
+          ],
+          8,
+          1,
+          128,
+          -1
+        ],
+        "gluon_tflops": 2504.421994200236,
+        "gluon_us": 219.55424547195435,
+        "vendors": {
+          "flydsl": {
+            "entry": "flydsl_batch",
+            "tflops": 2400.0975006654253,
+            "speedup": 1.043466773123128,
+            "run_speedups_against_fastest": [
+              1.0463170828419386,
+              1.043092339710265,
+              1.0450791622879163
+            ],
+            "paired_bootstrap_95": [
+              1.0421589862493703,
+              1.047124086260232
+            ],
+            "max_cv_percent": 0.29687965860871485
+          },
+          "asm": {
+            "entry": "asm_batch",
+            "tflops": 2202.495884179449,
+            "speedup": 1.1370836205368304,
+            "run_speedups_against_fastest": [
+              1.1374156800479227,
+              1.1371911535976036,
+              1.1370836205368304
+            ],
+            "paired_bootstrap_95": [
+              1.134780088058577,
+              1.1402011715328189
+            ],
+            "max_cv_percent": 0.29687965860871485
+          }
+        }
+      },
+      {
+        "case": "tail16385",
+        "dtype": "float16",
+        "shape": [
+          [
+            16385
+          ],
+          8,
+          1,
+          128,
+          -1
+        ],
+        "gluon_tflops": 2427.9487174388446,
+        "gluon_us": 226.46956145763397,
+        "vendors": {
+          "flydsl": {
+            "entry": "flydsl_batch",
+            "tflops": 2330.7898092313617,
+            "speedup": 1.041684972116608,
+            "run_speedups_against_fastest": [
+              1.0434835955561355,
+              1.041684972116608,
+              1.0412700049659347
+            ],
+            "paired_bootstrap_95": [
+              1.040240932216522,
+              1.0440038420370297
+            ],
+            "max_cv_percent": 0.23926049647582331
+          }
+        }
+      }
+    ],
+    "scope": "gfx1250 causal D128, aligned BF16/FP16 normal-scale random QKV; useful causal QK+PV FLOPs. ASM BF16 only.",
+    "confidence_method": "2000 hierarchical bootstrap samples of sweeps and paired rounds; 95% percentile interval. Captures observed timing variation, not all hardware or input distributions.",
+    "environment": {
+      "torch": "2.14.0+rocm10.1.0",
+      "hip": "7.16.26385",
+      "tokenspeed_triton": "3.9.10",
+      "arch": "gfx1250",
+      "compute_units": 256,
+      "aiter_commit": "1c464e51bab63567b67bb3414663babb56057a22",
+      "flydsl": "0.4.0"
+    },
+    "protocol": {
+      "measured_rounds_per_sweep": 17,
+      "discarded_warmup_rounds": 2,
+      "gpu_lock": true,
+      "foreign_gpu_clients_observed": false,
+      "clock_pinning": false,
+      "reference": "Independent FP64 on sampled query rows, before and after timing; aligned normal-scale random QKV."
+    },
+    "sweep_medians": [
+      {
+        "run": 1,
+        "case": "dense",
+        "dtype": "bfloat16",
+        "useful_flops": 137472507904,
+        "times_us": {
+          "prefill": 59.648092836141586,
+          "flydsl_varlen": 80.17101883888245,
+          "flydsl_batch": 79.82785254716873,
+          "asm_varlen": 67.50845164060593,
+          "asm_batch": 66.4949044585228
+        }
+      },
+      {
+        "run": 1,
+        "case": "dense",
+        "dtype": "float16",
+        "useful_flops": 137472507904,
+        "times_us": {
+          "prefill": 61.81180477142334,
+          "flydsl_varlen": 81.81097358465195,
+          "flydsl_batch": 81.40881359577179
+        }
+      },
+      {
+        "run": 1,
+        "case": "gqa4",
+        "dtype": "bfloat16",
+        "useful_flops": 549890031616,
+        "times_us": {
+          "prefill": 258.0077052116394,
+          "flydsl_varlen": 288.7650430202484,
+          "flydsl_batch": 288.0151569843292,
+          "asm_varlen": 272.2991108894348,
+          "asm_batch": 266.98678731918335
+        }
+      },
+      {
+        "run": 1,
+        "case": "gqa4",
+        "dtype": "float16",
+        "useful_flops": 549890031616,
+        "times_us": {
+          "prefill": 251.3095736503601,
+          "flydsl_varlen": 295.6128120422363,
+          "flydsl_batch": 295.50325870513916
+        }
+      },
+      {
+        "run": 1,
+        "case": "long",
+        "dtype": "bfloat16",
+        "useful_flops": 274911461376,
+        "times_us": {
+          "prefill": 110.39206385612488,
+          "flydsl_varlen": 119.0243661403656,
+          "flydsl_batch": 118.6666488647461,
+          "asm_varlen": 119.07679587602615,
+          "asm_batch": 118.64332854747772
+        }
+      },
+      {
+        "run": 1,
+        "case": "long",
+        "dtype": "float16",
+        "useful_flops": 274911461376,
+        "times_us": {
+          "prefill": 113.93534392118454,
+          "flydsl_varlen": 122.5881576538086,
+          "flydsl_batch": 122.22369760274887
+        }
+      },
+      {
+        "run": 1,
+        "case": "medium",
+        "dtype": "bfloat16",
+        "useful_flops": 34376515584,
+        "times_us": {
+          "prefill": 20.78554593026638,
+          "flydsl_varlen": 26.65155939757824,
+          "flydsl_batch": 26.33800357580185,
+          "asm_varlen": 22.015945985913277,
+          "asm_batch": 21.346503868699074
+        }
+      },
+      {
+        "run": 1,
+        "case": "medium",
+        "dtype": "float16",
+        "useful_flops": 34376515584,
+        "times_us": {
+          "prefill": 22.99729734659195,
+          "flydsl_varlen": 26.422269642353058,
+          "flydsl_batch": 26.084577664732933
+        }
+      },
+      {
+        "run": 1,
+        "case": "mha",
+        "dtype": "bfloat16",
+        "useful_flops": 137472507904,
+        "times_us": {
+          "prefill": 62.2369758784771,
+          "flydsl_varlen": 95.70648521184921,
+          "flydsl_batch": 95.7152470946312,
+          "asm_varlen": 68.18760931491852,
+          "asm_batch": 67.78403371572495
+        }
+      },
+      {
+        "run": 1,
+        "case": "mha",
+        "dtype": "float16",
+        "useful_flops": 137472507904,
+        "times_us": {
+          "prefill": 64.08395618200302,
+          "flydsl_varlen": 97.4082499742508,
+          "flydsl_batch": 96.81752324104309
+        }
+      },
+      {
+        "run": 1,
+        "case": "mqa",
+        "dtype": "bfloat16",
+        "useful_flops": 549890031616,
+        "times_us": {
+          "prefill": 234.92251336574554,
+          "flydsl_varlen": 254.11126017570496,
+          "flydsl_batch": 253.47968935966492,
+          "asm_varlen": 265.9758925437927,
+          "asm_batch": 261.0015869140625
+        }
+      },
+      {
+        "run": 1,
+        "case": "mqa",
+        "dtype": "float16",
+        "useful_flops": 549890031616,
+        "times_us": {
+          "prefill": 241.95116758346558,
+          "flydsl_varlen": 261.46790385246277,
+          "flydsl_batch": 260.7906460762024
+        }
+      },
+      {
+        "run": 1,
+        "case": "r16384_gqa",
+        "dtype": "bfloat16",
+        "useful_flops": 3986367217664,
+        "times_us": {
+          "prefill": 1603.5720109939575,
+          "flydsl_varlen": 2367.7618503570557,
+          "asm_varlen": 1659.4732999801636
+        }
+      },
+      {
+        "run": 1,
+        "case": "r16384_gqa",
+        "dtype": "float16",
+        "useful_flops": 3986367217664,
+        "times_us": {
+          "prefill": 1653.5520553588867,
+          "flydsl_varlen": 2425.3880977630615
+        }
+      },
+      {
+        "run": 1,
+        "case": "r16384_mha",
+        "dtype": "bfloat16",
+        "useful_flops": 3986367217664,
+        "times_us": {
+          "prefill": 1646.6892957687378,
+          "flydsl_varlen": 2529.8445224761963,
+          "asm_varlen": 1694.1152811050415
+        }
+      },
+      {
+        "run": 1,
+        "case": "r16384_mha",
+        "dtype": "float16",
+        "useful_flops": 3986367217664,
+        "times_us": {
+          "prefill": 1697.0771551132202,
+          "flydsl_varlen": 2593.625068664551
+        }
+      },
+      {
+        "run": 1,
+        "case": "r4096",
+        "dtype": "bfloat16",
+        "useful_flops": 311605755904,
+        "times_us": {
+          "prefill": 164.3586903810501,
+          "flydsl_varlen": 201.66520774364471,
+          "asm_varlen": 169.1223829984665
+        }
+      },
+      {
+        "run": 1,
+        "case": "r4096",
+        "dtype": "float16",
+        "useful_flops": 311605755904,
+        "times_us": {
+          "prefill": 167.16571152210236,
+          "flydsl_varlen": 206.02110028266907
+        }
+      },
+      {
+        "run": 1,
+        "case": "r8192",
+        "dtype": "bfloat16",
+        "useful_flops": 996751212544,
+        "times_us": {
+          "prefill": 440.0998651981354,
+          "flydsl_varlen": 640.6878232955933,
+          "asm_varlen": 459.25354957580566
+        }
+      },
+      {
+        "run": 1,
+        "case": "r8192",
+        "dtype": "float16",
+        "useful_flops": 996751212544,
+        "times_us": {
+          "prefill": 454.1221261024475,
+          "flydsl_varlen": 657.709538936615
+        }
+      },
+      {
+        "run": 1,
+        "case": "ragged_small",
+        "dtype": "bfloat16",
+        "useful_flops": 21882667008,
+        "times_us": {
+          "prefill": 20.72921395301819,
+          "flydsl_varlen": 26.580948382616043,
+          "asm_varlen": 26.997236534953117
+        }
+      },
+      {
+        "run": 1,
+        "case": "ragged_small",
+        "dtype": "float16",
+        "useful_flops": 21882667008,
+        "times_us": {
+          "prefill": 21.14558033645153,
+          "flydsl_varlen": 26.927052065730095
+        }
+      },
+      {
+        "run": 1,
+        "case": "short",
+        "dtype": "bfloat16",
+        "useful_flops": 17196646400,
+        "times_us": {
+          "prefill": 13.548965565860271,
+          "flydsl_varlen": 15.830585733056068,
+          "flydsl_batch": 15.52411075681448,
+          "asm_varlen": 15.43444488197565,
+          "asm_batch": 14.523861929774284
+        }
+      },
+      {
+        "run": 1,
+        "case": "short",
+        "dtype": "float16",
+        "useful_flops": 17196646400,
+        "times_us": {
+          "prefill": 14.152445830404758,
+          "flydsl_varlen": 15.96074178814888,
+          "flydsl_batch": 15.6315378844738
+        }
+      },
+      {
+        "run": 1,
+        "case": "tail16385",
+        "dtype": "bfloat16",
+        "useful_flops": 549856481280,
+        "times_us": {
+          "prefill": 218.90290081501007,
+          "flydsl_varlen": 229.66434061527252,
+          "flydsl_batch": 229.04184460639954,
+          "asm_varlen": 250.21138787269592,
+          "asm_batch": 248.98359179496765
+        }
+      },
+      {
+        "run": 1,
+        "case": "tail16385",
+        "dtype": "float16",
+        "useful_flops": 549856481280,
+        "times_us": {
+          "prefill": 225.76819360256195,
+          "flydsl_varlen": 235.91996729373932,
+          "flydsl_batch": 235.58540642261505
+        }
+      },
+      {
+        "run": 1,
+        "case": "u16384_gqa",
+        "dtype": "bfloat16",
+        "useful_flops": 4398314946560,
+        "times_us": {
+          "prefill": 1725.527286529541,
+          "flydsl_varlen": 1813.005805015564,
+          "flydsl_batch": 1811.7187023162842,
+          "asm_varlen": 1773.9897966384888,
+          "asm_batch": 1769.7734832763672
+        }
+      },
+      {
+        "run": 1,
+        "case": "u16384_gqa",
+        "dtype": "float16",
+        "useful_flops": 4398314946560,
+        "times_us": {
+          "prefill": 1781.5661430358887,
+          "flydsl_varlen": 1861.588478088379,
+          "flydsl_batch": 1861.1880540847778
+        }
+      },
+      {
+        "run": 1,
+        "case": "u16384_h8",
+        "dtype": "bfloat16",
+        "useful_flops": 549789368320,
+        "times_us": {
+          "prefill": 213.95015716552734,
+          "flydsl_varlen": 223.37427735328674,
+          "flydsl_batch": 223.08477759361267,
+          "asm_varlen": 220.9559679031372,
+          "asm_batch": 220.49090266227722
+        }
+      },
+      {
+        "run": 1,
+        "case": "u16384_h8",
+        "dtype": "float16",
+        "useful_flops": 549789368320,
+        "times_us": {
+          "prefill": 221.04987502098083,
+          "flydsl_varlen": 229.95790839195251,
+          "flydsl_batch": 229.84397411346436
+        }
+      },
+      {
+        "run": 1,
+        "case": "u16384_mha",
+        "dtype": "bfloat16",
+        "useful_flops": 2199157473280,
+        "times_us": {
+          "prefill": 877.8386116027832,
+          "flydsl_varlen": 1031.9945812225342,
+          "flydsl_batch": 1033.096194267273,
+          "asm_varlen": 914.6000146865845,
+          "asm_batch": 911.2237691879272
+        }
+      },
+      {
+        "run": 1,
+        "case": "u16384_mha",
+        "dtype": "float16",
+        "useful_flops": 2199157473280,
+        "times_us": {
+          "prefill": 907.2953462600708,
+          "flydsl_varlen": 1058.4229230880737,
+          "flydsl_batch": 1057.9135417938232
+        }
+      },
+      {
+        "run": 2,
+        "case": "dense",
+        "dtype": "bfloat16",
+        "useful_flops": 137472507904,
+        "times_us": {
+          "prefill": 59.876568615436554,
+          "flydsl_varlen": 79.89812642335892,
+          "flydsl_batch": 79.71253991127014,
+          "asm_varlen": 67.67372041940689,
+          "asm_batch": 66.86735898256302
+        }
+      },
+      {
+        "run": 2,
+        "case": "dense",
+        "dtype": "float16",
+        "useful_flops": 137472507904,
+        "times_us": {
+          "prefill": 61.71057000756264,
+          "flydsl_varlen": 81.75685256719589,
+          "flydsl_batch": 81.74026757478714
+        }
+      },
+      {
+        "run": 2,
+        "case": "gqa4",
+        "dtype": "bfloat16",
+        "useful_flops": 549890031616,
+        "times_us": {
+          "prefill": 259.5669627189636,
+          "flydsl_varlen": 289.66957330703735,
+          "flydsl_batch": 288.9954447746277,
+          "asm_varlen": 272.86311984062195,
+          "asm_batch": 268.1235373020172
+        }
+      },
+      {
+        "run": 2,
+        "case": "gqa4",
+        "dtype": "float16",
+        "useful_flops": 549890031616,
+        "times_us": {
+          "prefill": 253.2174587249756,
+          "flydsl_varlen": 297.19018936157227,
+          "flydsl_batch": 297.16265201568604
+        }
+      },
+      {
+        "run": 2,
+        "case": "long",
+        "dtype": "bfloat16",
+        "useful_flops": 274911461376,
+        "times_us": {
+          "prefill": 110.4736179113388,
+          "flydsl_varlen": 118.97744238376617,
+          "flydsl_batch": 118.57496947050095,
+          "asm_varlen": 119.16255950927734,
+          "asm_batch": 118.0640459060669
+        }
+      },
+      {
+        "run": 2,
+        "case": "long",
+        "dtype": "float16",
+        "useful_flops": 274911461376,
+        "times_us": {
+          "prefill": 113.83161693811417,
+          "flydsl_varlen": 122.38098680973053,
+          "flydsl_batch": 121.97443842887878
+        }
+      },
+      {
+        "run": 2,
+        "case": "medium",
+        "dtype": "bfloat16",
+        "useful_flops": 34376515584,
+        "times_us": {
+          "prefill": 20.34442126750946,
+          "flydsl_varlen": 26.162317022681236,
+          "flydsl_batch": 26.020465418696404,
+          "asm_varlen": 21.90292999148369,
+          "asm_batch": 21.463440731167793
+        }
+      },
+      {
+        "run": 2,
+        "case": "medium",
+        "dtype": "float16",
+        "useful_flops": 34376515584,
+        "times_us": {
+          "prefill": 22.866951301693916,
+          "flydsl_varlen": 26.397354900836945,
+          "flydsl_batch": 26.14252269268036
+        }
+      },
+      {
+        "run": 2,
+        "case": "mha",
+        "dtype": "bfloat16",
+        "useful_flops": 137472507904,
+        "times_us": {
+          "prefill": 62.37030401825905,
+          "flydsl_varlen": 94.90936249494553,
+          "flydsl_batch": 94.7650745511055,
+          "asm_varlen": 68.33376735448837,
+          "asm_batch": 67.66793131828308
+        }
+      },
+      {
+        "run": 2,
+        "case": "mha",
+        "dtype": "float16",
+        "useful_flops": 137472507904,
+        "times_us": {
+          "prefill": 64.37753140926361,
+          "flydsl_varlen": 97.78617322444916,
+          "flydsl_batch": 97.60840237140656
+        }
+      },
+      {
+        "run": 2,
+        "case": "mqa",
+        "dtype": "bfloat16",
+        "useful_flops": 549890031616,
+        "times_us": {
+          "prefill": 236.0573709011078,
+          "flydsl_varlen": 255.06898760795593,
+          "flydsl_batch": 254.2039155960083,
+          "asm_varlen": 266.4310038089752,
+          "asm_batch": 262.3210549354553
+        }
+      },
+      {
+        "run": 2,
+        "case": "mqa",
+        "dtype": "float16",
+        "useful_flops": 549890031616,
+        "times_us": {
+          "prefill": 242.56213009357452,
+          "flydsl_varlen": 262.06132769584656,
+          "flydsl_batch": 261.4741623401642
+        }
+      },
+      {
+        "run": 2,
+        "case": "r16384_gqa",
+        "dtype": "bfloat16",
+        "useful_flops": 3986367217664,
+        "times_us": {
+          "prefill": 1604.568600654602,
+          "flydsl_varlen": 2369.174003601074,
+          "asm_varlen": 1659.4507694244385
+        }
+      },
+      {
+        "run": 2,
+        "case": "r16384_gqa",
+        "dtype": "float16",
+        "useful_flops": 3986367217664,
+        "times_us": {
+          "prefill": 1655.5224657058716,
+          "flydsl_varlen": 2427.2284507751465
+        }
+      },
+      {
+        "run": 2,
+        "case": "r16384_mha",
+        "dtype": "bfloat16",
+        "useful_flops": 3986367217664,
+        "times_us": {
+          "prefill": 1651.5464782714844,
+          "flydsl_varlen": 2534.649133682251,
+          "asm_varlen": 1697.7207660675049
+        }
+      },
+      {
+        "run": 2,
+        "case": "r16384_mha",
+        "dtype": "float16",
+        "useful_flops": 3986367217664,
+        "times_us": {
+          "prefill": 1703.1112909317017,
+          "flydsl_varlen": 2598.8380908966064
+        }
+      },
+      {
+        "run": 2,
+        "case": "r4096",
+        "dtype": "bfloat16",
+        "useful_flops": 311605755904,
+        "times_us": {
+          "prefill": 164.75367546081543,
+          "flydsl_varlen": 201.4361172914505,
+          "asm_varlen": 170.10699212551117
+        }
+      },
+      {
+        "run": 2,
+        "case": "r4096",
+        "dtype": "float16",
+        "useful_flops": 311605755904,
+        "times_us": {
+          "prefill": 168.26830804347992,
+          "flydsl_varlen": 207.16626942157745
+        }
+      },
+      {
+        "run": 2,
+        "case": "r8192",
+        "dtype": "bfloat16",
+        "useful_flops": 996751212544,
+        "times_us": {
+          "prefill": 440.52866101264954,
+          "flydsl_varlen": 642.4229741096497,
+          "asm_varlen": 460.9355032444
+        }
+      },
+      {
+        "run": 2,
+        "case": "r8192",
+        "dtype": "float16",
+        "useful_flops": 996751212544,
+        "times_us": {
+          "prefill": 453.0599117279053,
+          "flydsl_varlen": 657.2971343994141
+        }
+      },
+      {
+        "run": 2,
+        "case": "ragged_small",
+        "dtype": "bfloat16",
+        "useful_flops": 21882667008,
+        "times_us": {
+          "prefill": 20.695220679044724,
+          "flydsl_varlen": 26.618700474500656,
+          "asm_varlen": 27.129391208291054
+        }
+      },
+      {
+        "run": 2,
+        "case": "ragged_small",
+        "dtype": "float16",
+        "useful_flops": 21882667008,
+        "times_us": {
+          "prefill": 21.171558648347855,
+          "flydsl_varlen": 26.909762993454933
+        }
+      },
+      {
+        "run": 2,
+        "case": "short",
+        "dtype": "bfloat16",
+        "useful_flops": 17196646400,
+        "times_us": {
+          "prefill": 13.671456836163998,
+          "flydsl_varlen": 15.645233914256096,
+          "flydsl_batch": 15.347209759056568,
+          "asm_varlen": 15.681421384215355,
+          "asm_batch": 14.57757968455553
+        }
+      },
+      {
+        "run": 2,
+        "case": "short",
+        "dtype": "float16",
+        "useful_flops": 17196646400,
+        "times_us": {
+          "prefill": 14.028789475560188,
+          "flydsl_varlen": 15.863176435232162,
+          "flydsl_batch": 15.579823404550552
+        }
+      },
+      {
+        "run": 2,
+        "case": "tail16385",
+        "dtype": "bfloat16",
+        "useful_flops": 549856481280,
+        "times_us": {
+          "prefill": 219.6330577135086,
+          "flydsl_varlen": 229.4205278158188,
+          "flydsl_batch": 229.09756004810333,
+          "asm_varlen": 250.5446970462799,
+          "asm_batch": 249.76477026939392
+        }
+      },
+      {
+        "run": 2,
+        "case": "tail16385",
+        "dtype": "float16",
+        "useful_flops": 549856481280,
+        "times_us": {
+          "prefill": 226.46956145763397,
+          "flydsl_varlen": 236.15719377994537,
+          "flydsl_batch": 235.90993881225586
+        }
+      },
+      {
+        "run": 2,
+        "case": "u16384_gqa",
+        "dtype": "bfloat16",
+        "useful_flops": 4398314946560,
+        "times_us": {
+          "prefill": 1728.6895513534546,
+          "flydsl_varlen": 1814.8009777069092,
+          "flydsl_batch": 1814.903736114502,
+          "asm_varlen": 1777.6678800582886,
+          "asm_batch": 1773.6895084381104
+        }
+      },
+      {
+        "run": 2,
+        "case": "u16384_gqa",
+        "dtype": "float16",
+        "useful_flops": 4398314946560,
+        "times_us": {
+          "prefill": 1784.9313020706177,
+          "flydsl_varlen": 1866.403341293335,
+          "flydsl_batch": 1866.8739795684814
+        }
+      },
+      {
+        "run": 2,
+        "case": "u16384_h8",
+        "dtype": "bfloat16",
+        "useful_flops": 549789368320,
+        "times_us": {
+          "prefill": 214.2374962568283,
+          "flydsl_varlen": 224.2712676525116,
+          "flydsl_batch": 223.90103340148926,
+          "asm_varlen": 221.87519073486328,
+          "asm_batch": 220.6968367099762
+        }
+      },
+      {
+        "run": 2,
+        "case": "u16384_h8",
+        "dtype": "float16",
+        "useful_flops": 549789368320,
+        "times_us": {
+          "prefill": 221.34125232696533,
+          "flydsl_varlen": 230.90215027332306,
+          "flydsl_batch": 230.55100440979004
+        }
+      },
+      {
+        "run": 2,
+        "case": "u16384_mha",
+        "dtype": "bfloat16",
+        "useful_flops": 2199157473280,
+        "times_us": {
+          "prefill": 880.4138898849487,
+          "flydsl_varlen": 1032.8333377838135,
+          "flydsl_batch": 1034.3883037567139,
+          "asm_varlen": 917.2052145004272,
+          "asm_batch": 914.8091077804565
+        }
+      },
+      {
+        "run": 2,
+        "case": "u16384_mha",
+        "dtype": "float16",
+        "useful_flops": 2199157473280,
+        "times_us": {
+          "prefill": 909.228265285492,
+          "flydsl_varlen": 1061.850666999817,
+          "flydsl_batch": 1061.0607862472534
+        }
+      },
+      {
+        "run": 3,
+        "case": "dense",
+        "dtype": "bfloat16",
+        "useful_flops": 137472507904,
+        "times_us": {
+          "prefill": 60.08673459291458,
+          "flydsl_varlen": 79.62208986282349,
+          "flydsl_batch": 79.61113750934601,
+          "asm_varlen": 67.65540689229965,
+          "asm_batch": 66.70335680246353
+        }
+      },
+      {
+        "run": 3,
+        "case": "dense",
+        "dtype": "float16",
+        "useful_flops": 137472507904,
+        "times_us": {
+          "prefill": 62.413182109594345,
+          "flydsl_varlen": 81.69645071029663,
+          "flydsl_batch": 81.6308856010437
+        }
+      },
+      {
+        "run": 3,
+        "case": "gqa4",
+        "dtype": "bfloat16",
+        "useful_flops": 549890031616,
+        "times_us": {
+          "prefill": 258.77830386161804,
+          "flydsl_varlen": 289.2965078353882,
+          "flydsl_batch": 289.20575976371765,
+          "asm_varlen": 272.91133999824524,
+          "asm_batch": 267.69351959228516
+        }
+      },
+      {
+        "run": 3,
+        "case": "gqa4",
+        "dtype": "float16",
+        "useful_flops": 549890031616,
+        "times_us": {
+          "prefill": 254.50313091278076,
+          "flydsl_varlen": 297.46124148368835,
+          "flydsl_batch": 297.2239851951599
+        }
+      },
+      {
+        "run": 3,
+        "case": "long",
+        "dtype": "bfloat16",
+        "useful_flops": 274911461376,
+        "times_us": {
+          "prefill": 110.64231395721436,
+          "flydsl_varlen": 118.85476857423782,
+          "flydsl_batch": 118.49626898765564,
+          "asm_varlen": 119.23205107450485,
+          "asm_batch": 117.99097061157227
+        }
+      },
+      {
+        "run": 3,
+        "case": "long",
+        "dtype": "float16",
+        "useful_flops": 274911461376,
+        "times_us": {
+          "prefill": 114.01455104351044,
+          "flydsl_varlen": 122.2623735666275,
+          "flydsl_batch": 121.86162173748016
+        }
+      },
+      {
+        "run": 3,
+        "case": "medium",
+        "dtype": "bfloat16",
+        "useful_flops": 34376515584,
+        "times_us": {
+          "prefill": 20.311875268816948,
+          "flydsl_varlen": 26.156995445489883,
+          "flydsl_batch": 26.015691459178925,
+          "asm_varlen": 21.881060674786568,
+          "asm_batch": 21.42862416803837
+        }
+      },
+      {
+        "run": 3,
+        "case": "medium",
+        "dtype": "float16",
+        "useful_flops": 34376515584,
+        "times_us": {
+          "prefill": 22.88130857050419,
+          "flydsl_varlen": 26.427987962961197,
+          "flydsl_batch": 26.09303593635559
+        }
+      },
+      {
+        "run": 3,
+        "case": "mha",
+        "dtype": "bfloat16",
+        "useful_flops": 137472507904,
+        "times_us": {
+          "prefill": 62.41678446531296,
+          "flydsl_varlen": 95.19197791814804,
+          "flydsl_batch": 94.58998590707779,
+          "asm_varlen": 68.04036349058151,
+          "asm_batch": 67.74978339672089
+        }
+      },
+      {
+        "run": 3,
+        "case": "mha",
+        "dtype": "float16",
+        "useful_flops": 137472507904,
+        "times_us": {
+          "prefill": 64.21620398759842,
+          "flydsl_varlen": 98.27455878257751,
+          "flydsl_batch": 97.39074856042862
+        }
+      },
+      {
+        "run": 3,
+        "case": "mqa",
+        "dtype": "bfloat16",
+        "useful_flops": 549890031616,
+        "times_us": {
+          "prefill": 238.552987575531,
+          "flydsl_varlen": 255.54156303405762,
+          "flydsl_batch": 254.5456886291504,
+          "asm_varlen": 266.4898633956909,
+          "asm_batch": 262.22530007362366
+        }
+      },
+      {
+        "run": 3,
+        "case": "mqa",
+        "dtype": "float16",
+        "useful_flops": 549890031616,
+        "times_us": {
+          "prefill": 244.3704754114151,
+          "flydsl_varlen": 263.3770704269409,
+          "flydsl_batch": 262.0876431465149
+        }
+      },
+      {
+        "run": 3,
+        "case": "r16384_gqa",
+        "dtype": "bfloat16",
+        "useful_flops": 3986367217664,
+        "times_us": {
+          "prefill": 1604.9795150756836,
+          "flydsl_varlen": 2370.8720207214355,
+          "asm_varlen": 1659.859299659729
+        }
+      },
+      {
+        "run": 3,
+        "case": "r16384_gqa",
+        "dtype": "float16",
+        "useful_flops": 3986367217664,
+        "times_us": {
+          "prefill": 1654.6289920806885,
+          "flydsl_varlen": 2427.9375076293945
+        }
+      },
+      {
+        "run": 3,
+        "case": "r16384_mha",
+        "dtype": "bfloat16",
+        "useful_flops": 3986367217664,
+        "times_us": {
+          "prefill": 1650.1747369766235,
+          "flydsl_varlen": 2543.29514503479,
+          "asm_varlen": 1699.3885040283203
+        }
+      },
+      {
+        "run": 3,
+        "case": "r16384_mha",
+        "dtype": "float16",
+        "useful_flops": 3986367217664,
+        "times_us": {
+          "prefill": 1702.7809619903564,
+          "flydsl_varlen": 2602.1459102630615
+        }
+      },
+      {
+        "run": 3,
+        "case": "r4096",
+        "dtype": "bfloat16",
+        "useful_flops": 311605755904,
+        "times_us": {
+          "prefill": 164.4701510667801,
+          "flydsl_varlen": 202.0968347787857,
+          "asm_varlen": 170.33986747264862
+        }
+      },
+      {
+        "run": 3,
+        "case": "r4096",
+        "dtype": "float16",
+        "useful_flops": 311605755904,
+        "times_us": {
+          "prefill": 169.21569406986237,
+          "flydsl_varlen": 207.48364925384521
+        }
+      },
+      {
+        "run": 3,
+        "case": "r8192",
+        "dtype": "bfloat16",
+        "useful_flops": 996751212544,
+        "times_us": {
+          "prefill": 440.8704936504364,
+          "flydsl_varlen": 641.98237657547,
+          "asm_varlen": 459.46961641311646
+        }
+      },
+      {
+        "run": 3,
+        "case": "r8192",
+        "dtype": "float16",
+        "useful_flops": 996751212544,
+        "times_us": {
+          "prefill": 454.4745981693268,
+          "flydsl_varlen": 657.2171449661255
+        }
+      },
+      {
+        "run": 3,
+        "case": "ragged_small",
+        "dtype": "bfloat16",
+        "useful_flops": 21882667008,
+        "times_us": {
+          "prefill": 20.661499351263046,
+          "flydsl_varlen": 26.591986417770386,
+          "asm_varlen": 26.611506938934326
+        }
+      },
+      {
+        "run": 3,
+        "case": "ragged_small",
+        "dtype": "float16",
+        "useful_flops": 21882667008,
+        "times_us": {
+          "prefill": 21.14855870604515,
+          "flydsl_varlen": 26.890911161899567
+        }
+      },
+      {
+        "run": 3,
+        "case": "short",
+        "dtype": "bfloat16",
+        "useful_flops": 17196646400,
+        "times_us": {
+          "prefill": 13.629010878503323,
+          "flydsl_varlen": 15.650829300284386,
+          "flydsl_batch": 15.335551463067532,
+          "asm_varlen": 15.618708916008472,
+          "asm_batch": 14.55774623900652
+        }
+      },
+      {
+        "run": 3,
+        "case": "short",
+        "dtype": "float16",
+        "useful_flops": 17196646400,
+        "times_us": {
+          "prefill": 14.033326879143715,
+          "flydsl_varlen": 15.856292098760605,
+          "flydsl_batch": 15.577789396047592
+        }
+      },
+      {
+        "run": 3,
+        "case": "tail16385",
+        "dtype": "bfloat16",
+        "useful_flops": 549856481280,
+        "times_us": {
+          "prefill": 219.55424547195435,
+          "flydsl_varlen": 229.6471744775772,
+          "flydsl_batch": 229.45156693458557,
+          "asm_varlen": 250.3744661808014,
+          "asm_batch": 249.65153634548187
+        }
+      },
+      {
+        "run": 3,
+        "case": "tail16385",
+        "dtype": "float16",
+        "useful_flops": 549856481280,
+        "times_us": {
+          "prefill": 226.85110569000244,
+          "flydsl_varlen": 236.61918938159943,
+          "flydsl_batch": 236.21325194835663
+        }
+      },
+      {
+        "run": 3,
+        "case": "u16384_gqa",
+        "dtype": "bfloat16",
+        "useful_flops": 4398314946560,
+        "times_us": {
+          "prefill": 1728.9752960205078,
+          "flydsl_varlen": 1815.469741821289,
+          "flydsl_batch": 1814.0302896499634,
+          "asm_varlen": 1777.5955200195312,
+          "asm_batch": 1772.2851037979126
+        }
+      },
+      {
+        "run": 3,
+        "case": "u16384_gqa",
+        "dtype": "float16",
+        "useful_flops": 4398314946560,
+        "times_us": {
+          "prefill": 1785.2294445037842,
+          "flydsl_varlen": 1867.600440979004,
+          "flydsl_batch": 1866.4662837982178
+        }
+      },
+      {
+        "run": 3,
+        "case": "u16384_h8",
+        "dtype": "bfloat16",
+        "useful_flops": 549789368320,
+        "times_us": {
+          "prefill": 214.1702175140381,
+          "flydsl_varlen": 224.58897531032562,
+          "flydsl_batch": 224.1169959306717,
+          "asm_varlen": 221.44800424575806,
+          "asm_batch": 220.59766948223114
+        }
+      },
+      {
+        "run": 3,
+        "case": "u16384_h8",
+        "dtype": "float16",
+        "useful_flops": 549789368320,
+        "times_us": {
+          "prefill": 221.06650471687317,
+          "flydsl_varlen": 230.59171438217163,
+          "flydsl_batch": 230.37762939929962
+        }
+      },
+      {
+        "run": 3,
+        "case": "u16384_mha",
+        "dtype": "bfloat16",
+        "useful_flops": 2199157473280,
+        "times_us": {
+          "prefill": 880.4265260696411,
+          "flydsl_varlen": 1033.7936878204346,
+          "flydsl_batch": 1035.179615020752,
+          "asm_varlen": 917.8012609481812,
+          "asm_batch": 914.7153496742249
+        }
+      },
+      {
+        "run": 3,
+        "case": "u16384_mha",
+        "dtype": "float16",
+        "useful_flops": 2199157473280,
+        "times_us": {
+          "prefill": 909.2559218406677,
+          "flydsl_varlen": 1062.28768825531,
+          "flydsl_batch": 1060.38236618042
+        }
+      }
+    ]
+  },
+  "d64": {
+    "commit": "c2e10222bc97eb93536ffc589b1304cf7039dd6a",
+    "source_sha256": "36409c7f03e09c79e4df24378b41e7051e2b03fd8ae1a9904e90632e193ca744",
+    "shape": [
+      [
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512,
+        512
+      ],
+      8,
+      1,
+      64,
+      -1
+    ],
+    "independent_processes_per_dtype": 8,
+    "timing_rounds_per_process": 24,
+    "full_output_fp64_reference": true,
+    "gpu_lock": true,
+    "foreign_gpu_clients_observed": false,
+    "clock_pinning": false,
+    "environment": {
+      "torch": "2.14.0+rocm10.1.0",
+      "hip": "7.16.26385",
+      "tokenspeed_triton": "3.9.10",
+      "arch": "gfx1250",
+      "compute_units": 256,
+      "aiter_commit": "1c464e51bab63567b67bb3414663babb56057a22",
+      "flydsl": "0.4.0"
+    },
+    "dtypes": {
+      "bfloat16": {
+        "implementations": {
+          "current_pr": {
+            "median_us": 7.701728027313948,
+            "min_us": 7.148522883653641,
+            "max_us": 7.811465999111533,
+            "median_tflops": 558.7522041053994,
+            "min_tflops": 550.9024688182037,
+            "max_tflops": 601.9923240142915,
+            "max_within_process_cv_percent": 0.23424260711356445,
+            "max_relative_rms_error": 0.0019985467587815505,
+            "compiled_hashes": [
+              "0abfed88336b21abaadb65ec35d310db804ec226fe2e21bbb573246a406d5a59",
+              "97f8a4b13512272abcd8aa440247b9624151fecd6d88508909723b45ec046deb"
+            ]
+          },
+          "flydsl_varlen": {
+            "median_us": 7.652168860659003,
+            "min_us": 7.598592434078455,
+            "max_us": 7.765556452795863,
+            "median_tflops": 562.3760107394852,
+            "min_tflops": 554.1593741747439,
+            "max_tflops": 566.3359288359968,
+            "max_within_process_cv_percent": 0.23888743182166614,
+            "max_relative_rms_error": 0.002998808691501395,
+            "compiled_hashes": []
+          },
+          "flydsl_batch": {
+            "median_us": 7.296670926734805,
+            "min_us": 7.25506735034287,
+            "max_us": 7.401706418022513,
+            "median_tflops": 589.7756482102728,
+            "min_tflops": 581.4005123901836,
+            "max_tflops": 593.1517512096736,
+            "max_within_process_cv_percent": 0.21608150953733646,
+            "max_relative_rms_error": 0.002998808691501395,
+            "compiled_hashes": []
+          },
+          "asm_varlen": {
+            "median_us": 8.89222091063857,
+            "min_us": 8.771797642111778,
+            "max_us": 9.241905994713306,
+            "median_tflops": 483.94621521568877,
+            "min_tflops": 465.63510886841635,
+            "max_tflops": 490.58996565771014,
+            "max_within_process_cv_percent": 0.765626537850011,
+            "max_relative_rms_error": 0.0019882720310658284,
+            "compiled_hashes": []
+          },
+          "asm_batch": {
+            "median_us": 8.315157378092408,
+            "min_us": 8.1260004080832,
+            "max_us": 8.875382132828236,
+            "median_tflops": 517.5328456297557,
+            "min_tflops": 484.86429537301393,
+            "max_tflops": 529.5785980664375,
+            "max_within_process_cv_percent": 0.562570189668594,
+            "max_relative_rms_error": 0.0019882720310658284,
+            "compiled_hashes": []
+          }
+        },
+        "comparisons": {
+          "flydsl_varlen": {
+            "geomean_speedup": 1.019648548129803,
+            "approximate_process_bootstrap_95percent_interval": [
+              0.9975024577578586,
+              1.0457391278653532
+            ],
+            "min_speedup": 0.9836748527711693,
+            "max_speedup": 1.0798686511714681,
+            "wins": 4,
+            "processes": 8,
+            "paired_speedups": [
+              1.0798686511714681,
+              0.9887285496715781,
+              0.9941228002117795,
+              1.00326418880251,
+              0.9972147521218322,
+              1.053628051849874,
+              0.9836748527711693,
+              1.0616297979358993
+            ]
+          },
+          "flydsl_batch": {
+            "geomean_speedup": 0.9727802769591227,
+            "approximate_process_bootstrap_95percent_interval": [
+              0.9513515337730645,
+              0.9979295122962613
+            ],
+            "min_speedup": 0.9382996970856439,
+            "max_speedup": 1.0309974649763383,
+            "wins": 3,
+            "processes": 8,
+            "paired_speedups": [
+              1.0309974649763383,
+              0.9427021582273573,
+              0.947543830935752,
+              0.9585505939445327,
+              0.9509801092355851,
+              1.0043317658624356,
+              0.9382996970856439,
+              1.0136345319184041
+            ]
+          },
+          "asm_varlen": {
+            "geomean_speedup": 1.1869998433626074,
+            "approximate_process_bootstrap_95percent_interval": [
+              1.155256166056784,
+              1.2253982970359465
+            ],
+            "min_speedup": 1.135855684730288,
+            "max_speedup": 1.291223720554764,
+            "wins": 8,
+            "processes": 8,
+            "paired_speedups": [
+              1.2444437409226141,
+              1.1596965125742447,
+              1.135855684730288,
+              1.1451389808272074,
+              1.1547982062563233,
+              1.2125707853052372,
+              1.1611534667098937,
+              1.291223720554764
+            ]
+          },
+          "asm_batch": {
+            "geomean_speedup": 1.1227989692239648,
+            "approximate_process_bootstrap_95percent_interval": [
+              1.0873220902297822,
+              1.161458378194866
+            ],
+            "min_speedup": 1.0458002209300146,
+            "max_speedup": 1.2291814459947088,
+            "wins": 8,
+            "processes": 8,
+            "paired_speedups": [
+              1.1409003099143944,
+              1.148209604641331,
+              1.0458002209300146,
+              1.0807262311760257,
+              1.153092984554815,
+              1.1232989061348166,
+              1.071536785179399,
+              1.2291814459947088
+            ]
+          },
+          "best_flydsl": {
+            "geomean_speedup": 0.9727802769591227,
+            "approximate_process_bootstrap_95percent_interval": [
+              0.9513515337730645,
+              0.9979295122962613
+            ],
+            "min_speedup": 0.9382996970856439,
+            "max_speedup": 1.0309974649763383,
+            "wins": 3,
+            "processes": 8,
+            "paired_speedups": [
+              1.0309974649763383,
+              0.9427021582273573,
+              0.947543830935752,
+              0.9585505939445327,
+              0.9509801092355851,
+              1.0043317658624356,
+              0.9382996970856439,
+              1.0136345319184041
+            ]
+          },
+          "best_asm": {
+            "geomean_speedup": 1.1227989692239648,
+            "approximate_process_bootstrap_95percent_interval": [
+              1.0873220902297822,
+              1.161458378194866
+            ],
+            "min_speedup": 1.0458002209300146,
+            "max_speedup": 1.2291814459947088,
+            "wins": 8,
+            "processes": 8,
+            "paired_speedups": [
+              1.1409003099143944,
+              1.148209604641331,
+              1.0458002209300146,
+              1.0807262311760257,
+              1.153092984554815,
+              1.1232989061348166,
+              1.071536785179399,
+              1.2291814459947088
+            ]
+          }
+        }
+      },
+      "float16": {
+        "implementations": {
+          "current_pr": {
+            "median_us": 7.2826441610232,
+            "min_us": 7.212234660983086,
+            "max_us": 7.852907292544842,
+            "median_tflops": 590.9058254376496,
+            "min_tflops": 547.9952511454441,
+            "max_tflops": 596.674415944949,
+            "max_within_process_cv_percent": 0.36156446426201555,
+            "max_relative_rms_error": 0.0002496247009943453,
+            "compiled_hashes": [
+              "1e14383cf359a8010082097038a79f2ee39b0b92d259fb4e5b0556c2e6574d80",
+              "c9cb9aa49405423f766b3ccd30acb836caf0fbe3536786cf30fa66e355f6c000"
+            ]
+          },
+          "flydsl_varlen": {
+            "median_us": 7.901408011093736,
+            "min_us": 7.760384352877736,
+            "max_us": 8.029247634112835,
+            "median_tflops": 544.6335365812656,
+            "min_tflops": 535.9600425968783,
+            "max_tflops": 554.5287073834446,
+            "max_within_process_cv_percent": 0.30792586863685983,
+            "max_relative_rms_error": 0.000373444488431696,
+            "compiled_hashes": []
+          },
+          "flydsl_batch": {
+            "median_us": 7.607291569001973,
+            "min_us": 7.449192693457007,
+            "max_us": 7.695833453908563,
+            "median_tflops": 565.688630272133,
+            "min_tflops": 559.1799679363396,
+            "max_tflops": 577.694265820221,
+            "max_within_process_cv_percent": 0.25765936638107395,
+            "max_relative_rms_error": 0.000373444488431696,
+            "compiled_hashes": []
+          }
+        },
+        "comparisons": {
+          "flydsl_varlen": {
+            "geomean_speedup": 1.0674673904584118,
+            "approximate_process_bootstrap_95percent_interval": [
+              1.0444355151570568,
+              1.087328169603741
+            ],
+            "min_speedup": 1.012216889086737,
+            "max_speedup": 1.0978871820578449,
+            "wins": 8,
+            "processes": 8,
+            "paired_speedups": [
+              1.0855727218326305,
+              1.0224554212852355,
+              1.0978871820578449,
+              1.0868599205741472,
+              1.0896768951543134,
+              1.012216889086737,
+              1.0650979872597006,
+              1.083531288163932
+            ]
+          },
+          "flydsl_batch": {
+            "geomean_speedup": 1.0246019047737414,
+            "approximate_process_bootstrap_95percent_interval": [
+              1.0029026355117805,
+              1.0432252320366624
+            ],
+            "min_speedup": 0.9756790055239207,
+            "max_speedup": 1.051930238826591,
+            "wins": 6,
+            "processes": 8,
+            "paired_speedups": [
+              1.0420492980261096,
+              0.9799980016591566,
+              1.051930238826591,
+              1.0440755180926637,
+              1.0478928222827366,
+              0.9756790055239207,
+              1.0223875240881033,
+              1.0360234771989167
+            ]
+          },
+          "best_flydsl": {
+            "geomean_speedup": 1.0246019047737414,
+            "approximate_process_bootstrap_95percent_interval": [
+              1.0029026355117805,
+              1.0432252320366624
+            ],
+            "min_speedup": 0.9756790055239207,
+            "max_speedup": 1.051930238826591,
+            "wins": 6,
+            "processes": 8,
+            "paired_speedups": [
+              1.0420492980261096,
+              0.9799980016591566,
+              1.051930238826591,
+              1.0440755180926637,
+              1.0478928222827366,
+              0.9756790055239207,
+              1.0223875240881033,
+              1.0360234771989167
+            ]
+          }
+        }
+      }
+    },
+    "process_medians": [
+      {
+        "run": 1,
+        "dtype": "bfloat16",
+        "useful_flops": 4303355904,
+        "times_us": {
+          "current_pr": 7.148522883653641,
+          "flydsl_varlen": 7.71946576423943,
+          "flydsl_batch": 7.370108971372247,
+          "asm_varlen": 8.89593455940485,
+          "asm_batch": 8.15575197339058
+        }
+      },
+      {
+        "run": 1,
+        "dtype": "float16",
+        "useful_flops": 4303355904,
+        "times_us": {
+          "current_pr": 7.324852515012026,
+          "flydsl_varlen": 7.951660081744194,
+          "flydsl_batch": 7.632857421413064
+        }
+      },
+      {
+        "run": 2,
+        "dtype": "bfloat16",
+        "useful_flops": 4303355904,
+        "times_us": {
+          "flydsl_varlen": 7.6287537813186646,
+          "flydsl_batch": 7.273626979440451,
+          "asm_varlen": 8.947894908487797,
+          "asm_batch": 8.859265130013227,
+          "current_pr": 7.715721148997545
+        }
+      },
+      {
+        "run": 2,
+        "dtype": "float16",
+        "useful_flops": 4303355904,
+        "times_us": {
+          "flydsl_varlen": 8.029247634112835,
+          "flydsl_batch": 7.695833453908563,
+          "current_pr": 7.852907292544842
+        }
+      },
+      {
+        "run": 3,
+        "dtype": "bfloat16",
+        "useful_flops": 4303355904,
+        "times_us": {
+          "flydsl_varlen": 7.765556452795863,
+          "flydsl_batch": 7.401706418022513,
+          "asm_varlen": 8.872698061168194,
+          "asm_batch": 8.169232867658138,
+          "current_pr": 7.811465999111533
+        }
+      },
+      {
+        "run": 3,
+        "dtype": "float16",
+        "useful_flops": 4303355904,
+        "times_us": {
+          "flydsl_varlen": 7.991754449903965,
+          "flydsl_batch": 7.657224079594016,
+          "current_pr": 7.279212819412351
+        }
+      },
+      {
+        "run": 4,
+        "dtype": "bfloat16",
+        "useful_flops": 4303355904,
+        "times_us": {
+          "flydsl_varlen": 7.731589255854487,
+          "flydsl_batch": 7.38700688816607,
+          "asm_varlen": 8.824937976896763,
+          "asm_batch": 8.32854537293315,
+          "current_pr": 7.70643400028348
+        }
+      },
+      {
+        "run": 4,
+        "dtype": "float16",
+        "useful_flops": 4303355904,
+        "times_us": {
+          "flydsl_varlen": 7.838688790798187,
+          "flydsl_batch": 7.530117640271783,
+          "current_pr": 7.212234660983086
+        }
+      },
+      {
+        "run": 5,
+        "dtype": "bfloat16",
+        "useful_flops": 4303355904,
+        "times_us": {
+          "flydsl_varlen": 7.675583939999342,
+          "flydsl_batch": 7.3197148740291595,
+          "asm_varlen": 8.888507261872292,
+          "asm_batch": 8.875382132828236,
+          "current_pr": 7.697022054344416
+        }
+      },
+      {
+        "run": 5,
+        "dtype": "float16",
+        "useful_flops": 4303355904,
+        "times_us": {
+          "flydsl_varlen": 7.916588801890612,
+          "flydsl_batch": 7.613024208694696,
+          "current_pr": 7.265079068019986
+        }
+      },
+      {
+        "run": 6,
+        "dtype": "bfloat16",
+        "useful_flops": 4303355904,
+        "times_us": {
+          "current_pr": 7.234049960970879,
+          "flydsl_varlen": 7.621997967362404,
+          "flydsl_batch": 7.265386171638966,
+          "asm_varlen": 8.771797642111778,
+          "asm_batch": 8.1260004080832
+        }
+      },
+      {
+        "run": 6,
+        "dtype": "float16",
+        "useful_flops": 4303355904,
+        "times_us": {
+          "current_pr": 7.79104488901794,
+          "flydsl_varlen": 7.88622722029686,
+          "flydsl_batch": 7.601558929309249
+        }
+      },
+      {
+        "run": 7,
+        "dtype": "bfloat16",
+        "useful_flops": 4303355904,
+        "times_us": {
+          "flydsl_varlen": 7.62105593457818,
+          "flydsl_batch": 7.269510300830007,
+          "asm_varlen": 8.996077813208103,
+          "asm_batch": 8.301769383251667,
+          "current_pr": 7.747535593807697
+        }
+      },
+      {
+        "run": 7,
+        "dtype": "float16",
+        "useful_flops": 4303355904,
+        "times_us": {
+          "flydsl_varlen": 7.760384352877736,
+          "flydsl_batch": 7.449192693457007,
+          "current_pr": 7.2860755026340485
+        }
+      },
+      {
+        "run": 8,
+        "dtype": "bfloat16",
+        "useful_flops": 4303355904,
+        "times_us": {
+          "flydsl_varlen": 7.598592434078455,
+          "flydsl_batch": 7.25506735034287,
+          "asm_varlen": 9.241905994713306,
+          "asm_batch": 8.797839749604464,
+          "current_pr": 7.157478481531143
+        }
+      },
+      {
+        "run": 8,
+        "dtype": "float16",
+        "useful_flops": 4303355904,
+        "times_us": {
+          "flydsl_varlen": 7.858126424252987,
+          "flydsl_batch": 7.513584103435278,
+          "current_pr": 7.252329960465431
+        }
+      }
+    ]
+  }
+}
