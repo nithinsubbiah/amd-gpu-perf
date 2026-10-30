@@ -441,6 +441,48 @@ def kv_pipeline(preview_dir):
     )
 
 
+def prefill_impact(preview_dir):
+    data = json.loads((ROOT.parent / "data/main-comparison.json").read_text())
+    rows = {r["dtype"]: r for r in data["rows"] if r["case"] == "mqa_8k"}
+    fig, ax = plt.subplots(figsize=(14, 5.1))
+    fig.subplots_adjust(left=0.10, right=0.78, top=0.73, bottom=0.28)
+    fig.text(0.035, 0.925, "An 8K prompt: about 45% less kernel time", fontsize=23, weight="bold")
+    fig.text(0.035, 0.86, "Causal MQA · one sequence · 8 query heads / 1 KV head · head dimension 128",
+             fontsize=12, color=MUTED)
+    for i, dtype in enumerate(("bfloat16", "float16")):
+        row = rows[dtype]
+        before, after = row["median_us"]["main"], row["median_us"]["pr"]
+        assert math.isclose(row["speedup"], before / after, rel_tol=1e-12)
+        for backend, offset, color, legend in (
+            ("main", -0.18, "#c7d2df", "Upstream baseline"),
+            ("pr", 0.18, TEAL, "Development candidate"),
+        ):
+            latency = row["median_us"][backend]
+            ax.barh(i + offset, latency, height=0.29, color=color, label=legend if i == 0 else None)
+            ax.text(latency + 2, i + offset, f"{latency:.1f} μs", va="center", fontsize=12, weight="bold")
+            ax.text(3, i + offset, f"{row['tflops'][backend]:,.0f} TFLOP/s", va="center", fontsize=11,
+                    color="white" if backend == "pr" else INK)
+        ax.text(1.05, i - 0.08, f"{before / after:.2f}×", transform=ax.get_yaxis_transform(),
+                fontsize=24, weight="bold", color=TEAL, va="center")
+        ax.text(1.05, i + 0.23, f"{100 * (1 - after / before):.0f}% less time",
+                transform=ax.get_yaxis_transform(), fontsize=12, color=MUTED, va="center")
+    ax.set(yticks=[0, 1], yticklabels=["BF16", "FP16"], ylim=(1.55, -0.6),
+           xlim=(0, 140), xticks=[0, 30, 60, 90, 120], xlabel="Kernel latency (μs) · lower is better")
+    ax.tick_params(axis="y", length=0, labelsize=13, pad=12)
+    ax.spines[["top", "left", "right"]].set_visible(False)
+    ax.spines["bottom"].set_color(LINE)
+    ax.legend(loc="lower left", bbox_to_anchor=(0, 1.01), ncol=2, frameon=False, fontsize=11)
+    fig.text(0.035, 0.13, "Baseline b5474d8 → candidate 34bf268, before final numerical fixes. "
+             "Final merged source has not been retimed on a healthy host.", fontsize=10.5, color=MUTED)
+    fig.text(0.035, 0.065, "Source: data/main-comparison.json · warmed graph timing, two runs · "
+             "clocks not pinned · useful causal TFLOP/s · kernel results only", fontsize=10.5, color=MUTED)
+    save(fig, "prefill-impact",
+         "8K causal MQA, B1/Hq8/Hkv1/D128. BF16 kernel latency falls from 118.6 to 65.0 microseconds, "
+         "and FP16 from 119.8 to 66.7 microseconds. Values come from the retained data. "
+         "The development candidate predates final numerical fixes; this is not an end-to-end model benchmark.",
+         preview_dir)
+
+
 def prefill_speedups(preview_dir):
     data = json.loads((ROOT.parent / "data/main-comparison.json").read_text())
     order = [
@@ -600,6 +642,7 @@ if __name__ == "__main__":
     parser.add_argument("--preview-dir", type=Path)
     args = parser.parse_args()
     for render in (
+        prefill_impact,
         attention_tile,
         packing_and_compaction,
         workgroup_order,
